@@ -24,11 +24,8 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-    }
-
-    void FixedUpdate() {
         var moveDirection = _movement.ReadValue<Vector2>();
-        _position += _moveSpeed * moveDirection * Time.fixedDeltaTime;
+        _position += _moveSpeed * moveDirection * Time.deltaTime;
 
         transform.position = _position;
     }

@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
-/// Moves the image closer/further from the player with fade in/out effect going both ways.
+/// Moves the image closer to the player with a fade in/out effect.
 /// </summary>
-public class Movement : MonoBehaviour {
+public class HallwayController : MonoBehaviour {
     [SerializeField] private float _increment;
     [SerializeField] private float _fadeInVal;
     [SerializeField] private float _fadeOutVal;
@@ -17,16 +18,21 @@ public class Movement : MonoBehaviour {
     private float _alphaIncr;
     private float _alphaDecr;
     private Color _color;
+    private PlayerInput _playerInputs;
+    private InputAction _movement;  
 
     private readonly Vector3 _startPos = new Vector3(15.5f, 103, 0);
     private readonly Vector3 _startScale = new Vector3(7, 7, 1);
     private readonly Vector3 _endPos = new Vector3(202, 1235, 0);
     private readonly Vector3 _endScale = new Vector3(93, 93, 1);
-    
-    void Start() {
-        // calculate increment values for position and alpha based on scale increment
-        float numIncrements = (_endScale.x - _startScale.x) / _increment;
 
+    private void Awake() {
+         _playerInputs = new PlayerInput();
+    }
+
+    void Start() {
+        // calculate incremental values for position and alpha based on scale increment
+        float numIncrements = (_endScale.x - _startScale.x) / _increment;
         _posIncrX = (_endPos.x - _startPos.x) / numIncrements;
         _posIncrY = (_endPos.y - _startPos.y) / numIncrements;
         _alphaIncr = 1 / ((_fadeInVal - _startScale.x) / _increment);
@@ -40,21 +46,26 @@ public class Movement : MonoBehaviour {
         _image.color = _color;
     }
 
+    private void OnEnable() {
+        _movement = _playerInputs.Player.Movement;
+        _movement.Enable();
+    }
+
+    private void OnDisable() {
+        _movement.Disable();
+    }
+
     void Update() {
-        if (Input.GetKey(KeyCode.W)) {
+        float yMovement = _movement.ReadValue<Vector2>().y;
+        if (yMovement > 0) {
             IncrementImage();
             IncrementImageFade();
 
             if (_nextScale.x >= _endScale.x) {
                 SetToStart();
-            } 
-        } else if (Input.GetKey(KeyCode.S)) {
-            DecrementImage();
-            DecrementImageFade();
-
-            if (_nextScale.y <= _startScale.y) {
-                SetToEnd();
             }
+        } else if (yMovement < 0) {
+            print("Player wants to go back!");
         }
     }
 

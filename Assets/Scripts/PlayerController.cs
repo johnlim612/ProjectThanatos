@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float _moveSpeed = 5f;      // Player's move speed
     [SerializeField] private Tilemap _obstacleTilemap;
+    [SerializeField] private Rigidbody2D _rb;
 
     private PlayerInput _playerInputs;  // Custom Input Action map for player inputs
     private InputAction _movement;      // Reference to player's movement inputs
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         _playerInputs = new PlayerInput(); // Instantiate reference to custom InputAction
-        //transform.position = new Vector3(8, 9, 0);
+        _position = transform.position;
     }
 
     private void OnEnable() {
@@ -29,35 +30,8 @@ public class PlayerController : MonoBehaviour {
         _movement.Disable();
     }
 
-    void Update() {
-        
+    void FixedUpdate() {
         var moveDirection = _movement.ReadValue<Vector2>();
-        var posIncrement = _moveSpeed * moveDirection * Time.deltaTime;
-
-        if (moveDirection.y > 0) {
-            _hi = 1;
-        } else {
-            _hi = 0;
-        }
-
-        _obstacleTile = _obstacleTilemap.WorldToCell(_position + posIncrement + new Vector2Int(0, _hi));
-        _position += _moveSpeed * moveDirection * Time.deltaTime;
-        transform.position = _position;
-        
-        //GetComponent<Rigidbody2D>().velocity = Vector3.right * 10;
-
-        /*        if (_obstacleTilemap.GetTile(_obstacleTile) == null) {
-                    _position += posIncrement;
-                    transform.position = _position;
-                }*/
-    }
-    /*
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_position + new Vector2Int(_hello, _hi), 0.2f);
-    }*/
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        print(collision.gameObject.name);
+        _rb.velocity = moveDirection * _moveSpeed * Time.fixedDeltaTime;
     }
 }

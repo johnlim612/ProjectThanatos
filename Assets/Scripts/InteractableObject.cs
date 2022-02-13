@@ -5,25 +5,25 @@ using UnityEngine.InputSystem;
 
 public class Diary : MonoBehaviour
 {
-    private bool _diaryCollision = false;
+    private bool _interactableCollided = false;
     private string _interactableText = "Press Space";
     // Start is called before the first frame update
     void Start() {
     }
 
     public void OnInteract(InputValue value) {
-        if (_diaryCollision) {
-            print("Diary Called");
+        if (_interactableCollided) {
+            InteractObject();
         }
     }
-    private void displayDiary() {
-
+    private void InteractObject() {
+        FindObjectOfType<UIDialogueManager>().StartDialog(this.gameObject);
         //GameManager.advanceDay();
     }
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
-            _diaryCollision = true;
+            _interactableCollided = true;
             print("Collided");
         }
         
@@ -31,12 +31,12 @@ public class Diary : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
-            _diaryCollision = false;
+            _interactableCollided = false;
             print("left");
         }
     }
     private void OnGUI() {
-        if (_diaryCollision) {
+        if (_interactableCollided) {
             var position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
             var textSize = GUI.skin.box.CalcSize(new GUIContent(_interactableText));
             GUI.Box(new Rect(position.x - textSize.x/2, Screen.height - position.y + textSize.y/2, textSize.x, textSize.y), _interactableText);

@@ -12,8 +12,11 @@ namespace UI {
 
 		public Text nameText;
 		public Text dialogueText;
+		public Animator animator;
+
 		private Queue<(string, string)> sentences;
-		public Animator animator;		
+		private bool promptSelected = false;
+		private Dialogue dialogue;
 
 
 		// Start is called before the first frame update
@@ -21,12 +24,17 @@ namespace UI {
 			sentences = new Queue<(string, string)>();
 		}
 
-		public void ContinueDialog() {
-				
+		public void SelectDialogue() {
+			
+			promptSelected = true;
+
 		}
 
-		public void ShowPrompts() {
-			//show user prompts
+		
+		public void CreatePrompts() {
+			//string[] prompts = DialogueManager.GetPrompts(itemName);
+			// CreateButtons
+			// ShowPrompts
 		}
 
 		public void StartDialogue(string itemName) {
@@ -35,18 +43,29 @@ namespace UI {
 			// __.getGreeting(itemName)
 
 			//check if it is person or item. If it is a person:
-			// __.GetPrompts
-			ShowPrompts();
+			//make methods for each type person, item, and diary
+
+			// For person
+			// DialogueManager.GetDialogue(int stringNumber)
+
+			CreatePrompts();
 			CreateDialog();
 			nameText.text = dialogue.name;
 
 			sentences.Clear();
 			 
-			foreach (string sentence in dialogue.sentences) {
+			foreach ((string, string) sentence in dialogue.sentences) {
 				sentences.Enqueue(sentence);
+				//if key == newPrompt then use recursion to start method again
 			}
 
 			DisplayNextSentence();
+		}
+
+		public void CreateDialogue(string itemName, Queue<(string, string)> Dialogues) {
+			dialogue = new Dialogue();
+			dialogue.name
+
 		}
 
 		public void DisplayNextSentence() {

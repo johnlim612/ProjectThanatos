@@ -14,9 +14,12 @@ namespace UI {
 		public Text dialogueText;
 		public Animator animator;
 
+		private Dialogue dialogue;
+
+		// Temporary holder for current dialogue queue
 		private Queue<(string, string)> sentences;
 		private bool promptSelected = false;
-		private Dialogue dialogue;
+		private int promptSelection = 0;
 
 
 		// Start is called before the first frame update
@@ -24,63 +27,83 @@ namespace UI {
 			sentences = new Queue<(string, string)>();
 		}
 
-		public void SelectDialogue() {
+		public void SelectPrompt() {
 			
 			promptSelected = true;
-
+			//button returns index replace 1 with it
+			promptSelection = 1;
 		}
 
-		
-		public void CreatePrompts() {
-			//string[] prompts = DialogueManager.GetPrompts(itemName);
-			// CreateButtons
-			// ShowPrompts
-		}
-
-		public void StartDialogue(string itemName) {
+		public void StartDialogue(object item) {
+			// Pause movement here:
 
 			// Prompt Greeting here:
 			// __.getGreeting(itemName)
 
-			//check if it is person or item. If it is a person:
-			//make methods for each type person, item, and diary
+			// Check if it is person or item. If it is a person:
+			// make methods for each type character, item, and diary
 
-			// For person
-			// DialogueManager.GetDialogue(int stringNumber)
+			// For Character type
 
-			CreatePrompts();
-			CreateDialog();
-			nameText.text = dialogue.name;
-
+			//remove paranthesis for item.name
+			CreatePrompts("item.name");
+			WaitForUserPrompt();
+			// Create Dialogue Object
+			CreateDialogue(item);
 			sentences.Clear();
-			 
+			SimulateDialogue();
+		}
+
+		public void CreatePrompts(string name) {
+			//string[] prompts = DialogueManager.GetPrompts(name);
+			// CreateButtons
+			// ShowPrompts
+		}
+
+		IEnumerator WaitForUserPrompt() {
+
+			while (promptSelected == false) {
+				yield return null;
+			}
+		}
+
+		public void CreateDialogue(object item) {
+			dialogue = new Dialogue();
+			dialogue.Name = item.name;
+			dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
+		}
+
+		public void SimulateDialogue() {
 			foreach ((string, string) sentence in dialogue.sentences) {
 				sentences.Enqueue(sentence);
-				//if key == newPrompt then use recursion to start method again
+				//if sentences.item1 == "New_Prompt" then use recursion to
+				//start method again for new prompts during conversation
 			}
 
 			DisplayNextSentence();
 		}
 
-		public void CreateDialogue(string itemName, Queue<(string, string)> Dialogues) {
-			dialogue = new Dialogue();
-			dialogue.name
-
-		}
-
 		public void DisplayNextSentence() {
+			
+			// If dialogue has ended
 			if (sentences.Count == 0) {
 				EndDialogue();
 				return;
 			}
-			string sentence = sentences.Dequeue();
+
+			(string, string) sentence = sentences.Dequeue();
 			StopAllCoroutines();
 			StartCoroutine(TypeSenetence(sentence));
 		}
 
-		IEnumerator TypeSenetence (string sentence) {
+		IEnumerator TypeSenetence ((string, string) sentence) {
+			
+			nameText.text = sentence.Item1;
+			
+			// Reset dialogue text
 			dialogueText.text = "";
-			foreach (char letter in sentence.ToCharArray()) {
+
+			foreach (char letter in sentence.Item2.ToCharArray()) {
 				dialogueText.text += letter;
 				yield return new WaitForSeconds(0.05f);
 			}
@@ -88,6 +111,7 @@ namespace UI {
 
 		void EndDialogue() {
 			animator.SetBool("isOpen", false);
+			// renable movement here:
 		}
 
 	}

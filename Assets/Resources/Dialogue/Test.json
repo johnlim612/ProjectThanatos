@@ -1,0 +1,43 @@
+{
+    "sabotage": {
+        "1": {
+            "greeting": "Ugh... Won Ki is being a troll again",
+            "sentence": {
+                "2": "You know how he is... just some stupid stuff.",
+                "3": "...Like the coffee maker incident."
+            },
+            "prompt": {
+                "1": "What did he do this time?",
+                "3": "Oh I remember that..."
+            }
+        }
+    },
+    "random": {
+        "coffee": {
+            "sentence": {
+                "1":  "a;lsdkfjasl;"
+            },
+            "prompt": {
+                "2":  "mood"
+            }
+        }
+    },
+    "character": {
+        "1": {
+            "sentence": {
+                "1": "I was once a huge troll. Did you know?"
+            },
+            "prompt": {
+                "1": "Yeah, I knew that."
+            }
+        },
+        "2": {
+            "sentence": {
+                "1": "My mom died when I was little."
+            },
+            "prompt": {
+                "1": "That explains a lot."
+            }
+        }
+    }
+}

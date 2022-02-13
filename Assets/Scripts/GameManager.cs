@@ -4,7 +4,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] private int _day;
-    [SerializeField] private int[] _ongoingEventIds;    // Corresponds to Event-specific Dialogue Ids
+    public static string[] _randomEventIds;    // Corresponds to Event-specific Dialogue Ids
+    public static int SabotageId;
 
     private static GameManager _instance;
 

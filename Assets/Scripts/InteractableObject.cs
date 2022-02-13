@@ -17,7 +17,7 @@ public class Diary : MonoBehaviour
         }
     }
     private void InteractObject() {
-        FindObjectOfType<UIDialogueManager>().StartDialog(this.gameObject);
+        //FindObjectOfType<UIDialogueManager>().StartDialog(this.gameObject);
         //GameManager.advanceDay();
     }
 

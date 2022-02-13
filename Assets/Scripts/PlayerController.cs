@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         _playerInputs = new PlayerInput(); // Instantiate reference to custom InputAction
-        transform.position = new Vector3(8, 9, 0);
+        //transform.position = new Vector3(8, 9, 0);
     }
 
     private void OnEnable() {
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        
         var moveDirection = _movement.ReadValue<Vector2>();
         var posIncrement = _moveSpeed * moveDirection * Time.deltaTime;
 
@@ -42,14 +43,21 @@ public class PlayerController : MonoBehaviour {
         _obstacleTile = _obstacleTilemap.WorldToCell(_position + posIncrement + new Vector2Int(0, _hi));
         _position += _moveSpeed * moveDirection * Time.deltaTime;
         transform.position = _position;
+        
+        //GetComponent<Rigidbody2D>().velocity = Vector3.right * 10;
+
         /*        if (_obstacleTilemap.GetTile(_obstacleTile) == null) {
                     _position += posIncrement;
                     transform.position = _position;
                 }*/
     }
-
+    /*
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(_position + new Vector2Int(_hello, _hi), 0.2f);
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        print(collision.gameObject.name);
     }
 }

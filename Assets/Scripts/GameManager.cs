@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
-    [SerializeField] private int _day;
+    [SerializeField] private static int _day { get; set; }
     [SerializeField] private int[] _ongoingEventIds;    // Corresponds to Event-specific Dialogue Ids
 
     private static GameManager _instance;
@@ -15,5 +15,9 @@ public class GameManager : MonoBehaviour {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+    }
+
+    public static void advanceDay() {
+        _day += 1;
     }
 }

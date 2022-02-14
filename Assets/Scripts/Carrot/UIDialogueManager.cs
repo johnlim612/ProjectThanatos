@@ -38,23 +38,19 @@ namespace UI {
 
 		public void StartDialogue(NPC item) {
 			NextButton.enabled = false;
-			this.transform.Find("ChildName");
 			
-			// Pause movement here:
-			_player.GetComponent<PlayerController>().enabled = false;
-			Animator.SetBool("IsOpen", true);
-
 			// Find and Load all Data pertaining to the characters' dialogue.
-			// DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
 			// Prompt Greeting here:
-			// __.getGreeting(itemName)
+			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));
 
-			// Check if it is person or item. If it is a person:
-			// make methods for each type character, item, and diary
+			// Pause movement here:
+			_player.GetComponent<PlayerController>().enabled = false;
+			
+			Animator.SetBool("IsOpen", true);
 
 			InitializePrompts();
-
 			DisplayPrompts(item.name);
 			StartCoroutine(WaitForUserPrompt(item));
             // Create Dialogue Object
@@ -101,7 +97,6 @@ namespace UI {
 		public void CreateDialogue(InteractableObject item) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = item.name;
-
 			_dialogue.Sentences = DialogueDataManager.GetDialogue(_promptSelection);
 		}
 
@@ -123,10 +118,10 @@ namespace UI {
 
 			(string, string) sentence = _sentences.Dequeue();
 			StopAllCoroutines();
-			StartCoroutine(TypeSenetence(sentence));
+			StartCoroutine(TypeSentence(sentence));
 		}
 
-		IEnumerator TypeSenetence((string, string) sentence) {
+		IEnumerator TypeSentence((string, string) sentence) {
 			NameText.text = sentence.Item1;
 			DialogueText.text = "";
 

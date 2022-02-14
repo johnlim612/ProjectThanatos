@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI {
 	public class Interactable: MonoBehaviour {
-		public string itemName;
+		public string ItemName;
 
 		public void TriggerDialogue() {
 		}

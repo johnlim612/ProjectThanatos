@@ -15,22 +15,22 @@ namespace UI {
 		private Dialogue dialogue;
 
 		// Temporary holder for current dialogue queue
-		private Queue<(string, string)> sentences;
-		private bool promptSelected = false;
-		private int promptSelection = 0;
+		private Queue<(string, string)> _sentences;
+		private bool _promptSelected = false;
+		private int _promptSelection = 0;
 		GameObject player = GameObject.Find("Player");
 
 		// Start is called before the first frame update
 		void Start() {
-			sentences = new Queue<(string, string)>();
+			_sentences = new Queue<(string, string)>();
 		}
 
 		public void SelectPrompt(int buttonIndex) {
 			foreach (Button button in buttons) {
 				button.gameObject.SetActive(false);
 			}
-			promptSelection = buttonIndex;
-			promptSelected = true;
+			_promptSelection = buttonIndex;
+			_promptSelected = true;
 		}
 
 		public void StartDialogue(GameObject item) {
@@ -50,9 +50,10 @@ namespace UI {
 			WaitForUserPrompt();
 			// Create Dialogue Object
 			CreateDialogue(item);
-			sentences.Clear();
+			_sentences.Clear();
 			SimulateDialogue();
 		}
+
 		public void InitializePrompts() {
 			for (int i = 0; i < buttons.Length; i ++) {
 				Button button = buttons[i];
@@ -63,7 +64,6 @@ namespace UI {
 
 		public void DisplayPrompts(string name) {
 			//string[] prompts = DialogueManager.GetPrompts(name);
-			// CreateButtons
 			for (int i = 0;  i < buttons.Length; i++) {
 				if (i >= prompts.Length) {
 					buttons[i].gameObject.SetActive(false);
@@ -75,11 +75,11 @@ namespace UI {
 		}
 
 		IEnumerator WaitForUserPrompt() {
-			while (promptSelected == false) {
+			while (_promptSelected == false) {
 				yield return null;
 			}
 			yield return new WaitForSeconds(0.5f);
-			promptSelected = false;
+			_promptSelected = false;
 		}
 
 		public void CreateDialogue(GameObject item) {
@@ -89,9 +89,9 @@ namespace UI {
 		}
 
 		public void SimulateDialogue() {
-			foreach ((string, string) sentence in dialogue.sentences) {
-				sentences.Enqueue(sentence);
-				//if sentences.item1 == "New_Prompt" then run start dialogue again to
+			foreach ((string, string) sentence in dialogue.Sentences) {
+				_sentences.Enqueue(sentence);
+				//if _sentences.item1 == "New_Prompt" then run start dialogue again to
 				//start method again for new prompts during conversation
 			}
 			DisplayNextSentence();
@@ -99,12 +99,12 @@ namespace UI {
 
 		public void DisplayNextSentence() {
 			// If dialogue has endedM
-			if (sentences.Count == 0) {
+			if (_sentences.Count == 0) {
 				EndDialogue();
 				return;
 			}
 
-			(string, string) sentence = sentences.Dequeue();
+			(string, string) sentence = _sentences.Dequeue();
 			StopAllCoroutines();
 			StartCoroutine(TypeSenetence(sentence));
 		}

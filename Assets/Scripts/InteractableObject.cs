@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Diary : MonoBehaviour
-{
+public class InteractableObject : MonoBehaviour {
     private bool _interactableCollided = false;
-    private string name = "temp";
+    public string Name = "temp";
     private string _interactableText = "Press Space";
     // Start is called before the first frame update
     void Start() {

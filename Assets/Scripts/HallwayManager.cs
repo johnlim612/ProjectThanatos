@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-// using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class HallwayManager : MonoBehaviour {
     [SerializeField] private Direction _direction;
@@ -34,8 +34,9 @@ public class HallwayManager : MonoBehaviour {
                     _direction + "\".\nPlease stop trying to break our reality.");
         }
 
-        _player.transform.position += nextPos * _distance * 2;
-        //SceneManager.LoadScene("Hallway");
+        HallwaySaveData.CurrentPosition = _player.transform.position - nextPos;
+        HallwaySaveData.NewPosition = _player.transform.position + (nextPos * _distance * 2);
+        SceneManager.LoadScene("Hallway");
     }
 
     private void OnValidate() {

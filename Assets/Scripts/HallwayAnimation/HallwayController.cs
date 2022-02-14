@@ -49,7 +49,8 @@ public class HallwayController : MonoBehaviour {
             _animator.enabled = false;
         } else if (moveVal < 0 && _doneLoading) {
             // TODO: Player goes back to previous room
-            print("Player wants to go back!");
+            HallwaySaveData.NewPosition = HallwaySaveData.CurrentPosition;
+            SceneManager.LoadScene("Map");
         }
     }
 

@@ -1,38 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Diary : MonoBehaviour
-{
-    private bool _interactableCollided = false;
+public class InteractableObject : MonoBehaviour {
     private string _interactableText = "Press Space";
-    // Start is called before the first frame update
-    void Start() {
-    }
+    private bool _interactableCollided = false;
 
     public void OnInteract(InputValue value) {
         if (_interactableCollided) {
             InteractObject();
         }
     }
-    private void InteractObject() {
-        //FindObjectOfType<UIDialogueManager>().StartDialog(this.gameObject);
-        //GameManager.advanceDay();
-    }
+
+    public virtual void InteractObject() {}
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             _interactableCollided = true;
-            print("Collided");
+            //print("Collided");
         }
-        
     }
 
     void OnTriggerExit2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             _interactableCollided = false;
-            print("left");
+            //print("left");
         }
     }
     private void OnGUI() {

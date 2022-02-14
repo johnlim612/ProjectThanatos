@@ -36,6 +36,7 @@ namespace UI {
 
 		public void StartDialogue(NPC item) {
 			// Pause movement here:
+			Animator.SetBool("IsOpen", true);
 			//_player.GetComponent<PlayerController>().enabled = false;
 
 			// Find and Load all Data pertaining to the characters' dialogue.
@@ -88,6 +89,8 @@ namespace UI {
 		public void CreateDialogue(InteractableObject item) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = item.name;
+			_dialogue.Sentences = DialogueManager.TestDialogue;
+
 			//dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
 		}
 

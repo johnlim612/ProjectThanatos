@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -11,9 +12,8 @@ public class DialogueManager : MonoBehaviour {
     private static string[] _prompts;
     private static string _greeting;
 
-    private Dialogue sabotageDialogue = new Dialogue();
-    private Dialogue randomDialogue = new Dialogue();
-    private Dialogue characterDialogue = new Dialogue();
+    // TODO: Delete after Testing
+    public Queue<(string, string)> TestDialogue = new Queue<(string, string)>();
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour {
         } else {
             _instance = this;
         }
+
+        TestDialogue.Enqueue(("player", "what's up doc"));
     }
 
     /// <summary>
@@ -28,11 +30,11 @@ public class DialogueManager : MonoBehaviour {
     /// </summary>
     /// <param name="npcName">The NPC whose JSON file will be loaded</param>
     /// <param name="charDialogueId">Key for character-specific dialogue</param>
-    public static void StartDialogue(string npcName, int? charDialogueId) {
+    public static void Initialize(string npcName, int? charDialogueId) {
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(npcName.Replace(" ", ""));
 
-        FindRelevantDialogue(data, 1);  // Change 1 to charDialogueId after testing.
+        FindRelevantDialogue(data, 1);  // TODO: Change 1 to charDialogueId after testing.
     }
 
     private static JObject LoadData(string fileName) {

@@ -7,7 +7,7 @@ namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 		[Header("DialogueBoxes")]
 		public GameObject DefaultDialogue;
-		public Button[] buttons;
+		public Button[] Buttons;
 
 		public Text NameText;
 		public Text DialogueText;
@@ -18,59 +18,62 @@ namespace UI {
 		private Queue<(string, string)> _sentences;
 		private bool _promptSelected = false;
 		private int _promptSelection = 0;
-		GameObject player = GameObject.Find("Player");
+		private GameObject _player;
 
 		// Start is called before the first frame update
 		void Start() {
 			_sentences = new Queue<(string, string)>();
+			_player = GameObject.Find("Player");
 		}
 
 		public void SelectPrompt(int buttonIndex) {
-			foreach (Button button in buttons) {
+			foreach (Button button in Buttons) {
 				button.gameObject.SetActive(false);
 			}
 			_promptSelection = buttonIndex;
 			_promptSelected = true;
 		}
 
-		public void StartDialogue(GameObject item) {
+		public void StartDialogue(NPC item) {
 			// Pause movement here:
-			player.GetComponent<PlayerController>().enabled = false;
-			// Prompt Greeting here:
-			// __.getGreeting(itemName)
+			//_player.GetComponent<PlayerController>().enabled = false;
 
-			// Check if it is person or item. If it is a person:
-			// make methods for each type character, item, and diary
+			// Find and Load all Data pertaining to the characters' dialogue.
+			DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
-			// For Character type
+            // Prompt Greeting here:
+            // __.getGreeting(itemName)
 
-			//remove paranthesis for item.name
-			InitializePrompts();
-			DisplayPrompts(item.name);
-			WaitForUserPrompt();
-			// Create Dialogue Object
-			CreateDialogue(item);
-			_sentences.Clear();
-			SimulateDialogue();
-		}
+            // Check if it is person or item. If it is a person:
+            // make methods for each type character, item, and diary
+
+            // For Character type
+            InitializePrompts();
+            DisplayPrompts(item.name);
+            WaitForUserPrompt();
+            // Create Dialogue Object
+            CreateDialogue(item);
+            _sentences.Clear();
+            SimulateDialogue();
+        }
 
 		public void InitializePrompts() {
-			for (int i = 0; i < buttons.Length; i ++) {
-				Button button = buttons[i];
+			for (int i = 0; i < Buttons.Length; i ++) {
+				Button button = Buttons[i];
 				int buttonIndex = i;
 				button.onClick.AddListener(() => SelectPrompt(buttonIndex));
 			}
 		}
 
 		public void DisplayPrompts(string name) {
-			//string[] prompts = DialogueManager.GetPrompts(name);
-			for (int i = 0;  i < buttons.Length; i++) {
+			string[] prompts = DialogueManager.GetPrompts();
+			for (int i = 0;  i < Buttons.Length; i++) {
 				if (i >= prompts.Length) {
-					buttons[i].gameObject.SetActive(false);
+					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
-				buttons[i].gameObject.SetActive(true);
-				buttons[i].GetComponentInChildren<Text>().text = prompts[i];
+				Buttons[i].gameObject.SetActive(true);
+				Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}
 		}
 
@@ -82,7 +85,7 @@ namespace UI {
 			_promptSelected = false;
 		}
 
-		public void CreateDialogue(GameObject item) {
+		public void CreateDialogue(InteractableObject item) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = item.name;
 			//dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
@@ -110,18 +113,18 @@ namespace UI {
 		}
 
 		IEnumerator TypeSenetence((string, string) sentence) {
-			nameText.text = sentence.Item1;
-			dialogueText.text = "";
+			NameText.text = sentence.Item1;
+			DialogueText.text = "";
 
 			foreach (char letter in sentence.Item2.ToCharArray()) {
-				dialogueText.text += letter;
+				DialogueText.text += letter;
 				yield return new WaitForSeconds(0.05f);
 			}
 		}
 
 		void EndDialogue() {
-			animator.SetBool("isOpen", false);
-			player.GetComponent<PlayerController>().enabled = true;
+			Animator.SetBool("isOpen", false);
+			_player.GetComponent<PlayerController>().enabled = true;
 		}
 	}
 }

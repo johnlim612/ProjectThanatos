@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         RandomEventIds.Add("laboratory");
     }
 
-    public static void advanceDay() {
+    public static void AdvanceDay() {
         _day += 1;
     }
 }

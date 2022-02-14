@@ -1,11 +1,7 @@
-using UnityEngine;
+public class NPC : InteractableObject {
+    public int CountCharDialogue { get { return _countCharDialogue; } }
 
-public class NPC : MonoBehaviour {
-    public string Name { get { return _name; } }
-
-    public bool HasBeenSpokenTo { get; }
-
-    [SerializeField] private string _name;
+    public bool HasBeenSpokenTo { get { return _hasBeenSpokenTo; } }
 
     private int _countCharDialogue; // Incremented whenever character-specific dialogue is revealed
     private bool _hasBeenSpokenTo;  // If character-specific dialogue has been accessed that day
@@ -18,7 +14,7 @@ public class NPC : MonoBehaviour {
     /// <summary>
     /// DialogueManager triggers the dialogue when the NPC is interacted with.
     /// </summary>
-    public void TriggerDialogue() {
+    public override void InteractObject() {
         int? charDialogueKey;
 
         if (_hasBeenSpokenTo) {
@@ -27,6 +23,6 @@ public class NPC : MonoBehaviour {
             charDialogueKey = _countCharDialogue;
         }
 
-        DialogueManager.StartDialogue(_name, charDialogueKey);
+        FindObjectOfType<UI.UIDialogueManager>().StartDialogue(this);
     }
 }

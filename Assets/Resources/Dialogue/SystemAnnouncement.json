@@ -1,0 +1,34 @@
+{
+	"sabotage": {
+		"1": {
+			"Alert" : "System Alert: Ship Course has been altered. Manual readjustments required."
+		}, 
+		"2": {
+			"Alert" : "System Alert: Engine Power has been changed to low power. Manual readjustments required."
+		},
+		"3": {
+			"Alert" : "Alert: Data System issues have been detected."
+		},
+		"4": {
+			"Alert" : "Alert: Communications channel issues have been detected. Manual investigation required."
+		},
+		"5": {
+			"Alert" : "Alert: Power system issues have been detected. Manual investigation required."
+		},
+		"6": {
+			"Alert" : "Alert: Water Filtration System issues detected. Manual investigation required."
+		},
+		"7": {
+			"Alert" : "Alert: Oxygen Level changes detected. Manual readjustments required."
+		},
+		"8": {
+			"Alert" : "Alert: Engine Power has been readjusted to high power. Manual readjustments required."
+		},
+		"9": {
+			"Alert" : "Air Filtration System issues detected. Manual investigation required."
+		}
+	}, 
+	"message": {
+		
+	}
+}

@@ -1,0 +1,61 @@
+{
+    "sabotage": {
+        "1": {
+            "greeting": "*Yawn* Hmm... Wonder if things will be okay when we get back...",
+            "prompt": {
+                "1": "Good morning, Johnny.",
+                "2": "Something must have happened...",
+                "4": "Well... We're almost home at least."
+            },
+            "sentence": {
+                "1": "Morning. Did you end up readjusting the settings for the ship's course?",
+                "2": "Mm. I'm not sure...",
+                "3": "Sometimes, it feels like they didn't fund this project enough.",
+                "4": "Yeah. Hopefully things will be okay once we get home."
+            }
+        }
+    },
+    "random": {
+        "coffee": {
+            "prompt": {
+                "1": "Hey, did you want some coffee?"
+            },
+            "sentence": {
+                "1": "Shit man, thanks. I definitely needed this.",
+                "2": "I'm never awake enough for anything I swear."
+            }
+        },
+        "water": {
+            "prompt": {
+                "1": "Did you want some water?",
+                "3": "Sure."
+            },
+            "sentence": {
+                "1": "Nah, I'd prefer coffee.",
+                "2" : "If you don't want your daily coffee just send it my way."
+            }
+        }
+    },
+    "character": {
+        "1": {
+            "prompt": {
+                "1": "When you get back home..."
+            },
+            "sentence": {
+                "1": "I'm probably going to just go back to living normally, the way I used to.",
+                "2": "I doubt they'd call me in again after this... I'm getting too old.",
+                "3": "Someone else would end up taking my place on the next mission though.", 
+                "4": "They always bring a crew member who has taken on the mission there before."
+        },
+        "2": {
+            "prompt": {
+                "1": "Hobbies on earth..."
+            },
+            "sentence": {
+                "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
+                "2": "Really, I was only doing this for the money to live easy with my family.",
+                "3": "Nothing more, nothing less."
+            }
+        }
+    }
+}

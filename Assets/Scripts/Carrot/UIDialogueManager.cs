@@ -6,13 +6,13 @@ using UnityEngine.UI;
 namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 		[Header("DialogueBoxes")]
-		public GameObject defaultDialogue;
+		public GameObject DefaultDialogue;
 		public Button[] buttons;
 
 		public Text nameText;
 		public Text dialogueText;
 		public Animator animator;
-		private Dialogue dialogue;
+		private Dialogue _dialogue;
 
 		// Temporary holder for current dialogue queue
 		private Queue<(string, string)> _sentences;
@@ -83,13 +83,13 @@ namespace UI {
 		}
 
 		public void CreateDialogue(GameObject item) {
-			dialogue = new Dialogue();
-			dialogue.Name = item.name;
+			_dialogue = new Dialogue();
+			_dialogue.Name = item.name;
 			//dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
 		}
 
 		public void SimulateDialogue() {
-			foreach ((string, string) sentence in dialogue.Sentences) {
+			foreach ((string, string) sentence in _dialogue.Sentences) {
 				_sentences.Enqueue(sentence);
 				//if _sentences.item1 == "New_Prompt" then run start dialogue again to
 				//start method again for new prompts during conversation

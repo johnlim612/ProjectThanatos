@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 1319903375}
   - component: {fileID: 1319903378}
   m_Layer: 5
-  m_Name: NPC
+  m_Name: Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -557,7 +557,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1319903378}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
-        m_MethodName: InteractObject
+        m_MethodName: Test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -617,7 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d11bee4d11d6242b7ceb6bd5fbd367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Test
 --- !u!1 &1523294371
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultDialogue: {fileID: 0}
-  buttons: []
+  Buttons: []
   NameText: {fileID: 0}
   DialogueText: {fileID: 0}
   Animator: {fileID: 0}

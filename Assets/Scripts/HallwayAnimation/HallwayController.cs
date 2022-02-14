@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,7 +16,7 @@ public class HallwayController : MonoBehaviour {
     private Animator _animator;
     private RawImage _image;
     private bool _doneLoading;
-    private const int _numInterations = 10;
+    private const int _numInterations = 4;
     private static int _currInteractions = 0;
 
     private void Awake() {
@@ -48,7 +49,8 @@ public class HallwayController : MonoBehaviour {
             _animator.enabled = false;
         } else if (moveVal < 0 && _doneLoading) {
             // TODO: Player goes back to previous room
-            print("Player wants to go back!");
+            HallwaySaveData.NewPosition = HallwaySaveData.CurrentPosition;
+            SceneManager.LoadScene("Map");
         }
     }
 
@@ -80,8 +82,7 @@ public class HallwayController : MonoBehaviour {
     /// </summary>
     private void OpenDoors() {
         if (_isDoor && _image.enabled) {
-            // TODO: change scene to next room
-            print("Doors opened");
+            SceneManager.LoadScene("Map");
         }
     }
 }

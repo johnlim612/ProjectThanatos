@@ -6,16 +6,16 @@ public class Diary : InteractableObject {
         if (GameManager.SabotageId != null) {
             print(_diaryUnusable);
         } else {
-            openDiary();
+            OpenDiary();
         }
     }
 
-    private void openDiary() {
+    private void OpenDiary() {
         print(_diaryUsed);
-        endDay();
+        EndDay();
     }
 
-    private void endDay() {
+    private void EndDay() {
         GameManager.AdvanceDay();
     }
 }

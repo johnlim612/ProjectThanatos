@@ -77,10 +77,9 @@ namespace UI {
 		}
 
 		public void DisplayPrompts(string name) {
-			print("display function ran");
-			string[] prompts = DialogueManager.GetPrompts();
+			List<string> prompts = DialogueDataManager.GetPrompts();
 			for (int i = 0;  i < Buttons.Length; i++) {
-				if (i >= prompts.Length) {
+				if (i >= prompts.Count) {
 					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
@@ -102,9 +101,8 @@ namespace UI {
 		public void CreateDialogue(InteractableObject item) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = item.name;
-			_dialogue.Sentences = DialogueManager.TestDialogue;
 
-			//dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
+			_dialogue.Sentences = DialogueDataManager.GetDialogue(_promptSelection);
 		}
 
 		public void SimulateDialogue() {

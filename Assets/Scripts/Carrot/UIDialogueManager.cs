@@ -36,6 +36,7 @@ namespace UI {
 		}
 
 		public void StartDialogue(NPC item) {
+			Animator.SetBool("isOpen", true);
 			// Pause movement here:
 			_player.GetComponent<PlayerController>().enabled = false;
 			Animator.SetBool("IsOpen", true);

@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
-    public static int SabotageId;   // The ID of the day's major event/sabotage
+    public static int? SabotageId;   // The ID of the day's major event/sabotage
 
     [SerializeField] private static int _day;
 
@@ -27,5 +27,10 @@ public class GameManager : MonoBehaviour {
 
     public static void AdvanceDay() {
         _day += 1;
+        SabotageId = Random.Range(1, 3);
+    }
+
+    public static void ClearSabotage() {
+        SabotageId = null;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
-/// Plays/pauses animation
+/// Plays/pauses animation based on player movement
 /// </summary>
 public class HallwayController : MonoBehaviour {
     [SerializeField] [Range(0, 1)] private float _startingTime;

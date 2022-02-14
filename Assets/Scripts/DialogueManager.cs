@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour {
     private static DialogueManager _instance;
 
     private static string _baseFilePath = "Dialogue/";
-    private static string[] _prompts = new string[3] {"choice 1", "choice 1", "choice 1"};
+    private static string[] _prompts = new string[3] {"choice 1", "choice 2", "choice 3"};
     private static string _greeting;
 
     // TODO: Delete after Testing
@@ -24,10 +24,8 @@ public class DialogueManager : MonoBehaviour {
 
         TestDialogue.Enqueue(("player", "what's up doc"));
         TestDialogue.Enqueue(("Won Ki", "MUAHAHAHAHA"));
-        TestDialogue.Enqueue(("player", "oooo nooooooo"));
+        TestDialogue.Enqueue(("player", "????????????"));
         TestDialogue.Enqueue(("Won Ki", "(2)MUAHAHAHAHA"));
-
-
 
     }
 

@@ -11,6 +11,7 @@ namespace UI {
 
 		public Text NameText;
 		public Text DialogueText;
+		public Button NextButton;
 		public Animator Animator;
 		private Dialogue _dialogue;
 
@@ -18,6 +19,7 @@ namespace UI {
 		private Queue<(string, string)> _sentences;
 		private bool _promptSelected = false;
 		private int _promptSelection = 0;
+		private int _maxPrompts = 4;
 		private GameObject _player;
 
 		// Start is called before the first frame update
@@ -35,28 +37,36 @@ namespace UI {
 		}
 
 		public void StartDialogue(NPC item) {
+			NextButton.enabled = false;
+			this.transform.Find("ChildName");
+			
 			// Pause movement here:
+			_player.GetComponent<PlayerController>().enabled = false;
 			Animator.SetBool("IsOpen", true);
-			//_player.GetComponent<PlayerController>().enabled = false;
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			// DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
-            // Prompt Greeting here:
-            // __.getGreeting(itemName)
+			// Prompt Greeting here:
+			// __.getGreeting(itemName)
 
-            // Check if it is person or item. If it is a person:
-            // make methods for each type character, item, and diary
+			// Check if it is person or item. If it is a person:
+			// make methods for each type character, item, and diary
 
-            // For Character type
-            InitializePrompts();
-            DisplayPrompts(item.name);
-            WaitForUserPrompt();
+			InitializePrompts();
+
+			DisplayPrompts(item.name);
+			StartCoroutine(WaitForUserPrompt(item));
             // Create Dialogue Object
-            CreateDialogue(item);
-            _sentences.Clear();
-            SimulateDialogue();
+            
         }
+
+		public void ContinueDialogue(NPC item) {
+			NextButton.enabled = true;
+			CreateDialogue(item);
+			_sentences.Clear();
+			SimulateDialogue();
+		}
 
 		public void InitializePrompts() {
 			for (int i = 0; i < Buttons.Length; i ++) {
@@ -67,23 +77,26 @@ namespace UI {
 		}
 
 		public void DisplayPrompts(string name) {
+			print("display function ran");
 			string[] prompts = DialogueManager.GetPrompts();
 			for (int i = 0;  i < Buttons.Length; i++) {
 				if (i >= prompts.Length) {
 					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
+				print("setting a button active");
 				Buttons[i].gameObject.SetActive(true);
 				Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}
 		}
 
-		IEnumerator WaitForUserPrompt() {
-			while (_promptSelected == false) {
+		IEnumerator WaitForUserPrompt(NPC item) {
+			while (!_promptSelected) {
 				yield return null;
 			}
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.1f);
 			_promptSelected = false;
+			ContinueDialogue(item);
 		}
 
 		public void CreateDialogue(InteractableObject item) {
@@ -126,7 +139,7 @@ namespace UI {
 		}
 
 		void EndDialogue() {
-			Animator.SetBool("isOpen", false);
+			Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
 		}
 	}

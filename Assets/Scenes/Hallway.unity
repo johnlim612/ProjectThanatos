@@ -1482,7 +1482,6 @@ GameObject:
   - component: {fileID: 2071669063}
   - component: {fileID: 2071669062}
   - component: {fileID: 2071669061}
-  - component: {fileID: 2071669060}
   m_Layer: 5
   m_Name: Hallway Canvas
   m_TagString: Untagged
@@ -1490,19 +1489,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2071669060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071669059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09fd229b6ccccfb40abbb2208e0cd172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loadTime: 0
 --- !u!114 &2071669061
 MonoBehaviour:
   m_ObjectHideFlags: 0

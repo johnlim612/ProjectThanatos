@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         _playerInputs = new PlayerInput(); // Instantiate reference to custom InputAction
+        if (HallwaySaveData.IsInitialized) {
+            transform.position = HallwaySaveData.NewPosition;
+        } else {
+            HallwaySaveData.IsInitialized = true;
+        }
+        
     }
 
     private void OnEnable() {

@@ -11,6 +11,7 @@ namespace UI {
 
 		public Text NameText;
 		public Text DialogueText;
+		public Button NextButton;
 		public Animator Animator;
 		private Dialogue _dialogue;
 
@@ -36,10 +37,13 @@ namespace UI {
 		}
 
 		public void StartDialogue(NPC item) {
-			Animator.SetBool("isOpen", true);
+			NextButton.enabled = false;
+			this.transform.Find("ChildName");
+			
 			// Pause movement here:
 			_player.GetComponent<PlayerController>().enabled = false;
 			Animator.SetBool("IsOpen", true);
+
 			// Find and Load all Data pertaining to the characters' dialogue.
 			// DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
@@ -50,20 +54,16 @@ namespace UI {
 			// make methods for each type character, item, and diary
 
 			InitializePrompts();
-			print("after prompts created");
 
 			DisplayPrompts(item.name);
-			print("after prompts shown");
-
 			StartCoroutine(WaitForUserPrompt(item));
-			print("waiting for user to choose prompt");
             // Create Dialogue Object
             
         }
 
 		public void ContinueDialogue(NPC item) {
+			NextButton.enabled = true;
 			CreateDialogue(item);
-			print("dialogue created");
 			_sentences.Clear();
 			SimulateDialogue();
 		}

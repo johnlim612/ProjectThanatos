@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &71460690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,17 +185,7 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 71460690}
-    m_ColliderPaths:
-    - - X: 166444555
-        Y: -113692168
-      - X: 166444555
-        Y: 97416328
-      - X: -162418144
-        Y: 97416035
-      - X: -162417851
-        Y: -113692168
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 16.644426, y: -11.369217}
@@ -1438,7 +1428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1602490254}
         m_TargetAssemblyTypeName: UI.UIDialogueManager, Assembly-CSharp
-        m_MethodName: displayNextSentence
+        m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1961,7 +1951,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultDialogue: {fileID: 0}
-  Buttons: []
+  Buttons:
+  - {fileID: 571283254}
+  - {fileID: 1819095424}
+  - {fileID: 367503931}
+  - {fileID: 112129905}
   NameText: {fileID: 560291147}
   DialogueText: {fileID: 1462134026}
   Animator: {fileID: 2105972047}
@@ -2062,7 +2056,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728858262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.005483965, y: 6.2307897, z: -10}
+  m_LocalPosition: {x: 0.0054872893, y: 6.2307897, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1794557979}
@@ -2298,7 +2292,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.076324, y: 1}
+    m_SensorSize: {x: 1.3602693, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

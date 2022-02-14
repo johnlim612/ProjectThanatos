@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour {
-    private bool _interactableCollided = false;
-    public string Name = "temp";
     private string _interactableText = "Press Space";
+    private bool _interactableCollided = false;
+
     // Start is called before the first frame update
     void Start() {
     }
@@ -15,9 +14,10 @@ public class InteractableObject : MonoBehaviour {
             InteractObject();
         }
     }
-    private void InteractObject() {
-        FindObjectOfType<UI.UIDialogueManager>().StartDialogue(this.gameObject);
-        //GameManager.advanceDay();
+
+    public virtual void InteractObject() {
+        FindObjectOfType<UI.UIDialogueManager>().StartDialogue((NPC) this);
+        //GameManager.AdvanceDay();
     }
 
     void OnTriggerEnter2D(Collider2D col) {

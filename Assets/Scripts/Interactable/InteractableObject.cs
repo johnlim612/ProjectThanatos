@@ -5,32 +5,25 @@ public class InteractableObject : MonoBehaviour {
     private string _interactableText = "Press Space";
     private bool _interactableCollided = false;
 
-    // Start is called before the first frame update
-    void Start() {
-    }
-
     public void OnInteract(InputValue value) {
         if (_interactableCollided) {
             InteractObject();
         }
     }
 
-    public virtual void InteractObject() {
-        FindObjectOfType<UI.UIDialogueManager>().StartDialogue((NPC) this);
-        //GameManager.AdvanceDay();
-    }
+    public virtual void InteractObject() {}
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             _interactableCollided = true;
-            print("Collided");
+            //print("Collided");
         }
     }
 
     void OnTriggerExit2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             _interactableCollided = false;
-            print("left");
+            //print("left");
         }
     }
     private void OnGUI() {

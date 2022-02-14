@@ -9,9 +9,9 @@ namespace UI {
 		public GameObject DefaultDialogue;
 		public Button[] buttons;
 
-		public Text nameText;
-		public Text dialogueText;
-		public Animator animator;
+		public Text NameText;
+		public Text DialogueText;
+		public Animator Animator;
 		private Dialogue _dialogue;
 
 		// Temporary holder for current dialogue queue

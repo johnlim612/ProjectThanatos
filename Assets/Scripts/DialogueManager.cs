@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -11,6 +10,10 @@ public class DialogueManager : MonoBehaviour {
     private static string _baseFilePath = "Dialogue/";
     private static string[] _prompts;
     private static string _greeting;
+
+    private Dialogue sabotageDialogue = new Dialogue();
+    private Dialogue randomDialogue = new Dialogue();
+    private Dialogue characterDialogue = new Dialogue();
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -29,7 +32,7 @@ public class DialogueManager : MonoBehaviour {
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(npcName.Replace(" ", ""));
 
-        FindRelevantDialogue(data);
+        FindRelevantDialogue(data, 1);  // Change 1 to charDialogueId after testing.
     }
 
     private static JObject LoadData(string fileName) {
@@ -41,14 +44,39 @@ public class DialogueManager : MonoBehaviour {
     }
 
     private static void FindRelevantDialogue(JObject data, int? charDialogueId = null) {
-        int id = GameManager.SabotageId;
+        string sabotageId = GameManager.SabotageId.ToString();
+        JToken sabotageData = data[Constants.SabotageDialogueKey][sabotageId];
+        JToken[] randomEventData = null;
+        JToken characterData = null;
+
+        // Get dialogue related to all ongoing random events.
+        if (GameManager.RandomEventIds.Count != 0) {
+            randomEventData = new JToken[GameManager.RandomEventIds.Count];
+            string randEventId;
+
+            for (int i = 0; i < GameManager.RandomEventIds.Count; i++) {
+                randEventId = GameManager.RandomEventIds[i];
+                randomEventData[i] = data[Constants.RandomEventDialogueKey][randEventId];
+            }
+        }
+
+        // Get character-specific dialogue if it's available.
+        if (charDialogueId != null) {
+            characterData = data[Constants.CharacterDialogueKey][charDialogueId.ToString()];
+        }
+
+        _greeting = (string) sabotageData["greeting"];
     }
 
     private static void SortQueue() {
 
     }
 
-    private static string[] GetPrompts() {
+    public static string GetGreeting() {
+        return _greeting;
+    }
+
+    public static string[] GetPrompts() {
         return _prompts;
     }
 }

@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
-    [SerializeField] private int _day;
-    public static string[] _randomEventIds;    // Corresponds to Event-specific Dialogue Ids
-    public static int SabotageId;
+    public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
+    public static int SabotageId;   // The ID of the day's major event/sabotage
+
+    [SerializeField] private static int _day;
 
     private static GameManager _instance;
 
@@ -16,5 +18,14 @@ public class GameManager : MonoBehaviour {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        // REMOVE AFTER TESTING
+        SabotageId = 1;
+        RandomEventIds.Add("coffee");
+        RandomEventIds.Add("laboratory");
+    }
+
+    public static void advanceDay() {
+        _day += 1;
     }
 }

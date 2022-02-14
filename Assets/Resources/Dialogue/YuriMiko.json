@@ -65,7 +65,7 @@
         }
     },
     "random": {
-        "coffee": {
+        "snack": {
             "prompt": {
                 "1": ""
             },
@@ -73,7 +73,7 @@
                 "1": ""
             }
         },
-        "water": {
+        "stuffy": {
             "prompt": {
                 "1": ""
             },

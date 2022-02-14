@@ -65,7 +65,7 @@
         }
     },
     "random": {
-        "coffee": {
+        "flashlight": {
             "prompt": {
                 "1": ""
             },
@@ -73,7 +73,7 @@
                 "1": ""
             }
         },
-        "water": {
+        "screwdriver": {
             "prompt": {
                 "1": ""
             },

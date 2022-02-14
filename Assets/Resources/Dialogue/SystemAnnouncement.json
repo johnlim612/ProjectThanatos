@@ -16,15 +16,9 @@
 			"Alert" : "Alert: Power system issues have been detected. Manual investigation required."
 		},
 		"6": {
-			"Alert" : "Alert: Water Filtration System issues detected. Manual investigation required."
-		},
-		"7": {
 			"Alert" : "Alert: Oxygen Level changes detected. Manual readjustments required."
 		},
-		"8": {
-			"Alert" : "Alert: Engine Power has been readjusted to high power. Manual readjustments required."
-		},
-		"9": {
+		"7": {
 			"Alert" : "Air Filtration System issues detected. Manual investigation required."
 		}
 	}, 

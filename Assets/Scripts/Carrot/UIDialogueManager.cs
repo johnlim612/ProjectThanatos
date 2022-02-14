@@ -7,36 +7,35 @@ namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 		[Header("DialogueBoxes")]
 		public GameObject defaultDialogue;
-		public GameObject narrativeDialogue;
-		public GameObject intenseDialogue;
+		public Button[] buttons;
 
 		public Text nameText;
 		public Text dialogueText;
 		public Animator animator;
-
 		private Dialogue dialogue;
 
 		// Temporary holder for current dialogue queue
 		private Queue<(string, string)> sentences;
 		private bool promptSelected = false;
 		private int promptSelection = 0;
-
+		GameObject player = GameObject.Find("Player");
 
 		// Start is called before the first frame update
 		void Start() {
 			sentences = new Queue<(string, string)>();
 		}
 
-		public void SelectPrompt() {
-			
+		public void SelectPrompt(int buttonIndex) {
+			foreach (Button button in buttons) {
+				button.gameObject.SetActive(false);
+			}
+			promptSelection = buttonIndex;
 			promptSelected = true;
-			//button returns index replace 1 with it
-			promptSelection = 1;
 		}
 
-		public void StartDialogue(object item) {
+		public void StartDialogue(GameObject item) {
 			// Pause movement here:
-
+			player.GetComponent<PlayerController>().enabled = false;
 			// Prompt Greeting here:
 			// __.getGreeting(itemName)
 
@@ -46,46 +45,60 @@ namespace UI {
 			// For Character type
 
 			//remove paranthesis for item.name
-			CreatePrompts("item.name");
+			InitializePrompts();
+			DisplayPrompts(item.name);
 			WaitForUserPrompt();
 			// Create Dialogue Object
 			CreateDialogue(item);
 			sentences.Clear();
 			SimulateDialogue();
 		}
-
-		public void CreatePrompts(string name) {
-			//string[] prompts = DialogueManager.GetPrompts(name);
-			// CreateButtons
-			// ShowPrompts
-		}
-
-		IEnumerator WaitForUserPrompt() {
-
-			while (promptSelected == false) {
-				yield return null;
+		public void InitializePrompts() {
+			for (int i = 0; i < buttons.Length; i ++) {
+				Button button = buttons[i];
+				int buttonIndex = i;
+				button.onClick.AddListener(() => SelectPrompt(buttonIndex));
 			}
 		}
 
-		public void CreateDialogue(object item) {
+		public void DisplayPrompts(string name) {
+			//string[] prompts = DialogueManager.GetPrompts(name);
+			// CreateButtons
+			for (int i = 0;  i < buttons.Length; i++) {
+				if (i >= prompts.Length) {
+					buttons[i].gameObject.SetActive(false);
+					continue;
+				}
+				buttons[i].gameObject.SetActive(true);
+				buttons[i].GetComponentInChildren<Text>().text = prompts[i];
+			}
+		}
+
+		IEnumerator WaitForUserPrompt() {
+			while (promptSelected == false) {
+				yield return null;
+			}
+			yield return new WaitForSeconds(0.5f);
+			promptSelected = false;
+		}
+
+		public void CreateDialogue(GameObject item) {
 			dialogue = new Dialogue();
 			dialogue.Name = item.name;
-			dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
+			//dialogue.Sentences = DialogueManager.GetDialogue(promptSelection);
 		}
 
 		public void SimulateDialogue() {
 			foreach ((string, string) sentence in dialogue.sentences) {
 				sentences.Enqueue(sentence);
-				//if sentences.item1 == "New_Prompt" then use recursion to
+				//if sentences.item1 == "New_Prompt" then run start dialogue again to
 				//start method again for new prompts during conversation
 			}
-
 			DisplayNextSentence();
 		}
 
 		public void DisplayNextSentence() {
-			
-			// If dialogue has ended
+			// If dialogue has endedM
 			if (sentences.Count == 0) {
 				EndDialogue();
 				return;
@@ -96,11 +109,8 @@ namespace UI {
 			StartCoroutine(TypeSenetence(sentence));
 		}
 
-		IEnumerator TypeSenetence ((string, string) sentence) {
-			
+		IEnumerator TypeSenetence((string, string) sentence) {
 			nameText.text = sentence.Item1;
-			
-			// Reset dialogue text
 			dialogueText.text = "";
 
 			foreach (char letter in sentence.Item2.ToCharArray()) {
@@ -111,8 +121,7 @@ namespace UI {
 
 		void EndDialogue() {
 			animator.SetBool("isOpen", false);
-			// renable movement here:
+			player.GetComponent<PlayerController>().enabled = true;
 		}
-
 	}
 }

@@ -7,7 +7,6 @@ namespace UI {
 		public string itemName;
 
 		public void TriggerDialogue() {
-			FindObjectOfType<UIDialogueManager>().StartDialog(itemName);
 		}
 	}
 }

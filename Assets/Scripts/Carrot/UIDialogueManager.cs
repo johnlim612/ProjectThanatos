@@ -26,6 +26,7 @@ namespace UI {
 		void Start() {
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find("Player");
+			NextButton.enabled = false;
 		}
 
 		public void SelectPrompt(int buttonIndex) {
@@ -36,9 +37,14 @@ namespace UI {
 			_promptSelected = true;
 		}
 
+		public void ToggleNextButton() {
+			NextButton.enabled = !NextButton.enabled;
+			if (NextButton.enabled) {
+				NextButton.GetComponentInChildren<Text>().text = "continue";
+			}
+		}
 		public void StartDialogue(NPC item) {
-			NextButton.enabled = false;
-			
+
 			// Find and Load all Data pertaining to the characters' dialogue.
 			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
@@ -58,7 +64,7 @@ namespace UI {
         }
 
 		public void ContinueDialogue(NPC item) {
-			NextButton.enabled = true;
+			ToggleNextButton();
 			CreateDialogue(item);
 			_sentences.Clear();
 			SimulateDialogue();
@@ -133,6 +139,7 @@ namespace UI {
 
 		void EndDialogue() {
 			Animator.SetBool("IsOpen", false);
+			ToggleNextButton();
 			_player.GetComponent<PlayerController>().enabled = true;
 		}
 	}

@@ -49,7 +49,6 @@ namespace UI {
 
             // For Character type
             InitializePrompts();
-            DisplayPrompts(item.name);
             WaitForUserPrompt();
             // Create Dialogue Object
             CreateDialogue(item);
@@ -66,9 +65,9 @@ namespace UI {
 		}
 
 		public void DisplayPrompts(string name) {
-			string[] prompts = DialogueManager.GetPrompts();
+			List<string> prompts = DialogueManager.GetPrompts();
 			for (int i = 0;  i < Buttons.Length; i++) {
-				if (i >= prompts.Length) {
+				if (i >= prompts.Count) {
 					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}

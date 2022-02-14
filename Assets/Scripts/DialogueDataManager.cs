@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,25 +14,23 @@ public struct DialogueReference {
     }
 }
 
-public class DialogueManager : MonoBehaviour {
-    public static DialogueManager Instance { get { return _instance;  } }
+public class DialogueDataManager : MonoBehaviour {
+    public static DialogueDataManager Instance { get { return _instance;  } }
 
-    private static DialogueManager _instance;   // Singleton instance of the class.
+    private static DialogueDataManager _instance;   // Singleton instance of the class.
 
     private static string _baseFilePath = "Dialogue/";
-    private static string[] _prompts;   // Player prompts to start different conversations w/ NPCs
+    private static List<string> _prompts;   // Player prompts to start different conversations w/ NPCs
     private static string _greeting;    // First thing NPC displays when interacted with.
 
     // Indices of dialogues correspond to _prompts[]
-    private static DialogueReference[] _dialogues;
+    private static List<DialogueReference> _dialogues;
 
     // Contains specific raw dialgoue data in JSON format
     private static JToken _sabotageData;
     private static (string, JToken)[] _randomEventData; // Array of Tuples of events' key/values
     private static JToken _characterData;
-
-    // TODO: Delete after Testing
-    public Queue<(string, string)> TestDialogue = new Queue<(string, string)>();
+    private static string _npcName;
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -40,7 +39,8 @@ public class DialogueManager : MonoBehaviour {
             _instance = this;
         }
 
-        TestDialogue.Enqueue(("player", "what's up doc"));
+        _prompts = new List<string>();
+        _dialogues = new List<DialogueReference>();
     }
 
     /// <summary>
@@ -51,6 +51,7 @@ public class DialogueManager : MonoBehaviour {
     public static void Initialize(string npcName, int? charDialogueId) {
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(npcName.Replace(" ", ""));
+        _npcName = npcName;
 
         if (data == null) {
             Debug.LogError($"Unable to locate file with name {npcName.Replace(" ", "")}");
@@ -103,28 +104,71 @@ public class DialogueManager : MonoBehaviour {
     /// </summary>
     private static void FindInitialPrompts() {
         string promptKey = Constants.DialoguePromptKey;
-        int i = 0;  // Index of _prompts.
 
-        _prompts[i] = _sabotageData[promptKey]["1"].ToString();
-        _dialogues[0] = new DialogueReference(Constants.SabotageDialogueKey, "1");
+        _prompts.Add(_sabotageData[promptKey]["1"].ToString());
+        _dialogues.Add(new DialogueReference(Constants.SabotageDialogueKey, "1"));
 
         if (_randomEventData.Length > 0) {
             foreach ((string, JToken) randEvent in _randomEventData) {
-                _prompts[++i] = randEvent.Item2[promptKey]["1"].ToString();
-                _dialogues[i] = new DialogueReference(Constants.RandomEventDialogueKey, 
-                    randEvent.Item1);
+                _prompts.Add(randEvent.Item2[promptKey]["1"].ToString());
+                _dialogues.Add(new DialogueReference(Constants.RandomEventDialogueKey, 
+                    randEvent.Item1));
             }
         }
 
         if (_characterData != null) {
-            _prompts[++i] = _characterData[Constants.DialoguePromptKey]["1"].ToString();
-            _dialogues[i] = new DialogueReference(Constants.CharacterDialogueKey, "1");
+            _prompts.Add(_characterData[Constants.DialoguePromptKey]["1"].ToString());
+            _dialogues.Add(new DialogueReference(Constants.CharacterDialogueKey, "1"));
         }
     }
 
+    /// <summary>
+    /// Sorts the sentences in the correct order, with "prompt" being given
+    /// priority over "sentence".
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns>Sorted Queue</returns>
     private static Queue<(string, string)> SortQueue(JToken data) {
-        // search for prompt, then sentence, then prompt, then sentence
-        return null;
+        Queue<(string, string)> dialogue = new Queue<(string, string)>();
+
+        List<(int, string)> prompts = new List<(int, string)>(); // Said by Player
+        List<(int, string)> replies = new List<(int, string)>(); // Said by NPC
+
+        foreach (JProperty prompt in data[Constants.DialoguePromptKey]) {
+            // sentence = { "1": "hi" }
+            prompts.Add((Int32.Parse(prompt.Name), prompt.Value.ToString()));
+        }
+
+        foreach (JProperty sentence in data[Constants.DialogueNPCSentenceKey]) {
+            // sentence = { "1": "hi" }
+            replies.Add((Int32.Parse(sentence.Name), sentence.Value.ToString()));
+        }
+
+        // Compare value of keys in the two temp lists and sort into queue
+        int i = 0;
+        int j = 0;
+
+        while (i < prompts.Count && j < replies.Count) {
+            if (prompts[i].Item1 > replies[j].Item1) {
+                dialogue.Enqueue((_npcName, replies[j].Item2));
+                j++;
+            } else {
+                dialogue.Enqueue(("player", prompts[i].Item2));
+                i++;
+            }
+        }
+        // Add the remaining queue
+        if (i == prompts.Count) {
+            for (int k = j; k < replies.Count; k++) {
+                dialogue.Enqueue((_npcName, replies[k].Item2));
+            }
+        } else {
+            for (int l = i; l < prompts.Count; l++) {
+                dialogue.Enqueue(("player", prompts[l].Item2));
+            }
+        }
+
+        return dialogue;
     }
 
     /// <summary>
@@ -133,7 +177,7 @@ public class DialogueManager : MonoBehaviour {
     /// flow of the player-to-NPC conversation.
     /// </summary>
     /// <param name="selectedDialogue">int corresponds to index of selected prompt</param>
-    /// <returns></returns>
+    /// <returns>A Queue of tuples: ("character name", "sentence")</returns>
     public static Queue<(string, string)> GetDialogue(int selectedDialogue) {
         DialogueReference dRef = _dialogues[selectedDialogue];
         Queue<(string, string)> dialogue = null;
@@ -163,7 +207,7 @@ public class DialogueManager : MonoBehaviour {
         return _greeting;
     }
 
-    public static string[] GetPrompts() {
+    public static List<string> GetPrompts() {
         return _prompts;
     }
 }

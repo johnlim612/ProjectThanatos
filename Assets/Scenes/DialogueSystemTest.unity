@@ -557,7 +557,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1319903378}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
-        m_MethodName: InteractObject
+        m_MethodName: Test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

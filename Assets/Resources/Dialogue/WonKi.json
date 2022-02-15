@@ -4,63 +4,97 @@
             "greeting": "(Won Ki is staring into space, thinking about god knows what...)",
             "prompt": {
                 "1": "Good morning, Won.",
+                "2": "No problem. What are you up to?",
+                "5": "Okay. Maybe I'll go check it out too."
             },
             "sentence": {
-                "1": "",
+                "1": "Hmmm? Morning. You handled that issue earlier. Thanks!",
+                "2": "Nothing much. I think I saw some error logs in the Data System earlier.",
+                "3": "I was thinking about checking it out in a day or two.",
+                "4": "We can take our time with things right now, there's not much going on.",
+                "5": "Sure!"
             }
         },
         "2": {
-            "greeting": "",
+            "greeting": "Hmmm~ (Won is humming to himself while staring closely at a device in his hands)",
             "prompt": {
-                "1": ""
+                "1": "What are you up to Won?",
+                "3": "??? They look perfectly fine to me?",
+                "4": "What? That's just an indent from the device?!",
+                "5": "Uh... Let me know before you do anything..."
             },
             "sentence": {
-                "1": ""
+                "1": "Oh nothing much! Thanks for taking care of the Engine Power issue!",
+                "2": "I'm just looking at these wires. They look a bit off so I wanted to replace them.",
+                "3": "No, look closely! Don't you see the scratch here? We have to replace the wire.",
+                "4": "Is it?! Hmmmm... I'll look over the manual again...",
+                "5": "Sure! (Won replies cheerfully as if nothing's wrong)"
             }
         },
         "3": {
-            "greeting": "",
+            "greeting": "(Won is relaxing today, seemingly satisfied with his work.)",
             "prompt": {
-                "1": ""
+                "1": "Nice work with the data system.",
+                "5": "???? Huh? This radar isn't broken though?",
+                "6": "Uh?? I don't think thats a bad thing?",
+                "7": "Just... let me know... (I hope he doesn't touch anything...)"
             },
             "sentence": {
-                "1": ""
+                "1": "Yeah! I noticed it a few days ago anyways, had a feeling it was going to happen.",
+                "2": "So I went and checked it out and fixed it! Can't let you do all the work.",
+                "3": "Oh right, I found this broken radar in the data center room.",
+                "4": "I'll see if I can fix it later.",
+                "5": "Oh, I thought it was broken because it wasn't giving any signals?",
+                "6": "Hmmmm... Really? I'll go and look into it...",
+                "7": "Okay~!"
             }
         },
         "4": {
-            "greeting": "",
+            "greeting": "Zzzzz... (Won seems to be taking a nap right now)",
             "prompt": {
-                "1": ""
+                "1": "Hey Won?",
+                "2": "Did you see anyone go by communications earlier?",
+                "5": "???? How is he already asleep?!?"
             },
             "sentence": {
-                "1": ""
+                "1": "...?! Uh...? What 's up? *Yawns* I'm still sleepy...",
+                "2": "Hmmmm... Don't think so. I've been napping most of the day.",
+                "3": "I'm gonna... go back to... Zzzzz..."
             }
         },
         "5": {
-            "greeting": "",
+            "greeting": "Hmmm... Why the heck did that happen...?",
             "prompt": {
-                "1": ""
+                "1": "What happened?",
+                "2": "Yeah, I was wondering why it happened...",
+                "4": "Did you do anything?",
+                "5": "Well, okay then..."
             },
             "sentence": {
-                "1": ""
+                "1": "You fixed the power earlier today right?",
+                "2": "Well, I went by the power room the day before just to do some checkup.",
+                "3": "It seemed fine, but somehow today there were issues?",
+                "4": "Oh yeah, I had to check the power cables, but other than that, nothing! I promise!"
             }
         },
         "6": {
-            "greeting": "",
+            "greeting": "(Won is humming to himself while playing around with what looks like a filter.)",
             "prompt": {
-                "1": ""
+                "1": "What are you up to now?",
+                "2": "Why?",
+                "4": "... ??? W h a...?? I--... You do know how small oxygen is right...?",
+                "5": ".... Why are you poking holes then!? Oxygen can go through those filters perfectly fine!",
+                "6": "Can you put that back where it was then?",
+                "7": "Yes, I'm pretty sure...!",
+                "8": "(I swear he's just trolling me on purpose now)"
             },
             "sentence": {
-                "1": ""
-            }
-        },
-        "7": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
+                "1": "Huuh? I was checking out one of the filters in the oxygen tank.",
+                "2": "I thought I smelled something weird. Look, this filter doesn't have any holes.",
+                "3": "I was thinking of poking some holes so there's space for the oxygen to get through.",
+                "4": "Yep! Of course! We can't even see them right? Why are you asking?",
+                "5": "Oh. ...You're right!",
+                "6": "Sure! No problem! ... Are you sure we don't need holes though?"
             }
         }
     },
@@ -85,17 +119,19 @@
     "character": {
         "1": {
             "prompt": {
-                "1": ""
+                "1": "Your sunglasses...",
+                "3": "Uh! Nope! You can keep them on!"
             },
             "sentence": {
-                "1": ""
+                "1": "Oh! I always wear them out of habit!",
+                "2": "I'll keep them off if you want me to though? (Takes off his sunglasses)"
         },
         "2": {
             "prompt": {
-                "1": ""
+                "1": "Trolling..."
             },
             "sentence": {
-                "1": ""
+                "1": "Yeah I'm just bored you know! It's way more fun to joke around!"
             }
         }
     }

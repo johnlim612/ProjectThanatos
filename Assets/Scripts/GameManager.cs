@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
         // REMOVE AFTER TESTING
         SabotageId = 1;
+        Sabotage.SabotageActive = true;
         RandomEventIds.Add("coffee");
         RandomEventIds.Add("laboratory");
     }
@@ -31,6 +32,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void ClearSabotage() {
-        SabotageId = null;
+        Sabotage.SabotageActive = false;
     }
 }

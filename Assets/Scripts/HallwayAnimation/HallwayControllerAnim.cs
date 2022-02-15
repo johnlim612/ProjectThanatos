@@ -16,7 +16,7 @@ public class HallwayControllerAnim : MonoBehaviour {
     private Animator _animator;
     private RawImage _image;
     private bool _doneLoading;
-    private const string _mapSceneName = "Save";
+    private string _mapSceneName;
     private const int _numInterations = 4;
     private static int _currInteractions = 0;
 
@@ -26,6 +26,7 @@ public class HallwayControllerAnim : MonoBehaviour {
         _image = GetComponent<RawImage>();
         _animator.Play("Hallway", -1, _startingTime);
         _doneLoading = false;
+        _mapSceneName = HallwaySaveData.MapSceneName;
         StartCoroutine(Load(0.01f));
 
         if (_isDoor) {

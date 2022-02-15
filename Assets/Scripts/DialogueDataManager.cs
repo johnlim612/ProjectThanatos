@@ -226,6 +226,11 @@ public class DialogueDataManager : MonoBehaviour {
         return _prompts;
     }
 
+    private static void ResetData() {
+        _prompts = new List<string>();
+        _dialogues = new List<DialogueReference>();
+    }
+
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
 
     public static void FindSystemAnnouncement(JObject data, int? alertId) {
@@ -265,9 +270,5 @@ public class DialogueDataManager : MonoBehaviour {
 public enum DataType {
     SystemAnnouncement,
     CharacterDialogue,
-
-    private static void ResetData() {
-        _prompts = new List<string>();
-        _dialogues = new List<DialogueReference>();
-    }
 }
+    

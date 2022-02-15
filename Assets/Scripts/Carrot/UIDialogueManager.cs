@@ -28,8 +28,8 @@ namespace UI {
 		void Awake() {
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find(Constants.PlayerKey);
-			NextButton.enabled = false;
-			NextButton.GetComponentInChildren<Text>().text = "";
+			ToggleNextButton(true);
+
 		}
 
 		public void SelectPrompt(int buttonIndex) {
@@ -40,19 +40,17 @@ namespace UI {
 			_promptSelected = true;
 		}
 
-		public void ToggleNextButton() {
-			NextButton.enabled = !NextButton.enabled;
-			if (NextButton.enabled) {
+		public void ToggleNextButton(bool toggle) {
+			NextButton.enabled = toggle;
+			if (toggle) {
 				NextButton.GetComponentInChildren<Text>().text = "Continue";
-			}
+			} 
 		}
 
 		public void StartSystemAlert(Queue<(string, string)> sysAnnounce) {
 			_player.GetComponent<PlayerController>().enabled = false;
 			IsInteracting = true;
 			_sentences = sysAnnounce;
-
-			ToggleNextButton();
 			//print(_sentences.Count + " at StartDiaryDialogue()");
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
@@ -62,8 +60,6 @@ namespace UI {
 			_player.GetComponent<PlayerController>().enabled = false;
 			IsInteracting = true;
 			_sentences = diary.DescriptionQueue;
-
-			ToggleNextButton();
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
 		}
@@ -72,7 +68,6 @@ namespace UI {
 			DialogueDataManager.Initialize(DataType.SystemAnnouncement, 
 				Constants.SystemAnnouncement, GameManager.SabotageId);
 			_sentences = DialogueDataManager.GetAnnouncement();
-            ToggleNextButton();
 			Animator.SetBool("IsOpen", true);
             DisplayNextSentence();
         }
@@ -81,7 +76,6 @@ namespace UI {
 		public void StartItemDialogue(Item item) {
 			IsInteracting = true;
 			_sentences = item.DescriptionQueue;
-			ToggleNextButton();
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
 		}
@@ -117,7 +111,7 @@ namespace UI {
         }
 
 		public void ContinueDialogue(NPC item) {
-			ToggleNextButton();
+			ToggleNextButton(true);
 			CreateDialogue(item);
 			SimulateDialogue();
 		}
@@ -193,7 +187,6 @@ namespace UI {
 		void EndDialogue() {
 			//print(Animator.GetBool("IsOpen"));
 			Animator.SetBool("IsOpen", false);
-			ToggleNextButton();
 			_player.GetComponent<PlayerController>().enabled = true;
 			IsInteracting = false;
 		}

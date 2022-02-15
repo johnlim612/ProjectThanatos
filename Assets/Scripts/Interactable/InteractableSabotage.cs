@@ -11,6 +11,7 @@ public class InteractableSabotage : InteractableObject {
         _box2D = GetComponent<BoxCollider2D>();
         _spriteRend = GetComponent<SpriteRenderer>();
     }
+
     public int SabotageID {
         get {
             return _sabotageID;

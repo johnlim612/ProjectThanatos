@@ -20,17 +20,18 @@ public class DialogueDataManager : MonoBehaviour {
     private static DialogueDataManager _instance;   // Singleton instance of the class.
 
     private static string _baseFilePath = "Dialogue/";
-    private static List<string> _prompts;   // Player prompts to start different conversations w/ NPCs
+    private static List<string> _prompts;   // Players' prompts to start different convos w/ NPCs
     private static string _greeting;    // First thing NPC displays when interacted with.
+    private static Queue<(string, string)> _systemAnnouncements; // Alert related to day's sabotage
 
     // Indices of dialogues correspond to _prompts[]
     private static List<DialogueReference> _dialogues;
 
     // Contains specific raw dialgoue data in JSON format
-    private static JToken _sabotageData;
+    private static JToken _sabotageData;    // The sabotage-specific dialogue data
     private static (string, JToken)[] _randomEventData; // Array of Tuples of events' key/values
-    private static JToken _characterData;
-    private static string _npcName;
+    private static JToken _characterData;   // The character-specific dialogue data
+    private static string _dataRefName; // Name of the item/character referenced in the JSON data
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -46,20 +47,31 @@ public class DialogueDataManager : MonoBehaviour {
     /// <summary>
     /// Load the JSON file containing the dialogue.
     /// </summary>
-    /// <param name="npcName">The NPC whose JSON file will be loaded</param>
-    /// <param name="charDialogueId">Key for character-specific dialogue</param>
-    public static void Initialize(string npcName, int? charDialogueId) {
+    /// <param name="dataType">Enum specifying which type of data should be loaded</param>
+    /// <param name="fileName">The NPC whose JSON file will be loaded</param>
+    /// <param name="dialogueId">*Optional* Key for character-specific dialogue</param>
+    public static void Initialize(DataType dataType, string fileName, int? dialogueId = null) {
         // Remove whitespace from characters' names before searching for the file.
-        JObject data = LoadData(npcName.Replace(" ", ""));
-        _npcName = npcName;
+        JObject data = LoadData(fileName.Replace(" ", ""));
+        _dataRefName = fileName;
 
         if (data == null) {
-            Debug.LogError($"Unable to locate file with name {npcName.Replace(" ", "")}");
+            Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}");
             return;
         }
 
-        FindRelevantDialogue(data, 1);  // TODO: Change 1 to charDialogueId after testing.
-        FindInitialPrompts();
+        switch (dataType) {
+            case DataType.CharacterDialogue:
+                FindRelevantDialogue(data, dialogueId);
+                FindInitialPrompts();
+                break;
+            case DataType.SystemAnnouncement:
+                FindSystemAnnouncement(data, dialogueId);
+                break;
+            default:
+                Debug.LogError($"Invalid DataType. Data Type ${dataType} was not recognized.");
+                break;
+        }
     }
 
     /// <summary>
@@ -75,7 +87,7 @@ public class DialogueDataManager : MonoBehaviour {
         return (JObject) JsonConvert.DeserializeObject(jsonDialogueFile.text);
     }
 
-    private static void FindRelevantDialogue(JObject data, int? charDialogueId = null) {
+    private static void FindRelevantDialogue(JObject data, int? charDialogueId) {
         string sabotageId = GameManager.SabotageId.ToString();
         _sabotageData = data[Constants.SabotageDialogueKey][sabotageId];
 
@@ -150,7 +162,7 @@ public class DialogueDataManager : MonoBehaviour {
 
         while (i < prompts.Count && j < replies.Count) {
             if (prompts[i].Item1 > replies[j].Item1) {
-                dialogue.Enqueue((_npcName, replies[j].Item2));
+                dialogue.Enqueue((_dataRefName, replies[j].Item2));
                 j++;
             } else {
                 dialogue.Enqueue(("player", prompts[i].Item2));
@@ -160,7 +172,7 @@ public class DialogueDataManager : MonoBehaviour {
         // Add the remaining queue
         if (i == prompts.Count) {
             for (int k = j; k < replies.Count; k++) {
-                dialogue.Enqueue((_npcName, replies[k].Item2));
+                dialogue.Enqueue((_dataRefName, replies[k].Item2));
             }
         } else {
             for (int l = i; l < prompts.Count; l++) {
@@ -180,7 +192,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// <returns>A Queue of tuples: ("character name", "sentence")</returns>
     public static Queue<(string, string)> GetDialogue(int selectedDialogue) {
         DialogueReference dRef = _dialogues[selectedDialogue];
-        Queue<(string, string)> dialogue = null;
+        Queue<(string, string)> dialogue = new Queue<(string, string)>();
 
         switch (dRef.EventType) {
             case Constants.SabotageDialogueKey:
@@ -210,4 +222,44 @@ public class DialogueDataManager : MonoBehaviour {
     public static List<string> GetPrompts() {
         return _prompts;
     }
+
+    // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
+
+    public static void FindSystemAnnouncement(JObject data, int? alertId) {
+        if (alertId == null) {
+            return;
+        }
+
+        JToken rawAlertData = data[Constants.SabotageDialogueKey][alertId.ToString()];
+
+        if (rawAlertData != null) {
+            SortAnnouncementQueue(rawAlertData);
+        }
+    }
+
+    private static void SortAnnouncementQueue(JToken data) {
+        _systemAnnouncements = new Queue<(string, string)>();
+        JToken alert;
+        JToken message;
+
+        alert = data[Constants.SystemAlertKey];
+        message = data[Constants.SystemMessageKey];
+
+        if (alert != null) {
+            _systemAnnouncements.Enqueue((Constants.SystemAlertKey, alert.ToString()));
+        }
+
+        if (message != null) {
+            _systemAnnouncements.Enqueue((Constants.SystemMessageKey, message.ToString()));
+        }
+    }
+
+    public static Queue<(string, string)> GetAnnouncement() {
+        return _systemAnnouncements;
+    }
+}
+
+public enum DataType {
+    SystemAnnouncement,
+    CharacterDialogue,
 }

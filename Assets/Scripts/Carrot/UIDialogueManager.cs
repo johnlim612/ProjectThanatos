@@ -63,10 +63,18 @@ namespace UI {
 			_sentences = diary.DescriptionQueue;
 
 			ToggleNextButton();
-			//print(_sentences.Count + " at StartDiaryDialogue()");
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
 		}
+
+		public void StartAnnouncement() {
+			DialogueDataManager.Initialize(DataType.SystemAnnouncement, "SystemAnnouncement", 1);
+			_sentences = DialogueDataManager.GetAnnouncement();
+            ToggleNextButton();
+            Animator.SetBool("IsOpen", true);
+            DisplayNextSentence();
+        }
+
 
 		public void StartItemDialogue(Item item) {
 			IsInteracting = true;
@@ -87,7 +95,7 @@ namespace UI {
 			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, item.CountCharDialogue);
 
 			// Prompt Greeting here:
 			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));

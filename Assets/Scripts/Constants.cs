@@ -7,4 +7,6 @@ public static class Constants {
     public const string CharacterDialogueKey = "character";
     public const string DialoguePromptKey = "prompt";
     public const string DialogueNPCSentenceKey = "sentence";
+    public const string SystemAlertKey = "alert";
+    public const string SystemMessageKey = "message";
 }

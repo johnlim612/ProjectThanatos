@@ -63,10 +63,18 @@ namespace UI {
 			_sentences = diary.DescriptionQueue;
 
 			ToggleNextButton();
-			//print(_sentences.Count + " at StartDiaryDialogue()");
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
 		}
+
+		public void StartAnnouncement() {
+			// Some DialogueDataManager Initialization
+
+			ToggleNextButton();
+			Animator.SetBool("IsOpen", true);
+			DisplayNextSentence();
+		}
+
 
 		public void StartItemDialogue(Item item) {
 			IsInteracting = true;

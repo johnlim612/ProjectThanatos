@@ -6,12 +6,13 @@ public class InteractableObject : MonoBehaviour {
     private bool _interactableCollided = false;
 
     public void OnInteract(InputValue value) {
-        if (_interactableCollided) {
+        if (_interactableCollided && !UI.UIDialogueManager.IsInteracting) {
             InteractObject();
         }
     }
 
-    public virtual void InteractObject() {}
+    public virtual void InteractObject() {
+    }
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {

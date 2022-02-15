@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
+		public static bool IsInteracting = false;
+
 		[Header("DialogueBoxes")]
 		public GameObject DefaultDialogue;
 		public Button[] Buttons;
@@ -26,6 +28,8 @@ namespace UI {
 		void Start() {
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find("Player");
+			NextButton.enabled = false;
+			NextButton.GetComponentInChildren<Text>().text = "";
 		}
 
 		public void SelectPrompt(int buttonIndex) {
@@ -36,35 +40,50 @@ namespace UI {
 			_promptSelected = true;
 		}
 
-		public void StartDialogue(NPC item) {
-			NextButton.enabled = false;
-			this.transform.Find("ChildName");
+		public void ToggleNextButton() {
+			NextButton.enabled = !NextButton.enabled;
+			if (NextButton.enabled) {
+				NextButton.GetComponentInChildren<Text>().text = "continue";
+			}
+		}
+		public void StartSystemAlert(Diary diary) {
 			
+		}
+
+		public void StartItemDialogue(Item item) {
+			IsInteracting = true;
+			_sentences = item.DescriptionQueue;
+			ToggleNextButton();
+			Animator.SetBool("IsOpen", true);
+			DisplayNextSentence();
+		}
+
+		public void StartDialogue(NPC item) {
+
 			// Pause movement here:
 			_player.GetComponent<PlayerController>().enabled = false;
-			Animator.SetBool("IsOpen", true);
+			IsInteracting = true;
+
+			// Pause next button
+			NextButton.enabled = false;
+			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			// DialogueManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
 
 			// Prompt Greeting here:
-			// __.getGreeting(itemName)
-
-			// Check if it is person or item. If it is a person:
-			// make methods for each type character, item, and diary
-
+			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));
+			
+			Animator.SetBool("IsOpen", true);
 			InitializePrompts();
-
 			DisplayPrompts(item.name);
 			StartCoroutine(WaitForUserPrompt(item));
             // Create Dialogue Object
-            
         }
 
 		public void ContinueDialogue(NPC item) {
-			NextButton.enabled = true;
+			ToggleNextButton();
 			CreateDialogue(item);
-			_sentences.Clear();
 			SimulateDialogue();
 		}
 
@@ -101,11 +120,11 @@ namespace UI {
 		public void CreateDialogue(InteractableObject item) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = item.name;
-
 			_dialogue.Sentences = DialogueDataManager.GetDialogue(_promptSelection);
 		}
 
 		public void SimulateDialogue() {
+			_sentences.Clear();
 			foreach ((string, string) sentence in _dialogue.Sentences) {
 				_sentences.Enqueue(sentence);
 				//if _sentences.item1 == "New_Prompt" then run start dialogue again to
@@ -123,10 +142,10 @@ namespace UI {
 
 			(string, string) sentence = _sentences.Dequeue();
 			StopAllCoroutines();
-			StartCoroutine(TypeSenetence(sentence));
+			StartCoroutine(TypeSentence(sentence));
 		}
 
-		IEnumerator TypeSenetence((string, string) sentence) {
+		IEnumerator TypeSentence((string, string) sentence) {
 			NameText.text = sentence.Item1;
 			DialogueText.text = "";
 
@@ -138,7 +157,9 @@ namespace UI {
 
 		void EndDialogue() {
 			Animator.SetBool("IsOpen", false);
+			ToggleNextButton();
 			_player.GetComponent<PlayerController>().enabled = true;
+			IsInteracting = false;
 		}
 	}
 }

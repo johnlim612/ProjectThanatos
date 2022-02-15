@@ -37,9 +37,10 @@ public class GameManager : MonoBehaviour {
         // then generate new ID:
         SabotageId = Sabotages[Random.Range(1, Sabotages.Count - 1)];
         
+        Sabotage.SabotageActive = true;
     }
 
     public static void ClearSabotage() {
-        SabotageId = null;
+        Sabotage.SabotageActive = false;
     }
 }

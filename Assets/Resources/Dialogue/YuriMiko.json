@@ -3,10 +3,10 @@
         "1": {
             "greeting": "",
             "prompt": {
-                "1": "Good morning, Yuri.",
+                "1": "Good morning, Yuri."
             },
             "sentence": {
-                "1": "",
+                "1": ""
             }
         },
         "2": {
@@ -65,7 +65,7 @@
         }
     },
     "random": {
-        "snack": {
+        "notes": {
             "prompt": {
                 "1": ""
             },
@@ -73,7 +73,7 @@
                 "1": ""
             }
         },
-        "stuffy": {
+        "candy": {
             "prompt": {
                 "1": ""
             },
@@ -89,6 +89,7 @@
             },
             "sentence": {
                 "1": ""
+            }
         },
         "2": {
             "prompt": {

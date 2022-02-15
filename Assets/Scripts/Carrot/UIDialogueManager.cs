@@ -25,9 +25,9 @@ namespace UI {
 		private GameObject _player;
 
 		// Start is called before the first frame update
-		void Start() {
+		void Awake() {
 			_sentences = new Queue<(string, string)>();
-			_player = GameObject.Find("Player");
+			_player = GameObject.Find(Constants.PlayerKey);
 			NextButton.enabled = false;
 			NextButton.GetComponentInChildren<Text>().text = "";
 		}
@@ -43,9 +43,10 @@ namespace UI {
 		public void ToggleNextButton() {
 			NextButton.enabled = !NextButton.enabled;
 			if (NextButton.enabled) {
-				NextButton.GetComponentInChildren<Text>().text = "continue";
+				NextButton.GetComponentInChildren<Text>().text = "Continue";
 			}
 		}
+
 		public void StartSystemAlert(Queue<(string, string)> sysAnnounce) {
 			_player.GetComponent<PlayerController>().enabled = false;
 			IsInteracting = true;
@@ -68,10 +69,11 @@ namespace UI {
 		}
 
 		public void StartAnnouncement() {
-			DialogueDataManager.Initialize(DataType.SystemAnnouncement, "SystemAnnouncement", 1);
+			DialogueDataManager.Initialize(DataType.SystemAnnouncement, 
+				Constants.SystemAnnouncement, GameManager.SabotageId);
 			_sentences = DialogueDataManager.GetAnnouncement();
             ToggleNextButton();
-            Animator.SetBool("IsOpen", true);
+			Animator.SetBool("IsOpen", true);
             DisplayNextSentence();
         }
 
@@ -95,7 +97,14 @@ namespace UI {
 			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, item.CountCharDialogue);
+			if (item.HasBeenSpokenTo) {
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name);
+			} else {
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, 
+					item.CountCharDialogue);
+				item.UpdateCharDialogueProgress();
+			}
+
 
 			// Prompt Greeting here:
 			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));
@@ -128,7 +137,6 @@ namespace UI {
 					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
-				print("setting a button active");
 				Buttons[i].gameObject.SetActive(true);
 				Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}
@@ -178,7 +186,7 @@ namespace UI {
 
 			foreach (char letter in sentence.Item2.ToCharArray()) {
 				DialogueText.text += letter;
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(0.02f);
 			}
 		}
 

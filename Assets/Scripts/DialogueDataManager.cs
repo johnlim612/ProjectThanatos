@@ -51,6 +51,9 @@ public class DialogueDataManager : MonoBehaviour {
     /// <param name="fileName">The NPC whose JSON file will be loaded</param>
     /// <param name="dialogueId">*Optional* Key for character-specific dialogue</param>
     public static void Initialize(DataType dataType, string fileName, int? dialogueId = null) {
+        // Ensure any previously stored data is cleared
+        ResetData();
+
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
@@ -103,7 +106,7 @@ public class DialogueDataManager : MonoBehaviour {
         }
 
         // Get character-specific dialogue if it's available.
-        if (charDialogueId != null) {
+        if (charDialogueId != null && charDialogueId != 0) {
             _characterData = data[Constants.CharacterDialogueKey][charDialogueId.ToString()];
         }
 
@@ -120,7 +123,7 @@ public class DialogueDataManager : MonoBehaviour {
         _prompts.Add(_sabotageData[promptKey]["1"].ToString());
         _dialogues.Add(new DialogueReference(Constants.SabotageDialogueKey, "1"));
 
-        if (_randomEventData.Length > 0) {
+        if (_randomEventData != null && _randomEventData.Length > 0) {
             foreach ((string, JToken) randEvent in _randomEventData) {
                 _prompts.Add(randEvent.Item2[promptKey]["1"].ToString());
                 _dialogues.Add(new DialogueReference(Constants.RandomEventDialogueKey, 
@@ -165,7 +168,7 @@ public class DialogueDataManager : MonoBehaviour {
                 dialogue.Enqueue((_dataRefName, replies[j].Item2));
                 j++;
             } else {
-                dialogue.Enqueue(("player", prompts[i].Item2));
+                dialogue.Enqueue((Constants.PlayerKey, prompts[i].Item2));
                 i++;
             }
         }
@@ -176,7 +179,7 @@ public class DialogueDataManager : MonoBehaviour {
             }
         } else {
             for (int l = i; l < prompts.Count; l++) {
-                dialogue.Enqueue(("player", prompts[l].Item2));
+                dialogue.Enqueue((Constants.PlayerKey, prompts[l].Item2));
             }
         }
 
@@ -223,6 +226,11 @@ public class DialogueDataManager : MonoBehaviour {
         return _prompts;
     }
 
+    private static void ResetData() {
+        _prompts = new List<string>();
+        _dialogues = new List<DialogueReference>();
+    }
+
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
 
     public static void FindSystemAnnouncement(JObject data, int? alertId) {
@@ -263,3 +271,4 @@ public enum DataType {
     SystemAnnouncement,
     CharacterDialogue,
 }
+    

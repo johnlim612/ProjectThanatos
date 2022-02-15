@@ -4,8 +4,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
+    [SerializeField] private List<NPC> _npcList = new List<NPC>();
+
+    public static List<int> Sabotages = new List<int>();            // List of IDs for all possible sabotages
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
-    public static int? SabotageId;   // The ID of the day's major event/sabotage
+    public static int SabotageId;   // The ID of the day's major event/sabotage
+
+    private const int _maxNumSabotages = 6; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
 
     [SerializeField] private static int _day;
 
@@ -19,17 +24,40 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
         }
 
-        // REMOVE AFTER TESTING
-        SabotageId = 1;
-        Sabotage.SabotageActive = true;
-        RandomEventIds.Add("coffee");
-        RandomEventIds.Add("laboratory");
+        _day = 0;
+
+        for (int i = 1; i <= _maxNumSabotages; i++) {
+            Sabotages.Add(i);
+        }
+
+        AdvanceDay();
     }
 
-    public static void AdvanceDay() {
-        _day += 1;
-        SabotageId = Random.Range(1, 3);
+    public void AdvanceDay() {
+        ++_day;
+
         Sabotage.SabotageActive = true;
+
+        if (Sabotages.Count > 1) {
+            SabotageId = Sabotages[Random.Range(0, Sabotages.Count)];
+            print("this is sab#: " + SabotageId + " day: "+ _day);
+
+		} else if (Sabotages.Count == 1) {
+            SabotageId = Sabotages[0];
+            print("sab number 6: " + SabotageId);
+
+        } else {
+            // SabotageId = 7;
+            return;
+        }
+
+        FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
+
+        Sabotages.Remove(SabotageId);
+
+        foreach (NPC npc in _npcList) {
+            npc.HasBeenSpokenTo = false;
+        }
     }
 
     public static void ClearSabotage() {

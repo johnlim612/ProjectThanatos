@@ -46,8 +46,15 @@ namespace UI {
 				NextButton.GetComponentInChildren<Text>().text = "continue";
 			}
 		}
-		public void StartSystemAlert(SystemAnnouncement sysAnnounce) {
-			
+		public void StartSystemAlert(Queue<(string, string)> sysAnnounce) {
+			_player.GetComponent<PlayerController>().enabled = false;
+			IsInteracting = true;
+			_sentences = sysAnnounce;
+
+			ToggleNextButton();
+			//print(_sentences.Count + " at StartDiaryDialogue()");
+			Animator.SetBool("IsOpen", true);
+			DisplayNextSentence();
 		}
 
 		public void StartDiaryDialogue(Diary diary) {

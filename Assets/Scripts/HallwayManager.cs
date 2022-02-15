@@ -37,8 +37,8 @@ public class HallwayManager : MonoBehaviour {
         HallwaySaveData.CurrentPosition = _player.transform.position - nextPos;
         HallwaySaveData.NewPosition = _player.transform.position + (nextPos * _distance * 2);
 
-        _player.transform.position += nextPos * _distance * 2;
-        //SceneManager.LoadScene("Hallway");
+        //_player.transform.position += nextPos * _distance * 2;
+        SceneManager.LoadScene("Hallway");
     }
 
     private void OnValidate() {

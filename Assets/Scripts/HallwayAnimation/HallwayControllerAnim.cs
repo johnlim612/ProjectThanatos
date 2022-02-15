@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Plays/pauses animation based on player movement
 /// </summary>
-public class HallwayController : MonoBehaviour {
+public class HallwayControllerAnim : MonoBehaviour {
     [SerializeField] [Range(0, 1)] private float _startingTime;
     [SerializeField] private bool _isDoor;
 
@@ -16,6 +16,7 @@ public class HallwayController : MonoBehaviour {
     private Animator _animator;
     private RawImage _image;
     private bool _doneLoading;
+    private string _mapSceneName;
     private const int _numInterations = 4;
     private static int _currInteractions = 0;
 
@@ -25,6 +26,7 @@ public class HallwayController : MonoBehaviour {
         _image = GetComponent<RawImage>();
         _animator.Play("Hallway", -1, _startingTime);
         _doneLoading = false;
+        _mapSceneName = HallwaySaveData.MapSceneName;
         StartCoroutine(Load(0.01f));
 
         if (_isDoor) {
@@ -48,9 +50,8 @@ public class HallwayController : MonoBehaviour {
         } else if(moveVal == 0 && _doneLoading){
             _animator.enabled = false;
         } else if (moveVal < 0 && _doneLoading) {
-            // TODO: Player goes back to previous room
             HallwaySaveData.NewPosition = HallwaySaveData.CurrentPosition;
-            SceneManager.LoadScene("Map");
+            SceneManager.LoadScene(_mapSceneName);
         }
     }
 
@@ -82,7 +83,7 @@ public class HallwayController : MonoBehaviour {
     /// </summary>
     private void OpenDoors() {
         if (_isDoor && _image.enabled) {
-            SceneManager.LoadScene("Map");
+            SceneManager.LoadScene(_mapSceneName);
         }
     }
 }

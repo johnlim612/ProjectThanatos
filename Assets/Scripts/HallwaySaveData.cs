@@ -5,5 +5,6 @@ using UnityEngine;
 public static class HallwaySaveData {
     public static Vector3 CurrentPosition;
     public static Vector3 NewPosition;
+    public static string MapSceneName;
     public static bool IsInitialized = false;
 }

@@ -68,12 +68,12 @@ namespace UI {
 		}
 
 		public void StartAnnouncement() {
-			// Some DialogueDataManager Initialization
-
-			ToggleNextButton();
-			Animator.SetBool("IsOpen", true);
-			DisplayNextSentence();
-		}
+			DialogueDataManager.Initialize(DataType.SystemAnnouncement, "SystemAnnouncement", 1);
+			_sentences = DialogueDataManager.GetAnnouncement();
+            ToggleNextButton();
+            Animator.SetBool("IsOpen", true);
+            DisplayNextSentence();
+        }
 
 
 		public void StartItemDialogue(Item item) {
@@ -96,11 +96,12 @@ namespace UI {
 
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (item.HasBeenSpokenTo) {
-				DialogueDataManager.Initialize(item.gameObject.name, null);
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, null);
 			} else {
-				DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, item.CountCharDialogue);
 				item.UpdateCharDialogueProgress();
 			}
+
 
 			// Prompt Greeting here:
 			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));

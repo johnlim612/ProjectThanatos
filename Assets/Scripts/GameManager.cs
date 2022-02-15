@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
         }
 
-        _day = 0;
+        _day = 4;   // TODO: Reset to 0 after testing.
 
         for (int i = 1; i <= _maxNumSabotages; i++) {
             Sabotages.Add(i);
@@ -42,11 +42,9 @@ public class GameManager : MonoBehaviour {
 
         if (Sabotages.Count > 1) {
             SabotageId = Sabotages[Random.Range(0, Sabotages.Count)];
-            print("this is sab#: " + SabotageId + " day: "+ _day);
 
 		} else if (Sabotages.Count == 1) {
             SabotageId = Sabotages[0];
-            print("sab number 6: " + SabotageId);
 
         } else {
             screen.gameObject.SetActive(true);

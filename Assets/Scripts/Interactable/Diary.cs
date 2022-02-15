@@ -1,24 +1,39 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class Diary : InteractableObject {
-    private string _diaryUnusable = "You need to repair the problem on the spaceship before you can use the diary";
-    private string _diaryUsed = "You wrote on the diary of today's events";
-    public string DiaryUsed {
-        get { return _diaryUsed; }
-	}
+
+    [SerializeField] private string[] _descriptions;
+    [SerializeField] private string[] _requirements;
+    private Queue<(string, string)> _descriptionQueue;
 
     public override void InteractObject() {
         if (GameManager.SabotageId != null) {
-            print(_diaryUnusable);
+            AddToQueue(_requirements);
+            FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
         } else {
             OpenDiary();
         }
     }
 
     private void OpenDiary() {
-        //FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
+        AddToQueue(_descriptions);
+        FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
         EndDay();
     }
 
     private void EndDay() {
         GameManager.AdvanceDay();
+    }
+
+    public Queue<(string, string)> DescriptionQueue {
+        get { return _descriptionQueue; }
+    }
+
+    public void AddToQueue(string[] sentences) {
+        _descriptionQueue = new Queue<(string, string)>();
+        foreach (string sentence in sentences) {
+            _descriptionQueue.Enqueue(("Player", sentence));
+        }
     }
 }

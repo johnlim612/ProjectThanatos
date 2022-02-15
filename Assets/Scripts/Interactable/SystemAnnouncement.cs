@@ -1,17 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SystemAnnouncement: InteractableObject {
+public class SystemAnnouncement: MonoBehaviour {
 
     [SerializeField] private string[] _descriptions;
     private Queue<(string, string)> _descriptionQueue = new Queue<(string, string)>();
-
-    void Start() {
-        //AddToQueue(_descriptions);
-    }
-    public override void InteractObject() {
-        Interact();
-    }
 
     public Queue<(string, string)> DescriptionQueue {
         get {
@@ -25,8 +18,8 @@ public class SystemAnnouncement: InteractableObject {
         }
     }
 
-    private void Interact() {
+    private void Announce() {
         AddToQueue(_descriptions);
-        FindObjectOfType<UI.UIDialogueManager>().StartItemDialogue(this);
+        FindObjectOfType<UI.UIDialogueManager>().StartSystemAlert(this);
     }
 }

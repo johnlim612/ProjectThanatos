@@ -4,8 +4,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
+    public static List<int> Sabotages = new List<int>();            // List of IDs for all possible sabotages
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     public static int? SabotageId;   // The ID of the day's major event/sabotage
+
+    private const int _maxNumSabotages = 6; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
 
     [SerializeField] private static int _day;
 
@@ -19,17 +22,21 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
         }
 
-        // REMOVE AFTER TESTING
-        //SabotageId = 1;
-        //RandomEventIds.Add("coffee");
-        //RandomEventIds.Add("laboratory");
         _day = 0;
+
+        for (int i = 1; i <= _maxNumSabotages; i++) {
+            Sabotages.Add(i);
+        }
+
         AdvanceDay();
     }
 
     public static void AdvanceDay() {
         _day += 1;
-        SabotageId = Random.Range(1, 3);
+        // at the end of each day, you need to remove the OLD ID from the Sabotages list
+        // then generate new ID:
+        SabotageId = Sabotages[Random.Range(1, Sabotages.Count - 1)];
+        
     }
 
     public static void ClearSabotage() {

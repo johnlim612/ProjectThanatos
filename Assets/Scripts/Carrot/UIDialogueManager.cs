@@ -152,7 +152,7 @@ namespace UI {
 		}
 
 		public void DisplayNextSentence() {
-			print(_sentences.Count + " at DisplayNextSentence()");
+			//print(_sentences.Count + " at DisplayNextSentence()");
 			// If dialogue has endedM
 			if (_sentences.Count == 0) {
 				EndDialogue();

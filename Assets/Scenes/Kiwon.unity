@@ -5598,6 +5598,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2526674087419541821, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: _sabotageID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674087419541821, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: _descriptions.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5606,12 +5610,28 @@ PrefabInstance:
       value: The malfunction has been fixed.
       objectReference: {fileID: 0}
     - target: {fileID: 2526674087578286880, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674087578286880, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: _sabotageID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674087578286880, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: _descriptions.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2526674087578286880, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: _descriptions.Array.data[0]
       value: The malfunction has been fixed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674087578286883, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674087578286909, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2526674087601099820, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: m_Name
@@ -5660,6 +5680,10 @@ PrefabInstance:
     - target: {fileID: 2526674087601100754, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526674088392235651, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
+      propertyPath: _sabotageID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2526674088392235651, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
       propertyPath: _descriptions.Array.size
@@ -5797,7 +5821,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1167247, y: 1}
+    m_SensorSize: {x: 2.1010454, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6922,7 +6946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f2b6950417c4e4b923cc1570e14254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enableHallwayTransition: 1
+  _enableHallwayTransition: 0
+  _mapSceneName: Kiwon
 --- !u!114 &2059458527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6899564351785206193, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}

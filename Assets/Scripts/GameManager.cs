@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     public static void AdvanceDay() {
         _day += 1;
         SabotageId = Random.Range(1, 3);
+        Sabotage.SabotageActive = true;
     }
 
     public static void ClearSabotage() {

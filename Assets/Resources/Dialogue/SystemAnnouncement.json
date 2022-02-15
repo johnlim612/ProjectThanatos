@@ -7,23 +7,32 @@
 			"alert" : "System Alert: Engine Power has been changed to low power. Manual readjustments required."
 		},
 		"3": {
-			"alert" : "Alert: Data System issues have been detected."
+			"alert" : "System Alert: Data System issues have been detected."
 		},
 		"4": {
-			"alert" : "Alert: Communications channel issues have been detected. Manual investigation required."
+			"alert" : "System Alert: Communications channel issues have been detected. Manual investigation required."
 		},
 		"5": {
-			"alert" : "Alert: Power system issues have been detected. Manual investigation required."
+			"alert" : "System Alert: Power system issues have been detected. Manual investigation required."
 		},
 		"6": {
-			"alert" : "Alert: Oxygen Level changes detected. Manual readjustments required."
+			"alert" : "System Alert: Oxygen Level changes detected. Manual readjustments required."
 		},
 		"7": {
-			"alert" : "Alert: Air Filtration System issues detected. Manual investigation required."
+			"alert" : "System Alert: Air Filtration System issues detected. Manual investigation required."
 		}
-	}, 
+	},
 	"message": {
-		"End 1" : {
+		"lab-notes-1" : "",
+		"lab-notes-2" : "",
+		"lab-notes-3" : "",
+		"lab-notes-4" : "",
+		"lab-notes-5" : "",
+		"lab-notes-6" : "",
+		"lab-notes-7" : ""
+	},
+	"end" : {
+		"end-1" : {
 			"1": "Everyone is gone. They're gone and I don't know what to do now.",
 			"2": "I searched everywhere on the ship and can't find anyone.",
 			"3": "I'm scared and I'm starting to remember more. But I don't want to remember more.",
@@ -39,14 +48,14 @@
 			"13": "I tried so hard for a different ending. I wanted a different ending.",
 			"14": "Please... forgive me.",
 		},
-		"End 2" : {
+		"end-2" : {
 			"1": "",
 			"2": "",
-			"2": "",
-			"2": "",
-			"2": "",
-			"2": "",
-			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"6": "",
+			"7": "",
 		}
 	}
 }

@@ -4,7 +4,10 @@ using UnityEngine;
 public class NPC : InteractableObject {
     public int CountCharDialogue { get { return _countCharDialogue; } }
 
-    public bool HasBeenSpokenTo { get { return _hasBeenSpokenTo; } }
+    public bool HasBeenSpokenTo { 
+        get { return _hasBeenSpokenTo; }
+        set { _hasBeenSpokenTo = value; }
+    }
 
     private int _countCharDialogue; // Incremented whenever character-specific dialogue is revealed
     private bool _hasBeenSpokenTo;  // If character-specific dialogue has been accessed that day

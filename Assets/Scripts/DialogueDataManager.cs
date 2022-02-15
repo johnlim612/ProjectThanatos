@@ -106,7 +106,7 @@ public class DialogueDataManager : MonoBehaviour {
         }
 
         // Get character-specific dialogue if it's available.
-        if (charDialogueId != null) {
+        if (charDialogueId != null && charDialogueId != 0) {
             _characterData = data[Constants.CharacterDialogueKey][charDialogueId.ToString()];
         }
 

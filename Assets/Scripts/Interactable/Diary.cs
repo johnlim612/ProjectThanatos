@@ -23,7 +23,7 @@ public class Diary : InteractableObject {
     }
 
     private void EndDay() {
-        GameManager.AdvanceDay();
+        GameManager.Instance.AdvanceDay();
     }
 
     public Queue<(string, string)> DescriptionQueue {

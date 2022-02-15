@@ -96,9 +96,10 @@ namespace UI {
 
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (item.HasBeenSpokenTo) {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, null);
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name);
 			} else {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, item.CountCharDialogue);
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, 
+					item.CountCharDialogue);
 				item.UpdateCharDialogueProgress();
 			}
 

@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
+    [SerializeField] private List<NPC> _npcList = new List<NPC>();
+
     public static List<int> Sabotages = new List<int>();            // List of IDs for all possible sabotages
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     public static int SabotageId;   // The ID of the day's major event/sabotage
@@ -31,11 +33,9 @@ public class GameManager : MonoBehaviour {
         AdvanceDay();
     }
 
-    public static void AdvanceDay() {
-        _day += 1;
-        // at the end of each day, you need to remove the OLD ID from the Sabotages list
-        // then generate new ID:
-        // ? can't I just remove the "old one" immediately after creation from list. Then I don't need to track it
+    public void AdvanceDay() {
+        ++_day;
+
         Sabotage.SabotageActive = true;
 
         if (Sabotages.Count > 1) {
@@ -50,7 +50,12 @@ public class GameManager : MonoBehaviour {
             // SabotageId = 7;
             return;
         }
+
         Sabotages.Remove(SabotageId);
+
+        foreach (NPC npc in _npcList) {
+            npc.HasBeenSpokenTo = false;
+        }
     }
 
     public static void ClearSabotage() {

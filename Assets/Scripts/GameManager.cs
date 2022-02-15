@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private List<NPC> _npcList = new List<NPC>();
 
+    public GameObject screen;
+
     public static List<int> Sabotages = new List<int>();            // List of IDs for all possible sabotages
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     public static int SabotageId;   // The ID of the day's major event/sabotage
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour {
             print("sab number 6: " + SabotageId);
 
         } else {
+            screen.gameObject.SetActive(true);
             // SabotageId = 7;
             return;
         }

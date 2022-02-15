@@ -3,23 +3,22 @@ using UnityEngine;
 
 public class SystemAnnouncement: MonoBehaviour {
 
-    [SerializeField] private string[] _descriptions;
-    private Queue<(string, string)> _descriptionQueue = new Queue<(string, string)>();
+    private static Queue<(string, string)> _descriptionQueue = new Queue<(string, string)>();
 
-    public Queue<(string, string)> DescriptionQueue {
+    private static Queue<(string, string)> DescriptionQueue {
         get {
             return _descriptionQueue;
         }
     }
 
-    public void AddToQueue(string[] sentences) {
+    private static void AddToQueue(string[] sentences) {
         foreach (string sentence in sentences) {
             _descriptionQueue.Enqueue(("Player", sentence));
         }
     }
 
-    private void Announce() {
-        AddToQueue(_descriptions);
-        FindObjectOfType<UI.UIDialogueManager>().StartSystemAlert(this);
+    public static void Announce(string[] description) {
+        AddToQueue(description);
+        FindObjectOfType<UI.UIDialogueManager>().StartSystemAlert(_descriptionQueue);
     }
 }

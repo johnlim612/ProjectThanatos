@@ -11,8 +11,9 @@ public class HallwayController : MonoBehaviour {
 
     void Start() {
         _player = GameObject.Find("Player");
-        _hallwayTransition = transform.parent.gameObject.GetComponent<HallwayManager>()
-            .EnableHallwayTransition;
+        HallwayManager hallwayManager = transform.parent.gameObject.GetComponent<HallwayManager>();
+        HallwaySaveData.MapSceneName = hallwayManager.MapSceneName;
+        _hallwayTransition = hallwayManager.EnableHallwayTransition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

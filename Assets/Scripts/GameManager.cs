@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
         // REMOVE AFTER TESTING
         SabotageId = 1;
+        Sabotage.SabotageActive = true;
         RandomEventIds.Add("coffee");
         RandomEventIds.Add("laboratory");
     }
@@ -28,9 +29,10 @@ public class GameManager : MonoBehaviour {
     public static void AdvanceDay() {
         _day += 1;
         SabotageId = Random.Range(1, 3);
+        Sabotage.SabotageActive = true;
     }
 
     public static void ClearSabotage() {
-        SabotageId = null;
+        Sabotage.SabotageActive = false;
     }
 }

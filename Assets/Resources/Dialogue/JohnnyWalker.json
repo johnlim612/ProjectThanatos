@@ -132,7 +132,10 @@
                 "1" : "Your past mission..."
             },
             "sentence": {
-                "1": ""
+                "1": "It was a while back... They went about recruitment the same way.",
+                "2": "Every one of us recieved a letter of recruitment.",
+                "3": "We went through the same training and the same deal.",
+                "4": "We returned to earth afterwards... but I lost contact with them."
             }
         }
     }

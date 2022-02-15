@@ -449,7 +449,7 @@ Transform:
   - {fileID: 1928378006}
   - {fileID: 1201780091}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &410861551
 PrefabInstance:
@@ -808,7 +808,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &693345837
 PrefabInstance:
@@ -3572,7 +3572,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668816168}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 31.536549, y: 32.25901, z: 2.9534335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3585,7 +3585,7 @@ Transform:
   - {fileID: 1405923339}
   - {fileID: 2138526093}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1668816170
 MonoBehaviour:
@@ -3600,6 +3600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enableHallwayTransition: 1
+  _mapSceneName: Save
 --- !u!1 &1928378005
 GameObject:
   m_ObjectHideFlags: 0

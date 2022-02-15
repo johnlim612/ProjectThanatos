@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
+        FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
+
         Sabotages.Remove(SabotageId);
 
         foreach (NPC npc in _npcList) {

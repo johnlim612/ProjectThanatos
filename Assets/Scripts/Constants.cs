@@ -10,4 +10,5 @@ public static class Constants {
     public const string DialogueNPCSentenceKey = "sentence";
     public const string SystemAlertKey = "alert";
     public const string SystemMessageKey = "message";
+    public const string SystemAnnouncement = "SystemAnnouncement";
 }

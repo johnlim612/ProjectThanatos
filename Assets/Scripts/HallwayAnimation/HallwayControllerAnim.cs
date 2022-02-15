@@ -17,8 +17,8 @@ public class HallwayControllerAnim : MonoBehaviour {
     private RawImage _image;
     private bool _doneLoading;
     private string _mapSceneName;
-    private const int _numInterations = 4;
-    private static int _currInteractions = 0;
+    private static int _currInteractions;
+    private const int _numInterations = 1;
 
     private void Awake() {
         _playerInputs = new PlayerInput();
@@ -27,6 +27,7 @@ public class HallwayControllerAnim : MonoBehaviour {
         _animator.Play("Hallway", -1, _startingTime);
         _doneLoading = false;
         _mapSceneName = HallwaySaveData.MapSceneName;
+        _currInteractions = 0;
         StartCoroutine(Load(0.01f));
 
         if (_isDoor) {
@@ -58,8 +59,7 @@ public class HallwayControllerAnim : MonoBehaviour {
     /// <summary>
     /// Gives images a chance to get to their proper timeframe when scene starts.
     /// </summary>
-    /// <param name="time"></param>
-    /// <returns></returns>
+    /// <param name="time">Time given to load</param>
     IEnumerator Load(float time) {
         yield return new WaitForSeconds(time);
         _doneLoading = true;

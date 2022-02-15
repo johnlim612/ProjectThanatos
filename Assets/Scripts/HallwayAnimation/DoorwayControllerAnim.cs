@@ -27,13 +27,9 @@ public class DoorwayControllerAnim : MonoBehaviour {
             _animator.enabled = true;
         } else if (moveVal == 0) {
             _animator.enabled = false;
-        } else {
-            // TODO: Player goes back to previous room
-            print("Player wants to go back!");
         }
     }
 
-    private void BeginDoorSequence() {
-
-    }
+    // TODO: door opening animation?
+    private void BeginDoorSequence() {}
 }

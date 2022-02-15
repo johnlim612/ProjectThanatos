@@ -116,28 +116,28 @@
                 "2": "I doubt they'd call me in again after this... I'm getting too old.",
                 "3": "Someone else would end up taking my place on the next mission though.",
                 "4": "They always bring a crew member who has taken on the mission there before."
+            }
+        },
+        "2": {
+            "prompt": {
+                "1": "Hobbies on earth..."
             },
-            "2": {
-                "prompt": {
-                    "1": "Hobbies on earth..."
-                },
-                "sentence": {
-                    "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
-                    "2": "Really, I was only doing this for the money to live easy with my family.",
-                    "3": "Nothing more, nothing less."
-                }
+            "sentence": {
+                "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
+                "2": "Really, I was only doing this for the money to live easy with my family.",
+                "3": "Nothing more, nothing less."
+            }
+        },
+        "3": {
+            "prompt": {
+                "1": "Your past mission..."
             },
-            "3": {
-                "prompt": {
-                    "1": "Your past mission..."
-                },
 
-                "sentence": {
-                    "1": "It was a while back... They went about recruitment the same way.",
-                    "2": "Every one of us recieved a letter of recruitment.",
-                    "3": "We went through the same training and the same deal.",
-                    "4": "We returned to earth afterwards... but I lost contact with them."
-                }
+            "sentence": {
+                "1": "It was a while back... They went about recruitment the same way.",
+                "2": "Every one of us recieved a letter of recruitment.",
+                "3": "We went through the same training and the same deal.",
+                "4": "We returned to earth afterwards... but I lost contact with them."
             }
         }
     }

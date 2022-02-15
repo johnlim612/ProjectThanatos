@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public static List<int> Sabotages = new List<int>();            // List of IDs for all possible sabotages
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
-    public static int? SabotageId;   // The ID of the day's major event/sabotage
+    public static int SabotageId;   // The ID of the day's major event/sabotage
 
     private const int _maxNumSabotages = 6; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
 
@@ -35,9 +35,22 @@ public class GameManager : MonoBehaviour {
         _day += 1;
         // at the end of each day, you need to remove the OLD ID from the Sabotages list
         // then generate new ID:
-        SabotageId = Sabotages[Random.Range(1, Sabotages.Count - 1)];
-        
+        // ? can't I just remove the "old one" immediately after creation from list. Then I don't need to track it
         Sabotage.SabotageActive = true;
+
+        if (Sabotages.Count > 1) {
+            SabotageId = Sabotages[Random.Range(0, Sabotages.Count)];
+            print("this is sab#: " + SabotageId + " day: "+ _day);
+
+		} else if (Sabotages.Count == 1) {
+            SabotageId = Sabotages[0];
+            print("sab number 6: " + SabotageId);
+
+        } else {
+            // SabotageId = 7;
+            return;
+        }
+        Sabotages.Remove(SabotageId);
     }
 
     public static void ClearSabotage() {

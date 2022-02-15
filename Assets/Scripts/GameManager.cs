@@ -20,9 +20,11 @@ public class GameManager : MonoBehaviour {
         }
 
         // REMOVE AFTER TESTING
-        SabotageId = 1;
-        RandomEventIds.Add("coffee");
-        RandomEventIds.Add("laboratory");
+        //SabotageId = 1;
+        //RandomEventIds.Add("coffee");
+        //RandomEventIds.Add("laboratory");
+        _day = 0;
+        AdvanceDay();
     }
 
     public static void AdvanceDay() {

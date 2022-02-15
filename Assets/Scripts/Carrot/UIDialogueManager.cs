@@ -80,7 +80,12 @@ namespace UI {
 			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			if (item.HasBeenSpokenTo) {
+				DialogueDataManager.Initialize(item.gameObject.name, null);
+			} else {
+				DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+				item.UpdateCharDialogueProgress();
+			}
 
 			// Prompt Greeting here:
 			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));

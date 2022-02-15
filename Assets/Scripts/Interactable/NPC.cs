@@ -18,14 +18,11 @@ public class NPC : InteractableObject {
     /// DialogueManager triggers the dialogue when the NPC is interacted with.
     /// </summary>
     public override void InteractObject() {
-        int? charDialogueKey;
-
-        if (_hasBeenSpokenTo) {
-            charDialogueKey = null;
-        } else {
-            charDialogueKey = _countCharDialogue;
-        }
-
         FindObjectOfType<UI.UIDialogueManager>().StartDialogue(this);
+    }
+
+    public void UpdateCharDialogueProgress() {
+        _hasBeenSpokenTo = true;
+        ++_countCharDialogue;
     }
 }

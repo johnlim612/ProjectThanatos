@@ -20,11 +20,12 @@ public class DialogueDataManager : MonoBehaviour {
     private static DialogueDataManager _instance;   // Singleton instance of the class.
 
     private static string _baseFilePath = "Dialogue/";
-    private static List<string> _prompts;   // Player prompts to start different conversations w/ NPCs
-    private static string _greeting;    // First thing NPC displays when interacted with.
 
     // Indices of dialogues correspond to _prompts[]
     private static List<DialogueReference> _dialogues;
+
+    private static List<string> _prompts;   // Player prompts to start different conversations w/ NPCs
+    private static string _greeting;    // First thing NPC displays when interacted with.
 
     // Contains specific raw dialgoue data in JSON format
     private static JToken _sabotageData;
@@ -49,6 +50,9 @@ public class DialogueDataManager : MonoBehaviour {
     /// <param name="npcName">The NPC whose JSON file will be loaded</param>
     /// <param name="charDialogueId">Key for character-specific dialogue</param>
     public static void Initialize(string npcName, int? charDialogueId) {
+        // Ensure any previously stored data is cleared
+        ResetData();
+
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(npcName.Replace(" ", ""));
         _npcName = npcName;
@@ -58,7 +62,7 @@ public class DialogueDataManager : MonoBehaviour {
             return;
         }
 
-        FindRelevantDialogue(data, 1);  // TODO: Change 1 to charDialogueId after testing.
+        FindRelevantDialogue(data, charDialogueId);
         FindInitialPrompts();
     }
 
@@ -108,7 +112,7 @@ public class DialogueDataManager : MonoBehaviour {
         _prompts.Add(_sabotageData[promptKey]["1"].ToString());
         _dialogues.Add(new DialogueReference(Constants.SabotageDialogueKey, "1"));
 
-        if (_randomEventData.Length > 0) {
+        if (_randomEventData != null && _randomEventData.Length > 0) {
             foreach ((string, JToken) randEvent in _randomEventData) {
                 _prompts.Add(randEvent.Item2[promptKey]["1"].ToString());
                 _dialogues.Add(new DialogueReference(Constants.RandomEventDialogueKey, 
@@ -153,7 +157,7 @@ public class DialogueDataManager : MonoBehaviour {
                 dialogue.Enqueue((_npcName, replies[j].Item2));
                 j++;
             } else {
-                dialogue.Enqueue(("player", prompts[i].Item2));
+                dialogue.Enqueue((Constants.PlayerKey, prompts[i].Item2));
                 i++;
             }
         }
@@ -164,7 +168,7 @@ public class DialogueDataManager : MonoBehaviour {
             }
         } else {
             for (int l = i; l < prompts.Count; l++) {
-                dialogue.Enqueue(("player", prompts[l].Item2));
+                dialogue.Enqueue((Constants.PlayerKey, prompts[l].Item2));
             }
         }
 
@@ -209,5 +213,10 @@ public class DialogueDataManager : MonoBehaviour {
 
     public static List<string> GetPrompts() {
         return _prompts;
+    }
+
+    private static void ResetData() {
+        _prompts = new List<string>();
+        _dialogues = new List<DialogueReference>();
     }
 }

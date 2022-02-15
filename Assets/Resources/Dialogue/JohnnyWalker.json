@@ -102,7 +102,7 @@
             },
             "sentence": {
                 "1": "Nah, I'd prefer coffee.",
-                "2" : "If you don't want your daily coffee just send it my way."
+                "2": "If you don't want your daily coffee just send it my way."
             }
         }
     },
@@ -114,25 +114,26 @@
             "sentence": {
                 "1": "I'm probably going to just go back to living normally, the way I used to.",
                 "2": "I doubt they'd call me in again after this... I'm getting too old.",
-                "3": "Someone else would end up taking my place on the next mission though.", 
+                "3": "Someone else would end up taking my place on the next mission though.",
                 "4": "They always bring a crew member who has taken on the mission there before."
-        },
-        "2": {
-            "prompt": {
-                "1": "Hobbies on earth..."
             },
-            "sentence": {
-                "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
-                "2": "Really, I was only doing this for the money to live easy with my family.",
-                "3": "Nothing more, nothing less."
-            }
-        },
-        "3": {
-            "prompt" : {
-                "1" : "Your past mission..."
+            "2": {
+                "prompt": {
+                    "1": "Hobbies on earth..."
+                },
+                "sentence": {
+                    "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
+                    "2": "Really, I was only doing this for the money to live easy with my family.",
+                    "3": "Nothing more, nothing less."
+                }
             },
-            "sentence": {
-                "1": ""
+            "3": {
+                "prompt": {
+                    "1": "Your past mission..."
+                },
+                "sentence": {
+                    "1": ""
+                }
             }
         }
     }

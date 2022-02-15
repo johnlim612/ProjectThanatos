@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class HallwayControllerAnim : MonoBehaviour {
     [SerializeField] [Range(0, 1)] private float _startingTime;
-    [SerializeField] private bool _isDoor;
+    [SerializeField] private DoorType _doorType;
 
     private PlayerInput _playerInputs;
     private InputAction _movement;
@@ -17,8 +17,8 @@ public class HallwayControllerAnim : MonoBehaviour {
     private RawImage _image;
     private bool _doneLoading;
     private string _mapSceneName;
-    private const int _numInterations = 4;
-    private static int _currInteractions = 0;
+    private static int _currInteractions;
+    private const int _numInterations = 1;
 
     private void Awake() {
         _playerInputs = new PlayerInput();
@@ -27,9 +27,10 @@ public class HallwayControllerAnim : MonoBehaviour {
         _animator.Play("Hallway", -1, _startingTime);
         _doneLoading = false;
         _mapSceneName = HallwaySaveData.MapSceneName;
+        _currInteractions = 0;
         StartCoroutine(Load(0.01f));
 
-        if (_isDoor) {
+        if (_doorType != DoorType.Neither) {
             _image.enabled = false;
         }
     }
@@ -58,8 +59,7 @@ public class HallwayControllerAnim : MonoBehaviour {
     /// <summary>
     /// Gives images a chance to get to their proper timeframe when scene starts.
     /// </summary>
-    /// <param name="time"></param>
-    /// <returns></returns>
+    /// <param name="time">Time given to load</param>
     IEnumerator Load(float time) {
         yield return new WaitForSeconds(time);
         _doneLoading = true;
@@ -79,11 +79,47 @@ public class HallwayControllerAnim : MonoBehaviour {
     }
 
     /// <summary>
-    /// Transitions to next room
+    /// Doors opening animation
     /// </summary>
     private void OpenDoors() {
-        if (_isDoor && _image.enabled) {
-            SceneManager.LoadScene(_mapSceneName);
+        if (_doorType != DoorType.Neither && _image.enabled) {
+            _doneLoading = false;
+            _animator.enabled = true;
+
+            if (_doorType == DoorType.Right) {
+                SetDoorBackground();
+                _animator.SetTrigger("RightDoor");
+            } else {
+                _animator.SetTrigger("LeftDoor");
+            }
         }
+    }
+
+    /// <summary>
+    /// Takes the background "DoorBackground" and makes its opacity 1.
+    /// This should be used after the "RightDoor" has been triggered becuase it
+    /// it above the "LeftDoor" in the hierachy.
+    /// </summary>
+    private void SetDoorBackground() {
+        RawImage image = GameObject.Find("DoorBackground").GetComponent<RawImage>();
+        Color color = image.color;
+        int idx = transform.GetSiblingIndex();
+
+        image.transform.SetSiblingIndex(idx);
+        color.a = 1;
+        image.color = color; 
+    }
+
+    /// <summary>
+    /// Goes to next room/scene
+    /// </summary>
+    private void NextRoom() {
+        SceneManager.LoadScene(_mapSceneName);
+    }
+
+    enum DoorType {
+        Neither,
+        Right,
+        Left
     }
 }

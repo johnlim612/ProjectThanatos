@@ -46,8 +46,15 @@ namespace UI {
 				NextButton.GetComponentInChildren<Text>().text = "continue";
 			}
 		}
-		public void StartSystemAlert(SystemAnnouncement sysAnnounce) {
-			
+		public void StartSystemAlert(Queue<(string, string)> sysAnnounce) {
+			_player.GetComponent<PlayerController>().enabled = false;
+			IsInteracting = true;
+			_sentences = sysAnnounce;
+
+			ToggleNextButton();
+			//print(_sentences.Count + " at StartDiaryDialogue()");
+			Animator.SetBool("IsOpen", true);
+			DisplayNextSentence();
 		}
 
 		public void StartDiaryDialogue(Diary diary) {
@@ -56,10 +63,18 @@ namespace UI {
 			_sentences = diary.DescriptionQueue;
 
 			ToggleNextButton();
-			//print(_sentences.Count + " at StartDiaryDialogue()");
 			Animator.SetBool("IsOpen", true);
 			DisplayNextSentence();
 		}
+
+		public void StartAnnouncement() {
+			DialogueDataManager.Initialize(DataType.SystemAnnouncement, "SystemAnnouncement", 1);
+			_sentences = DialogueDataManager.GetAnnouncement();
+            ToggleNextButton();
+            Animator.SetBool("IsOpen", true);
+            DisplayNextSentence();
+        }
+
 
 		public void StartItemDialogue(Item item) {
 			IsInteracting = true;
@@ -80,7 +95,7 @@ namespace UI {
 			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			DialogueDataManager.Initialize(item.gameObject.name, item.CountCharDialogue);
+			DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, item.CountCharDialogue);
 
 			// Prompt Greeting here:
 			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));
@@ -145,7 +160,7 @@ namespace UI {
 		}
 
 		public void DisplayNextSentence() {
-			print(_sentences.Count + " at DisplayNextSentence()");
+			//print(_sentences.Count + " at DisplayNextSentence()");
 			// If dialogue has endedM
 			if (_sentences.Count == 0) {
 				EndDialogue();

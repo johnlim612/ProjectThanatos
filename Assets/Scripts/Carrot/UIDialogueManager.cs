@@ -125,7 +125,6 @@ namespace UI {
 					Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
-				print("setting a button active");
 				Buttons[i].gameObject.SetActive(true);
 				Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}

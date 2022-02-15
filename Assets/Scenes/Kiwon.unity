@@ -6880,6 +6880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2052504506}
+  - component: {fileID: 2052504507}
   m_Layer: 0
   m_Name: DoorPads
   m_TagString: Untagged
@@ -6909,6 +6910,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2052504507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052504505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f2b6950417c4e4b923cc1570e14254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enableHallwayTransition: 1
 --- !u!114 &2059458527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6899564351785206193, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}

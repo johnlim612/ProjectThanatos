@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DoorwayController : MonoBehaviour {
+public class DoorwayControllerAnim : MonoBehaviour {
     private PlayerInput _playerInputs;
     private InputAction _movement;
     private Animator _animator;

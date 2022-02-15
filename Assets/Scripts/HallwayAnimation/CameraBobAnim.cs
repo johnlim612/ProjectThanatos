@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraBob : MonoBehaviour {
+public class CameraBobAnim : MonoBehaviour {
     private Animator _animator;
     private PlayerInput _playerInputs;
     private InputAction _movement;

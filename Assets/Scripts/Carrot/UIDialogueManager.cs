@@ -46,8 +46,19 @@ namespace UI {
 				NextButton.GetComponentInChildren<Text>().text = "continue";
 			}
 		}
-		public void StartSystemAlert(Diary diary) {
+		public void StartSystemAlert(SystemAnnouncement sysAnnounce) {
 			
+		}
+
+		public void StartDiaryDialogue(Diary diary) {
+			_player.GetComponent<PlayerController>().enabled = false;
+			IsInteracting = true;
+			_sentences = diary.DescriptionQueue;
+
+			ToggleNextButton();
+			//print(_sentences.Count + " at StartDiaryDialogue()");
+			Animator.SetBool("IsOpen", true);
+			DisplayNextSentence();
 		}
 
 		public void StartItemDialogue(Item item) {
@@ -134,6 +145,7 @@ namespace UI {
 		}
 
 		public void DisplayNextSentence() {
+			print(_sentences.Count + " at DisplayNextSentence()");
 			// If dialogue has endedM
 			if (_sentences.Count == 0) {
 				EndDialogue();
@@ -156,6 +168,7 @@ namespace UI {
 		}
 
 		void EndDialogue() {
+			//print(Animator.GetBool("IsOpen"));
 			Animator.SetBool("IsOpen", false);
 			ToggleNextButton();
 			_player.GetComponent<PlayerController>().enabled = true;

@@ -8,7 +8,7 @@ public class Diary : InteractableObject {
     private Queue<(string, string)> _descriptionQueue;
 
     public override void InteractObject() {
-        if (GameManager.SabotageId != null) {
+        if (Sabotage.SabotageActive) {
             AddToQueue(_requirements);
             FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
         } else {

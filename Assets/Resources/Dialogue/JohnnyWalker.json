@@ -1,0 +1,144 @@
+{
+    "sabotage": {
+        "1": {
+            "greeting": "*Yawn* Hmm... Wonder if things will be okay when we get back...",
+            "prompt": {
+                "1": "Good morning, Johnny.",
+                "2": "Something must have happened...",
+                "4": "Well... We're almost home at least."
+            },
+            "sentence": {
+                "1": "Morning. Did you end up readjusting the settings for the ship's course?",
+                "2": "Mm. I'm not sure...",
+                "3": "Sometimes, it feels like they didn't fund this project enough.",
+                "4": "Yeah. Hopefully things will be okay once we get home."
+            }
+        },
+        "2": {
+            "greeting": "*Sigh* Where's my coffee when I need it...",
+            "prompt": {
+                "1": "Do you know what happened earlier?",
+                "4": "Set up?"
+            },
+            "sentence": {
+                "1": "I didn't really go by the engine room if that's what you're asking.",
+                "2": "I found it weird to hear that the settings had been changed too.",
+                "3": "Sometimes I wonder if we were being set up.",
+                "4": "Mmm... Nevermind. It's probably just this old man's paranoia."
+            }
+        },
+        "3": {
+            "greeting": "(Johnny seems to be silently enjoying his fresh coffee today)",
+            "prompt": {
+                "1": "Won fixed the system...",
+                "4": "I don't mind."
+            },
+            "sentence": {
+                "1": "Yeah, he finally got off of his butt and helped out.",
+                "2": "You've been fixing a majority of the issues nowadays.",
+                "3": "He's definitely had more free time to mess around lately.",
+                "4": "Maybe you should... He almost broke my coffee machine, you know.",
+                "5": "Just keep him out of my things...",
+                "6": "It seems like more problems have been occuring lately.",
+                "7": "I don't know if it's all just coincidence anymore."
+            }
+        },
+        "4": {
+            "greeting": "Seems like there are so many problems lately...",
+            "prompt": {
+                "1": "Did someone go by communications?",
+                "4": "What do you mean?",
+                "5": "Other than the mission?"
+            },
+            "sentence": {
+                "1": "Hm...? I haven't been by communications, so I couldn't really say.",
+                "2": "Maybe that feeling of paranoia was right...",
+                "3": "I can't say whether we've been set up but there have been too many issues lately.",
+                "4": "All of us have something in common, kid.",
+                "5": "... You'll figure it out."
+            }
+        },
+        "5": {
+            "greeting": "Damn it, the stupid power out made my coffee machine break...",
+            "prompt": {
+                "1": "Did you see anyone by the power room?",
+                "2": "... I don't have any proof... but..."
+            },
+            "sentence": {
+                "1": "Nope. You think someone's causing problems on purpose?",
+                "2": "I see... You have a good head on your shoulders... I would be cautious too.",
+                "3": "I can't say I would even trust myself... but the others may take it badly.",
+                "4": "We've been together on this mission all these years after all."
+            }
+        },
+        "6": {
+            "greeting": "Mmm... I really feel like we can't trust them...",
+            "prompt": {
+                "1": "Trust who?"
+            },
+            "sentence": {
+                "1": "*Johnny spits out his coffee* Fuck! You scared me! I meant the ones who highered us.",
+                "2": "I told you didn't I? There's something we all have in common.",
+                "3": "Well... Either way, even if I don't trust them, we're here anyways.",
+                "4": "I can't do much about it now. So I just have to wait and see.",
+                "5": "Just be careful kid. I could care less about myself, but you all are still young."
+            }
+        }
+    },
+    "random": {
+        "coffee": {
+            "prompt": {
+                "1": "Hey, did you want some coffee?"
+            },
+            "sentence": {
+                "1": "Awww shit, thanks. I definitely needed this.",
+                "2": "I'm never awake enough for anything I swear. *chugs the entire thing in a second*"
+            }
+        },
+        "water": {
+            "prompt": {
+                "1": "Did you want some water?",
+                "3": "Sure."
+            },
+            "sentence": {
+                "1": "Nah, I'd prefer coffee.",
+                "2": "If you don't want your daily coffee just send it my way."
+            }
+        }
+    },
+    "character": {
+        "1": {
+            "prompt": {
+                "1": "When you get back home..."
+            },
+            "sentence": {
+                "1": "I'm probably going to just go back to living normally, the way I used to.",
+                "2": "I doubt they'd call me in again after this... I'm getting too old.",
+                "3": "Someone else would end up taking my place on the next mission though.",
+                "4": "They always bring a crew member who has taken on the mission there before."
+            }
+        },
+        "2": {
+            "prompt": {
+                "1": "Hobbies on earth..."
+            },
+            "sentence": {
+                "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
+                "2": "Really, I was only doing this for the money to live easy with my family.",
+                "3": "Nothing more, nothing less."
+            }
+        },
+        "3": {
+            "prompt": {
+                "1": "Your past mission..."
+            },
+
+            "sentence": {
+                "1": "It was a while back... They went about recruitment the same way.",
+                "2": "Every one of us recieved a letter of recruitment.",
+                "3": "We went through the same training and the same deal.",
+                "4": "We returned to earth afterwards... but I lost contact with them."
+            }
+        }
+    }
+}

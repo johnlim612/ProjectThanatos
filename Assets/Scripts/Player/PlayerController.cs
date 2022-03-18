@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private float _moveSpeed;      // Player's move speed
-    [SerializeField] private float _sprintSpeed;
-    [SerializeField] private float _sensitivity;    // Player's camera sensitivity
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private Transform _camera;
+    public PlayerSFX Sfx;
+    public Rigidbody RB;
+    public Transform PlayerCam;
 
+    [SerializeField] private float _walkSpeed;      // Player's move speed
+    [SerializeField] private float _sprintSpeed;    //
+    [SerializeField] private float _sensitivity;    // Player's camera sensitivity
+    
     private PlayerInput _playerInputs;  // Custom Input Action map for player inputs
     private InputAction _movement;      // Reference to player's movement inputs
     private InputAction _sprint;
@@ -17,9 +19,10 @@ public class PlayerController : MonoBehaviour {
     private float _xRot, _yRot;
 
     private void Awake() {
+        Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
         _yRot = 0;
-        Cursor.lockState = CursorLockMode.Locked;
+
         _playerInputs = new PlayerInput(); // Instantiate reference to custom InputAction
         _movement = _playerInputs.Player.Movement;
         _sprint = _playerInputs.Player.Sprint;
@@ -48,11 +51,17 @@ public class PlayerController : MonoBehaviour {
     
     private void PlayerMovement() {
         Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
-        Vector3 moveVector = _camera.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        //Apply vector to velocity
         if (_sprint.ReadValue<float>() == 1) {
-            _rb.velocity = moveVector * _sprintSpeed * Time.deltaTime; //Apply vector to velocity
+            Sfx.Run();
+            RB.velocity = moveVector * _sprintSpeed * Time.deltaTime; 
         } else {
-            _rb.velocity = moveVector * _moveSpeed * Time.deltaTime;
+            Sfx.Walk();
+            RB.velocity = moveVector * _walkSpeed * Time.deltaTime;
+        }
+        if (_moveDirection.x == 0 && _moveDirection.z == 0) {
+            Sfx.Stop();
         }
     }
 
@@ -63,7 +72,7 @@ public class PlayerController : MonoBehaviour {
         _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
         _xRot = Mathf.Clamp(_xRot, -35, 60);
 
-        _camera.transform.localRotation = Quaternion.Slerp(_camera.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
         
     }
 

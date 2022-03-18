@@ -68,10 +68,11 @@ namespace UI {
 			if (interactable != Interactables.NPC) {
 				ToggleNextButton(false);
 			}
-				IsInteracting = true;
+
+			IsInteracting = true;
 			_dialogueUI.DialogueText.text = "";
 			_dialogueUI.Animator.SetBool("IsOpen", true);
-
+			Cursor.lockState = CursorLockMode.None;
 		}
 
 		public void SelectPrompt(int buttonIndex) {
@@ -212,6 +213,7 @@ namespace UI {
 		void EndDialogue() {
 			_dialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
+			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}

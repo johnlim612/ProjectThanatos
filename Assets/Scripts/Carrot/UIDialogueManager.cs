@@ -15,6 +15,7 @@ namespace UI {
 		public Text DialogueText;
 		public Button NextButton;
 		public Animator Animator;
+		public GameObject Dialogue;
 		private Dialogue _dialogue;
 
 		// Temporary holder for current dialogue queue
@@ -80,7 +81,7 @@ namespace UI {
 			DisplayNextSentence();
 		}
 
-		public void StartDialogue(NPC item) {
+		public void StartDialogue(NPC npc) {
 
 			// Pause movement here:
 			_player.GetComponent<PlayerController>().enabled = false;
@@ -91,22 +92,22 @@ namespace UI {
 			NextButton.GetComponentInChildren<Text>().text = "";
 
 			// Find and Load all Data pertaining to the characters' dialogue.
-			if (item.HasBeenSpokenTo) {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name);
+			if (npc.HasBeenSpokenTo) {
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name);
 			} else {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, item.gameObject.name, 
-					item.CountCharDialogue);
-				item.UpdateCharDialogueProgress();
+				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name, 
+				npc.CountCharDialogue);
+				npc.UpdateCharDialogueProgress();
 			}
 
 
 			// Prompt Greeting here:
-			StartCoroutine(TypeSentence((item.gameObject.name, DialogueDataManager.GetGreeting())));
+			StartCoroutine(TypeSentence((npc.gameObject.name, DialogueDataManager.GetGreeting())));
 			
 			Animator.SetBool("IsOpen", true);
 			InitializePrompts();
-			DisplayPrompts(item.name);
-			StartCoroutine(WaitForUserPrompt(item));
+			DisplayPrompts(npc.name);
+			StartCoroutine(WaitForUserPrompt(npc));
             // Create Dialogue Object
         }
 

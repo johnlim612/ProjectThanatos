@@ -2765,6 +2765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor BW Bunk and Supply
       objectReference: {fileID: 0}
+    - target: {fileID: 1479519769256840, guid: a3dc48b819754a24aa02949c88aba429, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4098609260650186, guid: a3dc48b819754a24aa02949c88aba429, type: 3}
       propertyPath: m_RootOrder
       value: 1

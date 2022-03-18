@@ -3,12 +3,11 @@ using UnityEngine;
 public class InteractableSabotage : InteractableObject {
     [SerializeField] private string[] _descriptions;
     [SerializeField] private int _sabotageID;
-    private BoxCollider _boxCol;
-    private SpriteRenderer _spriteRend;
+    //private MeshRenderer _meshRend;
 
     private void Awake() {
         _boxCol = GetComponent<BoxCollider>();
-        _spriteRend = GetComponent<SpriteRenderer>();
+        //_meshRend = GetComponent<MeshRenderer>();
     }
 
     public int SabotageID {
@@ -37,6 +36,6 @@ public class InteractableSabotage : InteractableObject {
 
     private void ToggleSabotage(bool state) {
         _boxCol.enabled = state;
-        _spriteRend.enabled = state;
+        //_meshRend.enabled = state;
     }
 }

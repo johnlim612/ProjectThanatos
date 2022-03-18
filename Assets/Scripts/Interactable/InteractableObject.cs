@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour {
-    private string _interactableText = "Press Space";
-    private bool _interactableCollided = false;
-    private BoxCollider _boxCol;
+    protected string _interactableText = "Press Space";
+    protected bool _interactableCollided = false;
+    protected BoxCollider _boxCol;
 
     public void OnInteract(InputValue value) {
         if (_interactableCollided && !UI.UIDialogueManager.IsInteracting) {
@@ -26,7 +26,6 @@ public class InteractableObject : MonoBehaviour {
             _interactableCollided = false;
         }
     }
-
     private void OnGUI() {
         if (_interactableCollided) {
             _boxCol = GetComponent<BoxCollider>();

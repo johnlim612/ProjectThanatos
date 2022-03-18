@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour {
-    public PlayerSFX sfx;
-    public Rigidbody _rb;
-    public Transform _camera;
+    public PlayerSFX Sfx;
+    public Rigidbody RB;
+    public Transform PlayerCam;
 
     [SerializeField] private float _walkSpeed;      // Player's move speed
     [SerializeField] private float _sprintSpeed;    //
@@ -51,17 +51,17 @@ public class PlayerController : MonoBehaviour {
     
     private void PlayerMovement() {
         Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
-        Vector3 moveVector = _camera.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
         //Apply vector to velocity
         if (_sprint.ReadValue<float>() == 1) {
-            sfx.Run();
-            _rb.velocity = moveVector * _sprintSpeed * Time.deltaTime; 
+            Sfx.Run();
+            RB.velocity = moveVector * _sprintSpeed * Time.deltaTime; 
         } else {
-            sfx.Walk();
-            _rb.velocity = moveVector * _walkSpeed * Time.deltaTime;
+            Sfx.Walk();
+            RB.velocity = moveVector * _walkSpeed * Time.deltaTime;
         }
         if (_moveDirection.x == 0 && _moveDirection.z == 0) {
-            sfx.Stop();
+            Sfx.Stop();
         }
     }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
         _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
         _xRot = Mathf.Clamp(_xRot, -35, 60);
 
-        _camera.transform.localRotation = Quaternion.Slerp(_camera.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
         
     }
 

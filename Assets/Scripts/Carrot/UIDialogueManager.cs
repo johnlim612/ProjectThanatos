@@ -68,10 +68,11 @@ namespace UI {
 			if (interactable != Interactables.NPC) {
 				ToggleNextButton(false);
 			}
-				IsInteracting = true;
+
+			IsInteracting = true;
 			_dialogueUI.DialogueText.text = "";
 			_dialogueUI.Animator.SetBool("IsOpen", true);
-
+			Cursor.lockState = CursorLockMode.None;
 		}
 
 		public void SelectPrompt(int buttonIndex) {
@@ -100,11 +101,10 @@ namespace UI {
 		}
 
 		public void StartAnnouncement() {
-			Awake();
 			//_player.GetComponent<PlayerController>().enabled = true;
-			DialogueDataManager.Initialize(DataType.SystemAnnouncement, 
-			Constants.SystemAnnouncement, GameManager.SabotageId);
-			_sentences = DialogueDataManager.GetAnnouncement();
+			DialogueDataManager.Instance.Initialize(DataType.SystemAnnouncement, 
+				Constants.SystemAnnouncement, GameManager.SabotageId);
+			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			_dialogueUI.Animator.SetBool("IsOpen", true); 
             DisplayNextSentence();
         }
@@ -117,15 +117,15 @@ namespace UI {
 		public void StartDialogue(NPC npc) {
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (npc.HasBeenSpokenTo) {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name);
+				DialogueDataManager.Instance.Initialize(DataType.CharacterDialogue, npc.gameObject.name);
 			} else {
-				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name, 
+				DialogueDataManager.Instance.Initialize(DataType.CharacterDialogue, npc.gameObject.name, 
 				npc.CountCharDialogue);
 				npc.UpdateCharDialogueProgress();
 			}
 
 			// Prompt Greeting here:
-			StartCoroutine(TypeSentence((npc.gameObject.name, DialogueDataManager.GetGreeting())));
+			StartCoroutine(TypeSentence((npc.gameObject.name, DialogueDataManager.Instance.GetGreeting())));
 			InitializePrompts();
 			LoadAndDisplayPrompts();
 			StartCoroutine(WaitForUserPrompt(npc));
@@ -147,7 +147,7 @@ namespace UI {
 		}
 
 		public void LoadAndDisplayPrompts() {
-			List<string> prompts = DialogueDataManager.GetPrompts();
+			List<string> prompts = DialogueDataManager.Instance.GetPrompts();
 			for (int i = 0;  i < _dialogueUI.Buttons.Length; i++) {
 				if (i >= prompts.Count) {
 					_dialogueUI.Buttons[i].gameObject.SetActive(false);
@@ -170,7 +170,7 @@ namespace UI {
 		public void CreateDialogue(InteractableObject entity) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = entity.name;
-			_dialogue.Sentences = DialogueDataManager.GetDialogue(_promptSelection);
+			_dialogue.Sentences = DialogueDataManager.Instance.GetDialogue(_promptSelection);
 		}
 
 		/// <summary>
@@ -212,6 +212,7 @@ namespace UI {
 		void EndDialogue() {
 			_dialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
+			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}

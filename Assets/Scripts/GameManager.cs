@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+    }
 
+    private void Start() {
         _day = 4;   // TODO: Reset to 0 after testing.
 
         for (int i = 1; i <= _maxNumSabotages; i++) {

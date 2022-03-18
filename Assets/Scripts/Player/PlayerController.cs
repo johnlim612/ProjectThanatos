@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     private float _xRot, _yRot;
 
     private void Awake() {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
         _yRot = 0;
 

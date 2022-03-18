@@ -89,8 +89,7 @@ namespace UI {
 
 			// Pause next button
 			NextButton.enabled = false;
-			NextButton.GetComponentInChildren<Text>().text = "";
-
+			
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (npc.HasBeenSpokenTo) {
 				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name);

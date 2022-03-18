@@ -7,7 +7,9 @@ using UnityEngine.UI;
 namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 
-		public DialogueUI DialogueUI;
+		public GameObject DialogueUIObject;
+		
+		private DialogueUI _dialogueUI;
 		private Dialogue _dialogue;
 
 		// Temp Dialogue queue holder
@@ -26,7 +28,7 @@ namespace UI {
 
 		// Start is called before the first frame update
 		void Awake() {
-			DialogueUI = DialogueUI.GetComponent<DialogueUI>();
+			_dialogueUI = DialogueUIObject.GetComponent<DialogueUI>();
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find(Constants.PlayerKey);
 		}
@@ -67,13 +69,13 @@ namespace UI {
 				ToggleNextButton(false);
 			}
 				IsInteracting = true;
-			DialogueUI.DialogueText.text = "";
-			DialogueUI.Animator.SetBool("IsOpen", true);
+			_dialogueUI.DialogueText.text = "";
+			_dialogueUI.Animator.SetBool("IsOpen", true);
 
 		}
 
 		public void SelectPrompt(int buttonIndex) {
-			foreach (Button button in DialogueUI.Buttons) {
+			foreach (Button button in _dialogueUI.Buttons) {
 				button.gameObject.SetActive(false);
 			}
 			_promptSelection = buttonIndex;
@@ -81,9 +83,9 @@ namespace UI {
 		}
 
 		public void ToggleNextButton(bool toggle) {
-			DialogueUI.NextButton.enabled = toggle;
+			_dialogueUI.NextButton.enabled = toggle;
 			if (toggle) {
-				DialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
+				_dialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
 			} 
 		}
 
@@ -98,11 +100,12 @@ namespace UI {
 		}
 
 		public void StartAnnouncement() {
-			_player.GetComponent<PlayerController>().enabled = true;
+			Awake();
+			//_player.GetComponent<PlayerController>().enabled = true;
 			DialogueDataManager.Initialize(DataType.SystemAnnouncement, 
 			Constants.SystemAnnouncement, GameManager.SabotageId);
 			_sentences = DialogueDataManager.GetAnnouncement();
-			DialogueUI.Animator.SetBool("IsOpen", true);
+			_dialogueUI.Animator.SetBool("IsOpen", true); 
             DisplayNextSentence();
         }
 
@@ -137,8 +140,8 @@ namespace UI {
 		}
 
 		public void InitializePrompts() {
-			for (int i = 0; i < DialogueUI.Buttons.Length; i ++) {
-				Button button = DialogueUI.Buttons[i];
+			for (int i = 0; i <_dialogueUI.Buttons.Length; i ++) {
+				Button button =_dialogueUI.Buttons[i];
 				int buttonIndex = i;
 				button.onClick.AddListener(() => SelectPrompt(buttonIndex));
 			}
@@ -146,13 +149,13 @@ namespace UI {
 
 		public void LoadAndDisplayPrompts() {
 			List<string> prompts = DialogueDataManager.GetPrompts();
-			for (int i = 0;  i < DialogueUI.Buttons.Length; i++) {
+			for (int i = 0;  i <_dialogueUI.Buttons.Length; i++) {
 				if (i >= prompts.Count) {
-					DialogueUI.Buttons[i].gameObject.SetActive(false);
+					_dialogueUI.Buttons[i].gameObject.SetActive(false);
 					continue;
 				}
-				DialogueUI.Buttons[i].gameObject.SetActive(true);
-				DialogueUI.Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
+				_dialogueUI.Buttons[i].gameObject.SetActive(true);
+				_dialogueUI.Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}
 		}
 
@@ -199,17 +202,17 @@ namespace UI {
 		}
 
 		IEnumerator TypeSentence((string, string) sentence) {
-			DialogueUI.NameText.text = sentence.Item1;
-			DialogueUI.DialogueText.text = "";
+			_dialogueUI.NameText.text = sentence.Item1;
+			_dialogueUI.DialogueText.text = "";
 
 			foreach (char letter in sentence.Item2) { // may need to insert here:   .ToCharArray()
-				DialogueUI.DialogueText.text += letter;
+				_dialogueUI.DialogueText.text += letter;
 				yield return new WaitForSeconds(_sentenceSpeed);
 			}
 		}
 
 		void EndDialogue() {
-			DialogueUI.Animator.SetBool("IsOpen", false);
+			_dialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
 			IsInteracting = false;
 		}

@@ -5989,7 +5989,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7618364, y: 1}
+    m_SensorSize: {x: 1.9097978, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6149,6 +6149,58 @@ PrefabInstance:
     - target: {fileID: 2016520605143811874, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_Name
       value: DialogueUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 1034776536}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: NameText
+      value: 
+      objectReference: {fileID: 789819680}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _imageBox
+      value: 
+      objectReference: {fileID: 1242789516}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: NextButton
+      value: 
+      objectReference: {fileID: 1460521739}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1651071573}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Buttons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 448644559}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 830272797}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Buttons.Array.data[2]
+      value: 
+      objectReference: {fileID: 2059458527}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: Buttons.Array.data[3]
+      value: 
+      objectReference: {fileID: 56980486}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f7af430a8b6ced54cbe53a2649143b37, type: 3}
+    - target: {fileID: 6899564350605432413, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: m_Name
+      value: NextButton
       objectReference: {fileID: 0}
     - target: {fileID: 6899564350605432415, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6723,6 +6775,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3050976537864594321, guid: a49b2f30e32e2724594ce6673ec181e4, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 766338571}
+    - target: {fileID: 3050976537864594321, guid: a49b2f30e32e2724594ce6673ec181e4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3050976537864594321, guid: a49b2f30e32e2724594ce6673ec181e4, type: 3}
       propertyPath: _moveSpeed
       value: 300
       objectReference: {fileID: 0}
@@ -6852,6 +6912,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1034776536, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
   m_PrefabInstance: {fileID: 538989920}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1034776537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+  m_PrefabInstance: {fileID: 538989920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034776534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f3e4a467985b54ca2a9eff887eba33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1166716611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2526674087601100754, guid: cebcd8d35b9a49b469e79900b9b1454b, type: 3}
@@ -6960,6 +7031,17 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 263048261, guid: b08e602cc79f5024691a53f08bb87f41, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b08e602cc79f5024691a53f08bb87f41, type: 3}
+--- !u!114 &1242789516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7975364510973537999, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+  m_PrefabInstance: {fileID: 538989920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1244982854 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
@@ -7468,13 +7550,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 789819680}
     - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
+      propertyPath: DialogueUI
+      value: 
+      objectReference: {fileID: 1034776537}
+    - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
       propertyPath: NextButton
       value: 
       objectReference: {fileID: 1460521739}
     - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
+      propertyPath: DialogueUIj
+      value: 
+      objectReference: {fileID: 1034776534}
+    - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
       propertyPath: DialogueText
       value: 
       objectReference: {fileID: 1651071573}
+    - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
+      propertyPath: DialogueUIObject
+      value: 
+      objectReference: {fileID: 1034776534}
     - target: {fileID: 6152027507340792604, guid: a44cdf52389c3544fad95af9eb55031d, type: 3}
       propertyPath: Buttons.Array.data[0]
       value: 

@@ -21,7 +21,8 @@ namespace UI {
         public Animator Animator;
 
         // Start is called before the first frame update
-        void Start() {
+        void Awake() {
+
         }
         public void UpdateImage(string name) {
             foreach (Sprite image in _charImages) {

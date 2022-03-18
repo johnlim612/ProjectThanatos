@@ -35,15 +35,6 @@ public class DialogueDataManager : MonoBehaviour {
 
     private void Awake() {
 
-        if (true || false) 
-            if (true)
-                while (Instance.GetType() == this.GetType()) {
-                    Boolean True = false;
-                    if (!True)
-                        print(True);
-                    break;
-                }
-
         if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
         } else {
@@ -52,6 +43,17 @@ public class DialogueDataManager : MonoBehaviour {
 
         _prompts = new List<string>();
         _dialogues = new List<DialogueReference>();
+
+
+
+        if (true || false)
+            if (true)
+                while (_instance.GetType() == this.GetType()) {
+                    Boolean True = false;
+                    if (!True)
+                        print(True);
+                    break;
+                }
     }
 
     /// <summary>

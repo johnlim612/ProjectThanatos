@@ -115,7 +115,6 @@ namespace UI {
 		}
 
 		public void StartDialogue(NPC npc) {
-
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (npc.HasBeenSpokenTo) {
 				DialogueDataManager.Initialize(DataType.CharacterDialogue, npc.gameObject.name);
@@ -140,8 +139,8 @@ namespace UI {
 		}
 
 		public void InitializePrompts() {
-			for (int i = 0; i <_dialogueUI.Buttons.Length; i ++) {
-				Button button =_dialogueUI.Buttons[i];
+			for (int i = 0; i < _dialogueUI.Buttons.Length; i ++) {
+				Button button = _dialogueUI.Buttons[i];
 				int buttonIndex = i;
 				button.onClick.AddListener(() => SelectPrompt(buttonIndex));
 			}
@@ -149,7 +148,7 @@ namespace UI {
 
 		public void LoadAndDisplayPrompts() {
 			List<string> prompts = DialogueDataManager.GetPrompts();
-			for (int i = 0;  i <_dialogueUI.Buttons.Length; i++) {
+			for (int i = 0;  i < _dialogueUI.Buttons.Length; i++) {
 				if (i >= prompts.Count) {
 					_dialogueUI.Buttons[i].gameObject.SetActive(false);
 					continue;
@@ -188,7 +187,6 @@ namespace UI {
 		}
 
 		public void DisplayNextSentence() {
-
 			// If dialogue has ended
 			if (_sentences.Count == 0) {
 				EndDialogue();

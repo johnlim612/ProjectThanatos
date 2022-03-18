@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +22,7 @@ namespace UI {
         void Awake() {
 
         }
+
         public void UpdateImage(string name) {
             foreach (Sprite image in _charImages) {
                 if (image.name == name) {

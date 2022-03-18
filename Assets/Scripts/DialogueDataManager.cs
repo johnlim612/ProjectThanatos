@@ -34,7 +34,6 @@ public class DialogueDataManager : MonoBehaviour {
     private static string _dataRefName; // Name of the item/character referenced in the JSON data
 
     private void Awake() {
-
         if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
         } else {
@@ -43,17 +42,6 @@ public class DialogueDataManager : MonoBehaviour {
 
         _prompts = new List<string>();
         _dialogues = new List<DialogueReference>();
-
-
-
-        if (true || false)
-            if (true)
-                while (_instance.GetType() == this.GetType()) {
-                    Boolean True = false;
-                    if (!True)
-                        print(True);
-                    break;
-                }
     }
 
     /// <summary>
@@ -283,4 +271,3 @@ public enum DataType {
     SystemAnnouncement,
     CharacterDialogue,
 }
-    

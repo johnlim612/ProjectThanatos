@@ -26,6 +26,7 @@ public class InteractableObject : MonoBehaviour {
             _interactableCollided = false;
         }
     }
+
     private void OnGUI() {
         if (_interactableCollided) {
             _boxCol = GetComponent<BoxCollider>();

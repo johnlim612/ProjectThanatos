@@ -19,21 +19,21 @@ public class DialogueDataManager : MonoBehaviour {
 
     private static DialogueDataManager _instance;   // Singleton instance of the class.
 
-    private static string _baseFilePath = "Dialogue/";
-    private static List<string> _prompts;   // Players' prompts to start different convos w/ NPCs
-    private static string _greeting;    // First thing NPC displays when interacted with.
-    private static Queue<(string, string)> _systemAnnouncements; // Alert related to day's sabotage
+    private string _baseFilePath = "Dialogue/";
+    private List<string> _prompts;   // Players' prompts to start different convos w/ NPCs
+    private string _greeting;    // First thing NPC displays when interacted with.
+    private Queue<(string, string)> _systemAnnouncements; // Alert related to day's sabotage
 
     // Indices of dialogues correspond to _prompts[]
-    private static List<DialogueReference> _dialogues;
+    private List<DialogueReference> _dialogues;
 
     // Contains specific raw dialgoue data in JSON format
-    private static JToken _sabotageData;    // The sabotage-specific dialogue data
-    private static (string, JToken)[] _randomEventData; // Array of Tuples of events' key/values
-    private static JToken _characterData;   // The character-specific dialogue data
-    private static string _dataRefName; // Name of the item/character referenced in the JSON data
+    private JToken _sabotageData;    // The sabotage-specific dialogue data
+    private (string, JToken)[] _randomEventData; // Array of Tuples of events' key/values
+    private JToken _characterData;   // The character-specific dialogue data
+    private string _dataRefName; // Name of the item/character referenced in the JSON data
 
-    private void Awake() {
+    public void Awake() {
         if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
         } else {
@@ -50,7 +50,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// <param name="dataType">Enum specifying which type of data should be loaded</param>
     /// <param name="fileName">The NPC whose JSON file will be loaded</param>
     /// <param name="dialogueId">*Optional* Key for character-specific dialogue</param>
-    public static void Initialize(DataType dataType, string fileName, int? dialogueId = null) {
+    public void Initialize(DataType dataType, string fileName, int? dialogueId = null) {
         // Ensure any previously stored data is cleared
         ResetData();
 
@@ -82,7 +82,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="fileName">Name of file; should be the character's name without spaces.</param>
     /// <returns>Deserialized JSON as a JObject.</returns>
-    private static JObject LoadData(string fileName) {
+    private JObject LoadData(string fileName) {
         string filePath = _baseFilePath + fileName;
 
         var jsonDialogueFile = Resources.Load<TextAsset>(filePath);
@@ -90,7 +90,7 @@ public class DialogueDataManager : MonoBehaviour {
         return (JObject) JsonConvert.DeserializeObject(jsonDialogueFile.text);
     }
 
-    private static void FindRelevantDialogue(JObject data, int? charDialogueId) {
+    private void FindRelevantDialogue(JObject data, int? charDialogueId) {
         string sabotageId = GameManager.SabotageId.ToString();
         _sabotageData = data[Constants.SabotageDialogueKey][sabotageId];
 
@@ -117,7 +117,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// Search stored data for the prompts to start different dialogues.
     /// Store references to the dialogue each prompt belongs to by making a new DialogueReference.
     /// </summary>
-    private static void FindInitialPrompts() {
+    private void FindInitialPrompts() {
         string promptKey = Constants.DialoguePromptKey;
 
         _prompts.Add(_sabotageData[promptKey]["1"].ToString());
@@ -143,7 +143,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="data"></param>
     /// <returns>Sorted Queue</returns>
-    private static Queue<(string, string)> SortQueue(JToken data) {
+    private Queue<(string, string)> SortQueue(JToken data) {
         Queue<(string, string)> dialogue = new Queue<(string, string)>();
 
         List<(int, string)> prompts = new List<(int, string)>(); // Said by Player
@@ -193,7 +193,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="selectedDialogue">int corresponds to index of selected prompt</param>
     /// <returns>A Queue of tuples: ("character name", "sentence")</returns>
-    public static Queue<(string, string)> GetDialogue(int selectedDialogue) {
+    public Queue<(string, string)> GetDialogue(int selectedDialogue) {
         DialogueReference dRef = _dialogues[selectedDialogue];
         Queue<(string, string)> dialogue = new Queue<(string, string)>();
 
@@ -218,22 +218,22 @@ public class DialogueDataManager : MonoBehaviour {
         return dialogue;
     }
 
-    public static string GetGreeting() {
+    public string GetGreeting() {
         return _greeting;
     }
 
-    public static List<string> GetPrompts() {
+    public List<string> GetPrompts() {
         return _prompts;
     }
 
-    private static void ResetData() {
+    private void ResetData() {
         _prompts = new List<string>();
         _dialogues = new List<DialogueReference>();
     }
 
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
 
-    public static void FindSystemAnnouncement(JObject data, int? alertId) {
+    public void FindSystemAnnouncement(JObject data, int? alertId) {
         if (alertId == null) {
             return;
         }
@@ -245,7 +245,7 @@ public class DialogueDataManager : MonoBehaviour {
         }
     }
 
-    private static void SortAnnouncementQueue(JToken data) {
+    private void SortAnnouncementQueue(JToken data) {
         _systemAnnouncements = new Queue<(string, string)>();
         JToken alert;
         JToken message;
@@ -262,7 +262,7 @@ public class DialogueDataManager : MonoBehaviour {
         }
     }
 
-    public static Queue<(string, string)> GetAnnouncement() {
+    public Queue<(string, string)> GetAnnouncement() {
         return _systemAnnouncements;
     }
 }

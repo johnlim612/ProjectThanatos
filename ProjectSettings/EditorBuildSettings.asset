@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hallway.unity
     guid: a591c4a2e3ae732448c592ee3ada8f6e
+  - enabled: 0
+    path: Assets/Scenes/Kiwon.unity
+    guid: 890437b730a666b4faab898d9792e1f5
   m_configObjects: {}

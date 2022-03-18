@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6152027507340792607
+--- !u!1 &2982489294633245062
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6152027507340792605}
-  - component: {fileID: 6152027507340792604}
-  m_Layer: 5
-  m_Name: UIDialogueManager
+  - component: {fileID: 2982489294633245060}
+  - component: {fileID: 2982489294633245061}
+  m_Layer: 0
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6152027507340792605
+--- !u!4 &2982489294633245060
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6152027507340792607}
+  m_GameObject: {fileID: 2982489294633245062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000667572, y: 6.230789, z: -10}
+  m_LocalPosition: {x: 5.427507, y: 1.548512, z: -84.84607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6152027507340792604
+--- !u!114 &2982489294633245061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6152027507340792607}
+  m_GameObject: {fileID: 2982489294633245062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 047e1ed39457f1e4bb585675e5e0abaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 82db5ecf2a504a34da8572dc31a9100d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultDialogue: {fileID: 0}
-  Buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  NameText: {fileID: 0}
-  DialogueText: {fileID: 0}
-  NextButton: {fileID: 0}
-  Animator: {fileID: 0}
-  Dialogue: {fileID: 0}
+  sounds:
+  - name: walk
+    clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
+    volume: 0.3
+    pitch: 1.3
+    loop: 1
+    source: {fileID: 0}
+  - name: run
+    clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
+    volume: 0.3
+    pitch: 1.5
+    loop: 1
+    source: {fileID: 0}

@@ -84,9 +84,8 @@ public class DialogueDataManager : MonoBehaviour {
     /// <returns>Deserialized JSON as a JObject.</returns>
     private JObject LoadData(string fileName) {
         string filePath = _baseFilePath + fileName;
-
         var jsonDialogueFile = Resources.Load<TextAsset>(filePath);
-        
+
         return (JObject) JsonConvert.DeserializeObject(jsonDialogueFile.text);
     }
 
@@ -145,7 +144,6 @@ public class DialogueDataManager : MonoBehaviour {
     /// <returns>Sorted Queue</returns>
     private Queue<(string, string)> SortQueue(JToken data) {
         Queue<(string, string)> dialogue = new Queue<(string, string)>();
-
         List<(int, string)> prompts = new List<(int, string)>(); // Said by Player
         List<(int, string)> replies = new List<(int, string)>(); // Said by NPC
 

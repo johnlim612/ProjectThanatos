@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private float _moveSpeed;      // Player's move speed
-    [SerializeField] private float _sprintSpeed;
-    [SerializeField] private float _sensitivity;    // Player's camera sensitivity
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private Transform _camera;
+    public PlayerSFX sfx;
+    public Rigidbody _rb;
+    public Transform _camera;
 
+    [SerializeField] private float _walkSpeed;      // Player's move speed
+    [SerializeField] private float _sprintSpeed;    //
+    [SerializeField] private float _sensitivity;    // Player's camera sensitivity
+    
     private PlayerInput _playerInputs;  // Custom Input Action map for player inputs
     private InputAction _movement;      // Reference to player's movement inputs
     private InputAction _sprint;
@@ -17,9 +19,10 @@ public class PlayerController : MonoBehaviour {
     private float _xRot, _yRot;
 
     private void Awake() {
+        Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
         _yRot = 0;
-        Cursor.lockState = CursorLockMode.Locked;
+
         _playerInputs = new PlayerInput(); // Instantiate reference to custom InputAction
         _movement = _playerInputs.Player.Movement;
         _sprint = _playerInputs.Player.Sprint;
@@ -49,10 +52,16 @@ public class PlayerController : MonoBehaviour {
     private void PlayerMovement() {
         Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
         Vector3 moveVector = _camera.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        //Apply vector to velocity
         if (_sprint.ReadValue<float>() == 1) {
-            _rb.velocity = moveVector * _sprintSpeed * Time.deltaTime; //Apply vector to velocity
+            sfx.Run();
+            _rb.velocity = moveVector * _sprintSpeed * Time.deltaTime; 
         } else {
-            _rb.velocity = moveVector * _moveSpeed * Time.deltaTime;
+            sfx.Walk();
+            _rb.velocity = moveVector * _walkSpeed * Time.deltaTime;
+        }
+        if (_moveDirection.x == 0 && _moveDirection.z == 0) {
+            sfx.Stop();
         }
     }
 

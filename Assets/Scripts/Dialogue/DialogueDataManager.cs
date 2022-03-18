@@ -271,4 +271,3 @@ public enum DataType {
     SystemAnnouncement,
     CharacterDialogue,
 }
-    

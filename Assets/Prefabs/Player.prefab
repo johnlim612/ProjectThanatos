@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1175022236994625400}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,9 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e8eb716544fe848b836c58506c4933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: {fileID: 1175022236994625400}
-  _rb: {fileID: 1175022236994625405}
-  _camera: {fileID: 1175022237892184627}
+  Sfx: {fileID: 0}
+  RB: {fileID: 0}
+  PlayerCam: {fileID: 0}
   _walkSpeed: 300
   _sprintSpeed: 500
   _sensitivity: 700

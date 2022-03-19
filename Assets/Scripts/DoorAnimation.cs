@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAnimation : MonoBehaviour
-{
+public class DoorAnimation : MonoBehaviour {
     [SerializeField] private Animator _animator;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-    }
-
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") {
+        if (other.tag == Constants.PlayerKey) {
             _animator.Play("DoorOpen");
             Debug.Log("Open");
             _animator.SetBool("door", true);
@@ -20,7 +12,7 @@ public class DoorAnimation : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag == "Player") {
+        if (other.tag == Constants.PlayerKey) {
             Debug.Log("Close");
             _animator.SetBool("door", false);
         }

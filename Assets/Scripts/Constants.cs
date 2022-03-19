@@ -11,4 +11,6 @@ public static class Constants {
     public const string SystemAlertKey = "alert";
     public const string SystemMessageKey = "message";
     public const string SystemAnnouncement = "SystemAnnouncement";
+    public const string DiaryKey = "diary";
+    public const string QuestLogKey = "quest";
 }

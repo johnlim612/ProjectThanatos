@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         
-        FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Alert);
 
         Sabotages.Remove(SabotageId);
 

@@ -33,9 +33,10 @@ namespace UI {
 			_player = GameObject.Find(Constants.PlayerKey);
 		}
 
-		public void InitializeDialogue(EntityType interactable, InteractableObject entity, Queue<(string, string)> sysAnnounce = null) {
+		public void InitializeDialogue(EntityType interactable, InteractableObject entity = null, Queue <(string, string)> sysAlert = null) {
 			// If entity is not registered
 			if (!Enum.IsDefined(typeof(EntityType), interactable)) {
+				Debug.Log("Entity not defined");
 				return;
 				// item not recognized
 			}
@@ -50,10 +51,13 @@ namespace UI {
 					StartDialogue((NPC) entity);
 					break;
 				case EntityType.Alert:
-					StartSystemAlert(sysAnnounce);
+					StartSystemAlert();
 					break;
 				case EntityType.Diary:
 					StartDiaryDialogue((Diary)entity);
+					break;
+				case EntityType.Announcement:
+					StartSystemAnnouncment(sysAlert);
 					break;
 				default: break;
 			}
@@ -65,7 +69,7 @@ namespace UI {
 				_player.GetComponent<PlayerController>().enabled = false;
 			}
 
-			if (interactable != EntityType.NPC) {
+			if (interactable == EntityType.NPC) {
 				ToggleNextButton(false);
 			}
 
@@ -74,24 +78,10 @@ namespace UI {
 			_dialogueUI.Animator.SetBool("IsOpen", true);
 			Cursor.lockState = CursorLockMode.None;
 		}
-
-		public void SelectPrompt(int buttonIndex) {
-			foreach (Button button in _dialogueUI.Buttons) {
-				button.gameObject.SetActive(false);
-			}
-			_promptSelection = buttonIndex;
-			_promptSelected = true;
-		}
-
-		public void ToggleNextButton(bool toggle) {
-			_dialogueUI.NextButton.enabled = toggle;
-			if (toggle) {
-				_dialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
-			} 
-		}
-
-		public void StartSystemAlert(Queue<(string, string)> sysAnnounce) {
-			_sentences = sysAnnounce;
+		public void StartSystemAlert() {
+			DialogueDataManager.Instance.Initialize(EntityType.Alert,
+			Constants.SystemAnnouncement, GameManager.SabotageId);
+			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			DisplayNextSentence();
 		}
 
@@ -100,18 +90,24 @@ namespace UI {
 			DisplayNextSentence();
 		}
 
-		public void StartAnnouncement() {
-            //_player.GetComponent<PlayerController>().enabled = true;
-            DialogueDataManager.Instance.Initialize(EntityType.Alert,
-                Constants.SystemAnnouncement, GameManager.SabotageId);
-			_sentences = DialogueDataManager.Instance.GetAnnouncement();
-			_dialogueUI.Animator.SetBool("IsOpen", true); 
-            DisplayNextSentence();
-        }
-
 		public void StartItemDialogue(Item item) {
 			_sentences = item.DescriptionQueue;
 			DisplayNextSentence();
+		}
+
+		public void StartSystemAnnouncment(Queue<(string, string)> announcement) {
+			_sentences = announcement;
+			DisplayNextSentence();
+		}
+
+		public void ToggleNextButton(bool toggle) {
+			_dialogueUI.NextButton.enabled = toggle;
+			if (toggle) {
+				_dialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
+			} else {
+				_dialogueUI.NextButton.GetComponentInChildren<Text>().text = "";
+
+			}
 		}
 
 		public void StartDialogue(NPC npc) {
@@ -124,7 +120,7 @@ namespace UI {
 				npc.UpdateCharDialogueProgress();
 			}
 
-			// Prompt Greeting here:
+			// Starts greeting
 			StartCoroutine(TypeSentence((npc.gameObject.name, DialogueDataManager.Instance.GetGreeting())));
 			InitializePrompts();
 			LoadAndDisplayPrompts();
@@ -132,16 +128,8 @@ namespace UI {
             // Create Dialogue Object
         }
 
-		public void ContinueNPCDialogue(NPC item) {
-			ToggleNextButton(true);
-			CreateDialogue(item);
-			//SimulateDialogue();
-			_sentences = _dialogue.Sentences;
-			DisplayNextSentence();
-		}
-
 		public void InitializePrompts() {
-			for (int i = 0; i < _dialogueUI.Buttons.Length; i ++) {
+			for (int i = 0; i < _dialogueUI.Buttons.Length; i++) {
 				Button button = _dialogueUI.Buttons[i];
 				int buttonIndex = i;
 				button.onClick.AddListener(() => SelectPrompt(buttonIndex));
@@ -150,7 +138,7 @@ namespace UI {
 
 		public void LoadAndDisplayPrompts() {
 			List<string> prompts = DialogueDataManager.Instance.GetPrompts();
-			for (int i = 0;  i < _dialogueUI.Buttons.Length; i++) {
+			for (int i = 0; i < _dialogueUI.Buttons.Length; i++) {
 				if (i >= prompts.Count) {
 					_dialogueUI.Buttons[i].gameObject.SetActive(false);
 					continue;
@@ -158,6 +146,21 @@ namespace UI {
 				_dialogueUI.Buttons[i].gameObject.SetActive(true);
 				_dialogueUI.Buttons[i].GetComponentInChildren<Text>().text = prompts[i];
 			}
+		}
+
+		public void SelectPrompt(int buttonIndex) {
+			foreach (Button button in _dialogueUI.Buttons) {
+				button.gameObject.SetActive(false);
+			}
+			_promptSelection = buttonIndex;
+			_promptSelected = true;
+		}
+
+		public void ContinueNPCDialogue(NPC item) {
+			ToggleNextButton(true);
+			CreateDialogue(item);
+			_sentences = _dialogue.Sentences;
+			DisplayNextSentence();
 		}
 
 		IEnumerator WaitForUserPrompt(NPC character) {
@@ -175,9 +178,6 @@ namespace UI {
 			_dialogue.Sentences = DialogueDataManager.Instance.GetDialogue(_promptSelection);
 		}
 
-		/// <summary>
-		/// ASK ABOUT THIS
-		/// </summary>
 		//public void SimulateDialogue() {
 		//	_sentences.Clear();
 		//	foreach ((string, string) sentence in _dialogue.Sentences) {
@@ -189,6 +189,8 @@ namespace UI {
 		//}
 
 		public void DisplayNextSentence() {
+			ToggleNextButton(false);
+
 			// If dialogue has ended
 			if (_sentences.Count == 0) {
 				EndDialogue();
@@ -199,6 +201,12 @@ namespace UI {
 
 			StopAllCoroutines();
 			StartCoroutine(TypeSentence(sentence));
+			StartCoroutine(DelayNextButton());
+		}
+
+		IEnumerator DelayNextButton() {
+			yield return new WaitForSeconds(1);
+			ToggleNextButton(true);
 		}
 
 		IEnumerator TypeSentence((string, string) sentence) {
@@ -223,6 +231,7 @@ namespace UI {
 		Item,
 		NPC,
 		Alert,
-		Diary
+		Diary,
+		Announcement
 	}
 }

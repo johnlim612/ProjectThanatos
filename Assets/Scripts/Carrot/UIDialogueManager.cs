@@ -214,7 +214,7 @@ namespace UI {
 		void EndDialogue() {
 			_dialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
-			Cursor.lockState = CursorLockMode.Locked;
+			//Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}

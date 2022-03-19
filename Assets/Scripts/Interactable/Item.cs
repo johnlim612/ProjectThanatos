@@ -9,6 +9,7 @@ public class Item : InteractableObject {
 	void Start() {
         //AddToQueue(_descriptions);
 	}
+
 	public override void InteractObject() {
         Interact();
     }
@@ -25,6 +26,6 @@ public class Item : InteractableObject {
 
     private void Interact() {
         AddToQueue(_descriptions);
-        FindObjectOfType<UI.UIDialogueManager>().StartItemDialogue(this);
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Item, this);
     }
 }

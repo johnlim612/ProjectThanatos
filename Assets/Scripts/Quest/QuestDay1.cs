@@ -17,13 +17,10 @@ public class QuestDay1 : Quest
     }
 
     void nextQue() {
-        activateTriggerOnNPC();
-        activateTriggerOnSabotage();
-        activateTriggerOnNPC();
-        activateTriggerOnNPC();
+  
     }
 
     void QueMethods() {
-        _questQue.Enqueue(() => activateTriggerOnNPC());
+        //_questQue.Enqueue(() => TriggerNPC());
     }
 }

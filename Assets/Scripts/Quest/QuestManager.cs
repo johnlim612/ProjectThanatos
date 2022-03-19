@@ -6,17 +6,16 @@ public class QuestManager : MonoBehaviour {
     
     public Quest[] Quests;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    private void InitializeQuests() {
+	void Awake() {
         Quests = new Quest[] {
             new QuestDay1(),
             new QuestDay2(),
             new QuestDay3()
         };
-	}
+    }
+	// Start is called before the first frame update
+	void Start()
+    {
+        
+    }
 }

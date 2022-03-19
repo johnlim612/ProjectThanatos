@@ -23,9 +23,7 @@ public class NPC : InteractableObject {
     /// DialogueManager triggers the dialogue when the NPC is interacted with.
     /// </summary>
     public override void InteractObject() {
-        // FindObjectOfType<UI.UIDialogueManager>().StartDialogue(this);
         FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.NPC, this);
-
     }
 
     public void UpdateCharDialogueProgress() {

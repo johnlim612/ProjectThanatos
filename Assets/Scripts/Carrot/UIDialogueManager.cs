@@ -112,6 +112,8 @@ namespace UI {
 
 		public void StartDialogue(NPC npc) {
 			// Find and Load all Data pertaining to the characters' dialogue.
+
+			// CHECK IF NPC HAS QUEST AVAILABLE AND USE/STORE/MAKE TRU THE PROMPT QUEST
 			if (npc.HasBeenSpokenTo) {
                 DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name);
 			} else {

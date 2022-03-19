@@ -10,7 +10,7 @@ public class Item : InteractableObject {
     public bool Obtained { get; set; }
 
 	void Awake() {
-        _obtained = false;
+        Obtained = false;
 	}
 
 	void Start() {

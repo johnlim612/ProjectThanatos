@@ -102,7 +102,7 @@
             },
             "sentence": {
                 "1": "Nah, I'd prefer coffee.",
-                "2" : "If you don't want your daily coffee just send it my way."
+                "2": "If you don't want your daily coffee just send it my way."
             }
         }
     },
@@ -114,8 +114,9 @@
             "sentence": {
                 "1": "I'm probably going to just go back to living normally, the way I used to.",
                 "2": "I doubt they'd call me in again after this... I'm getting too old.",
-                "3": "Someone else would end up taking my place on the next mission though.", 
+                "3": "Someone else would end up taking my place on the next mission though.",
                 "4": "They always bring a crew member who has taken on the mission there before."
+            }
         },
         "2": {
             "prompt": {
@@ -128,9 +129,10 @@
             }
         },
         "3": {
-            "prompt" : {
-                "1" : "Your past mission..."
+            "prompt": {
+                "1": "Your past mission..."
             },
+
             "sentence": {
                 "1": "It was a while back... They went about recruitment the same way.",
                 "2": "Every one of us recieved a letter of recruitment.",

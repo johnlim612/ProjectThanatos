@@ -60,7 +60,7 @@ public class DialogueDataManager : MonoBehaviour {
         ResetData();
 
         // Remove whitespace from characters' names before searching for the file.
-        JObject data = LoadData("Tablet");
+        JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
 
         if (data == null) {
@@ -81,7 +81,7 @@ public class DialogueDataManager : MonoBehaviour {
                 FindSabotageRelatedData(dataType, data, dialogueId);
                 break;
             default:
-                Debug.LogError($"Invalid DataType. Data Type ${dataType} was not recognized.");
+                Debug.LogError($"Invalid DataType. Data Type {dataType} was not recognized.");
                 break;
         }
     }
@@ -238,7 +238,7 @@ public class DialogueDataManager : MonoBehaviour {
         _dialogues = new List<DialogueReference>();
     }
 
-    // ------------------------------- SHARED BY SABOTAGE LAYER IN JSON ------------------------------- //
+    // ---------------------------- SHARED BY SABOTAGE LAYER IN JSON --------------------------- //
 
     private void FindSabotageRelatedData(EntityType dataType, JObject data, int? id) {
         if (id == null) {
@@ -257,24 +257,13 @@ public class DialogueDataManager : MonoBehaviour {
                 SortAnnouncementQueue(rawData);
                 break;
             case EntityType.Diary:
+                print(rawData);
                 ParseTabletData(rawData);
                 break;
         }
     }
 
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
-
-    //public void FindSystemAnnouncement(JObject data, int? alertId) {
-    //    if (alertId == null) {
-    //        return;
-    //    }
-
-    //    JToken rawAlertData = data[Constants.SabotageDialogueKey][alertId.ToString()];
-
-    //    if (rawAlertData != null) {
-    //        SortAnnouncementQueue(rawAlertData);
-    //    }
-    //}
 
     private void SortAnnouncementQueue(JToken data) {
         _systemAnnouncements = new Queue<(string, string)>();
@@ -300,8 +289,8 @@ public class DialogueDataManager : MonoBehaviour {
     // ------------------------------- TABLET - DIARY & QUEST LOG ------------------------------- //
 
     private void ParseTabletData(JToken data) {
-        _diaryEntry = data[Constants.QuestLogKey].ToString();
-
+        _diaryEntry = data[Constants.DiaryKey].ToString();
+        print(data[Constants.QuestLogKey]);
         // Parse and store quest log data
         foreach (JProperty log in data[Constants.QuestLogKey]) {
             // log = { "1": "hi" }
@@ -310,10 +299,12 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     public string GetDiaryEntry() {
+        print(_diaryEntry);
         return _diaryEntry;
     }
 
     public List<string> GetQuestLog() {
+        print(_questLog);
         return _questLog;
     }
 }

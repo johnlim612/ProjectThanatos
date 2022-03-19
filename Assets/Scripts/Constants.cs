@@ -13,4 +13,5 @@ public static class Constants {
     public const string SystemAnnouncement = "SystemAnnouncement";
     public const string DiaryKey = "diary";
     public const string QuestLogKey = "quest";
+    public const string TabletKey = "Tablet"; // Name of the Tablet.json file
 }

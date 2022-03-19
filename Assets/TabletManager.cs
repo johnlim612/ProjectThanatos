@@ -10,7 +10,7 @@ public abstract class TabletManager : MonoBehaviour {
 
     public void Refresh() {
         _sabotageID = GameManager.SabotageId;
-        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, "Tablet", _sabotageID);
+        //DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, "Tablet", _sabotageID);
 
         //string str = DialogueDataManager.Instance.GetDiaryEntry();
         //string[] questLog = DialogueDataManager.Instance.GetQuestLog();

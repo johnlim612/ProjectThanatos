@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Captains Quarters Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1903112374192042, guid: 9cc05f7c54c5bdb408d3bd9db4a76d8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4692062974380522, guid: 9cc05f7c54c5bdb408d3bd9db4a76d8e, type: 3}
       propertyPath: m_RootOrder
       value: 0

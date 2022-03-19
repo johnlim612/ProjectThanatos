@@ -76,15 +76,8 @@ public class PlayerController : MonoBehaviour {
         
     }
 
-    private void PlayerInteract() {
-        if (_interact.ReadValue<float>() == 1) {
-            Debug.Log("Interacted");
-        }
-    }
-
     void FixedUpdate() {
         PlayerMovement();
         PlayerCamera();
-        PlayerInteract();
     }
 }

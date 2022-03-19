@@ -11,7 +11,7 @@ public class Diary : InteractableObject {
     public override void InteractObject() {
         if (Sabotage.SabotageActive) {
             AddToQueue(_requirements);
-            FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
+            FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
         } else {
             OpenDiary();
         }
@@ -19,7 +19,7 @@ public class Diary : InteractableObject {
 
     private void OpenDiary() {
         AddToQueue(_descriptions);
-        FindObjectOfType<UI.UIDialogueManager>().StartDiaryDialogue(this);
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
         StartCoroutine(WaitForDiary());
     }
 

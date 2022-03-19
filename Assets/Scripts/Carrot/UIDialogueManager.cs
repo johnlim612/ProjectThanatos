@@ -33,9 +33,9 @@ namespace UI {
 			_player = GameObject.Find(Constants.PlayerKey);
 		}
 
-		public void InitializeDialogue(Interactables interactable, InteractableObject entity, Queue<(string, string)> sysAnnounce = null) {
+		public void InitializeDialogue(EntityType interactable, InteractableObject entity, Queue<(string, string)> sysAnnounce = null) {
 			// If entity is not registered
-			if (!Enum.IsDefined(typeof(Interactables), interactable)) {
+			if (!Enum.IsDefined(typeof(EntityType), interactable)) {
 				return;
 				// item not recognized
 			}
@@ -43,29 +43,29 @@ namespace UI {
 			PrepareDialogue(interactable);
 
 			switch (interactable) {
-				case Interactables.Item:
+				case EntityType.Item:
 					StartItemDialogue((Item) entity);
 					break;
-				case Interactables.NPC:
+				case EntityType.NPC:
 					StartDialogue((NPC) entity);
 					break;
-				case Interactables.Alert:
+				case EntityType.Alert:
 					StartSystemAlert(sysAnnounce);
 					break;
-				case Interactables.Diary:
+				case EntityType.Diary:
 					StartDiaryDialogue((Diary)entity);
 					break;
 				default: break;
 			}
 		}
 
-		private void PrepareDialogue(Interactables interactable) {
+		private void PrepareDialogue(EntityType interactable) {
 			// Don't cut player movement if it is an alert
-			if (interactable != Interactables.Alert) {
+			if (interactable != EntityType.Alert) {
 				_player.GetComponent<PlayerController>().enabled = false;
 			}
 
-			if (interactable != Interactables.NPC) {
+			if (interactable != EntityType.NPC) {
 				ToggleNextButton(false);
 			}
 
@@ -101,9 +101,9 @@ namespace UI {
 		}
 
 		public void StartAnnouncement() {
-			//_player.GetComponent<PlayerController>().enabled = true;
-			DialogueDataManager.Instance.Initialize(DataType.SystemAnnouncement, 
-				Constants.SystemAnnouncement, GameManager.SabotageId);
+            //_player.GetComponent<PlayerController>().enabled = true;
+            DialogueDataManager.Instance.Initialize(EntityType.Alert,
+                Constants.SystemAnnouncement, GameManager.SabotageId);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			_dialogueUI.Animator.SetBool("IsOpen", true); 
             DisplayNextSentence();
@@ -117,9 +117,9 @@ namespace UI {
 		public void StartDialogue(NPC npc) {
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (npc.HasBeenSpokenTo) {
-				DialogueDataManager.Instance.Initialize(DataType.CharacterDialogue, npc.gameObject.name);
+                DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name);
 			} else {
-				DialogueDataManager.Instance.Initialize(DataType.CharacterDialogue, npc.gameObject.name, 
+                DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name, 
 				npc.CountCharDialogue);
 				npc.UpdateCharDialogueProgress();
 			}
@@ -135,7 +135,9 @@ namespace UI {
 		public void ContinueNPCDialogue(NPC item) {
 			ToggleNextButton(true);
 			CreateDialogue(item);
-			SimulateDialogue();
+			//SimulateDialogue();
+			_sentences = _dialogue.Sentences;
+			DisplayNextSentence();
 		}
 
 		public void InitializePrompts() {
@@ -176,15 +178,15 @@ namespace UI {
 		/// <summary>
 		/// ASK ABOUT THIS
 		/// </summary>
-		public void SimulateDialogue() {
-			_sentences.Clear();
-			foreach ((string, string) sentence in _dialogue.Sentences) {
-				_sentences.Enqueue(sentence);
-				//if _sentences.item1 == "New_Prompt" then run start dialogue again to
-				//start method again for new prompts during conversation
-			}
-			DisplayNextSentence();
-		}
+		//public void SimulateDialogue() {
+		//	_sentences.Clear();
+		//	foreach ((string, string) sentence in _dialogue.Sentences) {
+		//		_sentences.Enqueue(sentence);
+		//		//if _sentences.item1 == "New_Prompt" then run start dialogue again to
+		//		//start method again for new prompts during conversation
+		//	}
+		//	DisplayNextSentence();
+		//}
 
 		public void DisplayNextSentence() {
 			// If dialogue has ended
@@ -212,12 +214,12 @@ namespace UI {
 		void EndDialogue() {
 			_dialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
-			Cursor.lockState = CursorLockMode.Locked;
+			//Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}
 
-	public enum Interactables {
+	public enum EntityType {
 		Item,
 		NPC,
 		Alert,

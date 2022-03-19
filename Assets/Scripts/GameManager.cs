@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        _day = 4;   // TODO: Reset to 0 after testing.
+        _day = 0;   // TODO: Reset to 0 after testing.
 
         for (int i = 1; i <= _maxNumSabotages; i++) {
             Sabotages.Add(i);

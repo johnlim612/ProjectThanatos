@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UI; // UIDialogueManager Namespace containing EnityType Enum
 
 public struct DialogueReference {
     public string EventType;    // E.g. "sabotage", "random", etc.
@@ -50,7 +51,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// <param name="dataType">Enum specifying which type of data should be loaded</param>
     /// <param name="fileName">The NPC whose JSON file will be loaded</param>
     /// <param name="dialogueId">*Optional* Key for character-specific dialogue</param>
-    public void Initialize(DataType dataType, string fileName, int? dialogueId = null) {
+    public void Initialize(EntityType dataType, string fileName, int? dialogueId = null) {
         // Ensure any previously stored data is cleared
         ResetData();
 
@@ -64,11 +65,11 @@ public class DialogueDataManager : MonoBehaviour {
         }
 
         switch (dataType) {
-            case DataType.CharacterDialogue:
+            case EntityType.NPC:
                 FindRelevantDialogue(data, dialogueId);
                 FindInitialPrompts();
                 break;
-            case DataType.SystemAnnouncement:
+            case EntityType.Alert:
                 FindSystemAnnouncement(data, dialogueId);
                 break;
             default:
@@ -263,9 +264,4 @@ public class DialogueDataManager : MonoBehaviour {
     public Queue<(string, string)> GetAnnouncement() {
         return _systemAnnouncements;
     }
-}
-
-public enum DataType {
-    SystemAnnouncement,
-    CharacterDialogue,
 }

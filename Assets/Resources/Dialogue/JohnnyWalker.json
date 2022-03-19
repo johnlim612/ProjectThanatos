@@ -4,7 +4,7 @@
             "greeting": "*Yawn* Hmm... Wonder if things will be okay when we get back...",
             "prompt": {
                 "1": "Good morning, Johnny.",
-                "2": "Something must have happened...",
+                "2": "No, I didn't. Something must have happened...",
                 "4": "Well... We're almost home at least."
             },
             "sentence": {

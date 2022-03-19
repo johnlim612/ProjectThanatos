@@ -1,15 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableSabotage : InteractableObject {
     [SerializeField] private string[] _descriptions;
     [SerializeField] private int _sabotageID;
-    private BoxCollider2D _box2D;
-    private SpriteRenderer _spriteRend;
+    //private MeshRenderer _meshRend;
 
     private void Awake() {
-        _box2D = GetComponent<BoxCollider2D>();
-        _spriteRend = GetComponent<SpriteRenderer>();
+        _boxCol = GetComponent<BoxCollider>();
+        //_meshRend = GetComponent<MeshRenderer>();
     }
 
     public int SabotageID {
@@ -37,7 +35,7 @@ public class InteractableSabotage : InteractableObject {
     }
 
     private void ToggleSabotage(bool state) {
-        _box2D.enabled = state;
-        _spriteRend.enabled = state;
+        _boxCol.enabled = state;
+        //_meshRend.enabled = state;
     }
 }

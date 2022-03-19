@@ -43,16 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82db5ecf2a504a34da8572dc31a9100d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: walk
-    clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
-    volume: 0.3
-    pitch: 1.3
-    loop: 1
-    source: {fileID: 0}
-  - name: run
-    clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
-    volume: 0.3
-    pitch: 1.5
-    loop: 1
-    source: {fileID: 0}
+  Sounds:
+  - Name: walk
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 1
+  - Name: run
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
+    Volume: 0.3
+    Pitch: 1.5
+    Loop: 1

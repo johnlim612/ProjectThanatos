@@ -1,5 +1,4 @@
 using TMPro;
-using UI;
 using UnityEngine;
 
 public abstract class TabletManager : MonoBehaviour {

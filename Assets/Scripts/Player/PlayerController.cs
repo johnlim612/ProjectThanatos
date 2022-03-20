@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private InputAction _sprint;
     private InputAction _interact;
     private InputAction _tablet;
+    private TabletController _tabletController;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour {
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
         _tablet = _playerInputs.Player.Tablet;
+        _tabletController = _tabletGameObject.GetComponent<TabletController>();
         _tabletGameObject.SetActive(false);
 
         /*
@@ -40,8 +42,6 @@ public class PlayerController : MonoBehaviour {
         }
         */
     }
-
-
 
     private void OnEnable() {
         _movement.Enable();
@@ -57,7 +57,13 @@ public class PlayerController : MonoBehaviour {
         _interact.Disable();
         _tablet.Disable();
     }
-    
+
+    private void Update() {
+        if (_tabletController.IsMapOpened) {
+            print(transform.position);
+        }
+    }
+
     private void PlayerMovement() {
         Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
         Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player

@@ -12,6 +12,7 @@ public class TabletManager : MonoBehaviour {
 
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
             Constants.TabletKey, 1); // change to current day instead
+        Refresh();
     }
 
     /// <summary>

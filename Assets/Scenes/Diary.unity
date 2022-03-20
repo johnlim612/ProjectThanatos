@@ -2112,7 +2112,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 611487370336010656, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_Name
-      value: Diary
+      value: Tablet
       objectReference: {fileID: 0}
     - target: {fileID: 1392642439280711348, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_text
@@ -2687,6 +2687,10 @@ PrefabInstance:
       propertyPath: PlayerCam
       value: 
       objectReference: {fileID: 256747973}
+    - target: {fileID: 1175022236994625407, guid: af7dbae821aa15e41b7225a031f42e6d, type: 3}
+      propertyPath: _tabletGameObject
+      value: 
+      objectReference: {fileID: 642256984}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af7dbae821aa15e41b7225a031f42e6d, type: 3}
 --- !u!20 &256747972 stripped
@@ -6359,7 +6363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23f7ddbd82aa88469f07322eacbf955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenText: {fileID: 0}
+  _screenText: {fileID: 495890736}
 --- !u!1 &646014032
 GameObject:
   m_ObjectHideFlags: 0

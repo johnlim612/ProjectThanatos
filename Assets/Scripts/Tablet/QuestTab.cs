@@ -3,9 +3,9 @@ public class QuestTab : TabletManager {
         int index = 1;
         string log = "";
 
-        foreach (string str in _questLog) {
+/*        foreach (string str in _questLog) {
             log += $"{index++}: {str} ";
         }
-        _screenText.text = log;
+        _screenText.text = log;*/
     }
 }

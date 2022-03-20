@@ -299,12 +299,12 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     public string GetDiaryEntry() {
-        print(_diaryEntry);
+        print("diary " + _diaryEntry);
         return _diaryEntry;
     }
 
     public List<string> GetQuestLog() {
-        print(_questLog);
+        print("quest " + _questLog);
         return _questLog;
     }
 }

@@ -12,26 +12,11 @@ public class TabletManager : MonoBehaviour {
         DiaryEntry = "";
 
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, 
-            Constants.TabletKey, GameManager.SabotageId);
-
-        print("hello");
+            Constants.TabletKey, 1); // change to current day instead
     }
 
     public void Refresh() {
-        print("hi");
-        StartCoroutine(RefreshCoroutine());
-    }
-
-    IEnumerator RefreshCoroutine() {
-        print("start");
         QuestLog = DialogueDataManager.Instance.GetQuestLog();
         DiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
-
-        while (QuestLog.Count == 0 || DiaryEntry == "") {
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        print("Quest " + QuestLog);
-        print("Diary " + DiaryEntry);
     }
 }

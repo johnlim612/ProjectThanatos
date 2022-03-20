@@ -40,9 +40,7 @@ public class TabletController : MonoBehaviour {
     }
 
     public void OpenDiaryTab() {
-        // _screenText.text = DialogueDataManager.Instance.GetDiaryEntry();
-        string hi = _tabletManager.DiaryEntry;
-        print("quest " + hi);
+         _screenText.text = _tabletManager.DiaryEntry;
     }
 
     public void OpenQuestTab() {
@@ -52,7 +50,6 @@ public class TabletController : MonoBehaviour {
         foreach (string str in questLog) {
             log += $"{index++}: {str} ";
         }
-        // _screenText.text = log;
-        print("log: " + log);
+        _screenText.text = log;
     }
 }

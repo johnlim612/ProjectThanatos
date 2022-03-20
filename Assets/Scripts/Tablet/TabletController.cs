@@ -44,6 +44,8 @@ public class TabletController : MonoBehaviour {
         OpenQuestTab();
     }
 
+
+
     /// <summary>
     /// Maintains color after being selected
     /// </summary>

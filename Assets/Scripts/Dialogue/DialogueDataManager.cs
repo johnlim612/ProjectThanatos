@@ -141,7 +141,7 @@ public class DialogueDataManager : MonoBehaviour {
         //}
 
         if (_characterData != null) {
-            _prompts.Add(_characterData["1"][Constants.NpcKey].ToString());
+            _prompts.Add(_characterData["1"][Constants.PlayerKey].ToString());
             _dialogues.Add(new DialogueReference(Constants.CharacterDialogueKey, "1"));
         }
     }

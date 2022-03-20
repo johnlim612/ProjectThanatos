@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float _walkSpeed;      // Player's move speed
     [SerializeField] private float _sprintSpeed;    //
     [SerializeField] private float _sensitivity;    // Player's camera sensitivity
-    
+    [SerializeField] private GameObject _tabletGameObject;    
+
     private PlayerInput _playerInputs;  // Custom Input Action map for player inputs
     private InputAction _movement;      // Reference to player's movement inputs
     private InputAction _sprint;
     private InputAction _interact;
+    private InputAction _tablet;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
@@ -27,7 +29,9 @@ public class PlayerController : MonoBehaviour {
         _movement = _playerInputs.Player.Movement;
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
-        
+        _tablet = _playerInputs.Player.Tablet;
+        _tabletGameObject.SetActive(false);
+
         /*
         if (HallwaySaveData.IsInitialized) {
             transform.position = HallwaySaveData.NewPosition;
@@ -41,12 +45,15 @@ public class PlayerController : MonoBehaviour {
         _movement.Enable();
         _sprint.Enable();
         _interact.Enable();
+        _tablet.Enable();
+        _tablet.performed += OpenTablet;
     }
 
     private void OnDisable() {
         _movement.Disable();
         _sprint.Disable();
         _interact.Disable();
+        _tablet.Disable();
     }
     
     private void PlayerMovement() {
@@ -74,6 +81,10 @@ public class PlayerController : MonoBehaviour {
 
         PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
         
+    }
+
+    private void OpenTablet(InputAction.CallbackContext context) {
+        _tabletGameObject.SetActive(!_tabletGameObject.activeSelf);
     }
 
     void FixedUpdate() {

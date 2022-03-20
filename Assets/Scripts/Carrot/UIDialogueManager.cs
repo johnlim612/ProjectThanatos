@@ -68,9 +68,10 @@ namespace UI {
 					StartSystemAlert();
 					break;
 				case EntityType.Diary:
-					StartDiaryDialogue((Bed)entity);
+					StartDiaryDialogue((Bed) entity);
 					break;
-				default: break;
+				default: 
+					break;
 			}
 		}
 

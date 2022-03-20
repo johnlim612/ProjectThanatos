@@ -1232,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6899564351489214603, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6899564351489214604, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_Camera
@@ -2230,8 +2230,72 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[2].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: adb88060af50f1143868a7545e9f7545, type: 3}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[2].Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[2].Name
+      value: alarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[3].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 92c994282f0fb0740b758f650540a408, type: 3}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[3].Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[3].Name
+      value: doorOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[4].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 94fa92279f0867d4eaa2cc5246e0bb56, type: 3}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[4].Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[4].Name
+      value: doorClose
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
       propertyPath: Sounds.Array.data[0].Pitch
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[2].Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[3].Pitch
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[4].Pitch
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[2].Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[3].Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
+      propertyPath: Sounds.Array.data[4].Volume
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2982489294633245062, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
       propertyPath: m_Name

@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
         _tablet = _playerInputs.Player.Tablet;
-        _tabletGameObject.SetActive(false);
+        //_tabletGameObject.SetActive(false);
 
         /*
         if (HallwaySaveData.IsInitialized) {

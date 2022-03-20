@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private List<NPC> _npcList = new List<NPC>();
     [SerializeField] private TabletManager _tabletMgr;
     [SerializeField] private static int _day;
+    [SerializeField] private GameObject _roomNameWrapper;
 
     public GameObject screen;
 
@@ -64,5 +66,14 @@ public class GameManager : MonoBehaviour {
 
     public static void ClearSabotage() {
         Sabotage.SabotageActive = false;
+    }
+
+    public void ToggleRoomName(bool isRoomEntered, string enteredRoomName) {
+        Animator anim = _roomNameWrapper.GetComponent<Animator>();
+        Transform roomName = _roomNameWrapper.transform.Find("RoomName");
+        TextMeshProUGUI roomNameText = roomName.GetComponent<TextMeshProUGUI>();
+
+        roomNameText.text = enteredRoomName;
+        anim.SetBool("reveal", isRoomEntered);
     }
 }

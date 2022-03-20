@@ -5,15 +5,14 @@ public class DoorAnimation : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == Constants.PlayerKey) {
-            _animator.Play("DoorOpen");
-            Debug.Log("Open");
+            GameManager.Instance.ToggleRoomName(true, gameObject.name);
             _animator.SetBool("door", true);
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.tag == Constants.PlayerKey) {
-            Debug.Log("Close");
+            GameManager.Instance.ToggleRoomName(false, gameObject.name);
             _animator.SetBool("door", false);
         }
     }

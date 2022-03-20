@@ -5,8 +5,6 @@ public class DoorAnimation : MonoBehaviour {
     [SerializeField] private AudioSource _audioManager;
     [SerializeField] private AudioClip _open, _close;
 
-    private void Awake() {
-    }
     private void OnTriggerEnter(Collider other) {
         if (other.tag == Constants.PlayerKey) {
             _animator.Play("DoorOpen");

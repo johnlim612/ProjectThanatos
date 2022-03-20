@@ -19,7 +19,9 @@ public class TabletController : MonoBehaviour {
 
     void Start() {
         if (_tabButtons.Length < 2) {
-            Debug.LogError("Tab Buttons field requires at least 2 Button objects.");
+            Debug.LogError("This controller needs at least 2 button objects for reference. " +
+                "The first should be what the button looks like when selected and the second " +
+                "when it isn't selected.");
         }
 
         _selectedBtn = _tabButtons[0];
@@ -47,9 +49,11 @@ public class TabletController : MonoBehaviour {
         List<string> questLog = _tabletManager.QuestLog;
         int index = 1;
         string log = "";
+
         foreach (string str in questLog) {
             log += $"{index++}: {str} ";
         }
+
         _screenText.text = log;
     }
 }

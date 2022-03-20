@@ -1,22 +1,28 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
-    public List<string> QuestLog { get; private set; }
-    public string DiaryEntry { get; private set; }
+    private List<string> _questLog;
+    private string _diaryEntry;
 
-    private void Start() {
-        QuestLog = new List<String>();
-        DiaryEntry = "";
+    private void Awake() {
+        _questLog = new List<string>();
+        _diaryEntry = "";
 
-        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, 
+        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
             Constants.TabletKey, 1); // change to current day instead
     }
 
     public void Refresh() {
-        QuestLog = DialogueDataManager.Instance.GetQuestLog();
-        DiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
+        _questLog = DialogueDataManager.Instance.GetQuestLog();
+        _diaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
+    }
+
+    public List<string> QuestLog { 
+        get { return _questLog; }
+    }
+
+    public string DiaryEntry {
+        get { return _diaryEntry; }
     }
 }

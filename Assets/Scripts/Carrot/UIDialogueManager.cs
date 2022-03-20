@@ -103,7 +103,7 @@ namespace UI {
 		public void StartAnnouncement() {
             //_player.GetComponent<PlayerController>().enabled = true;
             DialogueDataManager.Instance.Initialize(EntityType.Alert,
-                Constants.SystemAnnouncement, GameManager.SabotageId);
+                Constants.SystemAnnouncement, GameManager.Instance.SabotageId);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			_dialogueUI.Animator.SetBool("IsOpen", true); 
             DisplayNextSentence();

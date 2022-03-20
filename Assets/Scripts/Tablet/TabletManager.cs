@@ -1,38 +1,37 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI _screenText;
+    public List<string> QuestLog { get; private set; }
+    public string DiaryEntry { get; private set; }
 
-    private List<string> _questLog = new List<string>();
-    private string _storedDiaryEntry = "";
+    private void Start() {
+        QuestLog = new List<String>();
+        DiaryEntry = "";
 
-    private void Awake() {
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, 
             Constants.TabletKey, GameManager.SabotageId);
 
-        _storedDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
-        _questLog = DialogueDataManager.Instance.GetQuestLog();
+        print("hello");
     }
 
     public void Refresh() {
-        _storedDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
-        _questLog = DialogueDataManager.Instance.GetQuestLog();
+        print("hi");
+        StartCoroutine(RefreshCoroutine());
     }
 
-    public void OpenDiaryTab() {
-        _screenText.text = DialogueDataManager.Instance.GetDiaryEntry();
-    }
+    IEnumerator RefreshCoroutine() {
+        print("start");
+        QuestLog = DialogueDataManager.Instance.GetQuestLog();
+        DiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
 
-    public void OpenQuestTab() {
-        _questLog = DialogueDataManager.Instance.GetQuestLog();
-        int index = 1;
-        string log = "";
-        foreach (string str in _questLog) {
-            log += $"{index++}: {str} ";
+        while (QuestLog.Count == 0 || DiaryEntry == "") {
+            yield return new WaitForSeconds(0.5f);
         }
-       // _screenText.text = log;
-       // print("log: " + log);
+
+        print("Quest " + QuestLog);
+        print("Diary " + DiaryEntry);
     }
 }

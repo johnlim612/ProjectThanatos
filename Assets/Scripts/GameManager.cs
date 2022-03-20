@@ -53,13 +53,13 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        //_tabletMgr.Refresh();
+        _tabletMgr.Refresh();
         FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
         Sabotages.Remove(SabotageId);
 
-        foreach (NPC npc in _npcList) {
+/*        foreach (NPC npc in _npcList) {
             npc.HasBeenSpokenTo = false;
-        }
+        }*/
     }
 
     public static void ClearSabotage() {

@@ -80,6 +80,7 @@ public class DialogueDataManager : MonoBehaviour {
                 FindSabotageRelatedData(dataType, data, dialogueId);
                 break;
             case EntityType.Diary:
+                print(data);
                 // Rename Enum to Tablet? Relocate Enum to its own file/namespace?
                 FindSabotageRelatedData(dataType, data, dialogueId);
                 break;
@@ -226,6 +227,7 @@ public class DialogueDataManager : MonoBehaviour {
 
     private void FindSabotageRelatedData(EntityType dataType, JObject data, int? id) {
         if (id == null) {
+            print("ID is null");
             return;
         }
 
@@ -233,6 +235,7 @@ public class DialogueDataManager : MonoBehaviour {
 
         if (rawData == null) {
             // TODO: Handle exceptions.
+            print("rawData is null");
             return;
         }
 
@@ -275,6 +278,7 @@ public class DialogueDataManager : MonoBehaviour {
     private void ParseTabletData(JToken data) {
         _diaryEntry = data[Constants.DiaryKey].ToString();
         print(data[Constants.QuestLogKey]);
+        print("parse tablet data");
         // Parse and store quest log data
         foreach (JProperty log in data[Constants.QuestLogKey]) {
             // log = { "1": "hi" }
@@ -283,12 +287,12 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     public string GetDiaryEntry() {
-        print("diary " + _diaryEntry);
+        //print("diary " + _diaryEntry);
         return _diaryEntry;
     }
 
     public List<string> GetQuestLog() {
-        print("quest " + _questLog);
+        //print("quest " + _questLog);
         return _questLog;
     }
 }

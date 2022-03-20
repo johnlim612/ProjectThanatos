@@ -19,11 +19,6 @@ public class InteractableSabotage : InteractableObject {
     public override void InteractObject() {
         print("Sabotage Repaired");
         GameManager.Instance.ClearSabotage();
-        Interact();
-    }
-
-    private void Interact() {
-        SystemAnnouncement.Announce(_descriptions);
     }
 
     private void Update() {

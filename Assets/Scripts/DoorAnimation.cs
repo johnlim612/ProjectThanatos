@@ -6,9 +6,8 @@ public class DoorAnimation : MonoBehaviour {
     [SerializeField] private AudioClip _open, _close;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == Constants.PlayerKey) {
-            _animator.Play("DoorOpen");
-            //Debug.Log("Open");
+        if (other.CompareTag(Constants.PlayerKey)) {
+            GameManager.Instance.ToggleRoomName(true, gameObject.name);
             _animator.SetBool("door", true);
             _audioManager.clip = _open;
             _audioManager.Play();
@@ -16,8 +15,8 @@ public class DoorAnimation : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag == Constants.PlayerKey) {
-            //Debug.Log("Close");
+        if (other.CompareTag(Constants.PlayerKey)) {
+            GameManager.Instance.ToggleRoomName(false, gameObject.name);
             _animator.SetBool("door", false);
             _audioManager.clip = _close;
             _audioManager.Play();

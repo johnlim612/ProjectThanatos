@@ -68,12 +68,10 @@ namespace UI {
 					StartSystemAlert();
 					break;
 				case EntityType.Diary:
-					StartDiaryDialogue((Diary)entity);
+					StartDiaryDialogue((Bed) entity);
 					break;
-				case EntityType.Announcement:
-					StartSystemAnnouncement(sysAlert);
+				default: 
 					break;
-				default: break;
 			}
 		}
 
@@ -85,8 +83,6 @@ namespace UI {
 
 			if (_activeType == EntityType.NPC) {
 				ToggleNextButton(false);
-				print("this ran");
-				print(DialogueUI.NextButton.enabled);
 			}
 
 			IsInteracting = true;
@@ -96,17 +92,16 @@ namespace UI {
 			Cursor.lockState = CursorLockMode.None;
 		}
 		public void StartSystemAlert() {
-			DialogueDataManager.Instance.Initialize(EntityType.Alert,
-			Constants.SystemAnnouncement, GameManager.Instance.SabotageId);
+			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
+													GameManager.Instance.SabotageId);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			
 			PrepareDialogue();
 			DisplayNextAction();
-
 		}
 
-		public void StartDiaryDialogue(Diary diary) {
-			_sentences = diary.DescriptionQueue;
+		public void StartDiaryDialogue(Bed bed) {
+			_sentences = bed.DescriptionQueue;
 			DisplayNextAction();
 		}
 
@@ -115,10 +110,6 @@ namespace UI {
 			DisplayNextAction();
 		}
 
-		public void StartSystemAnnouncement(Queue<(string, string)> announcement) {
-			_sentences = announcement;
-			DisplayNextAction();
-		}
 		public void ToggleNextButton(bool toggle) {
 			DialogueUI.NextButton.enabled = toggle;
 			if (toggle) {
@@ -267,7 +258,6 @@ namespace UI {
 		Item,
 		NPC,
 		Alert,
-		Diary,
-		Announcement
+		Diary
 	}
 }

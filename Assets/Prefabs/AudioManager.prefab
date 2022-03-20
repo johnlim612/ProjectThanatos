@@ -45,14 +45,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Name: walk
+    UniqueID: 0
     Source: {fileID: 0}
     Clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
     Volume: 0.3
-    Pitch: 1
+    Pitch: 1.5
     Loop: 1
   - Name: run
+    UniqueID: 0
     Source: {fileID: 0}
     Clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
     Volume: 0.3
     Pitch: 1.5
+    Loop: 1
+  - Name: alarm
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: adb88060af50f1143868a7545e9f7545, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 1
+  - Name: alert
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: cab301382fb6ecf449311291bf0dfb58, type: 3}
+    Volume: 0.3
+    Pitch: 1
     Loop: 1

@@ -64,7 +64,7 @@ public class DialogueDataManager : MonoBehaviour {
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
-        _dataDayKey = "D" + GameManager.SabotageId.ToString();
+        _dataDayKey = "D" + GameManager.Instance.SabotageId.ToString();
 
         if (data == null) {
             Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}");
@@ -232,7 +232,6 @@ public class DialogueDataManager : MonoBehaviour {
         JToken rawData = data[Constants.SabotageDialogueKey][id.ToString()];
 
         if (rawData == null) {
-            // TODO: Handle exceptions.
             return;
         }
 

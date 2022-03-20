@@ -97,7 +97,7 @@ namespace UI {
 		}
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert,
-			Constants.SystemAnnouncement, GameManager.SabotageId);
+			Constants.SystemAnnouncement, GameManager.Instance.SabotageId);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			
 			PrepareDialogue();
@@ -119,14 +119,12 @@ namespace UI {
 			_sentences = announcement;
 			DisplayNextAction();
 		}
-
 		public void ToggleNextButton(bool toggle) {
 			DialogueUI.NextButton.enabled = toggle;
 			if (toggle) {
 				DialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
 			} else {
 				DialogueUI.NextButton.GetComponentInChildren<Text>().text = "";
-
 			}
 		}
 

@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         }
 
         _tabletMgr.Refresh();
-        FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Alert);
         Sabotages.Remove(SabotageId);
 
         foreach (NPC npc in _npcList) { 

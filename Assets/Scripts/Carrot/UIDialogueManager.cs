@@ -71,7 +71,7 @@ namespace UI {
 					StartDiaryDialogue((Diary)entity);
 					break;
 				case EntityType.Announcement:
-					StartSystemAnnouncment(sysAlert);
+					StartSystemAnnouncement(sysAlert);
 					break;
 				default: break;
 			}
@@ -115,7 +115,7 @@ namespace UI {
 			DisplayNextAction();
 		}
 
-		public void StartSystemAnnouncment(Queue<(string, string)> announcement) {
+		public void StartSystemAnnouncement(Queue<(string, string)> announcement) {
 			_sentences = announcement;
 			DisplayNextAction();
 		}
@@ -208,7 +208,7 @@ namespace UI {
  
 		public void DisplayNextAction(bool firstPrompt = false) {
 			ToggleNextButton(false);
-
+			
 			if (_sentences.Count == 0) {
 				EndDialogue();
 				return;

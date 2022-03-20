@@ -43,3 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d93059a3b8076746a1f05804371c2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _tabletMgr: {fileID: 0}
+  _day: 0
+  _screen: {fileID: 0}
+  _roomNameWrapper: {fileID: 0}

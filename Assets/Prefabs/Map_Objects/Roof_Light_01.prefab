@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 455618647800160400}
-  _sabotageFlickerRate: 0.6
+  _sabotageFlickerRate: 1
 --- !u!1 &1291234866969404
 GameObject:
   m_ObjectHideFlags: 0

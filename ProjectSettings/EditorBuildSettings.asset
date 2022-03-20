@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Outdated/MainScene.unity
     guid: 1a4ebd468f10d6945adc5d1a4333f0e1
   - enabled: 0
-    path: Assets/Scenes/Map.unity
+    path: Assets/Scenes/Outdated/Map.unity
     guid: 69dc42bea6b34db4586e7654f6f917ca
   - enabled: 0
-    path: Assets/Scenes/Hallway.unity
+    path: Assets/Scenes/Outdated/Hallway.unity
     guid: a591c4a2e3ae732448c592ee3ada8f6e
   - enabled: 0
     path: 

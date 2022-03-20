@@ -19,6 +19,6 @@ public class SystemAnnouncement: MonoBehaviour {
 
     public static void Announce(string[] description) {
         AddToQueue(description);
-        FindObjectOfType<UI.UIDialogueManager>().StartSystemAlert(_descriptionQueue);
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Alert , sysAlert: _descriptionQueue);
     }
 }

@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
-    private List<string> _questLog;
+    private string _questLog;
     private string _diaryEntry;
 
     private void Awake() {
-        _questLog = new List<string>();
+        _questLog = "";
         _diaryEntry = "";
 
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
@@ -14,11 +14,18 @@ public class TabletManager : MonoBehaviour {
     }
 
     public void Refresh() {
-        _questLog = DialogueDataManager.Instance.GetQuestLog();
         _diaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
+        int index = 1;
+        string log = "";
+
+        foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
+            log += $"{index++}: {str}\n";
+        }
+
+        _questLog = log;
     }
 
-    public List<string> QuestLog { 
+    public string QuestLog { 
         get { return _questLog; }
     }
 

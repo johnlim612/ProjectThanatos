@@ -20,7 +20,6 @@ namespace UI {
 
         // Start is called before the first frame update
         void Awake() {
-
         }
 
         public void UpdateImage(string name) {

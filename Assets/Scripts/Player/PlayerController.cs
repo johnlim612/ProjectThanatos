@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
+    private readonly Vector3 _northPoint = new Vector3(5, 2, -89.5f); // head of ship
+    private readonly Vector3 _southPoint = new Vector3(5, 2, 33.5f); // tail of ship
+
     private void Awake() {
         //Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
@@ -56,12 +59,6 @@ public class PlayerController : MonoBehaviour {
         _sprint.Disable();
         _interact.Disable();
         _tablet.Disable();
-    }
-
-    private void Update() {
-        if (_tabletController.IsMapOpened) {
-            print(transform.position);
-        }
     }
 
     private void PlayerMovement() {

@@ -30,6 +30,10 @@ public class TabletManager : MonoBehaviour {
         _questLog = log;
     }
 
+    public Vector3 PlayerPosition {
+        get { return _player.transform.position; }
+    }
+
     public string QuestLog { 
         get { return _questLog; }
     }

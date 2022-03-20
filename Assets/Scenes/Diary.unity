@@ -2226,6 +2226,10 @@ PrefabInstance:
       propertyPath: Buttons.Array.data[3]
       value: 
       objectReference: {fileID: 747520648}
+    - target: {fileID: 5705221139446639511, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: m_Name
+      value: MapButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6100593895849829367, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_text
       value: Hints
@@ -2345,7 +2349,7 @@ PrefabInstance:
     - target: {fileID: 8355162801055178917, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: _tabletManager
       value: 
-      objectReference: {fileID: 1251939926}
+      objectReference: {fileID: 959060884}
     - target: {fileID: 9018093333053605328, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -103.06036
@@ -9364,6 +9368,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953332130}
   m_Mesh: {fileID: 4300000, guid: 620813c3d11d1412a874c60c0aed7aeb, type: 3}
+--- !u!114 &959060884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7058108420553614084, guid: f0cccdbd2f5a8b04eb6b01ca33ef1359, type: 3}
+  m_PrefabInstance: {fileID: 7058108421660216260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23f7ddbd82aa88469f07322eacbf955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &965109885
 GameObject:
   m_ObjectHideFlags: 0
@@ -12244,49 +12259,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250640302}
   m_Mesh: {fileID: 4300000, guid: 620813c3d11d1412a874c60c0aed7aeb, type: 3}
---- !u!1 &1251939925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1251939927}
-  - component: {fileID: 1251939926}
-  m_Layer: 0
-  m_Name: TabletManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1251939926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251939925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23f7ddbd82aa88469f07322eacbf955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1251939927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251939925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 2, z: -83.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259274818
 GameObject:
   m_ObjectHideFlags: 0
@@ -13034,7 +13006,7 @@ Transform:
   - {fileID: 141584629}
   - {fileID: 633872927}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1372822095
 PrefabInstance:
@@ -13120,9 +13092,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 235321537}
     - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _screen
+      value: 
+      objectReference: {fileID: 235321537}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
       propertyPath: _tabletMgr
       value: 
-      objectReference: {fileID: 1251939926}
+      objectReference: {fileID: 959060884}
     - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
       propertyPath: _npcList.Array.size
       value: 1
@@ -16139,33 +16115,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: Sounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: Sounds.Array.data[0].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
-    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: Sounds.Array.data[0].Name
-      value: walk
-      objectReference: {fileID: 0}
-    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: Sounds.Array.data[1].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
-    - target: {fileID: 2982489294633245061, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: Sounds.Array.data[1].Name
-      value: run
-      objectReference: {fileID: 0}
     - target: {fileID: 2982489294633245062, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2982489294633245062, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa16ebd975fd5b84c9acdbe58a881999, type: 3}

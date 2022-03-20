@@ -25,17 +25,18 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    public void AssignAudioSource(GameObject sourceGO, string name) {
+    public AudioSource AssignAudioSource(GameObject sourceGO, string name) {
         Sound s = Array.Find(Sounds, sound => sound.Name == name);
         if (s == null) {
             Debug.LogError("Couldn't Find Sound");
-            return;
+            return null;
         }
         s.Source = sourceGO.AddComponent<AudioSource>();
         s.Source.clip = s.Clip;
         s.Source.volume = s.Volume;
         s.Source.pitch = s.Pitch;
         s.Source.loop = s.Loop;
+        return s.Source;
     }
 
     public void Play(string name) {

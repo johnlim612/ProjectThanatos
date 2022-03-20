@@ -53,12 +53,12 @@ public class GameManager : MonoBehaviour {
         }
 
         _tabletMgr.Refresh();
-        FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
-        _sabotages.Remove(_sabotageId);
+        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Alert);
+        _sabotages.Remove(SabotageId);
 
-/*        foreach (NPC npc in _npcList) {
+        foreach (NPC npc in _npcList) { 
             npc.HasBeenSpokenTo = false;
-        }*/
+        }
     }
 
     public void ClearSabotage() {

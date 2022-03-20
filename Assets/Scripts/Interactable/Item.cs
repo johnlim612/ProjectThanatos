@@ -5,6 +5,13 @@ public class Item : InteractableObject {
     
     [SerializeField] private string[] _descriptions;
     private Queue<(string, string)> _descriptionQueue = new Queue<(string, string)>();
+ 
+    [HideInInspector]
+    public bool Obtained { get; set; }
+
+	void Awake() {
+        Obtained = false;
+	}
 
 	void Start() {
         //AddToQueue(_descriptions);

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class TabletController : MonoBehaviour {
     [SerializeField] private Button[] _tabButtons;
+    [SerializeField] private TextMeshProUGUI _screenText;
+    [SerializeField] private TabletManager _tabletManager;
 
     private Button _selectedBtn;
     private ColorBlock _baseColorBlock;
@@ -33,5 +37,19 @@ public class TabletController : MonoBehaviour {
         _selectedBtn.colors = _baseColorBlock;
         _selectedBtn = btn;
         btn.colors = _selectedColorBlock;
+    }
+
+    public void OpenDiaryTab() {
+         _screenText.text = _tabletManager.DiaryEntry;
+    }
+
+    public void OpenQuestTab() {
+        List<string> questLog = _tabletManager.QuestLog;
+        int index = 1;
+        string log = "";
+        foreach (string str in questLog) {
+            log += $"{index++}: {str} ";
+        }
+        _screenText.text = log;
     }
 }

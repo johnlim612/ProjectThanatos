@@ -20,19 +20,23 @@ public class DialogueDataManager : MonoBehaviour {
 
     private static DialogueDataManager _instance;   // Singleton instance of the class.
 
+    // Contains parsed data:
     private string _baseFilePath = "Dialogue/";
     private List<string> _prompts;   // Players' prompts to start different convos w/ NPCs
     private string _greeting;    // First thing NPC displays when interacted with.
     private Queue<(string, string)> _systemAnnouncements; // Alert related to day's sabotage
+    private string _diaryEntry; // The player's end-of-day diary entry.
+    private List<string> _questLog; // The list of objectives for the day's sabotage.
 
     // Indices of dialogues correspond to _prompts[]
     private List<DialogueReference> _dialogues;
 
-    // Contains specific raw dialgoue data in JSON format
+    // Contains specific raw dialgoue data in JSON format:
     private JToken _sabotageData;    // The sabotage-specific dialogue data
     private (string, JToken)[] _randomEventData; // Array of Tuples of events' key/values
     private JToken _characterData;   // The character-specific dialogue data
     private string _dataRefName; // Name of the item/character referenced in the JSON data
+    private string _dataDayKey;
 
     public void Awake() {
         if (_instance != null && _instance != this) {
@@ -43,6 +47,8 @@ public class DialogueDataManager : MonoBehaviour {
 
         _prompts = new List<string>();
         _dialogues = new List<DialogueReference>();
+        _questLog = new List<string>();
+        _diaryEntry = "";
     }
 
     /// <summary>
@@ -58,6 +64,7 @@ public class DialogueDataManager : MonoBehaviour {
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
+        _dataDayKey = "D" + GameManager.SabotageId.ToString();
 
         if (data == null) {
             Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}");
@@ -70,10 +77,14 @@ public class DialogueDataManager : MonoBehaviour {
                 FindInitialPrompts();
                 break;
             case EntityType.Alert:
-                FindSystemAnnouncement(data, dialogueId);
+                FindSabotageRelatedData(dataType, data, dialogueId);
+                break;
+            case EntityType.Diary:
+                // Rename Enum to Tablet? Relocate Enum to its own file/namespace?
+                FindSabotageRelatedData(dataType, data, dialogueId);
                 break;
             default:
-                Debug.LogError($"Invalid DataType. Data Type ${dataType} was not recognized.");
+                Debug.LogError($"Invalid DataType. Data Type {dataType} was not recognized.");
                 break;
         }
     }
@@ -91,26 +102,26 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     private void FindRelevantDialogue(JObject data, int? charDialogueId) {
-        string sabotageId = GameManager.SabotageId.ToString();
-        _sabotageData = data[Constants.SabotageDialogueKey][sabotageId];
+        _sabotageData = data[Constants.SabotageDialogueKey][_dataDayKey];
 
         // Get dialogue related to all ongoing random events.
-        if (GameManager.RandomEventIds.Count != 0) {
-            _randomEventData = new (string, JToken)[GameManager.RandomEventIds.Count];
-            string randEventId;
+        //if (GameManager.RandomEventIds.Count != 0) {
+        //    _randomEventData = new (string, JToken)[GameManager.RandomEventIds.Count];
+        //    string randEventId;
 
-            for (int i = 0; i < GameManager.RandomEventIds.Count; i++) {
-                randEventId = GameManager.RandomEventIds[i];
-                _randomEventData[i] = (randEventId, data[Constants.RandomEventDialogueKey][randEventId]);
-            }
-        }
+        //    for (int i = 0; i < GameManager.RandomEventIds.Count; i++) {
+        //        randEventId = GameManager.RandomEventIds[i];
+        //        _randomEventData[i] = (randEventId, data[Constants.RandomEventDialogueKey][randEventId]);
+        //    }
+        //}
 
         // Get character-specific dialogue if it's available.
         if (charDialogueId != null && charDialogueId != 0) {
-            _characterData = data[Constants.CharacterDialogueKey][charDialogueId.ToString()];
+            string backstoryId = "E" + charDialogueId.ToString();
+            _characterData = data[Constants.CharacterDialogueKey][backstoryId];
         }
 
-        _greeting = (string) _sabotageData["greeting"];
+        _greeting = (string) data[Constants.GreetingKey][_dataDayKey][Constants.NpcKey];
     }
 
     /// <summary>
@@ -118,21 +129,19 @@ public class DialogueDataManager : MonoBehaviour {
     /// Store references to the dialogue each prompt belongs to by making a new DialogueReference.
     /// </summary>
     private void FindInitialPrompts() {
-        string promptKey = Constants.DialoguePromptKey;
-
-        _prompts.Add(_sabotageData[promptKey]["1"].ToString());
+        _prompts.Add(_sabotageData["1"][Constants.PlayerKey].ToString());
         _dialogues.Add(new DialogueReference(Constants.SabotageDialogueKey, "1"));
 
-        if (_randomEventData != null && _randomEventData.Length > 0) {
-            foreach ((string, JToken) randEvent in _randomEventData) {
-                _prompts.Add(randEvent.Item2[promptKey]["1"].ToString());
-                _dialogues.Add(new DialogueReference(Constants.RandomEventDialogueKey, 
-                    randEvent.Item1));
-            }
-        }
+        //if (_randomEventData != null && _randomEventData.Length > 0) {
+        //    foreach ((string, JToken) randEvent in _randomEventData) {
+        //        _prompts.Add(randEvent.Item2[_dataDayKey]["1"].ToString());
+        //        _dialogues.Add(new DialogueReference(Constants.RandomEventDialogueKey, 
+        //            randEvent.Item1));
+        //    }
+        //}
 
         if (_characterData != null) {
-            _prompts.Add(_characterData[Constants.DialoguePromptKey]["1"].ToString());
+            _prompts.Add(_characterData["1"][Constants.NpcKey].ToString());
             _dialogues.Add(new DialogueReference(Constants.CharacterDialogueKey, "1"));
         }
     }
@@ -145,41 +154,24 @@ public class DialogueDataManager : MonoBehaviour {
     /// <returns>Sorted Queue</returns>
     private Queue<(string, string)> SortQueue(JToken data) {
         Queue<(string, string)> dialogue = new Queue<(string, string)>();
-        List<(int, string)> prompts = new List<(int, string)>(); // Said by Player
-        List<(int, string)> replies = new List<(int, string)>(); // Said by NPC
+        string speaker = "";
+        string sentence = "";
 
-        foreach (JProperty prompt in data[Constants.DialoguePromptKey]) {
-            // sentence = { "1": "hi" }
-            prompts.Add((Int32.Parse(prompt.Name), prompt.Value.ToString()));
-        }
-
-        foreach (JProperty sentence in data[Constants.DialogueNPCSentenceKey]) {
-            // sentence = { "1": "hi" }
-            replies.Add((Int32.Parse(sentence.Name), sentence.Value.ToString()));
-        }
-
-        // Compare value of keys in the two temp lists and sort into queue
-        int i = 0;
-        int j = 0;
-
-        while (i < prompts.Count && j < replies.Count) {
-            if (prompts[i].Item1 > replies[j].Item1) {
-                dialogue.Enqueue((_dataRefName, replies[j].Item2));
-                j++;
-            } else {
-                dialogue.Enqueue((Constants.PlayerKey, prompts[i].Item2));
-                i++;
+        foreach (JProperty property in data) {
+            // property = { 1: { "speaker": "sentence" } }
+            if (property == null) {
+                break;
             }
-        }
-        // Add the remaining queue
-        if (i == prompts.Count) {
-            for (int k = j; k < replies.Count; k++) {
-                dialogue.Enqueue((_dataRefName, replies[k].Item2));
+
+            if (property.Value[Constants.PlayerKey] != null) {
+                speaker = Constants.PlayerKey;
+                sentence = property.Value[Constants.PlayerKey].ToString();
+            } else if (property.Value[Constants.NpcKey] != null) {
+                speaker = _dataRefName;
+                sentence = property.Value[Constants.NpcKey].ToString();
             }
-        } else {
-            for (int l = i; l < prompts.Count; l++) {
-                dialogue.Enqueue((Constants.PlayerKey, prompts[l].Item2));
-            }
+
+            dialogue.Enqueue((speaker, sentence));
         }
 
         return dialogue;
@@ -230,19 +222,31 @@ public class DialogueDataManager : MonoBehaviour {
         _dialogues = new List<DialogueReference>();
     }
 
-    // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
+    // ---------------------------- SHARED BY SABOTAGE LAYER IN JSON --------------------------- //
 
-    public void FindSystemAnnouncement(JObject data, int? alertId) {
-        if (alertId == null) {
+    private void FindSabotageRelatedData(EntityType dataType, JObject data, int? id) {
+        if (id == null) {
             return;
         }
 
-        JToken rawAlertData = data[Constants.SabotageDialogueKey][alertId.ToString()];
+        JToken rawData = data[Constants.SabotageDialogueKey][id.ToString()];
 
-        if (rawAlertData != null) {
-            SortAnnouncementQueue(rawAlertData);
+        if (rawData == null) {
+            // TODO: Handle exceptions.
+            return;
+        }
+
+        switch (dataType) {
+            case EntityType.Alert:
+                SortAnnouncementQueue(rawData);
+                break;
+            case EntityType.Diary:
+                ParseTabletData(rawData);
+                break;
         }
     }
+
+    // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
 
     private void SortAnnouncementQueue(JToken data) {
         _systemAnnouncements = new Queue<(string, string)>();
@@ -263,5 +267,24 @@ public class DialogueDataManager : MonoBehaviour {
 
     public Queue<(string, string)> GetAnnouncement() {
         return _systemAnnouncements;
+    }
+
+    // ------------------------------- TABLET - DIARY & QUEST LOG ------------------------------- //
+
+    private void ParseTabletData(JToken data) {
+        _diaryEntry = data[Constants.DiaryKey].ToString();
+        // Parse and store quest log data
+        foreach (JProperty log in data[Constants.QuestLogKey]) {
+            // log = { "1": "hi" }
+            _questLog.Add(log.Value.ToString());
+        }
+    }
+
+    public string GetDiaryEntry() {
+        return _diaryEntry;
+    }
+
+    public List<string> GetQuestLog() {
+        return _questLog;
     }
 }

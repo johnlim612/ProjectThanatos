@@ -1,0 +1,13 @@
+{
+	"sabotage": {
+		"1": {
+            "diary": "wonki sus",
+            "quest": {
+                "1": "get wrench",
+                "2": "get hammer",
+                "3": "fix thing",
+                "4": "talk to johnny"
+            }
+        }
+    }
+}

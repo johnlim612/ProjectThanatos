@@ -24,6 +24,9 @@ public class TabletController : MonoBehaviour {
     private Image _parentImage;
     private Sprite _baseMapImage;
     private AudioSource _audioSource;
+    private bool _isMapOpened;
+    private RectTransform _mapPolkaLolkaDotRect;
+    private Image _mapPolkaLolkaDotImg;
 
     void Start() {
         if (_tabButtons.Length < 2) {
@@ -31,6 +34,8 @@ public class TabletController : MonoBehaviour {
                 "first should be what the button looks like when selected and the second when " +
                 "it isn't selected. Colors of any other buttons will be changed to these colors.");
         }
+
+        GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Image");
 
         _selectedButton = _tabButtons[0];
         _selectedColorBlock = _tabButtons[0].colors;
@@ -40,8 +45,22 @@ public class TabletController : MonoBehaviour {
         _screenTextBaseColor = _screenText.color;
         _baseMapImage = _parentImage.sprite;
         _audioSource = GetComponent<AudioSource>();
+        _isMapOpened = false;
+        _mapPolkaLolkaDotRect = tempPolkaLolkaDot.GetComponent<RectTransform>();
+        _mapPolkaLolkaDotImg = tempPolkaLolkaDot.GetComponent<Image>();
 
+        _mapPolkaLolkaDotImg.enabled = false;
         OpenQuestTab();
+    }
+
+    private void Update() {
+        if (_isMapOpened) {
+            // player z position is the x position on the map
+            float x = (_tabletManager.PlayerPosition.z  + 89.5f) * Constants.MapXRatio - 295;
+            // player x position is the y position on the map
+            float y = (_tabletManager.PlayerPosition.x - 5) * Constants.MapYRatio * -1;
+            _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
+        }
     }
 
     /// <summary>
@@ -66,12 +85,21 @@ public class TabletController : MonoBehaviour {
         _screenText.color = Color.black;
 
         _audioSource.Play();
+
+        if (btn.gameObject.CompareTag("TabImage")) {
+            _isMapOpened = true;
+        } else {
+            _isMapOpened = false;
+            _mapPolkaLolkaDotImg.enabled = false;
+        }
+
         yield return new WaitForSeconds(_tabTransitionTime);
 
         _screenText.color = _screenTextBaseColor;
 
         if (btn.gameObject.CompareTag("TabImage")) {
             _parentImage.color = Color.white;
+            _mapPolkaLolkaDotImg.enabled = true;
         } else {
             _parentImage.color = _parentBaseColor;
         }

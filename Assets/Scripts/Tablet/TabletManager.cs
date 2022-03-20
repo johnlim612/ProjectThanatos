@@ -3,14 +3,21 @@ using UnityEngine;
 public class TabletManager : MonoBehaviour {
     private string _questLog;
     private string _diaryEntry;
+    private GameObject _player;
 
     private void Start() {
         _questLog = "";
         _diaryEntry = "";
+        _player = GameObject.Find(Constants.PlayerKey);
+
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
             Constants.TabletKey, 1); // change to current day instead
+        Refresh();
     }
 
+    /// <summary>
+    /// Updates data in the tablet
+    /// </summary>
     public void Refresh() {
         _diaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
@@ -21,6 +28,10 @@ public class TabletManager : MonoBehaviour {
         }
 
         _questLog = log;
+    }
+
+    public Vector3 PlayerPosition {
+        get { return _player.transform.position; }
     }
 
     public string QuestLog { 

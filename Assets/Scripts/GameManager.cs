@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 
         Sabotages.Remove(SabotageId);
 
-        foreach (NPC npc in _npcList) {
+        foreach (NPC npc in _npcList) { 
             npc.HasBeenSpokenTo = false;
         }
     }

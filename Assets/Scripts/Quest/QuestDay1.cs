@@ -17,7 +17,6 @@ public class QuestDay1 : Quest
     }
 
     void nextQue() {
-  
     }
 
     void QueMethods() {

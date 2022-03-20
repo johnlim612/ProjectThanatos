@@ -7,14 +7,12 @@ public class Quest : MonoBehaviour
     protected Queue<Action> _questQue;
     public string CurrentQuest;
 
+    
+
+
 	// Start is called before the first frame update
 	void Awake() {
         _questQue = new Queue<Action>();
-    }
-
-	void Start()
-    {
-        
     }
 
     // Update is called once per frame

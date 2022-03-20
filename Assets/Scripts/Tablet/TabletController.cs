@@ -24,6 +24,7 @@ public class TabletController : MonoBehaviour {
     private Image _parentImage;
     private Sprite _baseMapImage;
     private AudioSource _audioSource;
+    private bool _isMapOpened;
 
     void Start() {
         if (_tabButtons.Length < 2) {
@@ -40,6 +41,7 @@ public class TabletController : MonoBehaviour {
         _screenTextBaseColor = _screenText.color;
         _baseMapImage = _parentImage.sprite;
         _audioSource = GetComponent<AudioSource>();
+        _isMapOpened = false;
 
         OpenQuestTab();
     }
@@ -72,8 +74,10 @@ public class TabletController : MonoBehaviour {
 
         if (btn.gameObject.CompareTag("TabImage")) {
             _parentImage.color = Color.white;
+            _isMapOpened = true;
         } else {
             _parentImage.color = _parentBaseColor;
+            _isMapOpened = false;
         }
     }
 
@@ -90,6 +94,10 @@ public class TabletController : MonoBehaviour {
     public void OpenMapTab() {
         _parentImage.sprite = _mapImage;
         _screenText.text = "";
+    }
+
+    public bool IsMapOpened { 
+        get { return _isMapOpened; }
     }
 
     private void OnValidate() {

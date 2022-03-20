@@ -16,4 +16,5 @@ public static class Constants {
     public const string QuestLogKey = "quest";
     public const string TabletKey = "Tablet"; // Name of the Tablet.json file
     public const string NpcKey = "NPC";
+    public const float MapRatio = 5.5714285714285714285714285714285714285714285714285694208008135f;
 }

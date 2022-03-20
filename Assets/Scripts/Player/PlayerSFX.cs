@@ -9,8 +9,6 @@ public class PlayerSFX : MonoBehaviour
 
     public void Start() {
         _audioManager = FindObjectOfType<AudioManager>();
-        _audioManager.AssignAudioSource(gameObject, "walk");
-        _audioManager.AssignAudioSource(gameObject, "run");
     }
 
     public void Walk() {

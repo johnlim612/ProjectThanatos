@@ -12,6 +12,7 @@ namespace UI {
 		private DialogueUI _dialogueUI;
 		private Dialogue _dialogue;
 
+		private EntityData.SystemAlertData _systemAlert;
 		// Temp Dialogue queue holder
 		private Queue<(string, string)> _sentences;
 
@@ -102,9 +103,13 @@ namespace UI {
 
 		public void StartAnnouncement() {
             //_player.GetComponent<PlayerController>().enabled = true;
-            DialogueDataManager.Instance.Initialize(EntityType.Alert,
+
+            //DataManager.Instance.Initialize(EntityType.Alert,
+            //    Constants.SystemAnnouncement, GameManager.SabotageId);
+            _systemAlert = DataManager.Instance.LoadSystemAlert(EntityType.Alert,
                 Constants.SystemAnnouncement, GameManager.SabotageId);
-			_sentences = DialogueDataManager.Instance.GetAnnouncement();
+
+            _sentences = _systemAlert.GetSystemAlerts();
 			_dialogueUI.Animator.SetBool("IsOpen", true); 
             DisplayNextSentence();
         }
@@ -117,15 +122,15 @@ namespace UI {
 		public void StartDialogue(NPC npc) {
 			// Find and Load all Data pertaining to the characters' dialogue.
 			if (npc.HasBeenSpokenTo) {
-                DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name);
+                DataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name);
 			} else {
-                DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name, 
+                DataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name, 
 				npc.CountCharDialogue);
 				npc.UpdateCharDialogueProgress();
 			}
 
 			// Prompt Greeting here:
-			StartCoroutine(TypeSentence((npc.gameObject.name, DialogueDataManager.Instance.GetGreeting())));
+			StartCoroutine(TypeSentence((npc.gameObject.name, DataManager.Instance.GetGreeting())));
 			InitializePrompts();
 			LoadAndDisplayPrompts();
 			StartCoroutine(WaitForUserPrompt(npc));
@@ -149,7 +154,7 @@ namespace UI {
 		}
 
 		public void LoadAndDisplayPrompts() {
-			List<string> prompts = DialogueDataManager.Instance.GetPrompts();
+			List<string> prompts = DataManager.Instance.GetPrompts();
 			for (int i = 0;  i < _dialogueUI.Buttons.Length; i++) {
 				if (i >= prompts.Count) {
 					_dialogueUI.Buttons[i].gameObject.SetActive(false);
@@ -172,7 +177,7 @@ namespace UI {
 		public void CreateDialogue(InteractableObject entity) {
 			_dialogue = new Dialogue();
 			_dialogue.Name = entity.name;
-			_dialogue.Sentences = DialogueDataManager.Instance.GetDialogue(_promptSelection);
+			_dialogue.Sentences = DataManager.Instance.GetDialogue(_promptSelection);
 		}
 
 		/// <summary>

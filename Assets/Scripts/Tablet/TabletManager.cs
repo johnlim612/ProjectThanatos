@@ -9,16 +9,19 @@ public class TabletManager : MonoBehaviour {
     protected string _storedDiaryEntry = "";
 
     public void Refresh() {
-        print("refresh tablet");
-        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary, 
+        DataManager.Instance.Initialize(UI.EntityType.Diary, 
             Constants.TabletKey, GameManager.SabotageId);
 
-        _storedDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
-        _questLog = DialogueDataManager.Instance.GetQuestLog();
+        _storedDiaryEntry = DataManager.Instance.GetDiaryEntry();
+        _questLog = DataManager.Instance.GetQuestLog();
+    }
+
+    public void SetVariables() {
+
     }
 
     public void OpenDiaryTab() {
-        _screenText.text = DialogueDataManager.Instance.GetDiaryEntry();
+        _screenText.text = _storedDiaryEntry;
     }
 
     public void OpenQuestTab() {

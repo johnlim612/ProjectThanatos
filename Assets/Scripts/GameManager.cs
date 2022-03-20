@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     public static List<string> RandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     public static int SabotageId;   // The ID of the day's major event/sabotage
 
-    private const int _maxNumSabotages = 6; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
+    private const int _maxNumSabotages = 3; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<UI.UIDialogueManager>().StartAnnouncement();
         Sabotages.Remove(SabotageId);
 
-/*        foreach (NPC npc in _npcList) {
+        foreach (NPC npc in _npcList) {
             npc.HasBeenSpokenTo = false;
-        }*/
+        }
     }
 
     public static void ClearSabotage() {

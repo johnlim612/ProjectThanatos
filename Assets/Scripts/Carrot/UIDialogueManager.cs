@@ -53,7 +53,7 @@ namespace UI {
 					StartSystemAlert(sysAnnounce);
 					break;
 				case EntityType.Diary:
-					StartDiaryDialogue((Diary)entity);
+					StartDiaryDialogue((Bed)entity);
 					break;
 				default: break;
 			}
@@ -95,7 +95,7 @@ namespace UI {
 			DisplayNextSentence();
 		}
 
-		public void StartDiaryDialogue(Diary diary) {
+		public void StartDiaryDialogue(Bed diary) {
 			_sentences = diary.DescriptionQueue;
 			DisplayNextSentence();
 		}

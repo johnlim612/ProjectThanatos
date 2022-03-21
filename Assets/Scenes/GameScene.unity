@@ -4540,6 +4540,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3106492890385654653, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
   m_PrefabInstance: {fileID: 1951732798}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689528150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2023257108, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+  m_PrefabInstance: {fileID: 2023257106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90a65e1187d6c44896efb722ae28bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1702316766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5225,6 +5236,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114256786055634165, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 2353389835747633914, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectTab
@@ -5732,6 +5747,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2023257108, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _fade
+      value: 
+      objectReference: {fileID: 2123964546}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _fade
+      value: 
+      objectReference: {fileID: 1689528150}
     - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
       propertyPath: _screen
       value: 
@@ -5941,6 +5964,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 423864, guid: 98f508b556c380a4e89204f95af2d3da, type: 3}
   m_PrefabInstance: {fileID: 2087563521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2123964546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1255757934, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+  m_PrefabInstance: {fileID: 1951732798}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2128145233
 PrefabInstance:

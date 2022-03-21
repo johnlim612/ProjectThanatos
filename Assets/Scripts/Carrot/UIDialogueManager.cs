@@ -251,7 +251,7 @@ namespace UI {
 			DialogueUI.NameText.text = sentence.Item1;
 			DialogueUI.DialogueText.text = "";
 
-			foreach (char letter in sentence.Item2) { // may need to insert here:   .ToCharArray()
+			foreach (char letter in sentence.Item2) { 
 				DialogueUI.DialogueText.text += letter;
 				yield return new WaitForSeconds(_sentenceSpeed);
 			}

@@ -4,19 +4,25 @@ using System;
 
 public class Quest : MonoBehaviour
 {
-    protected Queue<Action> _questQue;
+    public NPC WonKi, JohnnyWalker, RachelLumina, YuriMiko;
+
+    public Queue<Action> QuestQue { get; set; }
     public string CurrentQuest;
-
-    
-
 
 	// Start is called before the first frame update
 	void Awake() {
-        _questQue = new Queue<Action>();
+        QuestQue = new Queue<Action>();
     }
 
-    // Update is called once per frame
-    void Update()
+	void Start() {
+        QueTriggers();
+	}
+
+    protected virtual void QueTriggers() {
+    }
+
+	// Update is called once per frame
+	void Update()
     {
         
     }
@@ -25,10 +31,12 @@ public class Quest : MonoBehaviour
         if (ReqItem != null && !ReqItem.Obtained) {
             return;
 		}
-
-        npc.ActiveQuest = false;
+        npc.ActiveQuest = true;
 	}
 
+    protected void TriggerSabotage() {
+        Sabotage.SabotageActive = true;
+    }
 
 
 }

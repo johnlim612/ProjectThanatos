@@ -1904,11 +1904,11 @@ RectTransform:
   m_Father: {fileID: 6899564351513994621}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -15}
-  m_SizeDelta: {x: 1200, y: 60}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 4.7750244, y: 5}
+  m_SizeDelta: {x: -10.450012, y: 60}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6899564351134389562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1950,7 +1950,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Dialogue Here
+  m_Text: '
 
 '
 --- !u!1 &6899564351489214603

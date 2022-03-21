@@ -22,12 +22,12 @@ public class QuestManager : MonoBehaviour {
             new QuestDay1(),
             new QuestDay2(),
             new QuestDay3()
-        };
 
+        };
         CurrentQuest = 1;
     }
 
-    void TriggerNext() {
+    public void TriggerNext() {
         Action action = Quests[CurrentQuest].QuestQue.Dequeue();
         action();
 	}

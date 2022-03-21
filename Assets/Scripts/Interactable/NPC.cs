@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class NPC : InteractableObject {
     public int CountCharDialogue { get { return _countCharDialogue; } }
-    public bool ActiveQuest;
 
     public bool HasBeenSpokenTo { 
         get { return _hasBeenSpokenTo; }

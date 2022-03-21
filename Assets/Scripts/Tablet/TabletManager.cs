@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
+    [SerializeField] private GameObject _tabletGameObj;
     private string _questLog;
     private string _diaryEntry;
     private GameObject _player;
@@ -9,7 +10,7 @@ public class TabletManager : MonoBehaviour {
         _questLog = "";
         _diaryEntry = "";
         _player = GameObject.Find(Constants.PlayerKey);
-
+        _tabletGameObj.SetActive(false);
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
             Constants.TabletKey, 1); // change to current day instead
         Refresh();
@@ -28,6 +29,22 @@ public class TabletManager : MonoBehaviour {
         }
 
         _questLog = log;
+    }
+
+    /// <summary>
+    /// Changes the state of the Tablet to Open or Closed based on the value of param.
+    /// </summary>
+    /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
+    public void ToggleTabletState(bool? isOpen = null) {
+        if (isOpen == null && !UI.UIDialogueManager.IsInteracting) {
+            _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
+            Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
+                                   CursorLockMode.Locked;
+            return;
+        }
+
+        _tabletGameObj.SetActive((bool)isOpen);
+        Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public Vector3 PlayerPosition {

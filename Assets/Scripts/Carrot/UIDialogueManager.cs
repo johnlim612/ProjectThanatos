@@ -85,6 +85,12 @@ namespace UI {
 				ToggleNextButton(false);
 			}
 
+			// Close Tablet if it's already open
+			TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+			if (tm != null) {
+				tm.ToggleTabletState(false);
+            }
+
 			IsInteracting = true;
 
 			DialogueUI.DialogueText.text = "";
@@ -249,7 +255,7 @@ namespace UI {
 		void EndDialogue() {
 			DialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
-			//Cursor.lockState = CursorLockMode.Locked;
+			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}

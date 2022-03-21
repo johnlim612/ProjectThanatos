@@ -11,7 +11,7 @@ public class LightAdjuster : MonoBehaviour {
     private Color _defaultColor;
 
     private void Awake() {
-        SabotageLevel = LightType.EMERGENCY;
+        SabotageLevel = LightType.NORMAL;
         _shaderMaterial = gameObject.GetComponent<Renderer>().material;
         _defaultColor = _light.color;
         _tempFlickerRate = _sabotageFlickerRate;
@@ -32,12 +32,15 @@ public class LightAdjuster : MonoBehaviour {
         if (SabotageLevel == LightType.EMERGENCY) {
             _light.color = Color.red;
             _shaderMaterial.DisableKeyword("_EMISSION");
-            if (_light.intensity >= 0.75) {
+            if (_light.intensity >= 1) {
                 _tempFlickerRate = -_sabotageFlickerRate;
             } else if  (_light.intensity == 0) {
+                FindObjectOfType<AudioManager>().Play("alarm");
                 _tempFlickerRate = _sabotageFlickerRate;
             }
             _light.intensity += _tempFlickerRate * Time.deltaTime;
+        } else {
+            FindObjectOfType<AudioManager>().Stop("alarm");
         }
     }
     private void LightsOut() {

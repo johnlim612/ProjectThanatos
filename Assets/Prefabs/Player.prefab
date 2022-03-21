@@ -82,6 +82,7 @@ MonoBehaviour:
   _walkSpeed: 300
   _sprintSpeed: 500
   _sensitivity: 700
+  _tabletGameObject: {fileID: 0}
 --- !u!114 &1175022236994625400
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -68,12 +68,10 @@ namespace UI {
 					StartSystemAlert();
 					break;
 				case EntityType.Diary:
-					StartDiaryDialogue((Diary)entity);
+					StartDiaryDialogue((Bed) entity);
 					break;
-				case EntityType.Announcement:
-					StartSystemAnnouncement(sysAlert);
+				default: 
 					break;
-				default: break;
 			}
 		}
 
@@ -85,9 +83,13 @@ namespace UI {
 
 			if (_activeType == EntityType.NPC) {
 				ToggleNextButton(false);
-				print("this ran");
-				print(DialogueUI.NextButton.enabled);
 			}
+
+			// Close Tablet if it's already open
+			TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+			if (tm != null) {
+				tm.ToggleTabletState(false);
+            }
 
 			IsInteracting = true;
 
@@ -95,28 +97,23 @@ namespace UI {
 			DialogueUI.Animator.SetBool("IsOpen", true);
 			Cursor.lockState = CursorLockMode.None;
 		}
+
 		public void StartSystemAlert() {
-			DialogueDataManager.Instance.Initialize(EntityType.Alert,
-			Constants.SystemAnnouncement, GameManager.SabotageId);
+			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
+													GameManager.Instance.SabotageId);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			
 			PrepareDialogue();
 			DisplayNextAction();
-
 		}
 
-		public void StartDiaryDialogue(Diary diary) {
-			_sentences = diary.DescriptionQueue;
+		public void StartDiaryDialogue(Bed bed) {
+			_sentences = bed.DescriptionQueue;
 			DisplayNextAction();
 		}
 
 		public void StartItemDialogue(Item item) {
 			_sentences = item.DescriptionQueue;
-			DisplayNextAction();
-		}
-
-		public void StartSystemAnnouncement(Queue<(string, string)> announcement) {
-			_sentences = announcement;
 			DisplayNextAction();
 		}
 
@@ -126,7 +123,6 @@ namespace UI {
 				DialogueUI.NextButton.GetComponentInChildren<Text>().text = "Continue";
 			} else {
 				DialogueUI.NextButton.GetComponentInChildren<Text>().text = "";
-
 			}
 		}
 
@@ -260,7 +256,7 @@ namespace UI {
 		void EndDialogue() {
 			DialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
-			//Cursor.lockState = CursorLockMode.Locked;
+			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}
@@ -269,7 +265,6 @@ namespace UI {
 		Item,
 		NPC,
 		Alert,
-		Diary,
-		Announcement
+		Diary
 	}
 }

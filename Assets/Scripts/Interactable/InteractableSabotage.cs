@@ -18,16 +18,11 @@ public class InteractableSabotage : InteractableObject {
 
     public override void InteractObject() {
         print("Sabotage Repaired");
-        GameManager.ClearSabotage();
-        Interact();
-    }
-
-    private void Interact() {
-        SystemAnnouncement.Announce(_descriptions);
+        GameManager.Instance.ClearSabotage();
     }
 
     private void Update() {
-        if (GameManager.SabotageId == _sabotageID && Sabotage.SabotageActive) {
+        if (GameManager.Instance.SabotageId == _sabotageID && Sabotage.SabotageActive) {
             ToggleSabotage(true);
         } else {
             ToggleSabotage(false);

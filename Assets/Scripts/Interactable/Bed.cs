@@ -6,7 +6,14 @@ public class Bed : InteractableObject {
 
     [SerializeField] private string[] _descriptions;
     [SerializeField] private string[] _requirements;
+    [SerializeField] private TabletController _tabletController;
     private Queue<(string, string)> _descriptionQueue;
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.N)) {
+            EndDay();
+        }
+    }
 
     public override void InteractObject() {
         if (Sabotage.SabotageActive) { // move bool to GM?
@@ -39,14 +46,11 @@ public class Bed : InteractableObject {
         StartCoroutine(WaitForDiaryEntry());
         // GameManager."fade to black" animation at EOD?
         print("EOD! You sneep.");
-        GameManager.Instance.AdvanceDay();
     }
 
     private IEnumerator WaitForDiaryEntry() {
-        while (false) { // <--- CHANGE to "while !done animation"
-            // call TabletManager's "end of day" method to trigger "update diary" animation
-            yield return null;
-        }
+        yield return StartCoroutine(_tabletController.UpdateDiary());
+        GameManager.Instance.AdvanceDay();
     }
 
     public Queue<(string, string)> DescriptionQueue {

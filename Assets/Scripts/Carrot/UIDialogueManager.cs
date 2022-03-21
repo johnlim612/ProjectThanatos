@@ -97,6 +97,7 @@ namespace UI {
 			DialogueUI.Animator.SetBool("IsOpen", true);
 			Cursor.lockState = CursorLockMode.None;
 		}
+
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
 													GameManager.Instance.SabotageId);

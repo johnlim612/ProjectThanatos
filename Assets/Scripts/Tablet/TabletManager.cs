@@ -36,13 +36,18 @@ public class TabletManager : MonoBehaviour {
     /// </summary>
     /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
     public void ToggleTabletState(bool? isOpen = null) {
-        if (isOpen == null && !UI.UIDialogueManager.IsInteracting) {
-            _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
-            Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
-                                   CursorLockMode.Locked;
-            return;
+        if (isOpen == null) {
+            if (UI.UIDialogueManager.IsInteracting) {
+                return;
+            } else {
+                print("isOpen is null && UIMgr is inactive");
+                _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
+                Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
+                                       CursorLockMode.Locked;
+                return;
+            }
         }
-
+        print("isOpen: " + isOpen);
         _tabletGameObj.SetActive((bool)isOpen);
         Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
     }

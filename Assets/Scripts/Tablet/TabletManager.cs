@@ -3,12 +3,14 @@ using UnityEngine;
 public class TabletManager : MonoBehaviour {
     [SerializeField] private GameObject _tabletGameObj;
     private string _questLog;
-    private string _diaryEntry;
+    private string _currentDiaryEntry;
+    private string _diaryEntryHistory;
     private GameObject _player;
 
     private void Start() {
         _questLog = "";
-        _diaryEntry = "";
+        _currentDiaryEntry = "";
+        _diaryEntryHistory = "";
         _player = GameObject.Find(Constants.PlayerKey);
         _tabletGameObj.SetActive(false);
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
@@ -20,7 +22,7 @@ public class TabletManager : MonoBehaviour {
     /// Updates data in the tablet
     /// </summary>
     public void Refresh() {
-        _diaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
+        _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
         string log = "";
 
@@ -51,6 +53,10 @@ public class TabletManager : MonoBehaviour {
         Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
+    public void StoreDiaryEntry(string entry) {
+        _diaryEntryHistory += entry + "\n\n";
+    }
+
     public Vector3 PlayerPosition {
         get { return _player.transform.position; }
     }
@@ -59,7 +65,11 @@ public class TabletManager : MonoBehaviour {
         get { return _questLog; }
     }
 
-    public string DiaryEntry {
-        get { return _diaryEntry; }
+    public string CurrentDiaryEntry {
+        get { return _currentDiaryEntry; }
+    }
+
+    public string DiaryEntryHistory {
+        get { return _diaryEntryHistory; }
     }
 }

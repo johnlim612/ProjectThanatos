@@ -28,28 +28,27 @@ public class TabletController : MonoBehaviour {
     private RectTransform _mapPolkaLolkaDotRect;
     private Image _mapPolkaLolkaDotImg;
 
-    void Start() {
-        if (_tabButtons.Length < 2) {
-            Debug.LogError("This controller needs at least 2 button objects for reference. The " +
-                "first should be what the button looks like when selected and the second when " +
-                "it isn't selected. Colors of any other buttons will be changed to these colors.");
-        }
+    private const float _sentenceSpeed = 0.02f;
 
-        GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Image");
+    private void Awake() {
+        _audioSource = GetComponent<AudioSource>();
 
+        // Tablet Layout
+        _parentImage = _screenText.transform.parent.GetComponent<Image>();
+        _parentBaseColor = _parentImage.color;
+        _baseMapImage = _parentImage.sprite;
         _selectedButton = _tabButtons[0];
         _selectedColorBlock = _tabButtons[0].colors;
         _baseColorBlock = _tabButtons[1].colors;
-        _parentImage = _screenText.transform.parent.GetComponent<Image>();
-        _parentBaseColor = _parentImage.color;
         _screenTextBaseColor = _screenText.color;
-        _baseMapImage = _parentImage.sprite;
-        _audioSource = GetComponent<AudioSource>();
+
+        // Tablet Map
+        GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Image");
         _isMapOpened = false;
         _mapPolkaLolkaDotRect = tempPolkaLolkaDot.GetComponent<RectTransform>();
         _mapPolkaLolkaDotImg = tempPolkaLolkaDot.GetComponent<Image>();
-
         _mapPolkaLolkaDotImg.enabled = false;
+
         OpenQuestTab();
     }
 
@@ -75,6 +74,25 @@ public class TabletController : MonoBehaviour {
         _selectedButton.colors = _baseColorBlock;
         _selectedButton = btn;
         btn.colors = _selectedColorBlock;
+    }
+
+    /// <summary>
+    /// Update diary at the end of the day
+    /// </summary>
+    public IEnumerator UpdateDiary() {
+        gameObject.SetActive(true);
+        SelectTab(_tabButtons[1]);
+        OpenDiaryTab();
+
+        string entry = "DAY " + GameManager.Instance.Day + ": " + _tabletManager.CurrentDiaryEntry;
+        _screenText.text = _tabletManager.DiaryEntryHistory;
+
+        foreach (char letter in entry) {
+            _screenText.text += letter;
+            yield return new WaitForSeconds(_sentenceSpeed);
+        }
+
+        _tabletManager.StoreDiaryEntry(entry);
     }
 
     /// <summary>
@@ -111,8 +129,19 @@ public class TabletController : MonoBehaviour {
     }
 
     public void OpenDiaryTab() {
+        if (_baseMapImage == null) {
+            print("base map null");
+        }
+
+        if (_parentImage == null) {
+            print("parent image null");
+        }
+
+        if (_parentImage.sprite == null) {
+            print("sprite null");
+        }
         _parentImage.sprite = _baseMapImage;
-        _screenText.text = _tabletManager.DiaryEntry;
+        _screenText.text = _tabletManager.DiaryEntryHistory;
     }
 
     public void OpenMapTab() {

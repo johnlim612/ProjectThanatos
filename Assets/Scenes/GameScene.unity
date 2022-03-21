@@ -3674,6 +3674,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 611487370336010656, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
   m_PrefabInstance: {fileID: 1951732798}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358362259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8355162801055178917, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+  m_PrefabInstance: {fileID: 1951732798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358362257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f21863e97c1b64a9b99d8c01b69bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1388177528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,6 +4116,7 @@ MonoBehaviour:
   - You go to bed.
   _requirements:
   - You need to repair the problem on the spaceship before you can use the diary
+  _tabletController: {fileID: 1358362259}
 --- !u!65 &1483580995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5030,6 +5042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7058108420553614084, guid: f0cccdbd2f5a8b04eb6b01ca33ef1359, type: 3}
+      propertyPath: _tabletGameObj
+      value: 
+      objectReference: {fileID: 1358362257}
     - target: {fileID: 7058108420553614085, guid: f0cccdbd2f5a8b04eb6b01ca33ef1359, type: 3}
       propertyPath: m_RootOrder
       value: 4

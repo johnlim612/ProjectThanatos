@@ -85,12 +85,19 @@ namespace UI {
 				ToggleNextButton(false);
 			}
 
+			// Close Tablet if it's already open
+			TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+			if (tm != null) {
+				tm.ToggleTabletState(false);
+            }
+
 			IsInteracting = true;
 
 			DialogueUI.DialogueText.text = "";
 			DialogueUI.Animator.SetBool("IsOpen", true);
 			Cursor.lockState = CursorLockMode.None;
 		}
+
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
 													GameManager.Instance.SabotageId);
@@ -249,7 +256,7 @@ namespace UI {
 		void EndDialogue() {
 			DialogueUI.Animator.SetBool("IsOpen", false);
 			_player.GetComponent<PlayerController>().enabled = true;
-			//Cursor.lockState = CursorLockMode.Locked;
+			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
 		}
 	}

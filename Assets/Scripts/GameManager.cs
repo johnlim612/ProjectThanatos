@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
 
     private static GameManager _instance;
     private List<int> _sabotages = new List<int>();            // List of IDs for all possible sabotages
-    private List<string> _sandomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
+    private List<string> _randomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     private int _sabotageId;   // The ID of the day's major event/sabotage
 
     private const int _maxNumSabotages = 3; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES

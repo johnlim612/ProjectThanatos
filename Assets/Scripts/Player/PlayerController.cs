@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour {
     public PlayerSFX Sfx;
@@ -17,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     private InputAction _sprint;
     private InputAction _interact;
     private InputAction _tablet;
-    private TabletController _tabletController;
+    //private TabletController _tabletController;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     private readonly Vector3 _southPoint = new Vector3(5, 2, 33.5f); // tail of ship
 
     private void Awake() {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
         _yRot = 0;
 
@@ -34,8 +33,9 @@ public class PlayerController : MonoBehaviour {
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
         _tablet = _playerInputs.Player.Tablet;
-        _tabletController = _tabletGameObject.GetComponent<TabletController>();
-        _tabletGameObject.SetActive(false);
+        _tablet.performed += OpenTablet;
+        //_tabletController = _tabletGameObject.GetComponent<TabletController>();
+        //_tabletGameObject.SetActive(false);
 
         /*
         if (HallwaySaveData.IsInitialized) {
@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour {
         _sprint.Enable();
         _interact.Enable();
         _tablet.Enable();
-        _tablet.performed += OpenTablet;
     }
 
     private void OnDisable() {
@@ -62,8 +61,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerMovement() {
-        Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
-        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, 
+            _movement.ReadValue<Vector2>().y); //Obtain movement direction
+        //Change vector direction to fit the current transform direction of player
+        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection);
+
         //Apply vector to velocity
         if (_sprint.ReadValue<float>() == 1) {
             Sfx.Run();
@@ -84,12 +86,21 @@ public class PlayerController : MonoBehaviour {
         _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
         _xRot = Mathf.Clamp(_xRot, -35, 60);
 
-        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, 
+            Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
         
     }
 
     private void OpenTablet(InputAction.CallbackContext context) {
-        _tabletGameObject.SetActive(!_tabletGameObject.activeSelf);
+        if (context.performed == true) {
+            TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+
+            if (tm == null) {
+                Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
+                return;
+            }
+            tm.ToggleTabletState(null);
+        }
     }
 
     void FixedUpdate() {

@@ -13,13 +13,18 @@ public class QuestDay1 : Quest
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
 
-    void nextQue() {
-    }
-
-    void QueMethods() {
-        //_questQue.Enqueue(() => TriggerNPC());
+    /// <summary>
+    /// EXAMPLE
+    /// </summary>
+    protected override void QueTriggers() {
+        QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
+        QuestQue.Enqueue(() => TriggerNPC(WonKi));
+        QuestQue.Enqueue(() => TriggerSabotage());
+        QuestQue.Enqueue(() => TriggerNPC(YuriMiko));
+        QuestQue.Enqueue(() => TriggerNPC(WonKi));
+        QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
     }
 }

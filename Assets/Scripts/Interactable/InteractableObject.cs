@@ -5,6 +5,7 @@ public class InteractableObject : MonoBehaviour {
     protected string _interactableText = "Press Space";
     protected bool _interactableCollided = false;
     protected BoxCollider _boxCol;
+    public bool ActiveQuest = false;
 
     public void OnInteract(InputValue value) {
         if (_interactableCollided && !UI.UIDialogueManager.IsInteracting) {

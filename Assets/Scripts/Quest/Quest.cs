@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Quest : MonoBehaviour
-{
+public class Quest : MonoBehaviour {
     public NPC WonKi, JohnnyWalker, RachelLumina, YuriMiko;
 
     public Queue<Action> QuestQue { get; set; }
-    public string CurrentQuest;
+    public bool QuestComplete;
 
 	// Start is called before the first frame update
 	void Awake() {
         QuestQue = new Queue<Action>();
+        QuestComplete = false;
     }
 
 	void Start() {
@@ -19,12 +19,6 @@ public class Quest : MonoBehaviour
 	}
 
     protected virtual void QueTriggers() {
-    }
-
-	// Update is called once per frame
-	void Update()
-    {
-        
     }
 
     protected void TriggerNPC(NPC npc, Item ReqItem = null) {
@@ -38,5 +32,8 @@ public class Quest : MonoBehaviour
         Sabotage.SabotageActive = true;
     }
 
+    protected void TriggerAlert() {
+
+	}   
 
 }

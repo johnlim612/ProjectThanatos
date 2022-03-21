@@ -7,19 +7,21 @@ using UnityEngine.UI;
 namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 		public DialogueUI DialogueUI;
-		private Dialogue _dialogue;
 
 		// Temp Dialogue queue holder
 		private Queue<(string, string)> _sentences;
 
 		// Waits for user to select prompt
 		private bool _promptSelected = false;
+		private bool _questSelected = false;
+
 		private int _promptSelection = 0;
 		private (string, string) _tempSentence;
 		private GameObject _player;
-		private EntityType _activeType;
+		private InteractableObject _entity;
+		private EntityType _entityType;
+		private Dialogue _dialogue;
 
-		private const int _maxPrompts = 4;
 		private const bool _v = false;
 		private const float _sentenceSpeed = 0.02f;
 
@@ -30,7 +32,8 @@ namespace UI {
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find(Constants.PlayerKey);
 			_tempSentence = (null, null);
-			_activeType = EntityType.NPC;
+			_entityType = EntityType.NPC;
+			_entity = null;
 		}
 
 		// add function on prompt buttons
@@ -48,13 +51,15 @@ namespace UI {
 
 		public void InitializeDialogue(EntityType interactable, InteractableObject entity = null, Queue <(string, string)> sysAlert = null) {
 			// If entity is not registered
+
+			this._entity = entity;
 			if (!Enum.IsDefined(typeof(EntityType), interactable)) {
 				Debug.Log("Entity not defined");
 				return;
 				// item not recognized
 			}
 
-			_activeType = interactable;
+			_entityType = interactable;
 			PrepareDialogue();
 
 			switch (interactable) {
@@ -77,11 +82,11 @@ namespace UI {
 
 		private void PrepareDialogue() {
 			// Don't cut player movement if it is an alert
-			if (_activeType != EntityType.Alert) {
+			if (_entityType != EntityType.Alert) {
 				_player.GetComponent<PlayerController>().enabled = false;
 			}
 
-			if (_activeType == EntityType.NPC) {
+			if (_entityType == EntityType.NPC) {
 				ToggleNextButton(false);
 			}
 
@@ -92,7 +97,6 @@ namespace UI {
             }
 
 			IsInteracting = true;
-
 			DialogueUI.DialogueText.text = "";
 			DialogueUI.Animator.SetBool("IsOpen", true);
 			Cursor.lockState = CursorLockMode.None;
@@ -127,9 +131,9 @@ namespace UI {
 		}
 
 		public void StartDialogue(NPC npc) {
-			// Find and Load all Data pertaining to the characters' dialogue.
 
 			// CHECK IF NPC HAS QUEST AVAILABLE AND USE/STORE/MAKE TRU THE PROMPT QUEST
+			
 			if (npc.HasBeenSpokenTo) {
                 DialogueDataManager.Instance.Initialize(EntityType.NPC, npc.gameObject.name);
 			} else {
@@ -169,8 +173,13 @@ namespace UI {
 			foreach (Button button in DialogueUI.Buttons) {
 				button.gameObject.SetActive(false);
 			}
+
 			_promptSelection = buttonIndex;
 			_promptSelected = true;
+
+			if (_entityType is EntityType.NPC && _entity.ActiveQuest is true && _promptSelection is Constants.QuestPrompt) {
+				_questSelected = true;
+			}
 		}
 
 		public void ContinueNPCDialogue(NPC npc) {
@@ -213,7 +222,7 @@ namespace UI {
 			_tempSentence = _sentences.Dequeue();
 
 			// if its not the initial prompt and its a player go through prompt
-			if (!firstPrompt && _tempSentence.Item1 == Constants.PlayerKey && _activeType == EntityType.NPC) {
+			if (!firstPrompt && _tempSentence.Item1 == Constants.PlayerKey && _entityType == EntityType.NPC) {
 				// For prompt
 				LoadAndDisplayPrompts(_tempSentence.Item2);
 				StartCoroutine(WaitForUserPrompt());
@@ -258,6 +267,11 @@ namespace UI {
 			_player.GetComponent<PlayerController>().enabled = true;
 			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
+
+			if (_questSelected) {
+				_questSelected = false;
+				QuestManager.Instance.TriggerNext();
+			}
 		}
 	}
 

@@ -50,7 +50,7 @@ public class Bed : InteractableObject {
 
     private IEnumerator WaitForDiaryEntry() {
         yield return StartCoroutine(_tabletController.UpdateDiary());
-        GameManager.Instance.AdvanceDay();
+        GameManager.Instance.EndDay();
     }
 
     public Queue<(string, string)> DescriptionQueue {

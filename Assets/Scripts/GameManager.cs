@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int _day;
     [SerializeField] private GameObject _screen;
     [SerializeField] private GameObject _roomNameWrapper;
+    [SerializeField] private Fade _fade;
 
     private static GameManager _instance;
     private List<int> _sabotages = new List<int>();            // List of IDs for all possible sabotages
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        _fade = GetComponent<Fade>();
     }
 
     private void Start() {
@@ -35,6 +38,10 @@ public class GameManager : MonoBehaviour {
         }
 
         AdvanceDay();
+    }
+
+    public void EndDay() {
+        StartCoroutine(WaitForFade());
     }
 
     public void AdvanceDay() {
@@ -74,6 +81,16 @@ public class GameManager : MonoBehaviour {
 
         roomNameText.text = enteredRoomName;
         anim.SetBool("reveal", isRoomEntered);
+    }
+
+    private IEnumerator WaitForFade() {
+        _fade.FadeActive(true);
+        _fade.FadeOut();
+        yield return new WaitForSeconds(1);
+        _fade.FadeIn();
+        yield return new WaitForSeconds(1);
+        _fade.FadeActive(false);
+        AdvanceDay();
     }
 
     public int Day {

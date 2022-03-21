@@ -40,14 +40,13 @@ public class TabletManager : MonoBehaviour {
             if (UI.UIDialogueManager.IsInteracting) {
                 return;
             } else {
-                print("isOpen is null && UIMgr is inactive");
                 _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
                 Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
                                        CursorLockMode.Locked;
                 return;
             }
         }
-        print("isOpen: " + isOpen);
+
         _tabletGameObj.SetActive((bool)isOpen);
         Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
     }

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
         _tablet = _playerInputs.Player.Tablet;
+        _tablet.performed += OpenTablet;
         //_tabletController = _tabletGameObject.GetComponent<TabletController>();
         //_tabletGameObject.SetActive(false);
 
@@ -50,7 +51,6 @@ public class PlayerController : MonoBehaviour {
         _sprint.Enable();
         _interact.Enable();
         _tablet.Enable();
-        _tablet.performed += OpenTablet;
     }
 
     private void OnDisable() {
@@ -92,14 +92,15 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OpenTablet(InputAction.CallbackContext context) {
-        TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+        if (context.performed == true) {
+            TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
 
-        if (tm == null) {
-            Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
-            return;
+            if (tm == null) {
+                Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
+                return;
+            }
+            tm.ToggleTabletState(null);
         }
-
-        tm.ToggleTabletState(null);
     }
 
     void FixedUpdate() {

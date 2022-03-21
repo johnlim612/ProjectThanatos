@@ -9,13 +9,14 @@ public class LightAdjuster : MonoBehaviour {
     private float _tempFlickerRate;
     private Material _shaderMaterial;
     private Color _defaultColor;
+    private float _lightLevel;
 
     private void Awake() {
         SabotageLevel = LightType.NORMAL;
         _shaderMaterial = gameObject.GetComponent<Renderer>().material;
         _defaultColor = _light.color;
+        _lightLevel = _light.intensity;
         _tempFlickerRate = _sabotageFlickerRate;
-        
     }
 
     private void Update() {
@@ -49,7 +50,11 @@ public class LightAdjuster : MonoBehaviour {
             _shaderMaterial.DisableKeyword("_EMISSION");
         }
     }
-
+    
+    public void LightDecrease() {
+        _lightLevel -= 0.05f;
+        _light.intensity = _lightLevel;
+    }
     public enum LightType {
         NORMAL,
         LIGHTS_OUT,

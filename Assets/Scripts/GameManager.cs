@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndDay() {
         StartCoroutine(WaitForFade());
+        FindObjectOfType<LightAdjuster>().LightDecrease();
     }
 
     public void AdvanceDay() {

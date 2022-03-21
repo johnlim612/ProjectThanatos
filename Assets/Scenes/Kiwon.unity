@@ -5198,10 +5198,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114256786055634165, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -299.99997
-      objectReference: {fileID: 0}
     - target: {fileID: 6899564350605432415, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5213,7 +5209,7 @@ PrefabInstance:
     - target: {fileID: 6899564351489214604, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1986705149}
+      objectReference: {fileID: 2039209969}
     - target: {fileID: 6899564351489214607, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5523,11 +5519,6 @@ PrefabInstance:
       objectReference: {fileID: 1358362257}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af7dbae821aa15e41b7225a031f42e6d, type: 3}
---- !u!20 &1986705149 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1175022237892184624, guid: af7dbae821aa15e41b7225a031f42e6d, type: 3}
-  m_PrefabInstance: {fileID: 1986705147}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993975772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5848,6 +5839,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4224674177747550, guid: 822045e52ba034b43b8ff78ad680baa2, type: 3}
   m_PrefabInstance: {fileID: 2031375386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2039209969 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1312436318586449018, guid: af7dbae821aa15e41b7225a031f42e6d, type: 3}
+  m_PrefabInstance: {fileID: 1986705147}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2087563521
 PrefabInstance:

@@ -1,0 +1,66 @@
+{
+    "Monologue" : {
+        "D1": {
+            "P1": {
+                "Player": "Finally we're almost home from the mission we were sent on. The mission on Planet X Æ A-12 was a success. I want to finally get home. I want to see Mother again. I hope she's being treated well. My necklace, the last gift I received from her… This is the only thing that has been pushing me forward all this time. A reminder of what all of this was for…"
+            },
+            "P2": {
+                "Player": "Alright. Since I'm up I guess I'll go and check up with the others and see how they're doing. I've been holed up in my room for a bit and didn't bother talking too much with the others… I was just so… tired after we finished the mission. Hmmm… I think I remember hearing the other night that Won Ki was looking for something… Maybe I'll check and see if I can help him out."
+            },
+            "END": {
+                "Player": "Hm… I feel like just going back to my room now. Social battery is 0% now. Time to rest, eat, and recharge. Oh I should write everything that happens in my diary."
+            }
+        },
+        "D2": {
+            "P1": {
+                "Player": "*sigh* I'm not feeling completely 100% today… I woke up with a headache… I should go and see Rachel to see if she can help…"
+            },
+            "END": {
+                "Player": "Woopie~ I actually socialized again. Second time in a week! New record in the past… I don't know how long actually! Keep it up, me! Now then, diary writing time and then bed calls…"
+            }
+        },
+        "D3": {
+            "P1": {
+                "Player": "Hmmm… What should I do today… I don't feel like hibernating in my room… Maybe I should ask Yuri if she learned anything from the data she was analyzing the other day. If the government is using this research to help Mother, I should try to understand more of it anyway."
+            },
+            "END": {
+                "Player": "Welp. That was an eventful day. One angry Rachel and one a standing sleeping Won Ki. Also a data system issue problem. Time for my diary recording before I rest."
+            } 
+        },
+        "D4": {
+            "P1": {
+                "Player": "Damn… It doesn't look like there's any evidence of tampering either… They're clean… Who the heck is it? I'll talk to Johnny and ask if he saw anyone by communications… As the captain he'd probably know where most of everyone has been."
+            },
+            "END": {
+                "Player": "Why have the past 4 days been more eventful than the past… I don't even know how long… Just when I finally come out from my den, things keep happening… I swear I should just hide in my room or something. But I can't. I have to catch whoever is doing this."
+            }
+        },
+        "D5": {
+            "P1": {
+                "Player": "At least I didn't wake up to any problems… I'll go and chat with Won Ki today and see what he's been up to… I hope he's not doing something weird again."
+            },
+            "END": {
+                "Player": "Ugh. I'm exhausted. Just want to crawl into my bed and hide… All these problems and all this tension in my head is giving me a huge headache. Time to rest up…"
+            }
+        },
+        "D6": {
+            "P1": {
+                "Player": "Argh… I need to find out who's doing this and why! We're so close! I haven't been able to catch whoever it is in the act at all… They may as well be a ghost."
+            },
+            "END": {
+                "Player": ""
+            }
+        },
+        "D7": {
+            "P1": {
+                
+            },
+            "END": {
+                "Player": "Fuck… All this time… I was… alone?! Oh god. Ohgod. Ohmygod. I… None of that… None of that was real… These past few days… I…"
+            },
+            "Necklace": {
+                "Player": "Mother… I may have done something horrible… but for you… for the only one who cared for me when everyone else had abandoned me and left me for dead. You were the one reason I could continue on in life. So for you, I would do anything to see you smile and walk again."
+            }
+        }
+    }
+}

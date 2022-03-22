@@ -21,16 +21,18 @@ public class TabletManager : MonoBehaviour {
     /// </summary>
     public void Refresh() {
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
-            Constants.TabletKey);
+            Constants.DiaryKey);
         _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
         string log = "";
 
-        //foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
-        //    log += $"{index++}: {str}\n";
-        //}
+        DialogueDataManager.Instance.Initialize(UI.EntityType.QuestLog,
+            Constants.QuestLogKey);
+        foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
+            log += $"{index++}: {str}\n";
+        }
 
-        //_questLog = log;
+        _questLog = log;
     }
 
     /// <summary>

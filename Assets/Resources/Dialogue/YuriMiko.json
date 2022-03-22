@@ -31,7 +31,7 @@
             }
         }
     },
-    "sabotage": {
+    "Quest": {
         "D1": {
             "1": {
                 "Player" : "Hi, Yuri. What are you up to?"
@@ -164,7 +164,7 @@
             }
         }
     },
-    "side-quest": {
+    "Side-Quest": {
         "D1": {
 
         },
@@ -178,7 +178,7 @@
 
         }
     },
-    "backstory": {
+    "Backstory": {
         "D1": {
 
         },

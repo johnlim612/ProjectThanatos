@@ -19,18 +19,21 @@ public class InteractableObject : MonoBehaviour {
 
     void OnTriggerEnter(Collider col) {
         if (col.gameObject.CompareTag(Constants.PlayerKey)) {
+            Debug.Log("True");
             _interactableCollided = true;
         }
     }
 
     void OnTriggerExit(Collider col) {
         if (col.gameObject.CompareTag(Constants.PlayerKey)) {
+            Debug.Log("False");
             _interactableCollided = false;
         }
     }
 
     public void ToggleActiveState() {
         IsActive = !IsActive;
+        _interactableCollided = false;
         _boxCol.enabled = IsActive;
     }
 

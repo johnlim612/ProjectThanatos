@@ -7,14 +7,12 @@ public static class Constants {
     public const string RandomEventDialogueKey = "Side-Quest"; // needed?
     public const string CharacterDialogueKey = "Backstory";
     public const string GreetingKey = "Greeting";
-    public const string DialoguePromptKey = "prompt"; // needed?
-    public const string DialogueNPCSentenceKey = "sentence"; // needed?
     public const string SystemAlertKey = "Alert";
     public const string SabotageCompletedKey = "Fix-Complete";
-    public const string SystemMessageKey = "message"; // needed?
     public const string SystemAnnouncement = "SystemAlert"; // file name
-    public const string DiaryKey = "diary";
-    public const string QuestLogKey = "Quest";
+    public const string DiaryKey = "Diary";
+    public const string QuestLogKey = "QuestLog";
+    public const string QuestDialogueKey = "Quest";
     public const string TabletKey = "Diary"; // Name of the Tablet.json file
     public const string NpcKey = "NPC";
     public const float MapXRatio = 4.796747967479674796747967479674796747967479674796694208008135f;

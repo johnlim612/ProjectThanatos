@@ -306,6 +306,7 @@ namespace UI {
 		Diary,
 		Player,
 		Room,
-		Corpse
+		Corpse,
+		QuestLog
 	}
 }

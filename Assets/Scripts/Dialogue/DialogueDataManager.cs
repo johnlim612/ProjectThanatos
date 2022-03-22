@@ -85,6 +85,9 @@ public class DialogueDataManager : MonoBehaviour {
             case EntityType.Diary:
                 ParseDiaryEntry(data, _dataDayKey);
                 break;
+            case EntityType.QuestLog:
+                ParseQuestLog(data, _dataDayKey);
+                break;
             case EntityType.Room:
                 ParseRoomAlert(data, (int) dataType);
                 break;
@@ -119,7 +122,7 @@ public class DialogueDataManager : MonoBehaviour {
 
     private void ParseNpcData(JObject data, int? charBackstoryId) {
         _greeting = data[Constants.GreetingKey][_dataDayKey]["1"][Constants.NpcKey].ToString();
-        _sabotageData = data[Constants.QuestLogKey][_dataDayKey];
+        _sabotageData = data[Constants.QuestDialogueKey][_dataDayKey];
 
         // Get dialogue related to all ongoing random events.
         //if (GameManager.RandomEventIds.Count != 0) {
@@ -313,12 +316,10 @@ public class DialogueDataManager : MonoBehaviour {
         }
     }
 
-        private void ParseTabletData(JToken data) {
-        _diaryEntry = data[Constants.DiaryKey].ToString();
-        // Parse and store quest log data
-        foreach (JProperty log in data[Constants.QuestLogKey]) {
+    private void ParseQuestLog(JToken data, string dayKey) {
+        foreach (JProperty entry in data[dayKey]) {
             // log = { "1": "hi" }
-            _questLog.Add(log.Value.ToString());
+            _questLog.Add(entry.Value.ToString());
         }
     }
 
@@ -326,9 +327,9 @@ public class DialogueDataManager : MonoBehaviour {
         return _diaryEntry;
     }
 
-    //public List<string> GetQuestLog() {
-    //    return _questLog;
-    //}
+    public List<string> GetQuestLog() {
+        return _questLog;
+    }
 
     private void ParseRoomAlert(JObject data, int? id) {
         print("room");

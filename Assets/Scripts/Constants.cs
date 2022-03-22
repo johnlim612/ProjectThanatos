@@ -27,4 +27,13 @@ public static class Constants {
     public const string SideQuest = "Side-Quest";
     public const string SideQuestComplete = "Side-Quest-Complete";
     public const string TheEnd = "END";
+    public const string Ventilation = "Air-Filtration-Ventilation-room";
+    public const string CommonArea = "Common-room";
+    public const string EnterKey = "Enter";
+    public const string Flashback = "Flash-back";
+    public const string EndFlashback = "End-flash";
+    public const string MedBay = "Med-Bay";
+    public const string SupplyRoom = "Supply-Room";
+    public const string Communications = "Communications-room";
+    public const string FinalRooms = "FinalRooms";
 }

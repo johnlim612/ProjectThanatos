@@ -19,8 +19,7 @@ public class Quest : MonoBehaviour {
         QueTriggers();
 	}
 
-    protected virtual void QueTriggers() {
-    }
+    protected virtual void QueTriggers() {}
 
     protected void TriggerNPC(NPC npc, Item ReqItem = null) {
         if (ReqItem != null && !ReqItem.Obtained) {
@@ -33,19 +32,13 @@ public class Quest : MonoBehaviour {
         Sabotage.IsActive = true;
     }
 
-    protected void TriggerDiary() {
+    protected void TriggerDiary() {}
 
-	}
-
-    protected void TriggerMonologue(bool triggerNext = false) {
+    protected void TriggerMonologue() {
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Player);
-        if (triggerNext) {
-            QuestManager.Instance.TriggerNext();
-		}
+
 	}
 
-    protected void TriggerAlert() {
-
-	}   
+    protected void TriggerAlert() {}   
 
 }

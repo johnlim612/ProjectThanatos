@@ -10,12 +10,15 @@ public class QuestDay1 : Quest {
     protected override void QueTriggers() {
         // Add diary start
         QuestQue.Enqueue(() => TriggerSabotage());
-        QuestQue.Enqueue(() => TriggerMonologue(true));
+        QuestQue.Enqueue(() => TriggerMonologue());
         QuestQue.Enqueue(() => TriggerNPC(RachelLumina));
+        QuestQue.Enqueue(() => TriggerNPC(YuriMiko));
+        QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
+        QuestQue.Enqueue(() => TriggerNPC(WonKi));
+        QuestQue.Enqueue(() => TriggerNPC(WonKi));
+        QuestQue.Enqueue(() => TriggerNPC(WonKi, GameObject.Find("FlashLight").GetComponent<Item>()));
+        // Diary End
+        // Diary Write
+
     }
-
-
-
-    //QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
-
 }

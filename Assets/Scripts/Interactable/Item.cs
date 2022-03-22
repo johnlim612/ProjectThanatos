@@ -34,5 +34,7 @@ public class Item : InteractableObject {
     private void Interact() {
         AddToQueue(_descriptions);
         FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Item, this);
+        Obtained = true;
+        gameObject.SetActive(false);
     }
 }

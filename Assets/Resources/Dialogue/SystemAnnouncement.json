@@ -1,5 +1,5 @@
 {
-	"sabotage": {
+	"Sabotage": {
 		"D1": {
 			"1": {
 				"Alert" : "System Alert: Ship Course has been altered. Manual readjustments required."
@@ -63,14 +63,27 @@
 			}
 		}
 	},
-	"message": {
-		"lab-notes-1" : "",
-		"lab-notes-2" : "",
-		"lab-notes-3" : "",
-		"lab-notes-4" : "",
-		"lab-notes-5" : "",
-		"lab-notes-6" : "",
-		"lab-notes-7" : ""
-	}
-	
+	"Fix-Complete" : {
+		"D1" : {
+
+		},
+		"D2" : {
+
+		},
+		"D3" : {
+
+		},
+		"D4" : {
+
+		},
+		"D5" : {
+
+		},
+		"D6" : {
+
+		},
+		"D7" : {
+
+		}
+	}	
 }

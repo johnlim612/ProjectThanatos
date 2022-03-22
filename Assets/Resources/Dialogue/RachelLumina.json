@@ -6,13 +6,29 @@
             }
         },
         "D2": {
-
+            "1" : {
+                "NPC" : "Hmm~ (Rachel is humming to herself and fiddling with some of the med bay equipment, reading some charts)"
+            }
         },
         "D3": {
-
+            "1" : {
+                "NPC" : "(Rachel seems to be grumbling to herself while staring at some charts of information, looking irritated as heck.)"
+            }
         },
         "D4": {
-
+            "1" : {
+                "NPC" : "(Rachel seems to be mixing some sort of concoction…? She has a weird almost evil look on her face.)"
+            }
+        },
+        "D5": {
+            "1" : {
+                "NPC" : "Zzzz..."
+            }
+        },
+        "D6": {
+            "1" : {
+                "NPC" : "... (Rachel looks like she's just staring blankly into space, emotionless)"
+            }
         }
     },
     "Quest": {
@@ -24,13 +40,13 @@
                 "Player" : "Yeah, I do enjoy my peace and quiet. Sleep is just a nice way to pass the time."
             },
             "3": {
-                "Rachel" : "If you sleep too much it can be bad for you! Are you okay? Feeling okay?! Do you need a hug!? I'll hug you if you really need me to! But we're just friends, you know. I'm not interested in anyone in that way. But I'm single! Don't get the wrong idea!"
+                "NPC" : "If you sleep too much it can be bad for you! Are you okay? Feeling okay?! Do you need a hug!? I'll hug you if you really need me to! But we're just friends, you know. I'm not interested in anyone in that way. But I'm single! Don't get the wrong idea!"
             },
             "4": {
                 "Player" : "No, I'm fine. I don't need a hug. We're almost home. I'm just bored, that's all."
             },
             "5": {
-                "Rachel" : "Alright! Well if you're ever not feeling well let me know! I am a doctor you know! Even if I look kind of young. Don't you dare assume just because I'm young I'm not good at what I do though! And you'd better-"
+                "NPC" : "Alright! Well if you're ever not feeling well let me know! I am a doctor you know! Even if I look kind of young. Don't you dare assume just because I'm young I'm not good at what I do though! And you'd better-"
             },
             "6": {
                 "Player" : "(I think I'm going to get a headache from listening to her…)"
@@ -39,31 +55,119 @@
                 "Player" : "Yeah I'll let you know if I'm not feeling well. Thanks for caring. I'm going to check up on the others. I've been holed up in my room for a while."
             },
             "8": {
-                "Rachel" : "You interrupted me! But hmph. Fine! You should go chat with the others! They've been worried too!"
+                "NPC" : "You interrupted me! But hmph. Fine! You should go chat with the others! They've been worried too!"
             }
         },
         "D2": {
-
+            "1": {
+                "Player" : "Hey Rachel, I woke up with a bit of a headache. Can I get some Advil for it or something?"
+            },
+            "2": {
+                "NPC" : "A headache? What'd you do, hit your head while sleeping? Get someone to hit you on the head with a bat? Did you fall out of your bed and hit your head or something? Oh my god, you did, didn't you. How many brain cells did you lose? Do you feel like you've forgotten anything?"
+            },
+            "3": {
+                "Player" : "(Fuck. I can't beleive I forgot how much she talks if you come to her for something small. This is just giving me even more of a headache…)"
+            },
+            "4": {
+                "NPC" : "--can't believe you finally came to me and it was just for a little headache!"
+            },
+            "5": {
+                "Player" : "Ugh… Nevermind, I'm going."
+            },
+            "6": {
+                "NPC" : "Pft! I'm sorry! I'm sorry! Aww, you poor thing with a little itty bitty headache."
+            },
+            "7": {
+                "Player" : "(This girl… I swear. Listening to her is going to cause me even more of a headache…)"
+            }
         },
         "D3": {
-
+            "1": {
+                "Player" : "(It's probably not a good time to bother her… especially after yesterday… Hahah… I'll leave her alone and let her cool off for today and talk to the others instead.)"
+            }
         },
         "D4": {
-
+            "1": {
+                "Player" : "Hey, uh… Rachel? Did you see anyone go by communications? "
+            },
+            "2": {
+                "NPC" : "Communications?? The room with the crazy amounts of computers? Man I prefer the cold over the heat, thank you, that room is like a freakin incubator oven or something with the number of computers that are running constantly in there. Sheeesh! And nope! I've just been doing my own thing. Didn't see anyone!"
+            },
+            "3": {
+                "Player" : "I see… Alright then!"
+            },
+            "4": {
+                "NPC" : "Wait a second. Don't you want to try this? (Rachel holds out her strange concoction… It looks as if it has some sort of black fog coming off of it? You get a bad feeling from it.)"
+            },
+            "5": {
+                "Player" : "Huh? Uh…"
+            },
+            "6": {
+                "NPC" : "Here just try it! (She shoves a spoon of it into your mouth)"
+            },
+            "7": {
+                "Player" : "(Your eyes widen in horror as you taste the most bitter thing you've ever encountered in your life. You feel as if you're almost going to pass out from the extreme bitterness.)"
+            },
+            "8": {
+                "NPC" : "How is it? (Her eyes are glittering with excitement and joy)"
+            },
+            "9": {
+                "Player" : "(You swallow, your eyes tearing up and you cough from the heavy bitter after taste) It's good… Thanks… I'm gonna… go now… *cough*"
+            },
+            "10": {
+                "Player" : "(You've learned you really don't want to piss off Rachel again if she's going get revenge on you by doing that again.)"
+            }
+        },
+        "D5": {
+            "1": {
+                "Player" : "(Looks like Rachel is taking a nap right now… Probably shouldn't disturb her… unless I want to get my ear talked off or yelled at… or be forced to eat whatever that thing she made was and practically die from the bitterness levels again)"
+            }
+        },
+        "D6": {
+            "1": {
+                "Player" : "... Uh... Rachel? Are you okay?"
+            },
+            "2": {
+                "NPC" : "... (She just continues to stare blankly.)"
+            },
+            "3": {
+                "Player" : "... Well... if... If you're okay... I'm just- going to leave you be then..."
+            }
         }
     },
     "Side-Quest": {
-        "D1": {
-
-        },
         "D2": {
-
-        },
-        "D3": {
-
-        },
-        "D4": {
-
+            "1": {
+                "Player" : "Hey Rachel, do you think I'd be able to check up on my own condition with something if you're busy?"
+            },
+            "2": {
+                "NPC" : "What??? Are you trying to avoid me!? Ohhoho… You're trying to avoid me aren't you! I haven't even done anything wrong! You look like you’re annoyed. Oh I see how it is, I'm annoying aren't I? Well fine! If you really need something to check up on your own condition, you can go and pick up a scanner… It's not like I've been using it for much anyways. Hmph!"
+            },
+            "3": {
+                "Player" : "(I… What…?) "
+            },
+            "4": {
+                "Player" : "I'm not annoyed at you or avoiding you, I'm just trying to ensure that if I'm not well and I can't get out of my room then I'd be able to know if something was really wrong and let people know."
+            },
+            "5": {
+                "NPC" : "Whatever… Hmph!"
+            },
+            "6": {
+                "Player" : "*sigh* This woman. I swear…"
+            }
+        }
+    },
+    "Side-Quest-Complete": {
+        "D2": {
+            "1": {
+                "Player" : "I got the scanner. Thanks."
+            },
+            "2": {
+                "NPC" : "Hmph."
+            },
+            "3": {
+                "Player" : "I guess she's mad so she's ignoring me now... Great."
+            }
         }
     },
     "Backstory": {

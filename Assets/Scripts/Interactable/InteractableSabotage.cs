@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class InteractableSabotage : InteractableObject {
     [SerializeField] private string[] _descriptions;
-    [SerializeField] private int _sabotageID;
     //private MeshRenderer _meshRend;
 
     private void Awake() {
@@ -10,26 +9,21 @@ public class InteractableSabotage : InteractableObject {
         //_meshRend = GetComponent<MeshRenderer>();
     }
 
-    public int SabotageID {
-        get {
-            return _sabotageID;
-        }
-    }
-
     public override void InteractObject() {
-        GameManager.Instance.ClearSabotage();
+        ToggleActiveState();
+        UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
     }
 
-    private void Update() {
-        if (GameManager.Instance.SabotageId == _sabotageID && Sabotage.SabotageActive) {
-            ToggleSabotage(true);
-        } else {
-            ToggleSabotage(false);
-        }
-    }
+    //private void Update() {
+    //    if (GameManager.Instance.SabotageId == _sabotageID && Sabotage.IsActive) {
+    //        ToggleSabotage(true);
+    //    } else {
+    //        ToggleSabotage(false);
+    //    }
+    //}
 
-    private void ToggleSabotage(bool state) {
-        _boxCol.enabled = state;
-        //_meshRend.enabled = state;
-    }
+    //public void ToggleSabotage(bool state) {
+    //    _boxCol.enabled = state;
+    //    //_meshRend.enabled = state;
+    //}
 }

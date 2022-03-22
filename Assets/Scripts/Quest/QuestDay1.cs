@@ -8,11 +8,14 @@ public class QuestDay1 : Quest {
     /// EXAMPLE QUEST
     /// </summary>
     protected override void QueTriggers() {
-        QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
-        QuestQue.Enqueue(() => TriggerNPC(WonKi));
+        // Add diary start
         QuestQue.Enqueue(() => TriggerSabotage());
-        QuestQue.Enqueue(() => TriggerNPC(YuriMiko));
-        QuestQue.Enqueue(() => TriggerNPC(WonKi));
-        QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
+        QuestQue.Enqueue(() => TriggerMonologue(true));
+        QuestQue.Enqueue(() => TriggerNPC(RachelLumina));
     }
+
+
+
+    //QuestQue.Enqueue(() => TriggerNPC(JohnnyWalker));
+
 }

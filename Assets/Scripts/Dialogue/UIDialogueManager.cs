@@ -8,6 +8,11 @@ namespace UI {
 	public class UIDialogueManager: MonoBehaviour {
 		public DialogueUI DialogueUI;
 
+		public static UIDialogueManager Instance { get {
+				return _instance; } }
+		private static UIDialogueManager _instance;
+		public bool IsInteracting = false;
+
 		// Temp Dialogue queue holder
 		private Queue<(string, string)> _sentences;
 
@@ -22,13 +27,17 @@ namespace UI {
 		private EntityType _entityType;
 		private Dialogue _dialogue;
 
-		private const bool _v = false;
 		private const float _sentenceSpeed = 0.02f;
-
-		public static bool IsInteracting { get; set; } = _v;
 
 		// Start is called before the first frame update
 		void Awake() {
+			if (_instance != null && _instance != this) {
+				Destroy(this.gameObject);
+			} else {
+				_instance = this;
+				DontDestroyOnLoad(this.gameObject);
+			}
+
 			_sentences = new Queue<(string, string)>();
 			_player = GameObject.Find(Constants.PlayerKey);
 			_tempSentence = (null, null);
@@ -75,6 +84,9 @@ namespace UI {
 				case EntityType.Diary:
 					StartDiaryDialogue((Bed) entity);
 					break;
+				case EntityType.Player:
+					StartMonologue();
+					break;
 				default: 
 					break;
 			}
@@ -104,8 +116,10 @@ namespace UI {
 
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
-													GameManager.Instance.Day);
-			_sentences = DialogueDataManager.Instance.GetAnnouncement();
+										GameManager.Instance.Day);
+			bool isActive = GameManager.Instance.CurrentSabotage.IsActive;
+			_sentences = (isActive) ? DialogueDataManager.Instance.GetAnnouncement() :
+				DialogueDataManager.Instance.GetFixedSabotageMsg();
 			
 			PrepareDialogue();
 			DisplayNextAction();
@@ -118,6 +132,13 @@ namespace UI {
 
 		public void StartItemDialogue(Item item) {
 			_sentences = item.DescriptionQueue;
+			DisplayNextAction();
+		}
+
+		public void StartMonologue() {
+			DialogueDataManager.Instance.Initialize(EntityType.Player, Constants.SystemAnnouncement,
+													GameManager.Instance.SabotageId);
+			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			DisplayNextAction();
 		}
 
@@ -280,6 +301,7 @@ namespace UI {
 		NPC,
 		Alert,
 		Diary,
+		Player,
 		Room,
 		Corpse
 	}

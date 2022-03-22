@@ -1442,7 +1442,7 @@ BoxCollider:
   m_GameObject: {fileID: 738198994}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.291806, y: 2.3959272, z: 2.254509}
   m_Center: {x: 1.3136084, y: 0.6979636, z: 0.22532272}
@@ -2940,7 +2940,7 @@ BoxCollider:
   m_GameObject: {fileID: 1319160103}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3062,7 +3062,7 @@ BoxCollider:
   m_GameObject: {fileID: 1388177528}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4509,6 +4509,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 661538000}
     - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _sabotages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
       propertyPath: _npcList.Array.data[0]
       value: 
       objectReference: {fileID: 890232221}
@@ -4524,6 +4528,18 @@ PrefabInstance:
       propertyPath: _npcList.Array.data[3]
       value: 
       objectReference: {fileID: 737429010}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _sabotages.Array.data[0]
+      value: 
+      objectReference: {fileID: 738198996}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _sabotages.Array.data[1]
+      value: 
+      objectReference: {fileID: 1319160106}
+    - target: {fileID: 6287599023417485256, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
+      propertyPath: _sabotages.Array.data[2]
+      value: 
+      objectReference: {fileID: 1388177530}
     - target: {fileID: 6287599023417485262, guid: dabb2157bdb9bc4489211cc516bd53a0, type: 3}
       propertyPath: m_Name
       value: GameManager

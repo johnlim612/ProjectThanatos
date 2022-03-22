@@ -16,7 +16,7 @@ public class Bed : InteractableObject {
     }
 
     public override void InteractObject() {
-        if (Sabotage.SabotageActive) { // move bool to GM?
+        if (Sabotage.IsActive) { // move bool to GM?
             // if sabotage isn't active AND quest isn't active... same thing?
             AddToQueue(_requirements);
             //FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
@@ -26,20 +26,6 @@ public class Bed : InteractableObject {
             Sleep();
         }
     }
-
-    //private void OpenDiary() {
-    //    AddToQueue(_descriptions);
-    //    FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
-    //    StartCoroutine(WaitForDiary());
-    //}
-
-    //private IEnumerator WaitForDiary() {
-    //    while (UI.UIDialogueManager.IsInteracting) {
-    //        yield return null;
-    //    }
-    //    yield return new WaitForSeconds(1f);
-    //    EndDay();
-    //}
 
     /// <summary>
     /// Trigger player's end-of-day diary entry, then end the day.

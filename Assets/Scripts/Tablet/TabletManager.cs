@@ -39,7 +39,7 @@ public class TabletManager : MonoBehaviour {
     /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
     public void ToggleTabletState(bool? isOpen = null) {
         if (isOpen == null) {
-            if (UI.UIDialogueManager.IsInteracting) {
+            if (UI.UIDialogueManager.Instance.IsInteracting) {
                 return;
             } else {
                 _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);

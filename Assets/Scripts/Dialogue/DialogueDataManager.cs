@@ -69,7 +69,7 @@ public class DialogueDataManager : MonoBehaviour {
         JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
         _dataDayKey = "D" + GameManager.Instance.Day.ToString();
-        print(data);
+
         if (data == null) {
             Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}.json");
             return;
@@ -232,7 +232,7 @@ public class DialogueDataManager : MonoBehaviour {
 
     public List<string> GetPrompts() {
         return _prompts;
-    }
+    } 
 
     private void ResetData() {
         _prompts = new List<string>();
@@ -294,10 +294,12 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     public Queue<(string, string)> GetAnnouncement() {
+        print(_systemAnnouncements);
         return _systemAnnouncements;
     }
 
     public Queue<(string, string)> GetFixedSabotageMsg() {
+        print(_completedSabotageAlert);
         return _completedSabotageAlert;
     }
 

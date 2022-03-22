@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
         _sprint.Disable();
         _interact.Disable();
         _tablet.Disable();
+        RB.velocity = Vector3.zero;
     }
 
     private void PlayerMovement() {
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour {
             Sfx.Walk();
             RB.velocity = moveVector * _walkSpeed * Time.deltaTime;
         }
-        if (_moveDirection.x == 0 && _moveDirection.z == 0) {
+        if ((_moveDirection.x == 0 && _moveDirection.z == 0) || RB.velocity == Vector3.zero) {
             Sfx.Stop();
         }
     }

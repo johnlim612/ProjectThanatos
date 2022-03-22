@@ -11,7 +11,7 @@ public class Bed : InteractableObject {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.N)) {
-            EndDay();
+            Sleep();
         }
     }
 
@@ -23,7 +23,7 @@ public class Bed : InteractableObject {
             print(_requirements[0]);
         } else {
             //OpenDiary();
-            EndDay();
+            Sleep();
         }
     }
 
@@ -41,10 +41,11 @@ public class Bed : InteractableObject {
     //    EndDay();
     //}
 
-    private void EndDay() {
-        // Create transition/animation when ending the day.
+    /// <summary>
+    /// Trigger player's end-of-day diary entry, then end the day.
+    /// </summary>
+    private void Sleep() {
         StartCoroutine(WaitForDiaryEntry());
-        // GameManager."fade to black" animation at EOD?
         print("EOD! You sneep.");
     }
 

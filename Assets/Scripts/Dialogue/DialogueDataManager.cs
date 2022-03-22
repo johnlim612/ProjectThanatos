@@ -251,7 +251,7 @@ public class DialogueDataManager : MonoBehaviour {
     private void ParseSystemAlert(EntityType dataType, JObject data, string key) {
         JToken sabotageData = data[Constants.SabotageDialogueKey][key];
         JToken sabotageCompletedData = data[Constants.SabotageCompletedKey][key];
-
+        print("alert " + key + " " + data);
         if (sabotageData == null || sabotageCompletedData == null) {
             Debug.LogError($"System Alert data is null.\n'Sabotage': " +
                 $"{sabotageData}, 'Fix-Complete': {sabotageCompletedData}");

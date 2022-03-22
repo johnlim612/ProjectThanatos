@@ -104,7 +104,7 @@ namespace UI {
 
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
-													GameManager.Instance.SabotageId);
+													GameManager.Instance.Day);
 			_sentences = DialogueDataManager.Instance.GetAnnouncement();
 			
 			PrepareDialogue();

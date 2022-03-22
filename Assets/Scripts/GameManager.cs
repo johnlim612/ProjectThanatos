@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     private List<string> _randomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     private int _sabotageId;   // The ID of the day's major event/sabotage
 
-    private const int _maxNumSabotages = 3; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
+    private const int _maxNumSabotages = 7; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -46,8 +46,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AdvanceDay() {
-        _day++;
-        print(Day);
 
         Sabotage.SabotageActive = true;
 

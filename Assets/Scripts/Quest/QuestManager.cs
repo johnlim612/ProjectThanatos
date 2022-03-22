@@ -8,7 +8,6 @@ public class QuestManager : MonoBehaviour {
     public Quest[] Quests;
     public static QuestManager Instance { get {return _instance; } }
     private static QuestManager _instance;
-    public UI.UIDialogueManager UIDialogueManager;
 
 	private void Awake() {
         if (_instance != null && _instance != this) {

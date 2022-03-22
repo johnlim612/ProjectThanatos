@@ -76,6 +76,7 @@ namespace UI {
 					StartItemDialogue((Item) entity);
 					break;
 				case EntityType.NPC:
+					DialogueUI.UpdateImage(entity.name);
 					StartDialogue((NPC) entity);
 					break;
 				case EntityType.Alert:
@@ -289,6 +290,7 @@ namespace UI {
 			_player.GetComponent<PlayerController>().enabled = true;
 			Cursor.lockState = CursorLockMode.Locked;
 			IsInteracting = false;
+			DialogueUI.ImageBox.enabled = false;
 
 			if (_questSelected) {
 				_questSelected = false;

@@ -7,12 +7,14 @@ public class Quest : MonoBehaviour {
 
     public Queue<Action> QuestQue { get; set; }
     public bool QuestComplete;
+    public string[] QuestLog;
 
 
     // Start is called before the first frame update
     void Awake() {
         QuestQue = new Queue<Action>();
         QuestComplete = false;
+        QuestLog = new string[] {""};
     }
 
 	void Start() {
@@ -36,7 +38,6 @@ public class Quest : MonoBehaviour {
 
     protected void TriggerMonologue() {
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Player);
-
 	}
 
     protected void TriggerAlert() {}   

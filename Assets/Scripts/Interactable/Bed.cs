@@ -11,40 +11,27 @@ public class Bed : InteractableObject {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.N)) {
-            EndDay();
+            Sleep();
         }
     }
 
     public override void InteractObject() {
-        if (Sabotage.SabotageActive) { // move bool to GM?
+        if (Sabotage.IsActive) { // move bool to GM?
             // if sabotage isn't active AND quest isn't active... same thing?
             AddToQueue(_requirements);
             //FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
             print(_requirements[0]);
         } else {
             //OpenDiary();
-            EndDay();
+            Sleep();
         }
     }
 
-    //private void OpenDiary() {
-    //    AddToQueue(_descriptions);
-    //    FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Diary, this);
-    //    StartCoroutine(WaitForDiary());
-    //}
-
-    //private IEnumerator WaitForDiary() {
-    //    while (UI.UIDialogueManager.IsInteracting) {
-    //        yield return null;
-    //    }
-    //    yield return new WaitForSeconds(1f);
-    //    EndDay();
-    //}
-
-    private void EndDay() {
-        // Create transition/animation when ending the day.
+    /// <summary>
+    /// Trigger player's end-of-day diary entry, then end the day.
+    /// </summary>
+    private void Sleep() {
         StartCoroutine(WaitForDiaryEntry());
-        // GameManager."fade to black" animation at EOD?
         print("EOD! You sneep.");
     }
 

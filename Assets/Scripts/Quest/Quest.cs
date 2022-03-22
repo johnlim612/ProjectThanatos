@@ -29,7 +29,7 @@ public class Quest : MonoBehaviour {
 	}
 
     protected void TriggerSabotage() {
-        Sabotage.SabotageActive = true;
+        Sabotage.IsActive = true;
     }
 
     protected void TriggerDiary() {}

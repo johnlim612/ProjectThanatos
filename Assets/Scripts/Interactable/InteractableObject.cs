@@ -6,6 +6,8 @@ public class InteractableObject : MonoBehaviour {
     protected bool _interactableCollided = false;
     protected BoxCollider _boxCol;
     public bool ActiveQuest = false;
+    public int Id { get; private set; }
+    protected bool _isActive = false;
 
     public void OnInteract(InputValue value) {
         if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
@@ -16,15 +18,20 @@ public class InteractableObject : MonoBehaviour {
     public virtual void InteractObject() {}
 
     void OnTriggerEnter(Collider col) {
-        if (col.gameObject.tag == "Player") {
+        if (col.gameObject.CompareTag(Constants.PlayerKey)) {
             _interactableCollided = true;
         }
     }
 
     void OnTriggerExit(Collider col) {
-        if (col.gameObject.tag == "Player") {
+        if (col.gameObject.CompareTag(Constants.PlayerKey)) {
             _interactableCollided = false;
         }
+    }
+
+    public void ToggleActiveState() {
+        IsActive = !IsActive;
+        _boxCol.enabled = IsActive;
     }
 
     //private void OnGUI() {
@@ -37,4 +44,9 @@ public class InteractableObject : MonoBehaviour {
     //        GUI.Box(new Rect(x, y, textSize.x, textSize.y), _interactableText);
     //    }
     //}
+
+    public bool IsActive {
+        get { return _isActive; }
+        protected set { _isActive = value; }
+    }
 }

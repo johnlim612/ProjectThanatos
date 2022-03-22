@@ -12,13 +12,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _screen;
     [SerializeField] private GameObject _roomNameWrapper;
     [SerializeField] private Fade _fade;
+    [SerializeField] private List<InteractableSabotage> _sabotages;
 
     private static GameManager _instance;
-    private List<int> _sabotages = new List<int>();            // List of IDs for all possible sabotages
     private List<string> _randomEventIds = new List<string>(); // Corresponds to Event-specific Dialogue Ids
     private int _sabotageId;   // The ID of the day's major event/sabotage
-
-    private const int _maxNumSabotages = 3; // UPDATE WHEN ADDING NEW SABOTAGES TO JSON FILES
+    private InteractableSabotage _currentSabotage;
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -32,11 +31,6 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         _day = 0;   // TODO: Reset to 0 after testing.
-
-        for (int i = 1; i <= _maxNumSabotages; i++) {
-            _sabotages.Add(i);
-        }
-
         AdvanceDay();
     }
 
@@ -48,31 +42,16 @@ public class GameManager : MonoBehaviour {
     public void AdvanceDay() {
         _day++;
 
-        Sabotage.SabotageActive = true;
-
-        if (_sabotages.Count > 1) {
-            _sabotageId = _sabotages[Random.Range(0, _sabotages.Count)];
-
-		} else if (_sabotages.Count == 1) {
-            _sabotageId = _sabotages[0];
-
-        } else {
-            _screen.gameObject.SetActive(true);
-            // SabotageId = 7;
-            return;
-        }
+        CurrentSabotage = _sabotages[_day - 1];
+        SabotageId = CurrentSabotage.Id;
+        CurrentSabotage.ToggleActiveState();
 
         _tabletMgr.Refresh();
-        FindObjectOfType<UI.UIDialogueManager>().InitializeDialogue(UI.EntityType.Alert);
-        _sabotages.Remove(SabotageId);
+        UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
 
         foreach (NPC npc in _npcList) {
             npc.HasBeenSpokenTo = false;
         }
-    }
-
-    public void ClearSabotage() {
-        Sabotage.SabotageActive = false;
     }
 
     public void ToggleRoomName(bool isRoomEntered, string enteredRoomName) {
@@ -100,5 +79,11 @@ public class GameManager : MonoBehaviour {
 
     public int SabotageId {
         get { return _sabotageId; }
+        set { _sabotageId = value; }
+    }
+
+    public InteractableSabotage CurrentSabotage {
+        get { return _currentSabotage; }
+        private set { _currentSabotage = value;  }
     }
 }

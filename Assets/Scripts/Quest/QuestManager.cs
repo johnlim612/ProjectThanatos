@@ -6,7 +6,6 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour {
     
     public Quest[] Quests;
-    public int CurrentQuest;
     public static QuestManager Instance { get {return _instance; } }
     private static QuestManager _instance;
 
@@ -22,18 +21,11 @@ public class QuestManager : MonoBehaviour {
             new QuestDay1(),
             new QuestDay2(),
             new QuestDay3()
-
         };
-        CurrentQuest = 1;
     }
 
     public void TriggerNext() {
-        Action action = Quests[CurrentQuest].QuestQue.Dequeue();
+        Action action = Quests[GameManager.Instance.Day].QuestQue.Dequeue();
         action();
 	}
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
 }

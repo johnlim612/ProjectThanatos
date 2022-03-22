@@ -117,8 +117,10 @@ namespace UI {
 
 		public void StartSystemAlert() {
 			DialogueDataManager.Instance.Initialize(EntityType.Alert, Constants.SystemAnnouncement,
-													GameManager.Instance.SabotageId);
-			_sentences = DialogueDataManager.Instance.GetAnnouncement();
+										GameManager.Instance.Day);
+			bool isActive = GameManager.Instance.CurrentSabotage.IsActive;
+			_sentences = (isActive) ? DialogueDataManager.Instance.GetAnnouncement() :
+				DialogueDataManager.Instance.GetFixedSabotageMsg();
 			
 			PrepareDialogue();
 			DisplayNextAction();
@@ -300,6 +302,8 @@ namespace UI {
 		NPC,
 		Alert,
 		Diary,
-		Player
+		Player,
+		Room,
+		Corpse
 	}
 }

@@ -1,8 +1,8 @@
 {
-	"sabotage": {
+	"Sabotage": {
 		"1": {
-            "diary": "wonki sus",
-            "quest": {
+            "Diary": "wonki sus",
+            "Quest": {
                 "1": "get wrench",
                 "2": "get hammer",
                 "3": "fix thing",

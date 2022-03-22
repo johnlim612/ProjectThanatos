@@ -119,7 +119,6 @@ public class DialogueDataManager : MonoBehaviour {
 
     private void ParseNpcData(JObject data, int? charBackstoryId) {
         _greeting = data[Constants.GreetingKey][_dataDayKey]["1"][Constants.NpcKey].ToString();
-
         _sabotageData = data[Constants.QuestLogKey][_dataDayKey];
 
         // Get dialogue related to all ongoing random events.
@@ -294,12 +293,10 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     public Queue<(string, string)> GetAnnouncement() {
-        print(_systemAnnouncements);
         return _systemAnnouncements;
     }
 
     public Queue<(string, string)> GetFixedSabotageMsg() {
-        print(_completedSabotageAlert);
         return _completedSabotageAlert;
     }
 

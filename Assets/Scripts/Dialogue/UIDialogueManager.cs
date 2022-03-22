@@ -200,7 +200,7 @@ namespace UI {
 			_promptSelection = buttonIndex;
 			_promptSelected = true;
 
-			if (_entityType is EntityType.NPC && _entity.ActiveQuest is true && _promptSelection is Constants.QuestPrompt) {
+			if (_entityType is EntityType.NPC) { // && _entity.ActiveQuest is true && _promptSelection is Constants.QuestPrompt
 				_questSelected = true;
 			}
 		}

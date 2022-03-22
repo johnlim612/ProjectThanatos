@@ -10,7 +10,6 @@ public class InteractableObject : MonoBehaviour {
     public void OnInteract(InputValue value) {
         print(UI.UIDialogueManager.Instance.IsInteracting);
         if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
-            
             InteractObject();
         }
     }

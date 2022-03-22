@@ -1,37 +1,167 @@
 {
-    "greeting": {
+    "Greeting": {
         "D1": {
             "1": {
-                "npc" : "npc greeting sentence day 1"
+                "NPC" : "Hmm… (Yuri is staring at her tablet, seemingly studying some of the data from the mission)"
             }
         },
         "D2": {
-
+            "1": {
+                "NPC" : "Hehe~ I'll get you this time… (Yuri looks like she has a sinister look on her face)"
+            }
         },
         "D3": {
-
+            "1": {
+                "NPC" : "La~lala~ (Miko is singing a little happy tune to herself)"
+            }
         },
         "D4": {
-
+            "1": {
+                "NPC" : "(Yuri is whistling a song to herself. It sounds like one of those anime songs that she tried to get you hooked on.)"
+            }
+        },
+        "D5": {
+            "1": {
+                "NPC" : "(Yuri seems to be sketching something while humming a song)"
+            }
+        },
+        "D6": {
+            "1": {
+                "NPC" : "Ugh… why did the power have to go out NOW of all times?"
+            }
         }
     },
     "sabotage": {
         "D1": {
             "1": {
-                "Player" : "Player prompt sabotage sentence 1 day 1"
+                "Player" : "Hi, Yuri. What are you up to?"
             },
             "2": {
-                "Player" : "Player prompt sabotage sentence 2 day 1"
+                "NPC" : "Oh! Hey! I'm just analyzing some of the data from the experiments from the mission. Just trying to see if I can learn any more information with a fresh mind you know? Anyways, are you okay? You cooped yourself up in your room for a while."
+            },
+            "3": {
+                "Player" : "Yeah, I was just out of it after we finished the mission. I slept a lot to pass the time. Bored mostly. I'm happy to be almost home after everything."
+            },
+            "4": {
+                "NPC" : "I'm glad you're okay! Do you want some onigiri- I mean, rice balls, I made earlier?"
+            },
+            "5": {
+                "Player" : "Oh, sure!"
+            },
+            "6": {
+                "NPC" : "(Yuri hands you one of the rice balls she made earlier)"
+            },
+            "7": {
+                "Player" : "(You bite into it and blink. It's SPICY.)"
+            },
+            "8": {
+                "Player" : "It's haaa— really spicy??"
+            },
+            "9": {
+                "NPC" : "...! (Yuri's mouth opens in surprise, before her expression changes to one of realization and horror)"
+            },
+            "10": {
+                "NPC" : "Oh no. Ohmygod. I'm Sorry! I was honestly going to give that one to Won Ki as a prank and I got distracted and totally forgot! You should go wash that down with some milk if it's too spicy!"
+            },
+            "11": {
+                "Player" : "(You note to yourself to check with her next time if she had a prank planned...)"
             }
         },
         "D2": {
 
+            "1": {
+                "Player" : "Are you planning on trolling Won Ki again?"
+            },
+            "2": {
+                "NPC" : "(She blinks and laughs, smiling innocently) What are you talking about~? I'm not doing anything at all! Just a bit busy with a little crafts project! :)"
+            },
+            "3": {
+                "Player" : "Well. Alright then. Just let me know if you want a hand with anything. I'm down to help out."
+            },
+            "4": {
+                "NPC" : "Okay!"
+            },
+            "5": {
+                "Player" : "(Yep. She totally has something planned. I should probably keep out if I don't want to get caught in it myself...)"
+            }
         },
         "D3": {
 
+            "1": {
+                "Player" : "Hey Yuri, did you learn anything from the data you were looking at the other day?"
+            },
+            "2": {
+                "NPC" : "Oh hi! Just a bit! Some of the new drugs and medications definitely sped up the healing process without much cost to the general health of the patient. They probably have a better analysis with the information back home."
+            },
+            "3": {
+                "Player" : "Interesting. Thanks for the info."
+            },
+            "4": {
+                "NPC" : "By the way, did you say something to Rachel yesterday? She seems… really annoyed."
+            },
+            "5": {
+                "Player" : "Ahahaha… I might have."
+            },
+            "6": {
+                "NPC" : "I'd let her cool down for today then. Unless you really want her to make you lose your mind. You know how much she loves to talk. I wouldn't be surprised if she starts trash talking you if you talk to her right now. Even Won Ki and Johnny are avoiding her. Don't say I didn't warn you."
+            },
+            "7": {
+                "Player" : "Aha… Duly Noted…"
+            }
         },
         "D4": {
-
+            "1": {
+                "Player" : "Hey Yuri. Do you know if anyone went anywhere by communications today?"
+            },
+            "2": {
+                "NPC" : "Hm… I think I might have seen Won Ki wandering around earlier? I don't know…?"
+            },
+            "3": {
+                "Player" : "Alright. Thanks for letting me know. (Guess I'll go poke Won Ki, Yuri doesn't seem to have much to offer, it seems like she's off in her own world right now)"
+            }
+        },
+        "D5": {
+            "1": {
+                "Player" : "Hey Yuri. Have you noticed anything weird lately?"
+            },
+            "2": {
+                "NPC" : "Other than the weird amount of incidents with the ship happening? Not really."
+            },
+            "3": {
+                "Player" : "You thought it was weird too then."
+            },
+            "4": {
+                "NPC" : "We didn't usually get this many incidents… Maybe we'll be okay though!"
+            },
+            "5": {
+                "Player" : "I hope so…"
+            }
+        },
+        "D6": {
+            "1": {
+                "Player" : "Yuri? What's wrong? Did the power make you lose important data or something?"
+            },
+            "2": {
+                "NPC" : "Ack! Oh, it's just you. I thought- anyway. No, no, no, it's even worse than that!"
+            },
+            "3": {
+                "Player" : "What problem did the outage cause?"
+            },
+            "4": {
+                "NPC" : "My device didn't charge after I was up all night… so now I can't watch anime! And the power system is still bugging out… so I can't even access my data from any of the ship's terminals! It's horrible!"
+            },
+            "5": {
+                "Player" : "Oh… um… yeah… that does sound horrible. Do you know what's causing the problem?"
+            },
+            "6": {
+                "NPC" : "No, my scans haven't detected anything. It's been forever! My last episode! The cliffhanger! Ugh… maybe we need a hard reset of the entire system and not just our servers here… hmm…"
+            },
+            "7": {
+                "Player" : "I can help with that."
+            },
+            "8": {
+                "NPC" : "Oh, thank you! Yes, please go to Engineering and reset the ship's entire system there."
+            }
         }
     },
     "side-quest": {

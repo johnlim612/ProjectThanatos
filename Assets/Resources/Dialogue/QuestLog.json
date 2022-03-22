@@ -1,0 +1,61 @@
+{
+    "D1": {
+        "1" : "Fix the Sabotage",
+        "2" : "Talk to Rachel Lumina",
+        "3" : "Talk to Yuri Miko",
+        "4" : "Talk to Johnny Walker",
+        "5" : "Talk to Won Ki",
+        "6" : "Get flashlight for Won Ki",
+        "7" : "Write in Diary"
+    },
+    "D2": {
+        "1" : "Talk to Rachel Lumina",
+        "2" : "Get Scanner from Rachel",
+        "3" : "Talk to Yuri Miko",
+        "4" : "Fix the Sabotage",
+        "5" : "Talk to Johnny Walker",
+        "6" : "Talk to Won Ki",
+        "7" : "Write in Diary"
+    },
+    "D3": {
+        "1" : "Talk to Yuri Miko",
+        "2" : "Talk to Rachel Lumina",
+        "3" : "Talk to Johnny Walker",
+        "4" : "Talk to Won Ki",
+        "5" : "Fix the Sabotage",
+        "6" : "Write in Diary"
+    },
+    "D4": {
+        "1" : "Fix the Sabotage",
+        "2" : "Talk to Johnny Walker",
+        "3" : "Talk to Yuri Miko",
+        "4" : "Talk to Won Ki",
+        "5" : "Talk to Rachel Lumina",
+        "6" : "Write in Diary"
+    },
+    "D5": {
+        "1" : "Talk to Won Ki",
+        "2" : "Talk to Yuri Miko",
+        "3" : "Fix the Sabotage",
+        "4" : "Talk to Rachel Lumina",
+        "5" : "Talk to Johnny Walker",
+        "6" : "Write in Diary"
+    },
+    "D6": {
+        "1" : "Fix the Sabotage",
+        "2" : "Talk to Yuri Miko",
+        "3" : "Talk to Rachel Lumina",
+        "4" : "Talk to Johnny Walker",
+        "5" : "Talk to Won Ki",
+        "6" : "Write in Diary"
+    },
+    "D7": {
+        "1" : "Talk to Rachel Lumina",
+        "2" : "Get Scanner from Rachel",
+        "3" : "Talk to Yuri Miko",
+        "4" : "Fix the Sabotage",
+        "5" : "Talk to Johnny Walker",
+        "6" : "Talk to Won Ki",
+        "7" : "Write in Diary"
+    }
+}

@@ -65,25 +65,39 @@
 	},
 	"Fix-Complete" : {
 		"D1" : {
-
+			"1": {
+				"Alert" : "System Alert: Readjustments Complete."
+			}
 		},
 		"D2" : {
-
+			"1": {
+				"Alert" : "System Alert: Readjustments Complete."
+			}
 		},
 		"D3" : {
-
+			"1": {
+				"Alert" : "System Alert: Data system updated. Fix complete."
+			}
 		},
 		"D4" : {
-
+			"1": {
+				"Alert" : "System Alert: Communications channel issues fixed."
+			}
 		},
 		"D5" : {
-
+			"1": {
+				"Alert" : "System Alert: Oxygen levels readjusted successfully."
+			}
 		},
 		"D6" : {
-
+			"1": {
+				"Alert" : "System Alert: Power System Settings Readjusted Successfully."
+			}
 		},
 		"D7" : {
-
+			"1": {
+				"Alert" : "System Alert: Air Filtration Ventilation System Fixes Complete."
+			}
 		}
 	}	
 }

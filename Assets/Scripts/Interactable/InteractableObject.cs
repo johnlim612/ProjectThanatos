@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour {
-    private string _interactableText = "Press Space";
-    private bool _interactableCollided = false;
-    private BoxCollider _boxCol;
+    protected string _interactableText = "Press Space";
+    protected bool _interactableCollided = false;
+    protected BoxCollider _boxCol;
+    public bool ActiveQuest = false;
 
     public void OnInteract(InputValue value) {
         if (_interactableCollided && !UI.UIDialogueManager.IsInteracting) {
@@ -12,8 +13,7 @@ public class InteractableObject : MonoBehaviour {
         }
     }
 
-    public virtual void InteractObject() {
-    }
+    public virtual void InteractObject() {}
 
     void OnTriggerEnter(Collider col) {
         if (col.gameObject.tag == "Player") {
@@ -26,14 +26,15 @@ public class InteractableObject : MonoBehaviour {
             _interactableCollided = false;
         }
     }
-    private void OnGUI() {
-        if (_interactableCollided) {
-            _boxCol = GetComponent<BoxCollider>();
-            var position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            var textSize = GUI.skin.box.CalcSize(new GUIContent(_interactableText));
-            float x = position.x - textSize.x / 2;
-            float y = Screen.height - position.y + _boxCol.size.y / 2;
-            GUI.Box(new Rect(x, y, textSize.x, textSize.y), _interactableText);
-        }
-    }
+
+    //private void OnGUI() {
+    //    if (_interactableCollided) {
+    //        _boxCol = GetComponent<BoxCollider>();
+    //        var position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+    //        var textSize = GUI.skin.box.CalcSize(new GUIContent(_interactableText));
+    //        float x = position.x - textSize.x / 2;
+    //        float y = Screen.height - position.y + _boxCol.size.y / 2;
+    //        GUI.Box(new Rect(x, y, textSize.x, textSize.y), _interactableText);
+    //    }
+    //}
 }

@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Outdated/MainScene.unity
     guid: 1a4ebd468f10d6945adc5d1a4333f0e1
-  - enabled: 1
-    path: Assets/Scenes/Map.unity
+  - enabled: 0
+    path: Assets/Scenes/Outdated/Map.unity
     guid: 69dc42bea6b34db4586e7654f6f917ca
-  - enabled: 1
-    path: Assets/Scenes/Hallway.unity
+  - enabled: 0
+    path: Assets/Scenes/Outdated/Hallway.unity
     guid: a591c4a2e3ae732448c592ee3ada8f6e
   - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/Scenes/Kiwon.unity
-    guid: 890437b730a666b4faab898d9792e1f5
+    guid: 56fad0c13cdc94949902c32aa1bb40bd
   m_configObjects: {}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2982489294633245060}
   - component: {fileID: 2982489294633245061}
+  - component: {fileID: 813436972}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -43,16 +44,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82db5ecf2a504a34da8572dc31a9100d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: walk
-    clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
-    volume: 0.3
-    pitch: 1.3
-    loop: 1
-    source: {fileID: 0}
-  - name: run
-    clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
-    volume: 0.3
-    pitch: 1.5
-    loop: 1
-    source: {fileID: 0}
+  Sounds:
+  - Name: walk
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 95397e3e579047a4a8c4e0c34b2dd535, type: 3}
+    Volume: 0.3
+    Pitch: 1.5
+    Loop: 1
+  - Name: run
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 024b821de2ba0544f81f7df5c26ef6cb, type: 3}
+    Volume: 0.3
+    Pitch: 1.5
+    Loop: 1
+  - Name: alarm
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: adb88060af50f1143868a7545e9f7545, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 1
+  - Name: alert
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: cab301382fb6ecf449311291bf0dfb58, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 1
+  - Name: bgm
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: e583149efd46b6248b6093d0e4a63015, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 1
+--- !u!114 &813436972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982489294633245062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf6d148e364acd448b6164ee11f1b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

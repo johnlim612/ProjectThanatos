@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour {
     public PlayerSFX Sfx;
@@ -10,16 +9,19 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float _walkSpeed;      // Player's move speed
     [SerializeField] private float _sprintSpeed;    //
     [SerializeField] private float _sensitivity;    // Player's camera sensitivity
-    
+    [SerializeField] private GameObject _tabletGameObject;    
+
     private PlayerInput _playerInputs;  // Custom Input Action map for player inputs
     private InputAction _movement;      // Reference to player's movement inputs
     private InputAction _sprint;
     private InputAction _interact;
+    private InputAction _tablet;
+    private TabletManager _tabletManager;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
     private void Awake() {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         _xRot = 0;
         _yRot = 0;
 
@@ -27,7 +29,11 @@ public class PlayerController : MonoBehaviour {
         _movement = _playerInputs.Player.Movement;
         _sprint = _playerInputs.Player.Sprint;
         _interact = _playerInputs.Player.Interact;
-        
+        _tablet = _playerInputs.Player.Tablet;
+        _tablet.performed += OpenTablet;
+        _tabletManager = GameObject.Find("TabletManager").GetComponent<TabletManager>();
+        _tabletGameObject.SetActive(false);
+
         /*
         if (HallwaySaveData.IsInitialized) {
             transform.position = HallwaySaveData.NewPosition;
@@ -37,21 +43,30 @@ public class PlayerController : MonoBehaviour {
         */
     }
 
+    private void Start() {
+        
+    }
+
     private void OnEnable() {
         _movement.Enable();
         _sprint.Enable();
         _interact.Enable();
+        _tablet.Enable();
     }
 
     private void OnDisable() {
         _movement.Disable();
         _sprint.Disable();
         _interact.Disable();
+        _tablet.Disable();
     }
-    
+
     private void PlayerMovement() {
-        Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, _movement.ReadValue<Vector2>().y); //Obtain movement direction
-        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection); //Change vector direction to fit the current transform direction of player
+        Vector3 _moveDirection = new Vector3(_movement.ReadValue<Vector2>().x, 0, 
+            _movement.ReadValue<Vector2>().y); //Obtain movement direction
+        //Change vector direction to fit the current transform direction of player
+        Vector3 moveVector = PlayerCam.transform.TransformDirection(_moveDirection);
+
         //Apply vector to velocity
         if (_sprint.ReadValue<float>() == 1) {
             Sfx.Run();
@@ -72,19 +87,23 @@ public class PlayerController : MonoBehaviour {
         _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
         _xRot = Mathf.Clamp(_xRot, -35, 60);
 
-        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, 
+            Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
         
     }
 
-    private void PlayerInteract() {
-        if (_interact.ReadValue<float>() == 1) {
-            Debug.Log("Interacted");
+    private void OpenTablet(InputAction.CallbackContext context) {
+        if (context.performed == true) {
+            if (_tabletManager == null) {
+                Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
+                return;
+            }
+            _tabletManager.ToggleTabletState(null);
         }
     }
 
     void FixedUpdate() {
         PlayerMovement();
         PlayerCamera();
-        PlayerInteract();
     }
 }

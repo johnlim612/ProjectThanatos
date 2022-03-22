@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4215330831359740}
   - component: {fileID: 33377010383954878}
   - component: {fileID: 23173010747006886}
+  - component: {fileID: 6133922631598817805}
   m_Layer: 0
   m_Name: Roof_Light_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 127
   m_IsActive: 1
 --- !u!4 &4215330831359740
 Transform:
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6133922631598817805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049988798489614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d304809634f0c4e86fc716c1921ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 455618647800160400}
+  _sabotageFlickerRate: 1
 --- !u!1 &1291234866969404
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469904134577013124}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 3, y: -3, z: 5.5}
+  m_LocalPosition: {x: 3, y: -3, z: 3.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4215330831359740}
@@ -158,7 +173,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 45
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

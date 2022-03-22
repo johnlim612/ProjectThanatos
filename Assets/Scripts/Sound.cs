@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 public class Sound {
     public string Name;
     [HideInInspector]
+    public int UniqueID;
+    [HideInInspector]
     public AudioSource Source;
     public AudioClip Clip;
     [Range(0f, 1f)]

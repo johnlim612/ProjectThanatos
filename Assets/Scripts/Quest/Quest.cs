@@ -8,8 +8,9 @@ public class Quest : MonoBehaviour {
     public Queue<Action> QuestQue { get; set; }
     public bool QuestComplete;
 
-	// Start is called before the first frame update
-	void Awake() {
+
+    // Start is called before the first frame update
+    void Awake() {
         QuestQue = new Queue<Action>();
         QuestComplete = false;
     }
@@ -31,6 +32,17 @@ public class Quest : MonoBehaviour {
     protected void TriggerSabotage() {
         Sabotage.SabotageActive = true;
     }
+
+    protected void TriggerDiary() {
+
+	}
+
+    protected void TriggerMonologue(bool triggerNext = false) {
+        UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Player);
+        if (triggerNext) {
+            QuestManager.Instance.TriggerNext();
+		}
+	}
 
     protected void TriggerAlert() {
 

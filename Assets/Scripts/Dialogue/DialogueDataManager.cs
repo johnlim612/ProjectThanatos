@@ -215,7 +215,7 @@ public class DialogueDataManager : MonoBehaviour {
 
     public List<string> GetPrompts() {
         return _prompts;
-    }
+    } 
 
     private void ResetData() {
         _prompts = new List<string>();

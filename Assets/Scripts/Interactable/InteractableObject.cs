@@ -8,7 +8,9 @@ public class InteractableObject : MonoBehaviour {
     public bool ActiveQuest = false;
 
     public void OnInteract(InputValue value) {
-        if (_interactableCollided && !UI.UIDialogueManager.IsInteracting) {
+        print(UI.UIDialogueManager.Instance.IsInteracting);
+        if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
+            
             InteractObject();
         }
     }

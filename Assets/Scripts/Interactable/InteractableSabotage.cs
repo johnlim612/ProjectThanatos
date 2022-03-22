@@ -11,6 +11,7 @@ public class InteractableSabotage : InteractableObject {
 
     public override void InteractObject() {
         ToggleActiveState();
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
     }
 

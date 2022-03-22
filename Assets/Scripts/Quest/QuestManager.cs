@@ -17,16 +17,10 @@ public class QuestManager : MonoBehaviour {
 			_instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-
-        Quests = new Quest[] {
-            new QuestDay1(),
-            new QuestDay2(),
-            new QuestDay3()
-        };
     }
 
     public void TriggerNext() {
-        if (Quests[GameManager.Instance.Day].QuestQue.Count == 0) {
+        if (Quests[GameManager.Instance.Day - 1].QuestQue.Count == 0) {
             GameManager.Instance.CurrentSabotage.ToggleActiveState();
             currentQuestNum = 0;
             return;

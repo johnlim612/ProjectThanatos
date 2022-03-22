@@ -8,6 +8,7 @@ public class QuestManager : MonoBehaviour {
     public Quest[] Quests;
     public static QuestManager Instance { get {return _instance; } }
     private static QuestManager _instance;
+    public int currentQuestNum = 0;
 
 	private void Awake() {
         if (_instance != null && _instance != this) {
@@ -25,7 +26,16 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void TriggerNext() {
+        if (Quests[GameManager.Instance.Day].QuestQue.Count is 0) {
+            //end day
+		} 
+
+        currentQuestNum += 1;
         Action action = Quests[GameManager.Instance.Day].QuestQue.Dequeue();
         action();
 	}
+
+    public string getCurrentQuest () {
+        return Quests[GameManager.Instance.Day].QuestLog[currentQuestNum];
+    }
 }

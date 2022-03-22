@@ -30,6 +30,8 @@ public class DialogueDataManager : MonoBehaviour {
     private string _diaryEntry; // The player's end-of-day diary entry.
     private List<string> _questLog; // The list of objectives for the day's sabotage.
 
+    private Queue<(string, string)> _finalRoomDialogue;
+
     // Indices of dialogues correspond to _prompts[]
     private List<DialogueReference> _dialogues;
 
@@ -69,7 +71,7 @@ public class DialogueDataManager : MonoBehaviour {
         _dataDayKey = "D" + GameManager.Instance.Day.ToString();
         print(data);
         if (data == null) {
-            Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}");
+            Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}.json");
             return;
         }
 
@@ -83,10 +85,24 @@ public class DialogueDataManager : MonoBehaviour {
             case EntityType.Diary:
                 ParseDiaryEntry(data, _dataDayKey);
                 break;
+            case EntityType.Room:
+                ParseRoomAlert(data, (int) dataType);
+                break;
             default:
                 Debug.LogError($"Invalid DataType. Data Type {dataType} was not recognized.");
                 break;
         }
+    }
+
+    public Queue<(string, string)> InitializeRoomData(string roomName, string dataKey) {
+        JObject data = LoadData(Constants.FinalRooms);
+
+        if (data == null) {
+            Debug.LogError($"Unable to locate file with name {Constants.FinalRooms}.json");
+            return null;
+        }
+
+        return ParseRoomData(data, roomName, dataKey);
     }
 
     /// <summary>
@@ -225,26 +241,19 @@ public class DialogueDataManager : MonoBehaviour {
         _questLog = new List<string>();
     }
 
-    // ---------------------------- SHARED BY SABOTAGE LAYER IN JSON --------------------------- //
+    // ------------------------------------- FINAL ROOM ------------------------------------- //
 
-    private void FindSabotageRelatedData(EntityType dataType, JObject data, int? id) {
-        if (id == null) {
-            Debug.LogError("id is null");
-            return;
+    private Queue<(string, string)> ParseRoomData(JObject data, string roomName, string dataKey) {
+        Queue<(string, string)> queue = new Queue<(string, string)>();
+
+        for (int i = 1; i <= data.Count; i++) {
+            foreach (JProperty prop in data[roomName][dataKey][i.ToString()]) {
+                queue.Enqueue((prop.Name, prop.Value.ToString()));
+
+            }
         }
 
-        JToken rawData = data[Constants.SabotageDialogueKey][id.ToString()];
-
-        if (rawData == null) {
-            Debug.LogError("rawData is null");
-            return;
-        }
-
-        switch (dataType) {
-            case EntityType.Diary:
-                ParseTabletData(rawData);
-                break;
-        }
+        return queue;
     }
 
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
@@ -321,4 +330,8 @@ public class DialogueDataManager : MonoBehaviour {
     //public List<string> GetQuestLog() {
     //    return _questLog;
     //}
+
+    private void ParseRoomAlert(JObject data, int? id) {
+        print("room");
+    }
 }

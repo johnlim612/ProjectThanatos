@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
         if (_sabotages.Count > 1) {
             _sabotageId = _sabotages[Random.Range(0, _sabotages.Count)];
 
-		} else if (_sabotages.Count == 1) {
+        } else if (_sabotages.Count == 1) {
             _sabotageId = _sabotages[0];
 
         } else {

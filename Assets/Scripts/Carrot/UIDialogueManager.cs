@@ -279,6 +279,8 @@ namespace UI {
 		Item,
 		NPC,
 		Alert,
-		Diary
+		Diary,
+		Room,
+		Corpse
 	}
 }

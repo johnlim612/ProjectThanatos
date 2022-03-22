@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
 
     public void AdvanceDay() {
         _day++;
+        print(Day);
 
         Sabotage.SabotageActive = true;
 

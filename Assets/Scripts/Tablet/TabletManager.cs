@@ -13,8 +13,6 @@ public class TabletManager : MonoBehaviour {
         _diaryEntryHistory = "";
         _player = GameObject.Find(Constants.PlayerKey);
         _tabletGameObj.SetActive(false);
-        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
-            Constants.TabletKey, 1); // change to current day instead
         Refresh();
     }
 
@@ -22,15 +20,17 @@ public class TabletManager : MonoBehaviour {
     /// Updates data in the tablet
     /// </summary>
     public void Refresh() {
+        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
+            Constants.TabletKey, GameManager.Instance.Day);
         _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
         string log = "";
 
-        foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
-            log += $"{index++}: {str}\n";
-        }
+        //foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
+        //    log += $"{index++}: {str}\n";
+        //}
 
-        _questLog = log;
+        //_questLog = log;
     }
 
     /// <summary>

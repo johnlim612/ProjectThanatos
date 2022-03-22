@@ -5,26 +5,29 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UI; // UIDialogueManager Namespace containing EnityType Enum
 
-public struct DialogueReference {
-    public string EventType;    // E.g. "sabotage", "random", etc.
-    public string EventKey;     // E.g. if random event = "coffee", else an int "1"
-
-    public DialogueReference(string eventType, string eventKey) {
-        EventType = eventType;
-        EventKey = eventKey;
-    }
-}
-
 public class DialogueDataManager : MonoBehaviour {
+    public struct DialogueReference {
+        public string EventType;    // E.g. "sabotage", "random", etc.
+        public string EventKey;     // E.g. if random event = "coffee", else an int "1"
+
+        public DialogueReference(string eventType, string eventKey) {
+            EventType = eventType;
+            EventKey = eventKey;
+        }
+    }
     public static DialogueDataManager Instance { get { return _instance;  } }
 
     private static DialogueDataManager _instance;   // Singleton instance of the class.
 
     // Contains parsed data:
     private string _baseFilePath = "Dialogue/";
+
     private List<string> _prompts;   // Players' prompts to start different convos w/ NPCs
     private string _greeting;    // First thing NPC displays when interacted with.
+
     private Queue<(string, string)> _systemAnnouncements; // Alert related to day's sabotage
+    private Queue<(string, string)> _completedSabotageAlert; // Alert when the day's sabotage is fixed
+
     private string _diaryEntry; // The player's end-of-day diary entry.
     private List<string> _questLog; // The list of objectives for the day's sabotage.
 
@@ -56,16 +59,16 @@ public class DialogueDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="dataType">Enum specifying which type of data should be loaded</param>
     /// <param name="fileName">The NPC whose JSON file will be loaded</param>
-    /// <param name="dialogueId">*Optional* Key for character-specific dialogue</param>
-    public void Initialize(EntityType dataType, string fileName, int? dialogueId = null) {
+    /// <param name="id">*Optional* Key for character-specific dialogue</param>
+    public void Initialize(EntityType dataType, string fileName, int? id = null) {
         // Ensure any previously stored data is cleared
         ResetData();
 
         // Remove whitespace from characters' names before searching for the file.
         JObject data = LoadData(fileName.Replace(" ", ""));
         _dataRefName = fileName;
-        _dataDayKey = "D" + GameManager.Instance.SabotageId.ToString();
-
+        _dataDayKey = "D" + GameManager.Instance.Day.ToString();
+        print(data);
         if (data == null) {
             Debug.LogError($"Unable to locate file with name {fileName.Replace(" ", "")}");
             return;
@@ -73,15 +76,14 @@ public class DialogueDataManager : MonoBehaviour {
 
         switch (dataType) {
             case EntityType.NPC:
-                FindRelevantDialogue(data, dialogueId);
+                FindRelevantDialogue(data, id);
                 FindInitialPrompts();
                 break;
             case EntityType.Alert:
-                FindSabotageRelatedData(dataType, data, dialogueId);
+                ParseSystemAlert(dataType, data, _dataDayKey);
                 break;
             case EntityType.Diary:
-                // Rename Enum to Tablet? Relocate Enum to its own file/namespace?
-                FindSabotageRelatedData(dataType, data, dialogueId);
+                ParseDiaryEntry(data, _dataDayKey);
                 break;
             default:
                 Debug.LogError($"Invalid DataType. Data Type {dataType} was not recognized.");
@@ -147,8 +149,7 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Sorts the sentences in the correct order, with "prompt" being given
-    /// priority over "sentence".
+    /// Sorts the sentences in the correct speaking order.
     /// </summary>
     /// <param name="data"></param>
     /// <returns>Sorted Queue</returns>
@@ -220,25 +221,26 @@ public class DialogueDataManager : MonoBehaviour {
     private void ResetData() {
         _prompts = new List<string>();
         _dialogues = new List<DialogueReference>();
+        _diaryEntry = "";
+        _questLog = new List<string>();
     }
 
     // ---------------------------- SHARED BY SABOTAGE LAYER IN JSON --------------------------- //
 
     private void FindSabotageRelatedData(EntityType dataType, JObject data, int? id) {
         if (id == null) {
+            Debug.LogError("id is null");
             return;
         }
 
         JToken rawData = data[Constants.SabotageDialogueKey][id.ToString()];
 
         if (rawData == null) {
+            Debug.LogError("rawData is null");
             return;
         }
 
         switch (dataType) {
-            case EntityType.Alert:
-                SortAnnouncementQueue(rawData);
-                break;
             case EntityType.Diary:
                 ParseTabletData(rawData);
                 break;
@@ -246,31 +248,64 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
+    private void ParseSystemAlert(EntityType dataType, JObject data, string key) {
+        JToken sabotageData = data[Constants.SabotageDialogueKey][key];
+        JToken sabotageCompletedData = data[Constants.SabotageCompletedKey][key];
 
-    private void SortAnnouncementQueue(JToken data) {
-        _systemAnnouncements = new Queue<(string, string)>();
-        JToken alert;
-        JToken message;
-
-        alert = data[Constants.SystemAlertKey];
-        message = data[Constants.SystemMessageKey];
-
-        if (alert != null) {
-            _systemAnnouncements.Enqueue((Constants.SystemAlertKey, alert.ToString()));
+        if (sabotageData == null || sabotageCompletedData == null) {
+            Debug.LogError($"System Alert data is null.\n'Sabotage': " +
+                $"{sabotageData}, 'Fix-Complete': {sabotageCompletedData}");
+            return;
         }
 
-        if (message != null) {
-            _systemAnnouncements.Enqueue((Constants.SystemMessageKey, message.ToString()));
+        _systemAnnouncements = QueueAlertMessages(sabotageData);
+        _completedSabotageAlert = QueueAlertMessages(sabotageCompletedData);
+
+    }
+
+    private Queue<(string, string)> QueueAlertMessages(JToken data) {
+        Queue<(string, string)> queue = new Queue<(string, string)>();
+        string speaker = "";
+        string sentence = "";
+
+        foreach (JProperty property in data) {
+            // property = { 1: { "speaker": "sentence" } }
+            if (property.Value[Constants.PlayerKey] != null) {
+                speaker = Constants.PlayerKey;
+                sentence = property.Value[Constants.PlayerKey].ToString();
+            } else if (property.Value[Constants.SystemAlertKey] != null) {
+                speaker = Constants.SystemAlertKey;
+                sentence = property.Value[Constants.SystemAlertKey].ToString();
+            }
+
+            queue.Enqueue((speaker, sentence));
         }
+
+        return queue;
     }
 
     public Queue<(string, string)> GetAnnouncement() {
         return _systemAnnouncements;
     }
 
-    // ------------------------------- TABLET - DIARY & QUEST LOG ------------------------------- //
+    public Queue<(string, string)> GetFixedSabotageMsg() {
+        return _completedSabotageAlert;
+    }
 
-    private void ParseTabletData(JToken data) {
+    // ------------------------------- TABLET - DIARY & QUEST LOG ------------------------------- //
+    private void ParseDiaryEntry(JObject data, string dayKey) {
+        if (dayKey.Equals(Constants.TheEnd)) {
+            // check which ending was selected via GameManager or TabletManager???
+            return;
+        }
+
+        foreach (JProperty entry in data[dayKey]) {
+            // log = { "1": "hi" }
+            _diaryEntry += entry.Value.ToString();
+        }
+    }
+
+        private void ParseTabletData(JToken data) {
         _diaryEntry = data[Constants.DiaryKey].ToString();
         // Parse and store quest log data
         foreach (JProperty log in data[Constants.QuestLogKey]) {
@@ -283,7 +318,7 @@ public class DialogueDataManager : MonoBehaviour {
         return _diaryEntry;
     }
 
-    public List<string> GetQuestLog() {
-        return _questLog;
-    }
+    //public List<string> GetQuestLog() {
+    //    return _questLog;
+    //}
 }

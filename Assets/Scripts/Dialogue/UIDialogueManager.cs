@@ -85,6 +85,7 @@ namespace UI {
 					StartDiaryDialogue((Bed) entity);
 					break;
 				case EntityType.Player:
+					_questSelected = true;
 					StartMonologue();
 					break;
 				default: 

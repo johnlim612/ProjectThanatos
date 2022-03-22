@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,7 +59,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// <param name="dataType">Enum specifying which type of data should be loaded</param>
     /// <param name="fileName">The NPC whose JSON file will be loaded</param>
     /// <param name="id">*Optional* Key for character-specific dialogue</param>
-    public void Initialize(EntityType dataType, string fileName, int? id = null) {
+    public void Initialize(EntityType dataType, string fileName, int? charBackstoryId = null) {
         // Ensure any previously stored data is cleared
         ResetData();
 
@@ -76,11 +75,10 @@ public class DialogueDataManager : MonoBehaviour {
 
         switch (dataType) {
             case EntityType.NPC:
-                FindRelevantDialogue(data, id);
-                FindInitialPrompts();
+                ParseNpcData(data, charBackstoryId);
                 break;
             case EntityType.Alert:
-                ParseSystemAlert(dataType, data, _dataDayKey);
+                ParseSystemAlert(data, _dataDayKey);
                 break;
             case EntityType.Diary:
                 ParseDiaryEntry(data, _dataDayKey);
@@ -103,8 +101,10 @@ public class DialogueDataManager : MonoBehaviour {
         return (JObject) JsonConvert.DeserializeObject(jsonDialogueFile.text);
     }
 
-    private void FindRelevantDialogue(JObject data, int? charDialogueId) {
-        _sabotageData = data[Constants.SabotageDialogueKey][_dataDayKey];
+    private void ParseNpcData(JObject data, int? charBackstoryId) {
+        _greeting = data[Constants.GreetingKey][_dataDayKey]["1"][Constants.NpcKey].ToString();
+
+        _sabotageData = data[Constants.QuestLogKey][_dataDayKey];
 
         // Get dialogue related to all ongoing random events.
         //if (GameManager.RandomEventIds.Count != 0) {
@@ -118,12 +118,12 @@ public class DialogueDataManager : MonoBehaviour {
         //}
 
         // Get character-specific dialogue if it's available.
-        if (charDialogueId != null && charDialogueId != 0) {
-            string backstoryId = "E" + charDialogueId.ToString();
+        if (charBackstoryId != null && charBackstoryId != 0) {
+            string backstoryId = "D" + charBackstoryId.ToString();
             _characterData = data[Constants.CharacterDialogueKey][backstoryId];
         }
 
-        _greeting = (string) data[Constants.GreetingKey][_dataDayKey][Constants.NpcKey];
+        FindInitialPrompts();
     }
 
     /// <summary>
@@ -153,7 +153,7 @@ public class DialogueDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="data"></param>
     /// <returns>Sorted Queue</returns>
-    private Queue<(string, string)> SortQueue(JToken data) {
+    private Queue<(string, string)> QueueNpcDialogue(JToken data) {
         Queue<(string, string)> dialogue = new Queue<(string, string)>();
         string speaker = "";
         string sentence = "";
@@ -191,18 +191,18 @@ public class DialogueDataManager : MonoBehaviour {
 
         switch (dRef.EventType) {
             case Constants.SabotageDialogueKey:
-                dialogue = SortQueue(_sabotageData);
+                dialogue = QueueNpcDialogue(_sabotageData);
                 break;
             case Constants.RandomEventDialogueKey:
                 foreach ((string, JToken) randEvent in _randomEventData) {
                     if (dRef.EventKey.Equals(randEvent.Item1)) {
-                        dialogue = SortQueue(randEvent.Item2);
+                        dialogue = QueueNpcDialogue(randEvent.Item2);
                         break;
                     }
                 }
                 break;
             case Constants.CharacterDialogueKey:
-                dialogue = SortQueue(_characterData);
+                dialogue = QueueNpcDialogue(_characterData);
                 break;
             default:
                 return null;
@@ -248,10 +248,10 @@ public class DialogueDataManager : MonoBehaviour {
     }
 
     // ------------------------------- SYSTEM ANNOUNCEMENTS ------------------------------- //
-    private void ParseSystemAlert(EntityType dataType, JObject data, string key) {
+    private void ParseSystemAlert(JObject data, string key) {
         JToken sabotageData = data[Constants.SabotageDialogueKey][key];
         JToken sabotageCompletedData = data[Constants.SabotageCompletedKey][key];
-        print("alert " + key + " " + data);
+
         if (sabotageData == null || sabotageCompletedData == null) {
             Debug.LogError($"System Alert data is null.\n'Sabotage': " +
                 $"{sabotageData}, 'Fix-Complete': {sabotageCompletedData}");

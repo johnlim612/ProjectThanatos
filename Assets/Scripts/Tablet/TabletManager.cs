@@ -21,7 +21,7 @@ public class TabletManager : MonoBehaviour {
     /// </summary>
     public void Refresh() {
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
-            Constants.TabletKey, GameManager.Instance.Day);
+            Constants.TabletKey);
         _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
         string log = "";

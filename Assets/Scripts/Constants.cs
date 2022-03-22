@@ -5,7 +5,7 @@ public static class Constants {
     public const string PlayerKey = "Player";
     public const string SabotageDialogueKey = "Sabotage";
     public const string RandomEventDialogueKey = "Side-Quest"; // needed?
-    public const string CharacterDialogueKey = "backstory";
+    public const string CharacterDialogueKey = "Backstory";
     public const string GreetingKey = "Greeting";
     public const string DialoguePromptKey = "prompt"; // needed?
     public const string DialogueNPCSentenceKey = "sentence"; // needed?

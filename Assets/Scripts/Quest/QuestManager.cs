@@ -26,8 +26,10 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void TriggerNext() {
-        if (Quests[GameManager.Instance.Day].QuestQue.Count is 0) {
-            //end day
+        if (Quests[GameManager.Instance.Day].QuestQue.Count == 0) {
+            GameManager.Instance.CurrentSabotage.ToggleActiveState();
+            currentQuestNum = 0;
+            return;
 		} 
 
         currentQuestNum += 1;

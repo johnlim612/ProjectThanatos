@@ -1432,7 +1432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveQuest: 0
   _descriptions: []
-  _sabotageID: 1
 --- !u!65 &738198997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2958,7 +2957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveQuest: 0
   _descriptions: []
-  _sabotageID: 2
 --- !u!4 &1319160107
 Transform:
   m_ObjectHideFlags: 0
@@ -3052,7 +3050,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveQuest: 0
   _descriptions: []
-  _sabotageID: 3
 --- !u!65 &1388177531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4318,6 +4315,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d030f8aa9ba3c0042bdfda0297a2fe7f, type: 3}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a8ab525b15c4be41bbb861a6e33c01a, type: 3}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f851c3abbadc2654e8b6df57ef6b0365, type: 3}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 88c6ede5b1bea0b488dc3d4e5c1abf65, type: 3}
+    - target: {fileID: 5160882905712051904, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
+      propertyPath: _charImages.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: f7af430a8b6ced54cbe53a2649143b37, type: 3}
     - target: {fileID: 6899564350605432415, guid: a6b3c399870611d47ba7bc4260e79840, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

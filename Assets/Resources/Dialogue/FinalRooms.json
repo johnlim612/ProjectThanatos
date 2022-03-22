@@ -1,0 +1,149 @@
+{
+    "Air-Filtration-Ventilation-room" : {
+        "Enter": {
+            "1" : {
+                "Player" : "What is… What is that?! No… No no… This isn't right… What the fuck…? I was just talking to [SUSPECT] yesterday…! … I- I… I must be hallucinating… Right? Haha. Yeah. That's it. This is just a hallucination…! I just have to touch the body, it's not actually there!"
+            },
+            "2" : {
+                "Player" : "(You touch the body and it doesn't disappear.)"
+            },
+            "3" : {
+                "Player" : "What the fuck… Oh god, I'm gonna throw up… How long has [SUSPECT] been dead for… How do I… I have my scanner!"
+            },
+            "4" : {
+                "Player" : "(You scan the body)"
+            },
+            "5" : {
+                "Scanner" : "This is the body of [SUSPECT]. Current Status: Dead. Body has been in this state for: 166 days."
+            },
+            "6" : {
+                "Player" : "Wh-what's going on… How come no one noticed!? Wait… W-where is everyone…?!"
+            },
+            "7" : {
+                "Player" : "HEY GUYS!? HELLO?!? CAN SOMEONE COME HERE?!"
+            },
+            "8" : {
+                "Narration" : "..."
+            },
+            "9" : {
+                "Player" : "Oh god… First... first... I'll fix the system… Then… I'll go look for the others."
+            }
+        }
+    },
+    "Common-room": {
+        "Enter": {
+            "1" : {
+                "Player" : "Where is everyone?!? Hello!?"
+            }
+        },
+        "Flash-back": {
+            "1": {
+                "Player" : "What's going on…? They're talking about something..."
+            },
+            "2": {
+                "Won Ki" : "Just don't say anything about what we're doing..."
+            },
+            "3": {
+                "Yuri" : "But… they're part of our team... our family... No matter how much they believe in the mission!"
+            },
+            "4": {
+                "Johnny" : "Heh. There's no convincing them."
+            },
+            "5": {
+                "Won Ki" : "It's fine. Like you said, they're a part of our team, our family. They'll get over it once we get off of this godforsaken planet. "
+            },
+            "6": {
+                "Rachel" : "Yeah yeah yeah! Let's just do everything we have to and keep it to ourselves. It's not that hard anyways! Plus they'll understand eventually! They're a good person. They wouldn't just let this keep going on!"
+            },
+            "7": {
+                "Player" : "(What..? Understand what…? Are they… are they planning to sabotage the mission?? How could they…? They know how important this mission is… The mission is everything! There's no way I'm gonna let them sabotage the mission...!"
+            }
+        },
+        "End-flash": {
+            "1": {
+                "Player" : "What the fuck was that...? What...? They... sabotaged the mission...? What the hell...? How did I not remember that?"
+            }
+        }
+    },
+    "Communications-room": {
+        "Enter": {
+            "1": {
+                "Player" : "Is anyone here?? Hello?!?"
+            }
+        },
+        "Flash-back": {
+            "1": {
+                "Johnny" : "Ugh… Those damn… Hmph… Charting this course will be tricky… Gotta twist what we say to Mission Control… Those damn bleeding hearts forcing me to actually do more work than I need to…"
+            },
+            "2": {
+                "Player" : "(Huh? Why is Johnny lying to mission control… Are they all truly against the mission?)"
+            },
+            "3": {
+                "Johnny" : "Alright… Let's see if I can pull a fast one on the geezers."
+            }
+        },
+        "End-flash": {
+            "1": {
+                "Player" : "No… I can't believe it… They all worked to sabotage the mission…? No… I have to see… Someone has to be here. I need to confirm… Where is everyone?!"
+            }
+        }
+    },
+    "Med-Bay": {
+        "Enter": {
+            "1": {
+                "Player" : "Hello?!? Anyone here?!?"
+            }
+        },
+        "Flash-back": {
+            "1": {
+                "Player" : "Hey Rachel… Is everyone okay?"
+            },
+            "2": {
+                "Rachel" : "Yeah! I'm completely fine! Why are you so worried all of a sudden anyways!? You don't need to worry, I'm the one in charge of people's health here! Are you the one who's hurt? Tell me!"
+            },
+            "3": {
+                "Player" : "*sigh* Then if no one is hurt… What are the vials for?"
+            },
+            "4": {
+                "Rachel" : "Nothing! They're not for anything important. I'm just curious! What, I can't be curious and play around while we're here? You're poking your nose in too much. Don't worry about it! I'll handle things with people's health on my end! You just deal with all the technicalities!"
+            },
+            "5": {
+                "Player" : "(This has to be about the experiments then… They're really trying to sabotage the experiments…)"
+            }
+        },
+        "End-flash": {
+            "1": {
+                "Player" : "Fuck… If they sabotaged the experiments… I… No… Please… Where are you guys?!"
+            }
+        }
+    },
+    "Supply-Room": {
+        "Enter": {
+            "1": {
+                "Player" : "Please! Someone! Anyone! Answer me!"
+            }
+        },
+        "Flash-back": {
+            "1": {
+                "Player" : "(Huh? I think I heard Rachel's and Yuri's voices somewhere around here…)"
+            },
+            "2": {
+                "Rachel" : "This is really wrong… It's so wrong I can't believe we actually said okay to this mission! What the hell. This isn't right at all! How the hell can they support this at all?! It doesn't make any sense. This is inhumane! It's insane! It's cruel beyond words! I don't even have words to express how bad this is?!"
+            },
+            "3": {
+                "Yuri" : "I know, Rachel. I agree, but what do you expect us to do?"
+            },
+            "4": {
+                "Rachel" : "We gotta do something… We have to…! I can't stand by and do nothing as this continues. I can't believe anyone in this team would continue to support this insanity. This is madness! I can't… I don't want to just let this continue!"
+            },
+            "5": {
+                "Player" : "(How can they have so little faith in the mission…? I… don't understand…)"
+            }
+        },
+        "End-flash": {
+            "1": {
+                "Player" : "No... no no no..."
+            }
+        }
+    }
+}

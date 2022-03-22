@@ -1,22 +1,35 @@
 {
-    "greeting": {
+    "Greeting": {
         "D1": {
-            "NPC": "*Yawn* Hmm... Wonder if things will be okay when we get back..."
+            "1": {
+                "NPC": "*Yawn* Hmm... Wonder if things will be okay when we get back..."
+            }
         },
         "D2": {
-            "NPC": "*Sigh* Where's my coffee when I need it..."
+            "1": {
+                "NPC": "*Sigh* Where's my coffee when I need it..."
+            }
         },
         "D3": {
-            "NPC": "(Johnny seems to be silently enjoying his fresh coffee today)"
+            "1": {
+                "NPC": "(Johnny seems to be silently enjoying his fresh coffee today)"
+            }
         },
         "D4": {
-            "NPC": "Seems like there are so many problems lately..."
+            "1": {
+                "NPC": "Seems like there have been so many problems lately..."
+            }
         },
         "D5": {
-            "NPC": "Damn it, the stupid power out made my coffee machine break..."
+            "1": {
+                "NPC": "Mmm... I really feel like we can't trust them..."
+            }
         },
         "D6": {
-            "NPC": "Mmm... I really feel like we can't trust them..."
+            "1": {
+                "NPC": "Damn it, the stupid power out made my coffee machine break..."
+            }
+            
         }
     },
     "sabotage": {
@@ -45,139 +58,86 @@
         },
         "D2": {
             "1": {
-                "Player": "Do you know what happened earlier?"
+                "Player": "Hey? Do you know what happened earlier?"
             },
             "2": {
-                "NPC": "I didn't really go by the engine room if that's what you're asking."
+                "NPC": "I didn't really go by the engine room if that's what you're asking. I found it weird to hear the settings were changed too. Sometimes I wonder if we'd been set up the entire time. As if this entire mission was just a script…"
             },
             "3": {
-                "NPC": "I found it weird to hear that the settings had been changed too."
-            },
-            "4": {
-                "NPC": "Sometimes I wonder if we were being set up."
-            },
-            "5": {
-                "NPC": "Sometimes, it feels like they didn't fund this project enough."
-            },
-            "6": {
                 "Player": "Set up?"
             },
-            "7": {
-                "NPC": "Mmm... Nevermind. It's probably just this old man's paranoia."
+            "4": {
+                "NPC": "Nevermind. Probably just this old man being overly paranoid. Don't mind what I said."
             }
         },
         "D3": {
             "1": {
-                "Player": "Won fixed the system..."
+                "Player": "Hey."
             },
             "2": {
-                "NPC": "Yeah, he finally got off of his butt and helped out."
+                "NPC": "Hey yourself. Did you piss off Rachel?"
             },
             "3": {
-                "NPC": "You've been fixing a majority of the issues nowadays."
+                "Player": "...How'd you know."
             },
             "4": {
-                "NPC": "He's definitely had more free time to mess around lately."
+                "NPC": "Yuri would never piss her off. I didn't do anything. Won Ki is kind of weird but because he's weird he can push people's buttons however he likes and doesn't get into much trouble. Rachel wouldn't react like this. The only one who could have pissed her off like this was you."
             },
             "5": {
-                "Player": "I don't mind."
+                "Player": "It wasn't even intentional… I just wanted an easy way to ensure I could keep track of my own health."
             },
             "6": {
-                "NPC": "Maybe you should... He almost broke my coffee machine, you know."
+                "NPC": "Makes sense. Don't worry. She'll get over it by tomorrow."
             },
             "7": {
-                "NPC": "Just keep him out of my things..."
-            },
-            "8": {
-                "NPC": "It seems like more problems have been occuring lately."
-            },
-            "9": {
-                "NPC": "I don't know if it's all just coincidence anymore."
+                "Player": "If you say so…"
             }
         },
         "D4": {
             "1": {
-                "Player": "Did someone go by communications?"
+                "Player": "Hey, did someone go by communications?"
             },
             "2": {
-                "NPC": "Hm...? I haven't been by communications, so I couldn't really say."
+                "NPC": "I haven't been. From what I know the others were hanging by their usual spots. Huh. Maybe that feeling of paranoia was right."
             },
             "3": {
-                "NPC": "Maybe that feeling of paranoia was right..."
-            },
-            "4": {
-                "NPC": "I can't say whether we've been set up but there have been too many issues lately."
-            },
-            "5": {
                 "Player": "What do you mean?"
             },
-            "6": {
-                "NPC": "All of us have something in common, kid."
+            "4": {
+                "NPC": "I can't say whether we've been set up… and whose fault it is… but there really have been too many issues lately."
             },
-            "7": {
-                "Player": "Other than the mission?"
-            },
-            "8": {
-                "NPC": "... You'll figure it out."
+            "5": {
+                "Player": "*sigh* You're not wrong… We're almost home though… I hope we can complete the mission without incident… (Maybe I'll ask the others and see if there are any discrepancies in info)"
             }
         },
         "D5": {
             "1": {
-                "Player": "Did you see anyone by the power room?"
+                "Player": "Trust who?"
             },
             "2": {
-                "NPC": "Nope. You think someone's causing problems on purpose?"
+                "NPC": "*Spits out his coffee* Fuck! You scared me! I meant the ones who highered us. Don't you think it's strange? They gathered us all up, but none of us had the training we needed for this job until they gave us the training. They wanted us for a reason. It's hard to trust them."
             },
             "3": {
-                "Player": "... I don't have any proof... but..."
-            },
-            "4": {
-                "NPC": "I see... You have a good head on your shoulders... I would be cautious too."
-            },
-            "5": {
-                "NPC": "I can't say I would even trust myself... but the others may take it badly."
-            },
-            "6": {
-                "NPC": "We've been together on this mission all these years after all."
+                "Player": "… You're not wrong."
             }
         },
         "D6": {
             "1": {
-                "Player": "Trust who?"
+                "Player": "Hey uh…"
             },
             "2": {
-                "NPC": "*Johnny spits out his coffee* Fuck! You scared me! I meant the ones who highered us."
+                "NPC": "If you're gonna ask if I saw anyone by the power room, I didn't. Sorry kiddo. It's good you're being cautious. I wouldn't even trust myself if I were you. The entire mission has been… weird…"
             },
             "3": {
-                "NPC": "I told you didn't I? There's something we all have in common."
-            },
-            "4": {
-                "NPC": "Well... Either way, even if I don't trust them, we're here anyways."
-            },
-            "5": {
-                "NPC": "I can't do much about it now. So I just have to wait and see."
-            },
-            "6": {
-                "NPC": "Just be careful kid. I could care less about myself, but you all are still young."
+                "Player": "Mm. Thanks… (What was that about…? Not trusting yourself?)"
             }
         }
     },
-    "sidequest": {
-        "D1": {
-
-        },
-        "D2": {
-
-        },
-        "D3": {
-
-        },
-        "D4": {
-
-        }
+    "Side-Quest": {
+        
     },
-    "backstory": {
-        "E1": {
+    "Backstory": {
+        "D1": {
             "1": {
                 "Player": "When you get back home..."
             },
@@ -194,7 +154,7 @@
                 "NPC": "They always bring a crew member who has taken on the mission there before."
             }
         },
-        "E2": {
+        "D2": {
             "1": {
                 "Player": "Hobbies on earth..."
             },
@@ -208,7 +168,7 @@
                 "NPC": "Nothing more, nothing less."
             }
         },
-        "E3": {
+        "D3": {
             "1": {
                 "Player": "Your past mission..."
             },

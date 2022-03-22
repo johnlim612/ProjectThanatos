@@ -1,0 +1,65 @@
+{
+    "Greeting": {
+        "D1": {
+            "1": {
+                "NPC" : "npc greeting sentence day 1"
+            }
+        },
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
+        }
+    },
+    "Quest": {
+        "D1": {
+            "1": {
+                "Player" : "Player prompt sabotage sentence 1 day 1"
+            },
+            "2": {
+                "Player" : "Player prompt sabotage sentence 2 day 1"
+            }
+        },
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
+        }
+    },
+    "Side-Quest": {
+        "D1": {
+
+        },
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
+        }
+    },
+    "Backstory": {
+        "D1": {
+
+        },
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
+        }
+    }
+}

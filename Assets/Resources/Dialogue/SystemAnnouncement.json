@@ -1,26 +1,66 @@
 {
 	"sabotage": {
-		"1": {
-			"alert" : "System Alert: Ship Course has been altered. Manual readjustments required."
-		}, 
-		"2": {
-			"alert" : "System Alert: Engine Power has been changed to low power. Manual readjustments required."
+		"D1": {
+			"1": {
+				"Alert" : "System Alert: Ship Course has been altered. Manual readjustments required."
+			},
+			"2": {
+				"Player": "Huh. I wonder what happened… That's unusual. Usually the ship's AI would handle any problems… Guess I'll go fix it myself."
+			}
 		},
-		"3": {
-			"alert" : "System Notice: Data System issues have been fixed.",
-			"message" : "I handled the Data System issue! - WK"
+		"D2": {
+			"1": {
+				"Alert" : "System Alert: Engine Power has been changed to low power. Manual readjustments required."
+			},
+			"2": {
+				"Player": "Huh? That's odd. Issues don't usually occur more than once a week… Maybe it's just an off week… I guess I'll go handle it."
+			}
 		},
-		"4": {
-			"alert" : "System Alert: Communications channel issues have been detected. Manual investigation required."
+		"D3": {
+			"1": {
+				"Alert" : "System Alert: Data System issues have been detected."
+			},
+			"2": {
+				"Player": "Okay. The third time in a week… and one day after another. This can't be normal. Is someone playing a prank? They're taking things way too far… Well… Gotta fix this."
+			}
 		},
-		"5": {
-			"alert" : "System Alert: Power system issues have been detected. Manual investigation required."
+		"D4": {
+			"1": {
+				"Alert" : "System Alert: Communications channel issues have been detected. Manual investigation required."
+			},
+			"2": {
+				"Player": "…Someone is definitely doing these things intentionally… Is it really a prank? Let's see if I can catch them leaving the communications room…"
+			}
 		},
-		"6": {
-			"alert" : "System Alert: Oxygen Level changes detected. Manual readjustments required."
+		"D5": {
+			"1": {
+				"Alert" : "System Alert: Oxygen Level changes detected. Manual readjustments required."
+			},
+			"2": {
+				"Player": "(Speak of the devil… Whoever it is, this isn't just a prank anymore. This is intentional sabotage…)"
+			},
+			"3": {
+				"Player": "(No… There's no way anyone in the team would do this…)"
+			},
+			"4": {
+				"Player": "(I… I can't believe that.)"
+			}
 		},
-		"7": {
-			"alert" : "System Alert: Air Filtration System issues detected. Manual investigation required."
+		"D6": {
+			"1": {
+				"Alert" : "System Alert: Power system issues have been detected. Manual investigation required."
+			},
+			"2": {
+				"Player": "Who's doing all of this? Why would they try to sabotage our journey back home when we're so close…? I have my suspicions but… there's no way right?"
+			}
+		},
+		"D7": {
+			"1": {
+				"Alert" : "System Alert: Air Filtration System issues detected. Manual investigation required."
+			}, 
+			"2": {
+				"Player": "God… What the hell is that smell… Something is seriously wrong. After I fix this issue I'll go and talk [SUSPECT] and sort this all out."
+			}
 		}
 	},
 	"message": {
@@ -31,32 +71,6 @@
 		"lab-notes-5" : "",
 		"lab-notes-6" : "",
 		"lab-notes-7" : ""
-	},
-	"end" : {
-		"end-1" : {
-			"1": "Everyone is gone. They're gone and I don't know what to do now.",
-			"2": "I searched everywhere on the ship and can't find anyone.",
-			"3": "I'm scared and I'm starting to remember more. But I don't want to remember more.",
-			"4": "...",
-			"5": "If you're reading this right now then It probably means I'm gone.",
-			"6": "In this diary I have also listed the coordinates to everyone's gravestone on Planet X Æ A-12.",
-			"7": "To the family and friends of those beloved crewmates, I know I cannot be forgiven.",
-			"8": "They died painlessly so I hope that can bring some semblance of peace, no matter how small, to your hearts.",
-			"9": "...",
-			"10": "To Mother... I'm sorry.",
-			"11": "I wanted to be stronger, for there to be a better ending.",
-			"12": "If you hate me for what I have done I understand.",
-			"13": "I tried so hard for a different ending. I wanted a different ending.",
-			"14": "Please... forgive me."
-		},
-		"end-2" : {
-			"1": "",
-			"2": "",
-			"3": "",
-			"4": "",
-			"5": "",
-			"6": "",
-			"7": ""
-		}
 	}
+	
 }

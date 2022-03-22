@@ -1,8 +1,8 @@
 {
-    "greeting": {
+    "Greeting": {
         "D1": {
             "1": {
-                "npc" : "npc greeting sentence day 1"
+                "NPC" : "npc greeting sentence day 1"
             }
         },
         "D2": {
@@ -15,7 +15,7 @@
 
         }
     },
-    "sabotage": {
+    "Quest": {
         "D1": {
             "1": {
                 "Player" : "Player prompt sabotage sentence 1 day 1"
@@ -34,7 +34,7 @@
 
         }
     },
-    "side-quest": {
+    "Side-Quest": {
         "D1": {
 
         },
@@ -48,7 +48,7 @@
 
         }
     },
-    "backstory": {
+    "Backstory": {
         "D1": {
 
         },

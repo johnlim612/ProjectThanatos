@@ -1,103 +1,83 @@
 {
-    "sabotage": {
-        "1": {
-            "greeting": "(Rachel ",
-            "prompt": {
-                "1": "Good morning, Rachel."
-            },
-            "sentence": {
-                "1": ""
+    "Greeting": {
+        "D1": {
+            "1": {
+                "NPC" : "Oh! Hey hey hey! You're finally out of your room and up I see, you sleepy head! You've been sleeping a lot more than usual! Hey, don't ignore me! "
             }
         },
-        "2": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+        "D2": {
+
         },
-        "3": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+        "D3": {
+
         },
-        "4": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
-        },
-        "5": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
-        },
-        "6": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
-        },
-        "7": {
-            "greeting": "",
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+        "D4": {
+
         }
     },
-    "random": {
-        "notes": {
-            "prompt": {
-                "1": ""
+    "Quest": {
+        "D1": {
+            "1": {
+                "Player" : "(Right… I forgot how much Rachel loves to talk a lot… and she talks so damn fast…)"
             },
-            "sentence": {
-                "1": ""
+            "2": {
+                "Player" : "Yeah, I do enjoy my peace and quiet. Sleep is just a nice way to pass the time."
+            },
+            "3": {
+                "Rachel" : "If you sleep too much it can be bad for you! Are you okay? Feeling okay?! Do you need a hug!? I'll hug you if you really need me to! But we're just friends, you know. I'm not interested in anyone in that way. But I'm single! Don't get the wrong idea!"
+            },
+            "4": {
+                "Player" : "No, I'm fine. I don't need a hug. We're almost home. I'm just bored, that's all."
+            },
+            "5": {
+                "Rachel" : "Alright! Well if you're ever not feeling well let me know! I am a doctor you know! Even if I look kind of young. Don't you dare assume just because I'm young I'm not good at what I do though! And you'd better-"
+            },
+            "6": {
+                "Player" : "(I think I'm going to get a headache from listening to her…)"
+            },
+            "7": {
+                "Player" : "Yeah I'll let you know if I'm not feeling well. Thanks for caring. I'm going to check up on the others. I've been holed up in my room for a while."
+            },
+            "8": {
+                "Rachel" : "You interrupted me! But hmph. Fine! You should go chat with the others! They've been worried too!"
             }
         },
-        "candy": {
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
         }
     },
-    "character": {
-        "1": {
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+    "Side-Quest": {
+        "D1": {
+
         },
-        "2": {
-            "prompt": {
-                "1": ""
-            },
-            "sentence": {
-                "1": ""
-            }
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
+        }
+    },
+    "Backstory": {
+        "D1": {
+
+        },
+        "D2": {
+
+        },
+        "D3": {
+
+        },
+        "D4": {
+
         }
     }
 }

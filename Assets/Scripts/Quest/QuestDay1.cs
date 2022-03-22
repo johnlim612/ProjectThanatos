@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class QuestDay1 : Quest {
 
-    /// <summary>
-    /// EXAMPLE QUEST
-    /// </summary>
+	void Start() {
+        QuestLog = new string[] {"", "", "Rachel", "Yuri", "Johnny", "Wonki", "Wonki" , "Wonki", "Wonki" };
+    }
+
     protected override void QueTriggers() {
         // Add diary start
         QuestQue.Enqueue(() => TriggerSabotage());

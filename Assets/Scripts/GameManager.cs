@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] private List<NPC> _npcList = new List<NPC>();
-    [SerializeField] private TabletManager _tabletMgr;
     [SerializeField] private int _day;
     [SerializeField] private GameObject _screen;
     [SerializeField] private GameObject _roomNameWrapper;
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour {
         CurrentSabotage.ToggleActiveState();
         LightAdjuster.SabotageLevel = LightAdjuster.LightType.EMERGENCY;
 
-        _tabletMgr.Refresh();
+        TabletManager.Instance.Refresh();
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
 
         foreach (NPC npc in _npcList) {

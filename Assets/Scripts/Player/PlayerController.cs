@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour {
     private InputAction _sprint;
     private InputAction _interact;
     private InputAction _tablet;
-    private TabletManager _tabletManager;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
 
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour {
         _interact = _playerInputs.Player.Interact;
         _tablet = _playerInputs.Player.Tablet;
         _tablet.performed += OpenTablet;
-        _tabletManager = GameObject.Find("TabletManager").GetComponent<TabletManager>();
         _tabletGameObject.SetActive(false);
 
         /*
@@ -41,10 +39,6 @@ public class PlayerController : MonoBehaviour {
             HallwaySaveData.IsInitialized = true;
         }
         */
-    }
-
-    private void Start() {
-        
     }
 
     private void OnEnable() {
@@ -95,11 +89,11 @@ public class PlayerController : MonoBehaviour {
 
     private void OpenTablet(InputAction.CallbackContext context) {
         if (context.performed == true) {
-            if (_tabletManager == null) {
+/*            if (_tabletManager == null) {
                 Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
                 return;
-            }
-            _tabletManager.ToggleTabletState(null);
+            }*/
+            TabletManager.Instance.ToggleTabletState(null);
         }
     }
 

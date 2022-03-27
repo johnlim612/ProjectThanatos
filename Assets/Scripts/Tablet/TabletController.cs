@@ -11,7 +11,7 @@ using UnityEngine.UI;
 /// </summary>
 public class TabletController : MonoBehaviour {
     [SerializeField] private Button[] _tabButtons;
-    [SerializeField] private TextMeshProUGUI _screenText;
+    [SerializeField] private TextMeshProUGUI _content;
     [SerializeField] private float _tabTransitionTime;
     [SerializeField] private Sprite _mapImage;
 
@@ -35,13 +35,13 @@ public class TabletController : MonoBehaviour {
         _audioSource = GetComponent<AudioSource>();
 
         // Tablet Layout
-        _parentImage = _screenText.transform.parent.GetComponent<Image>();
+        _parentImage = _content.transform.parent.GetComponent<Image>();
         _parentBaseColor = _parentImage.color;
         _baseMapImage = _parentImage.sprite;
         _selectedButton = _tabButtons[0];
         _selectedColorBlock = _tabButtons[0].colors;
         _baseColorBlock = _tabButtons[1].colors;
-        _screenTextBaseColor = _screenText.color;
+        _screenTextBaseColor = _content.color;
 
         // Tablet Map
         GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Image");
@@ -86,10 +86,10 @@ public class TabletController : MonoBehaviour {
         OpenDiaryTab();
 
         string entry = "DAY " + GameManager.Instance.Day + ": " + TabletManager.Instance.CurrentDiaryEntry;
-        _screenText.text = TabletManager.Instance.DiaryEntryHistory;
+        _content.text = TabletManager.Instance.DiaryEntryHistory;
 
         foreach (char letter in entry) {
-            _screenText.text += letter;
+            _content.text += letter;
             yield return new WaitForSeconds(_sentenceSpeed);
         }
 
@@ -101,7 +101,7 @@ public class TabletController : MonoBehaviour {
     /// </summary>
     IEnumerator SwitchTabCoroutine(Button btn) {
         _parentImage.color = Color.black;
-        _screenText.color = Color.black;
+        _content.color = Color.black;
 
         _audioSource.Play();
 
@@ -114,7 +114,7 @@ public class TabletController : MonoBehaviour {
 
         yield return new WaitForSeconds(_tabTransitionTime);
 
-        _screenText.color = _screenTextBaseColor;
+        _content.color = _screenTextBaseColor;
 
         if (btn.gameObject.CompareTag("TabImage")) {
             _parentImage.color = Color.white;
@@ -126,7 +126,7 @@ public class TabletController : MonoBehaviour {
 
     public void OpenQuestTab() {
         _parentImage.sprite = _baseMapImage;
-        _screenText.text = TabletManager.Instance.QuestLog;
+        _content.text = TabletManager.Instance.QuestLog;
     }
 
     public void OpenDiaryTab() {
@@ -142,12 +142,12 @@ public class TabletController : MonoBehaviour {
             print("sprite null");
         }
         _parentImage.sprite = _baseMapImage;
-        _screenText.text = TabletManager.Instance.DiaryEntryHistory;
+        _content.text = TabletManager.Instance.DiaryEntryHistory;
     }
 
     public void OpenMapTab() {
         _parentImage.sprite = _mapImage;
-        _screenText.text = "";
+        _content.text = "";
     }
 
     private void OnValidate() {

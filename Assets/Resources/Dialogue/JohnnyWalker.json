@@ -1,143 +1,188 @@
 {
-    "sabotage": {
-        "1": {
-            "greeting": "*Yawn* Hmm... Wonder if things will be okay when we get back...",
-            "prompt": {
-                "1": "Good morning, Johnny.",
-                "2": "Something must have happened...",
-                "4": "Well... We're almost home at least."
-            },
-            "sentence": {
-                "1": "Morning. Did you end up readjusting the settings for the ship's course?",
-                "2": "Mm. I'm not sure...",
-                "3": "Sometimes, it feels like they didn't fund this project enough.",
-                "4": "Yeah. Hopefully things will be okay once we get home."
+    "Greeting": {
+        "D1": {
+            "1": {
+                "NPC": "*Yawn* Hmm... Wonder if things will be okay when we get back..."
             }
         },
-        "2": {
-            "greeting": "*Sigh* Where's my coffee when I need it...",
-            "prompt": {
-                "1": "Do you know what happened earlier?",
-                "4": "Set up?"
-            },
-            "sentence": {
-                "1": "I didn't really go by the engine room if that's what you're asking.",
-                "2": "I found it weird to hear that the settings had been changed too.",
-                "3": "Sometimes I wonder if we were being set up.",
-                "4": "Mmm... Nevermind. It's probably just this old man's paranoia."
+        "D2": {
+            "1": {
+                "NPC": "*Sigh* Where's my coffee when I need it..."
             }
         },
-        "3": {
-            "greeting": "(Johnny seems to be silently enjoying his fresh coffee today)",
-            "prompt": {
-                "1": "Won fixed the system...",
-                "4": "I don't mind."
-            },
-            "sentence": {
-                "1": "Yeah, he finally got off of his butt and helped out.",
-                "2": "You've been fixing a majority of the issues nowadays.",
-                "3": "He's definitely had more free time to mess around lately.",
-                "4": "Maybe you should... He almost broke my coffee machine, you know.",
-                "5": "Just keep him out of my things...",
-                "6": "It seems like more problems have been occuring lately.",
-                "7": "I don't know if it's all just coincidence anymore."
+        "D3": {
+            "1": {
+                "NPC": "(Johnny seems to be silently enjoying his fresh coffee today)"
             }
         },
-        "4": {
-            "greeting": "Seems like there are so many problems lately...",
-            "prompt": {
-                "1": "Did someone go by communications?",
-                "4": "What do you mean?",
-                "5": "Other than the mission?"
-            },
-            "sentence": {
-                "1": "Hm...? I haven't been by communications, so I couldn't really say.",
-                "2": "Maybe that feeling of paranoia was right...",
-                "3": "I can't say whether we've been set up but there have been too many issues lately.",
-                "4": "All of us have something in common, kid.",
-                "5": "... You'll figure it out."
+        "D4": {
+            "1": {
+                "NPC": "Seems like there have been so many problems lately..."
             }
         },
-        "5": {
-            "greeting": "Damn it, the stupid power out made my coffee machine break...",
-            "prompt": {
-                "1": "Did you see anyone by the power room?",
-                "2": "... I don't have any proof... but..."
-            },
-            "sentence": {
-                "1": "Nope. You think someone's causing problems on purpose?",
-                "2": "I see... You have a good head on your shoulders... I would be cautious too.",
-                "3": "I can't say I would even trust myself... but the others may take it badly.",
-                "4": "We've been together on this mission all these years after all."
+        "D5": {
+            "1": {
+                "NPC": "Mmm... I really feel like we can't trust them..."
             }
         },
-        "6": {
-            "greeting": "Mmm... I really feel like we can't trust them...",
-            "prompt": {
-                "1": "Trust who?"
+        "D6": {
+            "1": {
+                "NPC": "Damn it, the stupid power out made my coffee machine break..."
+            }
+            
+        }
+    },
+    "Quest": {
+        "D1": {
+            "1": {
+                "Player": "Good morning, Johnny."
             },
-            "sentence": {
-                "1": "*Johnny spits out his coffee* Fuck! You scared me! I meant the ones who highered us.",
-                "2": "I told you didn't I? There's something we all have in common.",
-                "3": "Well... Either way, even if I don't trust them, we're here anyways.",
-                "4": "I can't do much about it now. So I just have to wait and see.",
-                "5": "Just be careful kid. I could care less about myself, but you all are still young."
+            "2": {
+                "NPC": "Morning. Did you end up readjusting the settings for the ship's course?"
+            },
+            "3": {
+                "Player": "No, I didn't. Something must have happened..."
+            },
+            "4": {
+                "NPC": "Mm. I'm not sure..."
+            },
+            "5": {
+                "NPC": "Sometimes, it feels like they didn't fund this project enough."
+            },
+            "6": {
+                "Player": "Well... We're almost home at least."
+            },
+            "7": {
+                "NPC": "Yeah. Hopefully things will be okay once we get home."
+            }
+        },
+        "D2": {
+            "1": {
+                "Player": "Hey? Do you know what happened earlier?"
+            },
+            "2": {
+                "NPC": "I didn't really go by the engine room if that's what you're asking. I found it weird to hear the settings were changed too. Sometimes I wonder if we'd been set up the entire time. As if this entire mission was just a script…"
+            },
+            "3": {
+                "Player": "Set up?"
+            },
+            "4": {
+                "NPC": "Nevermind. Probably just this old man being overly paranoid. Don't mind what I said."
+            }
+        },
+        "D3": {
+            "1": {
+                "Player": "Hey."
+            },
+            "2": {
+                "NPC": "Hey yourself. Did you piss off Rachel?"
+            },
+            "3": {
+                "Player": "...How'd you know."
+            },
+            "4": {
+                "NPC": "Yuri would never piss her off. I didn't do anything. Won Ki is kind of weird but because he's weird he can push people's buttons however he likes and doesn't get into much trouble. Rachel wouldn't react like this. The only one who could have pissed her off like this was you."
+            },
+            "5": {
+                "Player": "It wasn't even intentional… I just wanted an easy way to ensure I could keep track of my own health."
+            },
+            "6": {
+                "NPC": "Makes sense. Don't worry. She'll get over it by tomorrow."
+            },
+            "7": {
+                "Player": "If you say so…"
+            }
+        },
+        "D4": {
+            "1": {
+                "Player": "Hey, did someone go by communications?"
+            },
+            "2": {
+                "NPC": "I haven't been. From what I know the others were hanging by their usual spots. Huh. Maybe that feeling of paranoia was right."
+            },
+            "3": {
+                "Player": "What do you mean?"
+            },
+            "4": {
+                "NPC": "I can't say whether we've been set up… and whose fault it is… but there really have been too many issues lately."
+            },
+            "5": {
+                "Player": "*sigh* You're not wrong… We're almost home though… I hope we can complete the mission without incident… (Maybe I'll ask the others and see if there are any discrepancies in info)"
+            }
+        },
+        "D5": {
+            "1": {
+                "Player": "Trust who?"
+            },
+            "2": {
+                "NPC": "*Spits out his coffee* Fuck! You scared me! I meant the ones who highered us. Don't you think it's strange? They gathered us all up, but none of us had the training we needed for this job until they gave us the training. They wanted us for a reason. It's hard to trust them."
+            },
+            "3": {
+                "Player": "… You're not wrong."
+            }
+        },
+        "D6": {
+            "1": {
+                "Player": "Hey uh…"
+            },
+            "2": {
+                "NPC": "If you're gonna ask if I saw anyone by the power room, I didn't. Sorry kiddo. It's good you're being cautious. I wouldn't even trust myself if I were you. The entire mission has been… weird…"
+            },
+            "3": {
+                "Player": "Mm. Thanks… (What was that about…? Not trusting yourself?)"
             }
         }
     },
-    "random": {
-        "coffee": {
-            "prompt": {
-                "1": "Hey, did you want some coffee?"
-            },
-            "sentence": {
-                "1": "Awww shit, thanks. I definitely needed this.",
-                "2": "I'm never awake enough for anything I swear. *chugs the entire thing in a second*"
-            }
-        },
-        "water": {
-            "prompt": {
-                "1": "Did you want some water?",
-                "3": "Sure."
-            },
-            "sentence": {
-                "1": "Nah, I'd prefer coffee.",
-                "2": "If you don't want your daily coffee just send it my way."
-            }
-        }
+    "Side-Quest": {
+        
     },
-    "character": {
-        "1": {
-            "prompt": {
-                "1": "When you get back home..."
+    "Backstory": {
+        "D1": {
+            "1": {
+                "Player": "When you get back home..."
             },
-            "sentence": {
-                "1": "I'm probably going to just go back to living normally, the way I used to.",
-                "2": "I doubt they'd call me in again after this... I'm getting too old.",
-                "3": "Someone else would end up taking my place on the next mission though.",
-                "4": "They always bring a crew member who has taken on the mission there before."
+            "2": {
+                "NPC": "I'm probably going to just go back to living normally, the way I used to."
+            },
+            "3": {
+                "NPC": "I doubt they'd call me in again after this... I'm getting too old."
+            },
+            "4": {
+                "NPC": "Someone else would end up taking my place on the next mission though."
+            },
+            "5": {
+                "NPC": "They always bring a crew member who has taken on the mission there before."
             }
         },
-        "2": {
-            "prompt": {
-                "1": "Hobbies on earth..."
+        "D2": {
+            "1": {
+                "Player": "Hobbies on earth..."
             },
-            "sentence": {
-                "1": "I love coffee and alcohol. You'd probably find me in a cafe or bar.",
-                "2": "Really, I was only doing this for the money to live easy with my family.",
-                "3": "Nothing more, nothing less."
+            "2": {
+                "NPC": "I love coffee and alcohol. You'd probably find me in a cafe or bar."
+            },
+            "3": {
+                "NPC": "Really, I was only doing this for the money to live easy with my family."
+            },
+            "4": {
+                "NPC": "Nothing more, nothing less."
             }
         },
-        "3": {
-            "prompt": {
-                "1": "Your past mission..."
+        "D3": {
+            "1": {
+                "Player": "Your past mission..."
             },
-
-            "sentence": {
-                "1": "It was a while back... They went about recruitment the same way.",
-                "2": "Every one of us recieved a letter of recruitment.",
-                "3": "We went through the same training and the same deal.",
-                "4": "We returned to earth afterwards... but I lost contact with them."
+            "2": {
+                "NPC": "It was a while back... They went about recruitment the same way."
+            },
+            "3": {
+                "NPC": "Every one of us recieved a letter of recruitment."
+            },
+            "4": {
+                "NPC": "We went through the same training and the same deal."
+            },
+            "5": {
+                "NPC": "We returned to earth afterwards... but I lost contact with them."
             }
         }
     }

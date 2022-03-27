@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - DoorPad
+  - TabImage
   layers:
   - Default
   - TransparentFX
@@ -42,9 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI 2
+    uniqueID: 2953182891
+    locked: 0
   - name: UI
     uniqueID: 3870921111
-    locked: 0
-  - name: Map
-    uniqueID: 3613718187
     locked: 0

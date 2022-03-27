@@ -1,0 +1,48 @@
+{
+    "D1" : {
+        "1": "I finally went to chat with the others. They all seemed kinda worried. Well. Except Won Ki. But that's just how Won Ki is. Things are the same as ever. Nothing has changed, really. Only thing is that the Ship Course somehow ended up getting altered, but I fixed it quickly so there wasn't an issue. Alright. Time for rest."
+    },
+    "D2" : {
+        "1": "It was a little odd that another issue occurred within a single week. This time it was the Engine Power being set to low. Probably just an off week though. I had a little headache and talked to Rachel, but she talked so fast and so much I felt like it was just getting worse… After I stopped talking to her I felt better though. So I guess she did fix my problem."
+    },
+    "D3" : {
+        "1": "A third day in a week of weird things happening on the ship. If someone's playing a prank they're starting to take it a bit far. Maybe I should consult the others tomorrow and see if they've noticed anyone in the specific areas beforehand… I also asked Yuri about the data she was analyzing the other day. The research was specifically targeting the human ability to heal from wounds, injuries, and our immunity to diseases and the ability to fight off cancer. Or rather, the specific part about how it would be possible to increase this capability. I just wanted to get the mission over with, but learning some things from the knowledge of this mission could be helpful in the future… Anyways. Rest time."
+    },
+    "D4" : {
+        "1": "Another day, and more things have happened… I really do think someone is intentionally doing all these things during our trip home… The communications channel was set off incorrectly today too… I'm not sure who it could be yet… I asked Johnny and he didn't know much. I should be on the lookout for the next few days…"
+    },
+    "D5" : {
+        "1": "Another day closer to home. I think things have been really strange… I… I can't believe that someone would intentionally sabotage our journey home… but… there's been too much that has been happening for me to just brush it off. It's just… strange. Johnny mentioned something weird too. How we'd all been gathered together for this mission even though we didn't have training beforehand. They trained us for this. Why us? Why not people who had been more experienced?"
+    },
+    "D6" : {
+        "1": "Someone is actually trying to stop us from getting home safely… Someone's trying to… kill us before we get home… There's no way right? We've been together all this time… Why would they act now? But… I already have a feeling I know who it is…",
+        "2": "It's probably [SUSPECT]... They've been a bit off, now that I think about it… Whatever they're doing this for. I need to stop them. This has to end. I'll confront them after I get up tomorrow."
+    },
+    "D7" : {
+        "1": "They're dead… They're all dead. I was the one who did it… I… I couldn't let them sabotage the mission… The mission was everything… The only chance I had for my mother to live. I didn't care if the mission was morally wrong. As long as she had a chance to continue living… It's all going to be alright… As long as my mother is alive."
+    },
+    "END" : {
+		"END-1" : {
+			"1": "I returned home… but…",
+			"2": "Everything was for naught.",
+			"3": "They broke their promise to me. That damned government group that sent me on this mission... failed to keep their promise to me.",
+			"4": "Mother passed away... They let me live and allowed me to go into hiding, but I...",
+			"5": "I have no reason to continue on now.",
+			"6": "My hands are tainted with blood, and I can't go a single day without thinking about them.",
+			"7": "The group of people I took the lives of on that Planet...",
+			"8": "I might have killed them, but even I couldn't help but care for them.",
+			"9": "...",
+			"10": "They were my friends.",
+			"11": "I can't continue. Not like this.",
+			"12": "I'm sorry."
+		},
+		"END-2" : {
+			"1": "I saved her.",
+			"2": "As a result of the success of the mission, they were able to save Mother...!",
+			"3": "It was worth it. Even though they framed me afterward for the deaths of the rest of the crew...",
+			"4": "...",
+			"5": "I had a chance to see her one last time before being sentenced to lifetime imprisonment...",
+			"6": "I'm sorry."
+		}
+	}
+}

@@ -1,43 +1,30 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableSabotage : InteractableObject {
     [SerializeField] private string[] _descriptions;
-    [SerializeField] private int _sabotageID;
-    private BoxCollider2D _box2D;
-    private SpriteRenderer _spriteRend;
+    //private MeshRenderer _meshRend;
 
     private void Awake() {
-        _box2D = GetComponent<BoxCollider2D>();
-        _spriteRend = GetComponent<SpriteRenderer>();
-    }
-
-    public int SabotageID {
-        get {
-            return _sabotageID;
-        }
+        _boxCol = GetComponent<BoxCollider>();
+        //_meshRend = GetComponent<MeshRenderer>();
     }
 
     public override void InteractObject() {
-        print("Sabotage Repaired");
-        GameManager.ClearSabotage();
-        Interact();
+        ToggleActiveState();
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
+        UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
     }
 
-    private void Interact() {
-        SystemAnnouncement.Announce(_descriptions);
-    }
+    //private void Update() {
+    //    if (GameManager.Instance.SabotageId == _sabotageID && Sabotage.IsActive) {
+    //        ToggleSabotage(true);
+    //    } else {
+    //        ToggleSabotage(false);
+    //    }
+    //}
 
-    private void Update() {
-        if (GameManager.SabotageId == _sabotageID && Sabotage.SabotageActive) {
-            ToggleSabotage(true);
-        } else {
-            ToggleSabotage(false);
-        }
-    }
-
-    private void ToggleSabotage(bool state) {
-        _box2D.enabled = state;
-        _spriteRend.enabled = state;
-    }
+    //public void ToggleSabotage(bool state) {
+    //    _boxCol.enabled = state;
+    //    //_meshRend.enabled = state;
+    //}
 }

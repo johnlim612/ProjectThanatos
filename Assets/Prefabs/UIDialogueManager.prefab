@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6152027507340792605}
   - component: {fileID: 6152027507340792604}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UIDialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,3 +53,4 @@ MonoBehaviour:
   DialogueText: {fileID: 0}
   NextButton: {fileID: 0}
   Animator: {fileID: 0}
+  Dialogue: {fileID: 0}

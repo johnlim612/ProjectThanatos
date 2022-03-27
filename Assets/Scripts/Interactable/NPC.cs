@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class NPC : InteractableObject {
     public int CountCharDialogue { get { return _countCharDialogue; } }
@@ -15,13 +15,14 @@ public class NPC : InteractableObject {
     private void Awake() {
         _countCharDialogue = 0;
         _hasBeenSpokenTo = false;
+        ActiveQuest = false;
     }
 
     /// <summary>
     /// DialogueManager triggers the dialogue when the NPC is interacted with.
     /// </summary>
     public override void InteractObject() {
-        FindObjectOfType<UI.UIDialogueManager>().StartDialogue(this);
+        UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.NPC, this);
     }
 
     public void UpdateCharDialogueProgress() {

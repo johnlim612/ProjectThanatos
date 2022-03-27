@@ -13,7 +13,7 @@ public class TabletController : MonoBehaviour {
     [SerializeField] private Button[] _tabButtons;
     [SerializeField] private TextMeshProUGUI _content;
     [SerializeField] private float _tabTransitionTime;
-    [SerializeField] private Sprite _mapImage;
+    [SerializeField] private GameObject _scrollView;
 
     private GameObject _player;
     private Button _selectedButton;
@@ -22,13 +22,13 @@ public class TabletController : MonoBehaviour {
     private Color _screenTextBaseColor;
     private Color _parentBaseColor;
     private Image _parentImage;
-    private Sprite _baseMapImage;
     private AudioSource _audioSource;
     private bool _isMapOpened;
     private RectTransform _mapPolkaLolkaDotRect;
     private Image _mapPolkaLolkaDotImg;
+    private Image _mapBackground;
 
-    private const float _sentenceSpeed = 0.02f;
+    private const float _sentenceSpeed = 0.01f;
 
     private void Awake() {
         _player = GameObject.Find(Constants.PlayerKey);
@@ -37,17 +37,17 @@ public class TabletController : MonoBehaviour {
         // Tablet Layout
         _parentImage = _content.transform.parent.GetComponent<Image>();
         _parentBaseColor = _parentImage.color;
-        _baseMapImage = _parentImage.sprite;
         _selectedButton = _tabButtons[0];
         _selectedColorBlock = _tabButtons[0].colors;
         _baseColorBlock = _tabButtons[1].colors;
         _screenTextBaseColor = _content.color;
 
         // Tablet Map
-        GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Image");
+        GameObject tempPolkaLolkaDot = GameObject.Find("Screen/Scroll View/Image");
         _isMapOpened = false;
         _mapPolkaLolkaDotRect = tempPolkaLolkaDot.GetComponent<RectTransform>();
         _mapPolkaLolkaDotImg = tempPolkaLolkaDot.GetComponent<Image>();
+        _mapBackground = _scrollView.GetComponent<Image>();
         _mapPolkaLolkaDotImg.enabled = false;
 
         OpenQuestTab();
@@ -56,7 +56,7 @@ public class TabletController : MonoBehaviour {
     private void Update() {
         if (_isMapOpened) {
             // player z position is the x position on the map
-            float x = (_player.transform.position.z  + 89.5f) * Constants.MapXRatio - 295;
+            float x = (_player.transform.position.z  + 85f) * Constants.MapXRatio - 295;
             // player x position is the y position on the map
             float y = (_player.transform.position.x - 5) * Constants.MapYRatio * -1;
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
@@ -85,7 +85,7 @@ public class TabletController : MonoBehaviour {
         SelectTab(_tabButtons[1]);
         OpenDiaryTab();
 
-        string entry = "DAY " + GameManager.Instance.Day + ": " + TabletManager.Instance.CurrentDiaryEntry;
+        string entry = "DAY " + GameManager.Instance.Day + ":\n" + TabletManager.Instance.CurrentDiaryEntry;
         _content.text = TabletManager.Instance.DiaryEntryHistory;
 
         foreach (char letter in entry) {
@@ -125,32 +125,18 @@ public class TabletController : MonoBehaviour {
     }
 
     public void OpenQuestTab() {
-        _parentImage.sprite = _baseMapImage;
+        _mapBackground.enabled = false;
         _content.text = TabletManager.Instance.QuestLog;
-        print("quest");
     }
 
     public void OpenDiaryTab() {
-        if (_baseMapImage == null) {
-            print("base map null");
-        }
-
-        if (_parentImage == null) {
-            print("parent image null");
-        }
-
-        if (_parentImage.sprite == null) {
-            print("sprite null");
-        }
-        _parentImage.sprite = _baseMapImage;
+        _mapBackground.enabled = false;
         _content.text = TabletManager.Instance.DiaryEntryHistory;
-        print("diary");
     }
 
     public void OpenMapTab() {
-        _parentImage.sprite = _mapImage;
+        _mapBackground.enabled = true;
         _content.text = "";
-        print("map");
     }
 
     private void OnValidate() {

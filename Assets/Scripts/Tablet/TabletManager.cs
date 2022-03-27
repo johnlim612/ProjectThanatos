@@ -1,11 +1,23 @@
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
+    public static TabletManager Instance { get { return _instance; } }
+
     [SerializeField] private GameObject _tabletGameObj;
+
+    private static TabletManager _instance;
     private string _questLog;
     private string _currentDiaryEntry;
     private string _diaryEntryHistory;
     private GameObject _player;
+
+    private void Awake() {
+        if (_instance != null && _instance != this) {
+            Destroy(gameObject);
+        } else {
+            _instance = this;
+        }
+    }
 
     private void Start() {
         _questLog = "";
@@ -20,19 +32,19 @@ public class TabletManager : MonoBehaviour {
     /// Updates data in the tablet
     /// </summary>
     public void Refresh() {
-        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
-            Constants.DiaryKey);
-        _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
         int index = 1;
-        string log = "";
 
+        // Update quest log
         DialogueDataManager.Instance.Initialize(UI.EntityType.QuestLog,
             Constants.QuestLogKey);
         foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
-            log += $"{index++}: {str}\n";
+            _questLog += $"{index++}: {str}\n";
         }
 
-        _questLog = log;
+        // Update diary
+        DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,
+            Constants.DiaryKey);
+        _currentDiaryEntry = DialogueDataManager.Instance.GetDiaryEntry();
     }
 
     /// <summary>
@@ -40,19 +52,25 @@ public class TabletManager : MonoBehaviour {
     /// </summary>
     /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
     public void ToggleTabletState(bool? isOpen = null) {
-        if (isOpen == null) {
-            if (UI.UIDialogueManager.Instance.IsInteracting) {
-                return;
-            } else {
+/*        if (isOpen == null) {
+            if (!UI.UIDialogueManager.Instance.IsInteracting) {
                 _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
                 Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
                                        CursorLockMode.Locked;
-                return;
             }
+        } else {
+            _tabletGameObj.SetActive((bool)isOpen);
+            Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
         }
-
-        _tabletGameObj.SetActive((bool)isOpen);
-        Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+*/
+        if (isOpen != null) {
+            _tabletGameObj.SetActive((bool)isOpen);
+            Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        } else if (!UI.UIDialogueManager.Instance.IsInteracting) {
+            _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
+            Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
+                                   CursorLockMode.Locked;
+        }
     }
 
     public void StoreDiaryEntry(string entry) {

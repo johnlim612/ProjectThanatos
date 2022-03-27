@@ -12,10 +12,10 @@ using UnityEngine.UI;
 public class TabletController : MonoBehaviour {
     [SerializeField] private Button[] _tabButtons;
     [SerializeField] private TextMeshProUGUI _screenText;
-    [SerializeField] private TabletManager _tabletManager;
     [SerializeField] private float _tabTransitionTime;
     [SerializeField] private Sprite _mapImage;
 
+    private GameObject _player;
     private Button _selectedButton;
     private ColorBlock _baseColorBlock;
     private ColorBlock _selectedColorBlock;
@@ -31,6 +31,7 @@ public class TabletController : MonoBehaviour {
     private const float _sentenceSpeed = 0.02f;
 
     private void Awake() {
+        _player = GameObject.Find(Constants.PlayerKey);
         _audioSource = GetComponent<AudioSource>();
 
         // Tablet Layout
@@ -55,9 +56,9 @@ public class TabletController : MonoBehaviour {
     private void Update() {
         if (_isMapOpened) {
             // player z position is the x position on the map
-            float x = (_tabletManager.PlayerPosition.z  + 89.5f) * Constants.MapXRatio - 295;
+            float x = (_player.transform.position.z  + 89.5f) * Constants.MapXRatio - 295;
             // player x position is the y position on the map
-            float y = (_tabletManager.PlayerPosition.x - 5) * Constants.MapYRatio * -1;
+            float y = (_player.transform.position.x - 5) * Constants.MapYRatio * -1;
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
         }
     }
@@ -84,15 +85,15 @@ public class TabletController : MonoBehaviour {
         SelectTab(_tabButtons[1]);
         OpenDiaryTab();
 
-        string entry = "DAY " + GameManager.Instance.Day + ": " + _tabletManager.CurrentDiaryEntry;
-        _screenText.text = _tabletManager.DiaryEntryHistory;
+        string entry = "DAY " + GameManager.Instance.Day + ": " + TabletManager.Instance.CurrentDiaryEntry;
+        _screenText.text = TabletManager.Instance.DiaryEntryHistory;
 
         foreach (char letter in entry) {
             _screenText.text += letter;
             yield return new WaitForSeconds(_sentenceSpeed);
         }
 
-        _tabletManager.StoreDiaryEntry(entry);
+        TabletManager.Instance.StoreDiaryEntry(entry);
     }
 
     /// <summary>
@@ -125,7 +126,7 @@ public class TabletController : MonoBehaviour {
 
     public void OpenQuestTab() {
         _parentImage.sprite = _baseMapImage;
-        _screenText.text = _tabletManager.QuestLog;
+        _screenText.text = TabletManager.Instance.QuestLog;
     }
 
     public void OpenDiaryTab() {
@@ -141,7 +142,7 @@ public class TabletController : MonoBehaviour {
             print("sprite null");
         }
         _parentImage.sprite = _baseMapImage;
-        _screenText.text = _tabletManager.DiaryEntryHistory;
+        _screenText.text = TabletManager.Instance.DiaryEntryHistory;
     }
 
     public void OpenMapTab() {

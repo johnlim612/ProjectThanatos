@@ -127,6 +127,7 @@ public class TabletController : MonoBehaviour {
     public void OpenQuestTab() {
         _parentImage.sprite = _baseMapImage;
         _content.text = TabletManager.Instance.QuestLog;
+        print("quest");
     }
 
     public void OpenDiaryTab() {
@@ -143,11 +144,13 @@ public class TabletController : MonoBehaviour {
         }
         _parentImage.sprite = _baseMapImage;
         _content.text = TabletManager.Instance.DiaryEntryHistory;
+        print("diary");
     }
 
     public void OpenMapTab() {
         _parentImage.sprite = _mapImage;
         _content.text = "";
+        print("map");
     }
 
     private void OnValidate() {

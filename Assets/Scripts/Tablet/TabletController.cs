@@ -11,11 +11,13 @@ using UnityEngine.UI;
 /// Colors of any other buttons will be changed to these colors.
 /// </summary>
 public class TabletController : MonoBehaviour {
+    [Header("Tablet Buttons")]
     [SerializeField] private TabletButton _questButton;
     [SerializeField] private TabletButton _diaryButton;
     [SerializeField] private TabletButton _mapButton;
-    [SerializeField] private TextMeshProUGUI _content;
+    [Header("Other")]
     [SerializeField] private float _tabTransitionTime;
+    [SerializeField] private TextMeshProUGUI _content;
     [SerializeField] private GameObject _scrollView;
 
     private GameObject _player;
@@ -59,9 +61,9 @@ public class TabletController : MonoBehaviour {
     private void Update() {
         if (_isMapOpened) {
             // player z position is the x position on the map
-            float x = (_player.transform.position.z  + 85f) * Constants.MapXRatio - 280;
+            float x = (_player.transform.position.z + 90) * Constants.MapXRatio;
             // player x position is the y position on the map
-            float y = (_player.transform.position.x - 5) * Constants.MapYRatio * -1;
+            float y = (_player.transform.position.x - 30.25f) * Constants.MapYRatio;
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
         }
     }
@@ -96,7 +98,8 @@ public class TabletController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Update diary at the end of the day
+    /// Update diary at the end of the day.
+    /// Unable to switch tabs while this coroutine is active.
     /// </summary>
     public IEnumerator UpdateDiaryCoroutine() {
         gameObject.SetActive(true);

@@ -341,8 +341,9 @@ MonoBehaviour:
   _questButton: {fileID: 4179564128252842023}
   _diaryButton: {fileID: 4063507765053910220}
   _mapButton: {fileID: 5868513627030812715}
-  _content: {fileID: 5432717634033541364}
   _tabTransitionTime: 0.05
+  _sentenceSpeed: 0.01
+  _content: {fileID: 5432717634033541364}
   _scrollView: {fileID: 4099212182326379897}
 --- !u!82 &7507951265143716064
 AudioSource:

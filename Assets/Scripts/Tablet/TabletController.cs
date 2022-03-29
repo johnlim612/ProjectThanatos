@@ -17,6 +17,7 @@ public class TabletController : MonoBehaviour {
     [SerializeField] private TabletButton _mapButton;
     [Header("Other")]
     [SerializeField] private float _tabTransitionTime;
+    [SerializeField] private float _sentenceSpeed;
     [SerializeField] private TextMeshProUGUI _content;
     [SerializeField] private GameObject _scrollView;
 
@@ -24,14 +25,17 @@ public class TabletController : MonoBehaviour {
     private Color _screenTextBaseColor;
     private Color _parentBaseColor;
     private Image _parentImage;
+    private Image _mapBackground;
+    private Image _mapPolkaLolkaDotImg;
+    private RectTransform _mapPolkaLolkaDotRect;
     private AudioSource _audioSource;
     private bool _isMapOpened;
-    private RectTransform _mapPolkaLolkaDotRect;
-    private Image _mapPolkaLolkaDotImg;
-    private Image _mapBackground;
     private bool _isUpdating; // if the update diary coroutine is running
 
-    private const float _sentenceSpeed = 0.01f;
+    private const float _mapXOffset = 90;
+    private const float _mapYOffset = -30.25f;
+    private const float _mapXRatio = 650 / 125.9f;
+    private const float _mapYRatio = 260 / 59.9999932f * -1;
 
     private void Awake() {
         _player = GameObject.Find(Constants.PlayerKey);
@@ -61,9 +65,9 @@ public class TabletController : MonoBehaviour {
     private void Update() {
         if (_isMapOpened) {
             // player z position is the x position on the map
-            float x = (_player.transform.position.z + 90) * Constants.MapXRatio;
+            float x = (_player.transform.position.z + _mapXOffset) * _mapXRatio;
             // player x position is the y position on the map
-            float y = (_player.transform.position.x - 30.25f) * Constants.MapYRatio;
+            float y = (_player.transform.position.x + _mapYOffset) * _mapYRatio;
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
         }
     }
@@ -102,7 +106,7 @@ public class TabletController : MonoBehaviour {
     /// Unable to switch tabs while this coroutine is active.
     /// </summary>
     public IEnumerator UpdateDiaryCoroutine() {
-        gameObject.SetActive(true);
+        TabletManager.Instance.ToggleTabletState(true);
         _diaryButton.Select();
         OpenDiaryTab();
 
@@ -169,6 +173,10 @@ public class TabletController : MonoBehaviour {
     private void OnValidate() {
         if (_tabTransitionTime < 0) {
             _tabTransitionTime = 0;
+        }
+
+        if (_sentenceSpeed < 0) {
+            _sentenceSpeed = 0;
         }
     }
 }

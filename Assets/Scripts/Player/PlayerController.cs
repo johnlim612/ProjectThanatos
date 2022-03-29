@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OpenTablet(InputAction.CallbackContext context) {
         if (context.performed) {
-            TabletManager.Instance.ToggleTabletState(null);
+            TabletManager.Instance.ToggleTabletState(!TabletManager.Instance.IsOpened());
         }
     }
 

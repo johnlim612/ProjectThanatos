@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
@@ -52,17 +53,6 @@ public class TabletManager : MonoBehaviour {
     /// </summary>
     /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
     public void ToggleTabletState(bool? isOpen = null) {
-/*        if (isOpen == null) {
-            if (!UI.UIDialogueManager.Instance.IsInteracting) {
-                _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
-                Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
-                                       CursorLockMode.Locked;
-            }
-        } else {
-            _tabletGameObj.SetActive((bool)isOpen);
-            Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
-        }
-*/
         if (isOpen != null) {
             _tabletGameObj.SetActive((bool)isOpen);
             Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
@@ -74,7 +64,7 @@ public class TabletManager : MonoBehaviour {
     }
 
     public void StoreDiaryEntry(string entry) {
-        _diaryEntryHistory += entry + "\n\n";
+        _diaryEntryHistory = _diaryEntryHistory.Insert(0, entry);
     }
 
     public Vector3 PlayerPosition {

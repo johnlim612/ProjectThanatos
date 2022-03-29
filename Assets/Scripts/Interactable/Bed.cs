@@ -36,7 +36,7 @@ public class Bed : InteractableObject {
     }
 
     private IEnumerator WaitForDiaryEntry() {
-        yield return StartCoroutine(_tabletController.UpdateDiary());
+        yield return StartCoroutine(_tabletController.UpdateDiaryCoroutine());
         GameManager.Instance.EndDay();
     }
 

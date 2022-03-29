@@ -107,6 +107,7 @@ public class TabletController : MonoBehaviour {
         OpenDiaryTab();
 
         string entry = "DAY " + GameManager.Instance.Day + ":\n" + TabletManager.Instance.CurrentDiaryEntry;
+        TabletManager.Instance.StoreDiaryEntry("\n\n");
         _content.text = TabletManager.Instance.DiaryEntryHistory;
 
         for (int i = 0; i < entry.Length; i++) {
@@ -114,7 +115,6 @@ public class TabletController : MonoBehaviour {
             yield return new WaitForSeconds(_sentenceSpeed);
         }
 
-        entry = entry.Insert(0, "\n\n");
         TabletManager.Instance.StoreDiaryEntry(entry);
         _isUpdating = false;
     }

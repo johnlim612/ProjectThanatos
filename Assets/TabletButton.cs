@@ -10,12 +10,11 @@ public class TabletButton : MonoBehaviour {
     private static TabletButton _selectedButton;
 
     public void Select() {
-        _button.colors = _selectedColorBlock;
-
         if (_selectedButton != null) {
              _selectedButton.Button.colors = _unselectedColorBlock;
         }
-       
+
+        _button.colors = _selectedColorBlock;
         _selectedButton = this;
     }
 

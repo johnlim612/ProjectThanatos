@@ -99,12 +99,13 @@ public class TabletController : MonoBehaviour {
     /// Update diary at the end of the day
     /// </summary>
     public IEnumerator UpdateDiaryCoroutine() {
-        _isUpdating = true;
-        _mapPolkaLolkaDotImg.enabled = false;
-
         gameObject.SetActive(true);
         _diaryButton.Select();
         OpenDiaryTab();
+
+        Cursor.lockState = CursorLockMode.None;
+        _isUpdating = true;
+        _mapPolkaLolkaDotImg.enabled = false;
 
         string entry = "DAY " + GameManager.Instance.Day + ":\n" + TabletManager.Instance.CurrentDiaryEntry;
         TabletManager.Instance.StoreDiaryEntry("\n\n");

@@ -58,6 +58,7 @@ public class TabletManager : MonoBehaviour {
         }
 
         Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+        AudioManager.Instance.Play("tabletOn");
 
         if (state) {
             _tabletGameObj.SetActive(state);

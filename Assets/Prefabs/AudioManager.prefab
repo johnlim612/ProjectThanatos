@@ -80,6 +80,13 @@ MonoBehaviour:
     Volume: 0.3
     Pitch: 1
     Loop: 1
+  - Name: tabletOn
+    UniqueID: 0
+    Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 6f45dec1d87494645aaad041f4ffe7c0, type: 3}
+    Volume: 0.2
+    Pitch: 3
+    Loop: 0
 --- !u!114 &813436972
 MonoBehaviour:
   m_ObjectHideFlags: 0

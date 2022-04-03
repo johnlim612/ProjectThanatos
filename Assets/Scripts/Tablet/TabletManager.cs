@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
@@ -9,7 +10,9 @@ public class TabletManager : MonoBehaviour {
     private string _questLog;
     private string _currentDiaryEntry;
     private string _diaryEntryHistory;
-    private GameObject _player;
+
+    private const float _toggleSpeed = 0.00001f;
+    private const float _toggleIncrement = 0.25f;
 
     private void Awake() {
         if (_instance != null && _instance != this) {
@@ -23,7 +26,6 @@ public class TabletManager : MonoBehaviour {
         _questLog = "";
         _currentDiaryEntry = "";
         _diaryEntryHistory = "";
-        _player = GameObject.Find(Constants.PlayerKey);
         _tabletGameObj.SetActive(false);
         Refresh();
     }
@@ -50,35 +52,58 @@ public class TabletManager : MonoBehaviour {
     /// <summary>
     /// Changes the state of the Tablet to Open or Closed based on the value of param.
     /// </summary>
-    /// <param name="isOpen">If true/false, explicitly set tablet set. If null, toggle.</param>
-    public void ToggleTabletState(bool? isOpen = null) {
-/*        if (isOpen == null) {
-            if (!UI.UIDialogueManager.Instance.IsInteracting) {
-                _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
-                Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
-                                       CursorLockMode.Locked;
-            }
+    public void ToggleTabletState(bool state) {
+        if (UI.UIDialogueManager.Instance.IsInteracting) {
+            return;
+        }
+
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+        AudioManager.Instance.Play("tabletOn");
+
+        if (state) {
+            _tabletGameObj.SetActive(state);
+            StartCoroutine(OpenTabletCoroutine());
         } else {
-            _tabletGameObj.SetActive((bool)isOpen);
-            Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            StartCoroutine(CloseTabletCoroutine());
         }
-*/
-        if (isOpen != null) {
-            _tabletGameObj.SetActive((bool)isOpen);
-            Cursor.lockState = (bool)isOpen ? CursorLockMode.None : CursorLockMode.Locked;
-        } else if (!UI.UIDialogueManager.Instance.IsInteracting) {
-            _tabletGameObj.SetActive(!_tabletGameObj.activeSelf);
-            Cursor.lockState = (_tabletGameObj.activeSelf) ? CursorLockMode.None :
-                                   CursorLockMode.Locked;
+    }
+
+    IEnumerator OpenTabletCoroutine() {
+        float yScale = 0;
+        Vector3 scale = new Vector3(1, 0, 1);
+        _tabletGameObj.transform.localScale = scale;
+
+        while (yScale < 1) {
+            yScale += _toggleIncrement;
+            scale.y = yScale;
+
+            _tabletGameObj.transform.localScale = scale;
+            yield return new WaitForSeconds(_toggleSpeed);
         }
+    }
+
+    IEnumerator CloseTabletCoroutine() {
+        float yScale = 1;
+        Vector3 scale = Vector3.one;
+        _tabletGameObj.transform.localScale = scale;
+
+        while (yScale > 0) {
+            yScale -= _toggleIncrement;
+            scale.y = yScale;
+
+            _tabletGameObj.transform.localScale = scale;
+            yield return new WaitForSeconds(_toggleSpeed);
+        }
+
+        _tabletGameObj.SetActive(false);
     }
 
     public void StoreDiaryEntry(string entry) {
-        _diaryEntryHistory += entry + "\n\n";
+        _diaryEntryHistory = _diaryEntryHistory.Insert(0, entry);
     }
 
-    public Vector3 PlayerPosition {
-        get { return _player.transform.position; }
+    public bool IsOpened() {
+        return _tabletGameObj.activeSelf;
     }
 
     public string QuestLog { 

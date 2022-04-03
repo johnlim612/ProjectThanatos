@@ -84,16 +84,11 @@ public class PlayerController : MonoBehaviour {
 
         PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, 
             Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
-        
     }
 
     private void OpenTablet(InputAction.CallbackContext context) {
-        if (context.performed == true) {
-/*            if (_tabletManager == null) {
-                Debug.LogError($"GameObject of name 'TabletManager' could not be found in the hierarchy.");
-                return;
-            }*/
-            TabletManager.Instance.ToggleTabletState(null);
+        if (context.performed) {
+            TabletManager.Instance.ToggleTabletState(!TabletManager.Instance.IsOpened());
         }
     }
 

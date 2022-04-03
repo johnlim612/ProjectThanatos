@@ -106,10 +106,6 @@ namespace UI {
 
 			// Close Tablet if it's already open
 			TabletManager.Instance.ToggleTabletState(false);
-/*            TabletManager tm = GameObject.Find("TabletManager").GetComponent<TabletManager>();
-            if (tm != null) {
-                tm.ToggleTabletState(false);
-            }*/
 
             IsInteracting = true;
 			DialogueUI.DialogueText.text = "";

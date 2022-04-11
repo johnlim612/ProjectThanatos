@@ -28,7 +28,7 @@ public class LightAdjuster : MonoBehaviour {
             _shaderMaterial.EnableKeyword("_Emission");
         }
     }
-    
+
     private void SabotageLights() {
         if (SabotageLevel == LightType.EMERGENCY) {
             _light.color = Color.red;

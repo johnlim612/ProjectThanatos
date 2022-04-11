@@ -1268,7 +1268,7 @@ MonoBehaviour:
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 0.6166666666666667
+    m_BlendOutDuration: 0.8999999999999999
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -1310,15 +1310,15 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: CM VCam Shot 2 A
   - m_Version: 1
-    m_Start: 2.3666666666666667
+    m_Start: 2.0833333333333335
     m_ClipIn: 0
     m_Asset: {fileID: -4949971409123200869}
-    m_Duration: 1.15
+    m_Duration: 1.4333333333333331
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6585898382485927925}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 0.6166666666666667
+    m_BlendInDuration: 0.8999999999999999
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2

@@ -20,13 +20,13 @@ public class LightAdjuster : MonoBehaviour {
     }
 
     private void Update() {
-        SabotageLights();
-        LightsOut();
-        if (SabotageLevel == LightType.NORMAL) {
-            _light.intensity = 1;
-            _light.color = _defaultColor;
-            _shaderMaterial.EnableKeyword("_Emission");
-        }
+        //SabotageLights();
+        //LightsOut();
+        //if (SabotageLevel == LightType.NORMAL) {
+        //    _light.intensity = 1;
+        //    _light.color = _defaultColor;
+        //    _shaderMaterial.EnableKeyword("_Emission");
+        //}
     }
     
     private void SabotageLights() {

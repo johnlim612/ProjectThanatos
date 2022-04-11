@@ -32,4 +32,5 @@ public static class Constants {
     public const string SupplyRoom = "Supply-Room";
     public const string Communications = "Communications-room";
     public const string FinalRooms = "FinalRooms";
+    public const int BodyFoundDay = 2;
 }

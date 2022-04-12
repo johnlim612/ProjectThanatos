@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
 
         if (_day == Constants.EndCutsceneDay) {
             startEndCutscene();
+            return;
         }
 
         CurrentSabotage = _sabotages[_day - 1];
@@ -93,6 +94,8 @@ public class GameManager : MonoBehaviour {
 
     void startEndCutscene() {
         // Needs to add logic for interaction with the necklace
+        // DestroyImmediate(UI.UIDialogueManager.Instance.gameObject);
         GetComponent<SceneManagement>().ChangeScene("EndCutscene_1");
+        // DestroyImmediate(GameManager.Instance.gameObject);
     }
 }

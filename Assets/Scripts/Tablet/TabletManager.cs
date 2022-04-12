@@ -44,6 +44,7 @@ public class TabletManager : MonoBehaviour {
         foreach (string str in DialogueDataManager.Instance.GetQuestLog()) {
             _questLog += $"{index++}: {str}\n";
         }
+        _questLog += "\n";
 
         // Update diary
         DialogueDataManager.Instance.Initialize(UI.EntityType.Diary,

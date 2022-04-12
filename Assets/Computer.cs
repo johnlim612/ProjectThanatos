@@ -22,7 +22,7 @@ public class Computer: InteractableObject {
 
     IEnumerator ShowScreen() {
         player.GetComponent<PlayerController>().enabled = false;
-        _screen.SetActive(true);
+        _screen.SetActive(true);    
         yield return new WaitForSeconds(3f);
         player.GetComponent<PlayerController>().enabled = true;
         _screen.SetActive(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -41,6 +42,11 @@ public class GameManager : MonoBehaviour {
     public void AdvanceDay() {
         _day++;
 
+        if (_day == Constants.EndCutsceneDay) {
+            startEndCutscene();
+            return;
+        }
+
         CurrentSabotage = _sabotages[_day - 1];
         SabotageId = CurrentSabotage.Id;
         CurrentSabotage.ToggleActiveState();
@@ -52,6 +58,18 @@ public class GameManager : MonoBehaviour {
         foreach (NPC npc in _npcList) {
             npc.HasBeenSpokenTo = false;
         }
+    }
+
+    public void KillCharacter(string name) {
+        foreach (NPC npc in _npcList) {
+            if (npc.name == name) {
+                npc.transform.position = new Vector3(-20.5f, 0.1f, 12.4f);
+                npc.transform.rotation = Quaternion.Euler(75.6f, 180, 0);
+                return;
+            }
+        }
+
+        throw new ArgumentException("KillCharacter could not find the NPC with the name: " + name);
     }
 
     public void ToggleRoomName(bool isRoomEntered, string enteredRoomName) {
@@ -85,5 +103,12 @@ public class GameManager : MonoBehaviour {
     public InteractableSabotage CurrentSabotage {
         get { return _currentSabotage; }
         private set { _currentSabotage = value;  }
+    }
+
+    void startEndCutscene() {
+        // Needs to add logic for interaction with the necklace
+        // DestroyImmediate(UI.UIDialogueManager.Instance.gameObject);
+        GetComponent<SceneManagement>().ChangeScene("EndCutscene_1");
+        // DestroyImmediate(GameManager.Instance.gameObject);
     }
 }

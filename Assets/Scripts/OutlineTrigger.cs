@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class OutlineTrigger : MonoBehaviour
 {
-    [SerializeField] private float _glowRange = 7;
+    [SerializeField] private float _glowRange = 5;
+    [SerializeField] private InteractableSabotage _sabotage;
     private GameObject _player;
     private cakeslice.Outline _outline;
     // Start is called before the first frame update
@@ -18,7 +19,15 @@ public class OutlineTrigger : MonoBehaviour
     void Update()
     {
         if (_outline != null) {
-            RegulateGlow();
+            if (_sabotage != null) {
+                if (_sabotage.SabotageActive()) {
+                    RegulateGlow();
+                } else {
+                    _outline.enabled = false;
+                }
+            } else {
+                RegulateGlow();
+            }
         }
     }
 

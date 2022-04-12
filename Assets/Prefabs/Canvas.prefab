@@ -4069,6 +4069,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 6899564351489214607}
     m_Modifications:
     - target: {fileID: 458224250627622044, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 458224250627622044, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 458224250627622044, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 458224250627622044, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4079,6 +4091,22 @@ PrefabInstance:
     - target: {fileID: 613858990032546631, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
       propertyPath: m_Name
       value: PCStationScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262201572201010892, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262201572201010892, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262201572201010892, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262201572201010892, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5530073533972864766, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
       propertyPath: m_Pivot.x
@@ -4182,7 +4210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105528677925325304, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf0d5b5a1909e24bbeae8eaa1049fd4, type: 3}

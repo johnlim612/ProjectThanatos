@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour {
     public void AdvanceDay() {
         _day++;
 
+        if (_day == Constants.EndCutsceneDay) {
+            startEndCutscene();
+            return;
+        }
+
         CurrentSabotage = _sabotages[_day - 1];
         SabotageId = CurrentSabotage.Id;
         CurrentSabotage.ToggleActiveState();
@@ -98,5 +103,12 @@ public class GameManager : MonoBehaviour {
     public InteractableSabotage CurrentSabotage {
         get { return _currentSabotage; }
         private set { _currentSabotage = value;  }
+    }
+
+    void startEndCutscene() {
+        // Needs to add logic for interaction with the necklace
+        // DestroyImmediate(UI.UIDialogueManager.Instance.gameObject);
+        GetComponent<SceneManagement>().ChangeScene("EndCutscene_1");
+        // DestroyImmediate(GameManager.Instance.gameObject);
     }
 }

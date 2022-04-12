@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour {
     private InputAction _tablet;
     private Vector2 _mouseMovement;
     private float _xRot, _yRot;
+    private bool controlEnabled;
 
     private void Awake() {
         Cursor.lockState = CursorLockMode.Locked;
+        controlEnabled = true;
         _xRot = 0;
         _yRot = 0;
 
@@ -76,14 +78,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerCamera() {
-        _mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        if(controlEnabled) {
+            _mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        _yRot += _mouseMovement.x * _sensitivity * Time.deltaTime;
-        _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
-        _xRot = Mathf.Clamp(_xRot, -35, 60);
+            _yRot += _mouseMovement.x * _sensitivity * Time.deltaTime;
+            _xRot -= _mouseMovement.y * _sensitivity * Time.deltaTime;
+            _xRot = Mathf.Clamp(_xRot, -35, 60);
 
-        PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, 
-            Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+            PlayerCam.transform.localRotation = Quaternion.Slerp(PlayerCam.rotation, 
+                Quaternion.Euler(_xRot, _yRot, 0), 0.5f);
+        }
     }
 
     private void OpenTablet(InputAction.CallbackContext context) {
@@ -95,5 +99,19 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         PlayerMovement();
         PlayerCamera();
+    }
+
+    public void ControlActive(bool active) {
+      if (active) {
+          controlEnabled = true;
+          _movement.Enable();
+          _sprint.Enable();
+          _interact.Enable();
+      } else {
+          controlEnabled = false;
+          _movement.Disable();
+          _sprint.Disable();
+          _interact.Disable();
+      }
     }
 }

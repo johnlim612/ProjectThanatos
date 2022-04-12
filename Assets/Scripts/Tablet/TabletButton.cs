@@ -43,4 +43,8 @@ public enum ButtonType {
     Quest,
     Diary,
     Map,
+    Won,
+    Rachel,
+    Yuri,
+    Johnny
 }

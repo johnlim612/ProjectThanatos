@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 1353915326}
   - component: {fileID: 1353915327}
   - component: {fileID: 1353915332}
+  - component: {fileID: 1102838130934297310}
+  - component: {fileID: 273685293030748109}
+  - component: {fileID: 1180539175363039280}
   m_Layer: 0
   m_Name: pPlane3
   m_TagString: Untagged
@@ -114,8 +117,6 @@ MonoBehaviour:
   ActiveQuest: 0
   _descriptions:
   - Wonder what this key is for.. its near wonki...
-  _player: {fileID: 0}
-  _glowRange: 7
 --- !u!114 &1353915327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +161,48 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!65 &1102838130934297310
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1526318, y: 8.625217, z: 15.146084}
+  m_Center: {x: 0.31443086, y: 1.9776039, z: -10.3154}
+--- !u!114 &273685293030748109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513afbd3f6a2ba34ba3f33429b8bc4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveQuest: 0
+  _descriptions:
+  - Wonder what this key is for.. its near wonki...
+--- !u!114 &1180539175363039280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331202dbf977b584489a4921e1357044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _glowRange: 5
+  _sabotage: {fileID: 0}
 --- !u!1 &155280
 GameObject:
   m_ObjectHideFlags: 0

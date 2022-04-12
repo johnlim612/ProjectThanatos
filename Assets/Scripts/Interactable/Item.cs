@@ -18,7 +18,6 @@ public class Item : InteractableObject {
 	}
 
 	public override void InteractObject() {
-        print("Item was Detected!!!!!");
         Interact();
     }
 

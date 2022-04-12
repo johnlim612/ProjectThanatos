@@ -109,6 +109,7 @@ public class TabletController : MonoBehaviour {
                 // Player chooses a character
                 TabletManager.Instance.ChosenCharacter = btn.Type;
                 DisableCharacterSelection();
+                GameManager.Instance.KillCharacter(btn.name);
                 GameManager.Instance.EndDay();
                 break;
         }

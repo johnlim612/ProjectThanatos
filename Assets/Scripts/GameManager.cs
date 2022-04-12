@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -52,6 +53,18 @@ public class GameManager : MonoBehaviour {
         foreach (NPC npc in _npcList) {
             npc.HasBeenSpokenTo = false;
         }
+    }
+
+    public void KillCharacter(string name) {
+        foreach (NPC npc in _npcList) {
+            if (npc.name == name) {
+                npc.transform.position = new Vector3(-20.5f, 0.1f, 12.4f);
+                npc.transform.rotation = Quaternion.Euler(75.6f, 180, 0);
+                return;
+            }
+        }
+
+        throw new ArgumentException("KillCharacter could not find the NPC with the name: " + name);
     }
 
     public void ToggleRoomName(bool isRoomEntered, string enteredRoomName) {

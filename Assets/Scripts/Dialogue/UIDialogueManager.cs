@@ -95,10 +95,8 @@ namespace UI {
 		}
 
 		private void PrepareDialogue() {
-			// Don't cut player movement if it is an alert
-			if (_entityType != EntityType.Alert) {
-				_player.GetComponent<PlayerController>().enabled = false;
-			}
+			// Cut player movement if text on screen
+			_player.GetComponent<PlayerController>().enabled = false;
 
 			if (_entityType == EntityType.NPC) {
 				ToggleNextButton(false);
@@ -291,7 +289,7 @@ namespace UI {
 
 			if (_questSelected) {
 				_questSelected = false;
-				QuestManager.Instance.TriggerNext();
+				//QuestManager.Instance.TriggerNext();
 			}
 		}
 	}

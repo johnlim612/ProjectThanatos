@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
         CurrentSabotage = _sabotages[_day - 1];
         SabotageId = CurrentSabotage.Id;
         CurrentSabotage.ToggleActiveState();
-        LightAdjuster.SabotageLevel = LightAdjuster.LightType.EMERGENCY;
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
 
         TabletManager.Instance.Refresh();
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);

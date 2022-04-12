@@ -10,6 +10,7 @@ public class InteractableObject : MonoBehaviour {
     protected bool _isActive = false;
 
     public void OnInteract(InputValue value) {
+        print("This is dialogue bool" + UI.UIDialogueManager.Instance.IsInteracting);
         if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
             InteractObject();
         }

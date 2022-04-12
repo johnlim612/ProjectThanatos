@@ -5,12 +5,11 @@ public class InteractableObject : MonoBehaviour {
     protected string _interactableText = "Press Space";
     protected bool _interactableCollided = false;
     protected BoxCollider _boxCol;
-    public bool ActiveQuest = false;
+    [HideInInspector] public bool ActiveQuest = false;
     public int Id { get; private set; }
     protected bool _isActive = false;
 
     public void OnInteract(InputValue value) {
-        //print("interactable collided" + _interactableCollided);
         if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
             InteractObject();
         }
@@ -33,7 +32,6 @@ public class InteractableObject : MonoBehaviour {
     }
 
     public void ToggleActiveState() {
-        print("interactable state changed");
         IsActive = !IsActive;
         _interactableCollided = false;
         _boxCol.enabled = IsActive;

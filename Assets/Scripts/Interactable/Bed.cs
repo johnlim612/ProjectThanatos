@@ -10,9 +10,9 @@ public class Bed : InteractableObject {
     private Queue<(string, string)> _descriptionQueue;
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.N)) {
-            Sleep();
-        }
+        //if (Input.GetKeyDown(KeyCode.N)) {
+        //    Sleep();
+        //}
     }
 
     public override void InteractObject() {

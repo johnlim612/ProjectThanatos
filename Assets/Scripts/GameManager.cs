@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
         CurrentSabotage = _sabotages[_day - 1];
         SabotageId = CurrentSabotage.Id;
         CurrentSabotage.ToggleActiveState();
-        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.EMERGENCY;
 
         TabletManager.Instance.Refresh();
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
@@ -84,9 +84,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator WaitForFade() {
         _fade.FadeActive(true);
         _fade.FadeOut();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         _fade.FadeIn();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         _fade.FadeActive(false);
         AdvanceDay();
     }

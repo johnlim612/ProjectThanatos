@@ -76,11 +76,11 @@ public class TabletController : MonoBehaviour {
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
         }
 
-        if (Input.GetKeyDown(KeyCode.C)) {
-            EnableCharacterSelection();
-        } else if (Input.GetKeyDown(KeyCode.V)) {
-            DisableCharacterSelection();
-        }
+        //if (Input.GetKeyDown(KeyCode.C)) {
+        //    EnableCharacterSelection();
+        //} else if (Input.GetKeyDown(KeyCode.V)) {
+        //    DisableCharacterSelection();
+        //}
     }
 
     /// <summary>

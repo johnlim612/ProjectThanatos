@@ -10,6 +10,7 @@ public class InteractableObject : MonoBehaviour {
     protected bool _isActive = false;
 
     public void OnInteract(InputValue value) {
+        //print("interactable collided" + _interactableCollided);
         if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
             InteractObject();
         }
@@ -32,6 +33,7 @@ public class InteractableObject : MonoBehaviour {
     }
 
     public void ToggleActiveState() {
+        print("interactable state changed");
         IsActive = !IsActive;
         _interactableCollided = false;
         _boxCol.enabled = IsActive;

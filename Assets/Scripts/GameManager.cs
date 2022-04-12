@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EndDay() {
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
         StartCoroutine(WaitForFade());
         FindObjectOfType<LightAdjuster>().LightDecrease();
     }

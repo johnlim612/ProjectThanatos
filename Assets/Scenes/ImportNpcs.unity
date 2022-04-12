@@ -970,6 +970,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.937504
       objectReference: {fileID: 0}
+    - target: {fileID: 2006662503580063817, guid: d4dd0073a1f8a4d4db87b2a59b5c4606, type: 3}
+      propertyPath: _tabletController
+      value: 
+      objectReference: {fileID: 1358362259}
     - target: {fileID: 2199262040686401300, guid: d4dd0073a1f8a4d4db87b2a59b5c4606, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1058,8 +1062,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3624864817227999009, guid: d4dd0073a1f8a4d4db87b2a59b5c4606, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4dd0073a1f8a4d4db87b2a59b5c4606, type: 3}
 --- !u!4 &310921917 stripped
 Transform:
@@ -2704,115 +2707,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4694d625f5bfc4a2088994277336ad92, type: 3}
---- !u!1 &1195536192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3624864817230030829, guid: d4dd0073a1f8a4d4db87b2a59b5c4606, type: 3}
-  m_PrefabInstance: {fileID: 310921916}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1195536194
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.6746185, y: 4.468199, z: 4.6465235}
-  m_Center: {x: 0.7423512, y: 2.2340994, z: 0.22165632}
---- !u!114 &1195536195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5abdc2b1207868d4e83e8d4cd9138351, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &1195536196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1015522ba2c2da428fc038c71ee63fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveQuest: 0
-  _descriptions:
-  - This is your bed.
-  - Tired, you make note of the day's events on your tablet.
-  - You go to bed.
-  _requirements:
-  - You need to repair the problem on the spaceship before you can use the diary
-  _tabletController: {fileID: 1358362259}
---- !u!64 &1195536197
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 9f483ba0e96f1414a84ea4b0fbc13414, type: 3}
---- !u!114 &1195536200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331202dbf977b584489a4921e1357044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _glowRange: 7
---- !u!114 &1195536201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195536192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 933fb140ffde48a43ade121ff80824b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 0
-  eraseRenderer: 0
 --- !u!1 &1227943704
 GameObject:
   m_ObjectHideFlags: 0

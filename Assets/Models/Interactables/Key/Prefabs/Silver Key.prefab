@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 413480}
   - component: {fileID: 3338382}
   - component: {fileID: 2311228}
+  - component: {fileID: 1353915330}
+  - component: {fileID: 1353915326}
+  - component: {fileID: 1353915327}
+  - component: {fileID: 1353915332}
   m_Layer: 0
   m_Name: pPlane3
   m_TagString: Untagged
@@ -82,6 +86,80 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1353915330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1526318, y: 8.625217, z: 15.146084}
+  m_Center: {x: 0, y: 0, z: -10.3154}
+--- !u!114 &1353915326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513afbd3f6a2ba34ba3f33429b8bc4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveQuest: 0
+  _descriptions:
+  - Wonder what this key is for.. its near wonki...
+  _player: {fileID: 0}
+  _glowRange: 7
+--- !u!114 &1353915327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933fb140ffde48a43ade121ff80824b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+--- !u!114 &1353915332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5abdc2b1207868d4e83e8d4cd9138351, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &155280
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +169,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 469694}
-  - component: {fileID: 8044976166724654919}
   m_Layer: 0
   m_Name: Silver Key
   m_TagString: Untagged
@@ -106,26 +183,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155280}
-  m_LocalRotation: {x: 0, y: -0.56557554, z: 0, w: 0.82469654}
+  m_LocalRotation: {x: 0, y: -0.5655789, z: 0, w: 0.82469416}
   m_LocalPosition: {x: 14.7, y: 0.27977, z: 83.4}
-  m_LocalScale: {x: 1.8018788, y: 1.8018793, z: 1.8018793}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 413480}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8044976166724654919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513afbd3f6a2ba34ba3f33429b8bc4e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveQuest: 0
-  _descriptions:
-  - wonder where this silver key from..
+  m_LocalEulerAnglesHint: {x: 0, y: -68.885, z: 0}

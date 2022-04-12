@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeTextEnd1 : MonoBehaviour
+public class ChangeTextEnd : MonoBehaviour
 {
     public Text UIText;
 
@@ -17,6 +17,14 @@ public class ChangeTextEnd1 : MonoBehaviour
 
     public void changeTextAnger() {
         UIText.text = "How dare they lie to me...";
+    }
+
+    public void changeTextWake() {
+        UIText.text = "Mother finally woke up.";
+    }
+
+    public void changeTextWorth() {
+        UIText.text = "I deserve what's coming though.";
     }
 
     public void quit() {

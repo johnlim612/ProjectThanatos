@@ -10,6 +10,8 @@ public class TabletManager : MonoBehaviour {
     private string _questLog;
     private string _currentDiaryEntry;
     private string _diaryEntryHistory;
+    // super sketch I know, but pretend this is null pls n thx
+    private ButtonType _chosenCharacter = ButtonType.Diary; 
 
     private const float _toggleSpeed = 0.00001f;
     private const float _toggleIncrement = 0.25f;
@@ -116,5 +118,10 @@ public class TabletManager : MonoBehaviour {
 
     public string DiaryEntryHistory {
         get { return _diaryEntryHistory; }
+    }
+
+    public ButtonType ChosenCharacter {
+        get { return _chosenCharacter; }
+        set { _chosenCharacter = value; }
     }
 }

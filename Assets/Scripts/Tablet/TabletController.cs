@@ -22,6 +22,8 @@ public class TabletController : MonoBehaviour {
     [SerializeField] private GameObject _scrollView;
 
     private GameObject _player;
+    private Transform _tabletButtons;
+    private Transform _characterButtons;
     private Color _screenTextBaseColor;
     private Color _parentBaseColor;
     private Image _parentImage;
@@ -39,6 +41,9 @@ public class TabletController : MonoBehaviour {
 
     private void Awake() {
         _player = GameObject.Find(Constants.PlayerKey);
+        _tabletButtons = gameObject.transform.Find("TabletButtons");
+        _characterButtons = gameObject.transform.Find("CharacterButtons");
+
         _audioSource = GetComponent<AudioSource>();
         _isUpdating = false;
 
@@ -70,6 +75,12 @@ public class TabletController : MonoBehaviour {
             float y = (_player.transform.position.x + _mapYOffset) * _mapYRatio;
             _mapPolkaLolkaDotRect.anchoredPosition = new Vector2(x, y);
         }
+
+        if (Input.GetKeyDown(KeyCode.C)) {
+            EnableCharacterSelection();
+        } else if (Input.GetKeyDown(KeyCode.V)) {
+            DisableCharacterSelection();
+        }
     }
 
     /// <summary>
@@ -95,9 +106,11 @@ public class TabletController : MonoBehaviour {
                 OpenMapTab();
                 break;
             default:
-                throw new ArgumentException("Button Type '" + btn.Type + "' not found.\nPlease " +
-                    "check the 'Tablet Button' scripts and the 'Button' component's On Click() " +
-                    "functions in the inspector. If this is an emergency, please call 911.");
+                // Player chooses a character
+                TabletManager.Instance.ChosenCharacter = btn.Type;
+                DisableCharacterSelection();
+                GameManager.Instance.EndDay();
+                break;
         }
     }
 
@@ -121,6 +134,11 @@ public class TabletController : MonoBehaviour {
         for (int i = 0; i < entry.Length; i++) {
             _content.text = _content.text.Insert(i, entry[i].ToString());
             yield return new WaitForSeconds(_sentenceSpeed);
+        }
+
+        if (GameManager.Instance.Day == Constants.BodyFoundDay) {
+            // Make player choose a player
+            EnableCharacterSelection();
         }
 
         TabletManager.Instance.StoreDiaryEntry(entry);
@@ -168,6 +186,16 @@ public class TabletController : MonoBehaviour {
     private void OpenMapTab() {
         _mapBackground.enabled = true;
         _content.text = "";
+    }
+
+    private void EnableCharacterSelection() {
+        _tabletButtons.gameObject.SetActive(false);
+        _characterButtons.gameObject.SetActive(true);
+    }
+
+    private void DisableCharacterSelection() {
+        _tabletButtons.gameObject.SetActive(true);
+        _characterButtons.gameObject.SetActive(false);
     }
 
     private void OnValidate() {

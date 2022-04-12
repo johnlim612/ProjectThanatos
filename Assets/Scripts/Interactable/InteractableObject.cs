@@ -10,7 +10,7 @@ public class InteractableObject : MonoBehaviour {
     protected bool _isActive = false;
 
     public void OnInteract(InputValue value) {
-        if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting) {
+        if (_interactableCollided && !UI.UIDialogueManager.Instance.IsInteracting && !TabletManager.TabletActive) {
             InteractObject();
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TabletManager : MonoBehaviour {
     public static TabletManager Instance { get { return _instance; } }
+    public static bool TabletActive;
 
     [SerializeField] private GameObject _tabletGameObj;
 
@@ -22,6 +23,7 @@ public class TabletManager : MonoBehaviour {
         } else {
             _instance = this;
         }
+        TabletActive = false;
     }
 
     private void Start() {
@@ -64,6 +66,8 @@ public class TabletManager : MonoBehaviour {
         AudioManager.Instance.Play("tabletOn");
 
         if (state) {
+            TabletActive = true;
+            FindObjectOfType<PlayerController>().ControlActive(false);
             _tabletGameObj.SetActive(state);
             StartCoroutine(OpenTabletCoroutine());
         } else {
@@ -99,6 +103,8 @@ public class TabletManager : MonoBehaviour {
         }
 
         _tabletGameObj.SetActive(false);
+        TabletActive = false;
+        FindObjectOfType<PlayerController>().ControlActive(true);
     }
 
     public void StoreDiaryEntry(string entry) {

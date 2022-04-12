@@ -33,4 +33,5 @@ public static class Constants {
     public const string Communications = "Communications-room";
     public const string FinalRooms = "FinalRooms";
     public const int BodyFoundDay = 2;
+    public const int EndCutsceneDay = 2;
 }

@@ -902,7 +902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331202dbf977b584489a4921e1357044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glowRange: 7
+  _glowRange: 5
+  _sabotage: {fileID: 3257289}
 --- !u!114 &3257292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7482,7 +7483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723027986625014322, guid: 0e16475e464050141a1bf64d51b46d48, type: 3}
       propertyPath: m_Name
-      value: desk
+      value: desk (Sabotage)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e16475e464050141a1bf64d51b46d48, type: 3}

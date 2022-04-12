@@ -8543,7 +8543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933fb140ffde48a43ade121ff80824b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 2
   eraseRenderer: 0
 --- !u!114 &8048502182140764275
 MonoBehaviour:
@@ -8557,7 +8557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331202dbf977b584489a4921e1357044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glowRange: 7
+  _glowRange: 5
+  _sabotage: {fileID: 0}
 --- !u!1 &3692832948662350511
 GameObject:
   m_ObjectHideFlags: 0

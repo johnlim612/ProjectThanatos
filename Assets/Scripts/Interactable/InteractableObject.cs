@@ -5,7 +5,7 @@ public class InteractableObject : MonoBehaviour {
     protected string _interactableText = "Press Space";
     protected bool _interactableCollided = false;
     protected BoxCollider _boxCol;
-    public bool ActiveQuest = false;
+    [HideInInspector] public bool ActiveQuest = false;
     public int Id { get; private set; }
     protected bool _isActive = false;
 

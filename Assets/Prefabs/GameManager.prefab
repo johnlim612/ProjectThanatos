@@ -49,10 +49,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _tabletMgr: {fileID: 0}
   _day: 0
   _screen: {fileID: 0}
   _roomNameWrapper: {fileID: 0}
+  _fade: {fileID: 2023257108}
+  _sabotages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2023257108
 MonoBehaviour:
   m_ObjectHideFlags: 0

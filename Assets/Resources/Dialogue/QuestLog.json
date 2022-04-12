@@ -50,12 +50,12 @@
         "6" : "Write in Diary"
     },
     "D7": {
-        "1" : "Talk to Rachel Lumina",
-        "2" : "Get Scanner from Rachel",
-        "3" : "Talk to Yuri Miko",
-        "4" : "Fix the Sabotage",
-        "5" : "Talk to Johnny Walker",
-        "6" : "Talk to Won Ki",
+        "1" : "Fix the Sabotage",
+        "2" : "Look for someone in the Air Filtration Ventilation Room",
+        "3" : "Look for someone in to the Common Room",
+        "4" : "Look for someone in the Communications Room",
+        "5" : "Look for someone in the Med bay",
+        "6" : "Look for someone in the Supply Room",
         "7" : "Write in Diary"
     }
 }

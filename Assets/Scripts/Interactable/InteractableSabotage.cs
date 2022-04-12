@@ -15,6 +15,10 @@ public class InteractableSabotage : InteractableObject {
         UI.UIDialogueManager.Instance.InitializeDialogue(UI.EntityType.Alert);
     }
 
+    public bool SabotageActive() {
+        return _boxCol.enabled;
+    }
+
     //private void Update() {
     //    if (GameManager.Instance.SabotageId == _sabotageID && Sabotage.IsActive) {
     //        ToggleSabotage(true);

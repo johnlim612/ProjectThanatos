@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,12 +35,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EndDay() {
+        LightAdjuster.SabotageLevel = LightAdjuster.LightType.NORMAL;
         StartCoroutine(WaitForFade());
         FindObjectOfType<LightAdjuster>().LightDecrease();
     }
 
     public void AdvanceDay() {
         _day++;
+
+        if (_day == Constants.EndCutsceneDay) {
+            startEndCutscene();
+            return;
+        }
 
         CurrentSabotage = _sabotages[_day - 1];
         SabotageId = CurrentSabotage.Id;
@@ -54,6 +61,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void KillCharacter(string name) {
+        foreach (NPC npc in _npcList) {
+            if (npc.name == name) {
+                npc.transform.position = new Vector3(-20.5f, 0.1f, 12.4f);
+                npc.transform.rotation = Quaternion.Euler(75.6f, 180, 0);
+                return;
+            }
+        }
+
+        throw new ArgumentException("KillCharacter could not find the NPC with the name: " + name);
+    }
+
     public void ToggleRoomName(bool isRoomEntered, string enteredRoomName) {
         Animator anim = _roomNameWrapper.GetComponent<Animator>();
         Transform roomName = _roomNameWrapper.transform.Find("RoomName");
@@ -66,9 +85,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator WaitForFade() {
         _fade.FadeActive(true);
         _fade.FadeOut();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         _fade.FadeIn();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         _fade.FadeActive(false);
         AdvanceDay();
     }
@@ -85,5 +104,12 @@ public class GameManager : MonoBehaviour {
     public InteractableSabotage CurrentSabotage {
         get { return _currentSabotage; }
         private set { _currentSabotage = value;  }
+    }
+
+    void startEndCutscene() {
+        // Needs to add logic for interaction with the necklace
+        // DestroyImmediate(UI.UIDialogueManager.Instance.gameObject);
+        GetComponent<SceneManagement>().ChangeScene("EndCutscene_1");
+        // DestroyImmediate(GameManager.Instance.gameObject);
     }
 }

@@ -10,9 +10,9 @@ public class Bed : InteractableObject {
     private Queue<(string, string)> _descriptionQueue;
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.N)) {
-            Sleep();
-        }
+        //if (Input.GetKeyDown(KeyCode.N)) {
+        //    Sleep();
+        //}
     }
 
     public override void InteractObject() {
@@ -36,8 +36,10 @@ public class Bed : InteractableObject {
     }
 
     private IEnumerator WaitForDiaryEntry() {
-        yield return StartCoroutine(_tabletController.UpdateDiary());
-        GameManager.Instance.EndDay();
+        yield return StartCoroutine(_tabletController.UpdateDiaryCoroutine());
+        if (GameManager.Instance.Day != Constants.BodyFoundDay) {
+            GameManager.Instance.EndDay();
+        }
     }
 
     public Queue<(string, string)> DescriptionQueue {

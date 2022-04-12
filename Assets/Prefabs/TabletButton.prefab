@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6551820843336310227}
   - component: {fileID: 6835974657827219344}
   - component: {fileID: 3128659889137097435}
+  - component: {fileID: 8555480632220770344}
   - component: {fileID: 7960038742978471454}
   m_Layer: 5
   m_Name: TabletButton
@@ -77,6 +78,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8555480632220770344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559026053137642388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5f72eda0b48b24397b2c3698112aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _button: {fileID: 0}
 --- !u!114 &7960038742978471454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +116,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.25157225, g: 0.5756337, b: 1, a: 0.5882353}
     m_HighlightedColor: {r: 0.5157232, g: 0.70358914, b: 1, a: 0.5882353}
     m_PressedColor: {r: 0.14779866, g: 0.31823897, b: 1, a: 0.5882353}
-    m_SelectedColor: {r: 0.14901961, g: 0.31764707, b: 1, a: 0.5882353}
+    m_SelectedColor: {r: 0.2901961, g: 0.41568628, b: 0.49019608, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

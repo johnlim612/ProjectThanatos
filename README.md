@@ -24,9 +24,10 @@ Only keyboard and mouse compatible as of this moment:
 - Finding the dead body isn't completely integrated into the dialogue. The player won't fully know where they are searching for the dead body.
 - In the EOD diary script where the player chooses who they are suspicious of, the script still has placeholder text that says 
 "[SUSPECT]". This needs to be updated with the chosen NPC in the future.
-- Calendar next to the player's bed only decrements in the IntroCutscene. The method is never called to update it in the GameScene.
+- Calendar next to the player's bed only decrements in the IntroCutscene. The method is never called to update it in the GameScene (i.e. it always remains on 8).
 - Text shown on tablet will become illegible if opened too quickly
 - Multiple interactables can be interacted with at the same time and will bug out the system.
+- Speaking with Yuri beyond Day 3 crashes the game
 
 ## Unique Project Features
 - Tablet with a map projecting the player's position consistently
